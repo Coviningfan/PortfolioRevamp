@@ -7,6 +7,8 @@ import Home from "@/pages/home";
 import DSXVoicePage from "@/pages/dsx-voice";
 import DSXDataPage from "@/pages/dsx-data";
 import DSXLivePage from "@/pages/dsx-live";
+import AboutPage from "@/pages/about";
+import DataCenterPage from "@/pages/data-center";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -16,6 +18,8 @@ function Router() {
       <Route path="/dsx-voice" component={DSXVoicePage} />
       <Route path="/dsx-data" component={DSXDataPage} />
       <Route path="/dsx-live" component={DSXLivePage} />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/data-center" component={DataCenterPage} />
       <Route component={NotFound} />
     </Switch>
   );

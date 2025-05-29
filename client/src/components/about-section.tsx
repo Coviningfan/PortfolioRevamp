@@ -24,7 +24,7 @@ export default function AboutSection() {
             <p className="text-slate-600 mb-8">
               Leveraging the strengths of VoIP innovations and robust data handling capabilities, we offer a comprehensive suite of services designed to optimize and streamline business operations.
             </p>
-            <Link href="/dsx-voice">
+            <Link href="/about">
               <Button className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200 group">
                 Know the full story
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

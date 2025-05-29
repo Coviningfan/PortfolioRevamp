@@ -104,12 +104,11 @@ export default function DSXVoicePage() {
                 <p className="text-slate-700 mb-6">
                   With DSX Voice, you're not just adopting a new phone system; you're embracing a new way of doing business. Our commitment to innovation, customer-centric solutions, and seamless integration makes DSX Voice the ideal partner for your communication needs.
                 </p>
-                <Button
-                  onClick={() => scrollToSection("contact")}
-                  className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200"
-                >
-                  Get Started Today
-                </Button>
+                <Link href="/#contact">
+                  <Button className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200">
+                    Get Started Today
+                  </Button>
+                </Link>
               </div>
             </motion.div>
           </div>

@@ -205,18 +205,7 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              <div className="flex items-center">
-                <div className="bg-gradient-to-r from-blue-600 via-orange-500 to-red-500 w-12 h-12 rounded-lg flex items-center justify-center mr-4">
-                  <MapPin className="text-white h-5 w-5" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-900">Visit Us</h4>
-                  <p className="text-slate-600">
-                    Switch Citadel Campus<br />
-                    Enterprise District
-                  </p>
-                </div>
-              </div>
+
             </div>
 
             <div className="bg-gradient-to-r from-blue-600/10 to-orange-500/10 rounded-xl p-6">

@@ -46,15 +46,20 @@ export default function FactsSection() {
 
     useEffect(() => {
       if (isInView) {
+        const duration = 2000; // 2 seconds
+        const steps = 60; // 60 frames for smooth animation
+        const increment = value / steps;
+        let currentStep = 0;
+
         const timer = setInterval(() => {
-          setCount(prev => {
-            if (prev < value) {
-              return Math.min(prev + Math.ceil(value / 50), value);
-            }
+          currentStep++;
+          if (currentStep <= steps) {
+            setCount(Math.min(Math.round(increment * currentStep), value));
+          } else {
+            setCount(value);
             clearInterval(timer);
-            return value;
-          });
-        }, 30);
+          }
+        }, duration / steps);
 
         return () => clearInterval(timer);
       }

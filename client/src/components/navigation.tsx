@@ -24,10 +24,10 @@ export default function Navigation() {
   };
 
   const navItems = [
-    { label: "Home", id: "home" },
+    { label: "Home", href: "/" },
     { label: "Services", id: "services" },
-    { label: "About", id: "about" },
-    { label: "Testimonials", id: "testimonials" },
+    { label: "About", href: "/about" },
+    { label: "Data Center", href: "/data-center" },
   ];
 
   return (
