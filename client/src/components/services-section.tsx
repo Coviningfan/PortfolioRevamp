@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, Headphones, Database } from "lucide-react";
+import { Link } from "wouter";
 
 export default function ServicesSection() {
   const services = [
@@ -62,9 +63,11 @@ export default function ServicesSection() {
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">{service.title}</h3>
                 <p className="text-slate-600 mb-6">{service.description}</p>
-                <button className="text-blue-600 font-semibold hover:text-orange-500 transition-colors duration-200 group-hover:underline">
-                  Learn More →
-                </button>
+                <Link href={service.title === "Voice Solutions" ? "/dsx-voice" : service.title === "DSX Live" ? "/dsx-live" : "/dsx-data"}>
+                  <button className="text-blue-600 font-semibold hover:text-orange-500 transition-colors duration-200 group-hover:underline">
+                    Learn More →
+                  </button>
+                </Link>
               </div>
             </motion.div>
           ))}

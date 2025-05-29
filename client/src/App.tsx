@@ -4,12 +4,18 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
+import DSXVoicePage from "@/pages/dsx-voice";
+import DSXDataPage from "@/pages/dsx-data";
+import DSXLivePage from "@/pages/dsx-live";
 import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/dsx-voice" component={DSXVoicePage} />
+      <Route path="/dsx-data" component={DSXDataPage} />
+      <Route path="/dsx-live" component={DSXLivePage} />
       <Route component={NotFound} />
     </Switch>
   );

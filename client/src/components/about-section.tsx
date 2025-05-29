@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "wouter";
 
 export default function AboutSection() {
   return (
@@ -23,10 +24,12 @@ export default function AboutSection() {
             <p className="text-slate-600 mb-8">
               Leveraging the strengths of VoIP innovations and robust data handling capabilities, we offer a comprehensive suite of services designed to optimize and streamline business operations.
             </p>
-            <Button className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200 group">
-              Know the full story
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <Link href="/dsx-voice">
+              <Button className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200 group">
+                Know the full story
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
           </motion.div>
           
           <motion.div
