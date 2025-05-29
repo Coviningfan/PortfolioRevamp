@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222 84% 4.9%;
+  --muted: 210 40% 98%;
+  --muted-foreground: 215 13.8% 34.1%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 84% 4.9%;
+  --border: 214 31.8% 91.4%;
+  --input: 214 31.8% 91.4%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47.4% 11.2%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 221 83% 53%;
+  --radius: 0.5rem;
+  
+  /* DSX Edge Brand Colors */
+  --dsx-blue: 221 83% 53%; /* #2563eb */
+  --dsx-orange: 24 95% 53%; /* #f97316 */
+  --dsx-red: 4 90% 58%; /* #ef4444 */
+}
+
+.dark {
+  --background: 222 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --muted: 217 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --popover: 222 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --card: 222 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --border: 217 32.6% 17.5%;
+  --input: 217 32.6% 17.5%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 222 84% 4.9%;
+  --secondary: 217 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --accent: 217 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 221 83% 53%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-dsx {
+    background: linear-gradient(135deg, hsl(var(--dsx-blue)), hsl(var(--dsx-orange)));
+  }
+  
+  .gradient-dsx-orange {
+    background: linear-gradient(135deg, hsl(var(--dsx-orange)), hsl(var(--dsx-red)));
+  }
+  
+  .text-gradient-dsx {
+    background: linear-gradient(135deg, hsl(var(--dsx-blue)), hsl(var(--dsx-orange)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-orange {
+    background: linear-gradient(135deg, hsl(var(--dsx-orange)), hsl(var(--dsx-red)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--dsx-blue));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--dsx-orange));
+}
