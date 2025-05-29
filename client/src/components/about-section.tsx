@@ -41,7 +41,7 @@ export default function AboutSection() {
               alt="Modern data center with servers and networking equipment"
               className="rounded-xl shadow-lg w-full h-auto"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-orange-500/20 rounded-xl"></div>
+
           </motion.div>
         </div>
       </div>
