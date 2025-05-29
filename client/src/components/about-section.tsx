@@ -34,14 +34,14 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="relative"
+            className="flex items-center justify-center"
           >
-            <img
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
-              alt="Modern data center with servers and networking equipment"
-              className="rounded-xl shadow-lg w-full h-auto"
-            />
-
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">A Legacy with Innovation</h3>
+              <p className="text-slate-600 text-lg">
+                Founded in 2009, we continue to redefine business communication with cutting-edge solutions.
+              </p>
+            </div>
           </motion.div>
         </div>
       </div>
