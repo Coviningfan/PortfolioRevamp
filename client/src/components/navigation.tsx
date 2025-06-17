@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Phone, Mail, MapPin } from "lucide-react";
+import { Link } from "wouter";
 import dsxLogo from "@assets/DSX EDGE LOGO.png";
 
 export default function Navigation() {
