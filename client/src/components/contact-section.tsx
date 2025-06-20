@@ -189,19 +189,9 @@ export default function ContactSection() {
                 <Button
                   type="submit"
                   disabled={contactMutation.isPending}
-                  className="w-full gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200 hover:scale-105 group disabled:hover:scale-100"
+                  className="w-full gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200"
                 >
-                  {contactMutation.isPending ? (
-                    <div className="flex items-center">
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                      Sending...
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-center">
-                      <span>Send Message</span>
-                      <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
-                    </div>
-                  )}
+                  {contactMutation.isPending ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </Form>

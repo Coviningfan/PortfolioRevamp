@@ -12,9 +12,6 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 
-// Set trust proxy for Replit environment
-app.set('trust proxy', 1);
-
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per windowMs
@@ -58,7 +55,7 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  await registerRoutes(app);
+  const server = await registerRoutes(app);
 
   // Global error handler
   app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
@@ -84,13 +81,13 @@ app.use((req, res, next) => {
     });
   });
 
-  const httpServer = createServer(app);
+  const server = createServer(app);
 
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
   if (app.get("env") === "development") {
-    await setupVite(app, httpServer);
+    await setupVite(app, server);
   } else {
     serveStatic(app);
   }
@@ -99,7 +96,7 @@ app.use((req, res, next) => {
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = 5000;
-  httpServer.listen({
+  server.listen({
     port,
     host: "0.0.0.0",
     reusePort: true,
