@@ -3,10 +3,6 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
-import { Express, Request, Response, NextFunction } from "express";
-import { db } from "./storage";
-import { contacts, insertContactSchema } from "@shared/schema";
-import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission
@@ -41,39 +37,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: false, 
         error: "Failed to retrieve contacts" 
       });
-    }
-  });
-
-app.post("/api/contact", async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      // Enhanced validation
-      const contactSchema = z.object({
-        firstName: z.string().min(1, "First name is required").max(50, "First name too long"),
-        lastName: z.string().min(1, "Last name is required").max(50, "Last name too long"),
-        email: z.string().email("Invalid email address").max(100, "Email too long"),
-        company: z.string().max(100, "Company name too long").optional(),
-        message: z.string().min(10, "Message must be at least 10 characters").max(1000, "Message too long")
-      });
-
-      const validatedData = contactSchema.parse(req.body);
-
-      const result = await db.insert(contacts).values(validatedData).returning();
-
-      res.json({ 
-        success: true, 
-        message: "Contact form submitted successfully",
-        data: { id: result[0].id }
-      });
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        res.status(400).json({ 
-          success: false, 
-          error: "Validation failed",
-          details: error.errors.map(e => ({ field: e.path.join('.'), message: e.message }))
-        });
-      } else {
-        next(error);
-      }
     }
   });
 

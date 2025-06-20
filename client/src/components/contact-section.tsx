@@ -12,33 +12,10 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import { insertContactSchema } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 import type { InsertContact } from "@shared/schema";
-import { z } from "zod";
-
-const formSchema = z.object({
-  firstName: z.string()
-    .min(1, "First name is required")
-    .min(2, "First name must be at least 2 characters")
-    .max(50, "First name must be less than 50 characters"),
-  lastName: z.string()
-    .min(1, "Last name is required")
-    .min(2, "Last name must be at least 2 characters")
-    .max(50, "Last name must be less than 50 characters"),
-  email: z.string()
-    .min(1, "Email is required")
-    .email("Please enter a valid email address")
-    .max(100, "Email must be less than 100 characters"),
-  company: z.string().max(100, "Company name must be less than 100 characters").optional(),
-  message: z.string()
-    .min(1, "Message is required")
-    .min(10, "Message must be at least 10 characters")
-    .max(1000, "Message must be less than 1000 characters"),
-});
 
 export default function ContactSection() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const form = useForm<InsertContact>({
     resolver: zodResolver(insertContactSchema),
@@ -103,7 +80,7 @@ export default function ContactSection() {
             className="bg-slate-50 rounded-xl p-8"
           >
             <h3 className="text-2xl font-bold text-slate-900 mb-6">Send us a message</h3>
-
+            
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -112,14 +89,9 @@ export default function ContactSection() {
                     name="firstName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>First Name *</FormLabel>
+                        <FormLabel>First Name</FormLabel>
                         <FormControl>
-                          <Input 
-                            {...field} 
-                            className="focus:ring-blue-600" 
-                            aria-required="true"
-                            placeholder="Enter your first name"
-                          />
+                          <Input {...field} className="focus:ring-blue-600" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -139,7 +111,7 @@ export default function ContactSection() {
                     )}
                   />
                 </div>
-
+                
                 <FormField
                   control={form.control}
                   name="email"
@@ -153,7 +125,7 @@ export default function ContactSection() {
                     </FormItem>
                   )}
                 />
-
+                
                 <FormField
                   control={form.control}
                   name="company"
@@ -167,7 +139,7 @@ export default function ContactSection() {
                     </FormItem>
                   )}
                 />
-
+                
                 <FormField
                   control={form.control}
                   name="message"
@@ -185,7 +157,7 @@ export default function ContactSection() {
                     </FormItem>
                   )}
                 />
-
+                
                 <Button
                   type="submit"
                   disabled={contactMutation.isPending}

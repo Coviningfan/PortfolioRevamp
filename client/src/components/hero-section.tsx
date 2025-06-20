@@ -53,7 +53,6 @@ export default function HeroSection() {
             <Button
               onClick={() => scrollToSection("services")}
               className="gradient-dsx-orange text-white px-8 py-4 text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-              aria-label="Explore our communication and data services"
             >
               Explore Solutions
             </Button>
@@ -61,7 +60,6 @@ export default function HeroSection() {
               onClick={() => scrollToSection("about")}
               variant="outline"
               className="border-2 border-blue-600 text-blue-600 px-8 py-4 text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300"
-              aria-label="Contact us to get started"
             >
               Learn More
             </Button>
