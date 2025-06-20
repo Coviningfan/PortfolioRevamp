@@ -1,8 +1,26 @@
 import express, { type Request, Response, NextFunction } from "express";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
+import cors from "cors";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { createServer } from "http";
 
 const app = express();
+
+// Security middleware
+app.use(helmet());
+app.use(cors());
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+app.use(limiter);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -39,13 +57,31 @@ app.use((req, res, next) => {
 (async () => {
   const server = await registerRoutes(app);
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
+  // Global error handler
+  app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    console.error('Global error:', err);
 
-    res.status(status).json({ message });
-    throw err;
+    if (res.headersSent) {
+      return next(err);
+    }
+
+    res.status(500).json({
+      success: false,
+      error: process.env.NODE_ENV === 'production' 
+        ? 'Internal server error' 
+        : err.message
+    });
   });
+
+  // 404 handler
+  app.use((req: Request, res: Response) => {
+    res.status(404).json({
+      success: false,
+      error: 'Route not found'
+    });
+  });
+
+  const server = createServer(app);
 
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
