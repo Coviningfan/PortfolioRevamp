@@ -128,12 +128,9 @@ export default function DSXVoicePage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <div className="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              Limited Time: Free Migration & Setup (Value: $2,500)
-            </div>
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Stop Overpaying for Phone Service</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Comprehensive Voice Solutions</h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Based on actual client installations, DSX Voice reduces phone bills by up to 60%
+              Advanced telephony infrastructure delivering up to 60% cost savings compared to traditional providers
             </p>
           </motion.div>
 

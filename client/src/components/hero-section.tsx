@@ -51,16 +51,16 @@ export default function HeroSection() {
             className="flex flex-wrap justify-center items-center gap-6 mb-8 text-sm text-slate-500"
           >
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>Join 500+ smart businesses who switched from AT&T</span>
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span>Trusted by 500+ businesses nationwide</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <span>99.9% uptime guarantee (better than AT&T)</span>
+              <span>99.9% uptime guarantee</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-              <span>Real humans answer in under 30 seconds</span>
+              <span>Expert support when you need it</span>
             </div>
           </motion.div>
 
@@ -72,20 +72,16 @@ export default function HeroSection() {
           >
             <Button
               onClick={() => scrollToSection("services")}
-              className="gradient-dsx-orange text-white px-8 py-4 text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative group"
+              className="gradient-dsx-orange text-white px-8 py-4 text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <span className="group-hover:animate-pulse">Stop Overpaying AT&T - See Your Savings</span>
-              <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-bounce">
-                60% Off
-              </span>
+              Explore Our Services
             </Button>
             <Button
               onClick={() => scrollToSection("contact")}
               variant="outline"
-              className="border-2 border-blue-600 text-blue-600 px-8 py-4 text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 relative overflow-hidden group"
+              className="border-2 border-blue-600 text-blue-600 px-8 py-4 text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300"
             >
-              <span className="relative z-10">Free Audit: Find Hidden Costs</span>
-              <div className="absolute inset-0 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              Contact Us
             </Button>
           </motion.div>
         </div>
