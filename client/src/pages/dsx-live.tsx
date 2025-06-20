@@ -64,9 +64,23 @@ export default function DSXLivePage() {
             <p className="text-xl md:text-2xl text-slate-600 mb-8 max-w-4xl mx-auto">
               Next-Generation Contact Center Excellence
             </p>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto mb-6">
               Revolutionizing contact center operations by blending advanced AI-driven automation with expert human support for seamless, multichannel customer interactions.
             </p>
+            <div className="flex flex-wrap justify-center items-center gap-8 text-sm">
+              <div className="bg-white rounded-lg px-4 py-2 shadow-sm">
+                <div className="text-2xl font-bold text-blue-600">150%</div>
+                <div className="text-slate-600">Efficiency Increase</div>
+              </div>
+              <div className="bg-white rounded-lg px-4 py-2 shadow-sm">
+                <div className="text-2xl font-bold text-green-600">24/7</div>
+                <div className="text-slate-600">AI Availability</div>
+              </div>
+              <div className="bg-white rounded-lg px-4 py-2 shadow-sm">
+                <div className="text-2xl font-bold text-orange-600">95%</div>
+                <div className="text-slate-600">Customer Satisfaction</div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>

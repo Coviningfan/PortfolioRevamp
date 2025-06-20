@@ -79,7 +79,13 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="bg-slate-50 rounded-xl p-8"
           >
-            <h3 className="text-2xl font-bold text-slate-900 mb-6">Send us a message</h3>
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold text-slate-900 mb-2">Send us a message</h3>
+              <div className="flex items-center gap-2 text-sm text-green-600">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span>Typically respond within 2 hours</span>
+              </div>
+            </div>
             
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -161,9 +167,21 @@ export default function ContactSection() {
                 <Button
                   type="submit"
                   disabled={contactMutation.isPending}
-                  className="w-full gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200"
+                  className="w-full gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200 relative group"
                 >
-                  {contactMutation.isPending ? "Sending..." : "Send Message"}
+                  {contactMutation.isPending ? (
+                    <span className="flex items-center gap-2">
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Sending your message...
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-2">
+                      Get Your Free Quote Now
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </span>
+                  )}
                 </Button>
               </form>
             </Form>

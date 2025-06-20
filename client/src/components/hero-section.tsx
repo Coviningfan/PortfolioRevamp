@@ -39,10 +39,30 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto"
+            className="text-xl text-slate-600 mb-6 max-w-3xl mx-auto"
           >
             Empowering your business with cutting-edge technology solutions designed to optimize and streamline operations through advanced communication and data management.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex flex-wrap justify-center items-center gap-6 mb-8 text-sm text-slate-500"
+          >
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span>Trusted by 500+ businesses</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+              <span>99.9% uptime guarantee</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+              <span>24/7 expert support</span>
+            </div>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -52,16 +72,19 @@ export default function HeroSection() {
           >
             <Button
               onClick={() => scrollToSection("services")}
-              className="gradient-dsx-orange text-white px-8 py-4 text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="gradient-dsx-orange text-white px-8 py-4 text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative"
             >
-              Explore Solutions
+              Get Started Today - Save Up to 60%
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
+                Popular
+              </span>
             </Button>
             <Button
-              onClick={() => scrollToSection("about")}
+              onClick={() => scrollToSection("contact")}
               variant="outline"
               className="border-2 border-blue-600 text-blue-600 px-8 py-4 text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300"
             >
-              Learn More
+              Free Consultation
             </Button>
           </motion.div>
         </div>

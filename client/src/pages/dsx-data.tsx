@@ -59,9 +59,23 @@ export default function DSXDataPage() {
             <p className="text-xl md:text-2xl text-slate-600 mb-8 max-w-4xl mx-auto">
               Advanced Virtual DataSpace Management
             </p>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto mb-6">
               Sophisticated and secure data management solutions that address the complex data needs of modern businesses, ensuring both reliability and efficiency.
             </p>
+            <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-slate-500">
+              <div className="flex items-center gap-2">
+                <span className="text-green-600 font-semibold">✓</span>
+                <span>SOC 2 Compliant</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-600 font-semibold">✓</span>
+                <span>GDPR Ready</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-600 font-semibold">✓</span>
+                <span>Enterprise Grade Security</span>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
