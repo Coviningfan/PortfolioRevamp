@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -86,7 +86,7 @@ export default function ContactSection() {
                 <span>Typically respond within 2 hours</span>
               </div>
             </div>
-            
+
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -117,7 +117,7 @@ export default function ContactSection() {
                     )}
                   />
                 </div>
-                
+
                 <FormField
                   control={form.control}
                   name="email"
@@ -131,7 +131,7 @@ export default function ContactSection() {
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="company"
@@ -145,7 +145,7 @@ export default function ContactSection() {
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="message"
@@ -163,6 +163,7 @@ export default function ContactSection() {
                     </FormItem>
                   )}
                 />
+
                 
                 <Button
                   type="submit"

@@ -5,7 +5,7 @@ import { Calendar, Percent, Leaf, Handshake } from "lucide-react";
 export default function FactsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  
+
   const facts = [
     {
       icon: Calendar,
@@ -83,9 +83,12 @@ export default function FactsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Facts and Figures</h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Founded in 2009, DSX has been led by visionaries in technology and business, celebrating 15 years of industry leadership.
+          <div className="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+            While AT&T was disappointing customers...
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">We Were Building Something Better</h2>
+          <p className="text-xl text-slate-600">
+            15 years of making AT&T customers wish they'd found us sooner
           </p>
         </motion.div>
 
