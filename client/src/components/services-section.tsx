@@ -10,21 +10,24 @@ export default function ServicesSection() {
       number: "01",
       title: "DSX Voice",
       description: "Evolving excellence in communication with flexible, cost-effective VoIP services that integrate seamlessly with your existing systems. Delivering up to 60% in cost savings compared to traditional providers.",
-      gradient: "gradient-dsx"
+      gradient: "bg-gradient-to-r from-blue-600 to-orange-500",
+      href: "/dsx-voice"
     },
     {
       icon: Headphones,
       number: "02", 
       title: "DSX Live",
       description: "Your dynamic communication powerhouse that redefines efficiency by seamlessly integrating with your telephone system. Advanced AI-human hybrid support for superior customer engagement.",
-      gradient: "gradient-dsx-orange"
+      gradient: "bg-gradient-to-r from-blue-600 to-orange-500",
+      href: "/dsx-live"
     },
     {
       icon: Database,
       number: "03",
       title: "DSX Data", 
       description: "Virtual DataSpace Management with cutting-edge technology, delivering unparalleled reliability and performance from our state-of-the-art data center infrastructure.",
-      gradient: "bg-gradient-to-r from-blue-600 via-orange-500 to-red-500"
+      gradient: "bg-gradient-to-r from-blue-600 to-orange-500",
+      href: "/dsx-data"
     }
   ];
 
@@ -64,10 +67,10 @@ export default function ServicesSection() {
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">{service.title}</h3>
                 <p className="text-slate-600 mb-6">{service.description}</p>
-                <Link href={service.title === "DSX Voice" ? "/dsx-voice" : service.title === "DSX Live" ? "/dsx-live" : "/dsx-data"}>
-                  <button className="text-blue-600 font-semibold hover:text-orange-500 transition-colors duration-200 group-hover:underline">
-                    Learn More →
-                  </button>
+                <Link href={service.href}>
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200 group-hover:scale-105">
+                    Learn More
+                  </Button>
                 </Link>
               </div>
             </motion.div>

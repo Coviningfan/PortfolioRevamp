@@ -18,6 +18,12 @@ export default function Navigation() {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    // If we're not on the home page, navigate to home first
+    if (window.location.pathname !== '/') {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -67,11 +73,12 @@ export default function Navigation() {
                   </button>
                 )
               ))}
-              <Link href="/#contact">
-                <Button className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200">
-                  Contact Us
-                </Button>
-              </Link>
+              <Button 
+                onClick={() => scrollToSection('contact')}
+                className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200"
+              >
+                Contact Us
+              </Button>
             </div>
           </div>
 
@@ -102,11 +109,12 @@ export default function Navigation() {
                       </button>
                     )
                   ))}
-                  <Link href="/#contact">
-                    <Button className="gradient-dsx-orange text-white mt-4">
-                      Contact Us
-                    </Button>
-                  </Link>
+                  <Button 
+                    onClick={() => scrollToSection('contact')}
+                    className="gradient-dsx-orange text-white mt-4"
+                  >
+                    Contact Us
+                  </Button>
                 </div>
               </SheetContent>
             </Sheet>
