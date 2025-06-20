@@ -56,9 +56,16 @@ export default function Footer() {
       {/* Powered by section */}
       <div className="bg-slate-950 py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-slate-400 text-sm">
-            Powered by J.A.B.V Labs
-          </p>
+          <div className="flex items-center justify-center space-x-2">
+            <img 
+              src={dsxLogo} 
+              alt="DSX Edge Logo" 
+              className="h-6 w-auto brightness-0 invert"
+            />
+            <p className="text-slate-400 text-sm">
+              Powered by J.A.B.V Labs
+            </p>
+          </div>
         </div>
       </div>
     </footer>
