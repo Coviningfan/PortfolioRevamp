@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { Link } from "wouter";
 
 export default function HeroSection() {
   const scrollToSection = (sectionId: string) => {
