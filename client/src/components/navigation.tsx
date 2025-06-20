@@ -1,12 +1,14 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Phone, Mail, MapPin } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import dsxLogo from "@assets/DSX EDGE LOGO.png";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +23,37 @@ export default function Navigation() {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleHomeClick = () => {
+    if (location === "/") {
+      // Already on home page, just scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // Navigate to home page
+      setLocation("/");
+    }
+  };
+
+  const handleNavigationClick = (item: any) => {
+    if (item.href) {
+      // External navigation
+      if (location === item.href) {
+        // Already on the page, scroll to top
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        setLocation(item.href);
+      }
+    } else if (item.id) {
+      // Section navigation - only works on home page
+      if (location !== "/") {
+        // Navigate to home first, then scroll
+        setLocation("/");
+        setTimeout(() => scrollToSection(item.id), 100);
+      } else {
+        scrollToSection(item.id);
+      }
     }
   };
 
@@ -42,24 +75,31 @@ export default function Navigation() {
               src={dsxLogo} 
               alt="DSX Edge Logo" 
               className="h-10 w-auto cursor-pointer"
-              onClick={() => scrollToSection("home")}
+              onClick={handleHomeClick}
             />
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item) => (
+              {navItems.map((item, index) => (
                 <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  key={`nav-${index}-${item.label}`}
+                  onClick={() => handleNavigationClick(item)}
                   className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
                 >
                   {item.label}
                 </button>
               ))}
               <Button
-                onClick={() => scrollToSection("contact")}
+                onClick={() => {
+                  if (location !== "/") {
+                    setLocation("/");
+                    setTimeout(() => scrollToSection("contact"), 100);
+                  } else {
+                    scrollToSection("contact");
+                  }
+                }}
                 className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200"
               >
                 Contact Us
@@ -77,17 +117,24 @@ export default function Navigation() {
               </SheetTrigger>
               <SheetContent>
                 <div className="flex flex-col space-y-4 mt-6">
-                  {navItems.map((item) => (
+                  {navItems.map((item, index) => (
                     <button
-                      key={item.id}
-                      onClick={() => scrollToSection(item.id)}
+                      key={`mobile-nav-${index}-${item.label}`}
+                      onClick={() => handleNavigationClick(item)}
                       className="text-slate-700 hover:text-blue-600 text-left py-2 text-base font-medium transition-colors duration-200"
                     >
                       {item.label}
                     </button>
                   ))}
                   <Button
-                    onClick={() => scrollToSection("contact")}
+                    onClick={() => {
+                      if (location !== "/") {
+                        setLocation("/");
+                        setTimeout(() => scrollToSection("contact"), 100);
+                      } else {
+                        scrollToSection("contact");
+                      }
+                    }}
                     className="gradient-dsx-orange text-white mt-4"
                   >
                     Contact Us

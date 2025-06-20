@@ -23,7 +23,7 @@ export default function HeroSection() {
               Above the Cloud
             </span>
           </motion.div>
-          
+
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -34,7 +34,7 @@ export default function HeroSection() {
             <span className="text-gradient-dsx">Unified, Innovative</span><br />
             Communication and Data Solutions
           </motion.h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ export default function HeroSection() {
           >
             Empowering your business with cutting-edge technology solutions designed to optimize and streamline operations through advanced communication and data management.
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </div>
-      
+
       {/* Gradient accent */}
       <div className="h-2 bg-gradient-to-r from-blue-600 via-orange-500 to-red-500"></div>
     </section>

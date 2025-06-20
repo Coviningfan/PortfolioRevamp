@@ -16,7 +16,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="pt-24 pb-12 bg-gradient-to-br from-blue-50 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,7 +47,7 @@ export default function AboutPage() {
             className="mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center">The Foundation: DSX Data and DSX Voice</h2>
-            
+
             <div className="grid lg:grid-cols-2 gap-12">
               <div className="bg-slate-50 rounded-xl p-8">
                 <h3 className="text-2xl font-bold text-blue-600 mb-4">DSX Data - The Early Vision (2009)</h3>
@@ -136,13 +136,13 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-12 text-center">Merging Paths – The Creation of DSX Edge</h2>
-            
+
             <div className="bg-gradient-to-br from-blue-600/10 to-orange-500/10 rounded-xl p-8 mb-8">
               <h3 className="text-2xl font-bold text-slate-900 mb-4">A Strategic Decision</h3>
               <p className="text-slate-700 mb-6">
                 The decision to merge DSX Data and DSX Voice into DSX Edge was driven by a vision to create a unified platform that could offer end-to-end technology solutions. This move marked a significant shift in strategy, positioning DSX Edge as a holistic provider of technology services.
               </p>
-              
+
               <h4 className="text-xl font-semibold text-slate-900 mb-4">The Synergy of DSX Edge</h4>
               <p className="text-slate-700">
                 The unification brought together the strengths of both companies, creating a synergy that allowed for the delivery of integrated services ranging from advanced data management to innovative telephony solutions.
@@ -163,7 +163,7 @@ export default function AboutPage() {
             className="text-center"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-12">DSX Edge – The Present and The Future</h2>
-            
+
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               <div className="bg-white rounded-xl p-8 shadow-sm">
                 <h3 className="text-xl font-bold text-blue-600 mb-4">A Legacy of Excellence</h3>

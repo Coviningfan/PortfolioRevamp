@@ -27,7 +27,7 @@ export default function DSXVoicePage() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="pt-24 pb-12 bg-gradient-to-br from-blue-50 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
