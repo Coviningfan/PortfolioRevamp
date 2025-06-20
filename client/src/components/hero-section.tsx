@@ -72,7 +72,7 @@ export default function HeroSection() {
           >
             <Button
               onClick={() => scrollToSection("services")}
-              className="gradient-dsx-orange text-white px-8 py-4 text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="bg-gradient-to-r from-blue-600 to-orange-500 text-white px-8 py-4 text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
               Explore Our Services
             </Button>

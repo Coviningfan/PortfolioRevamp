@@ -67,11 +67,29 @@ export default function ServicesSection() {
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">{service.title}</h3>
                 <p className="text-slate-600 mb-6">{service.description}</p>
-                <Link href={service.href}>
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200 group-hover:scale-105">
-                    Learn More
+                <div className="flex gap-3">
+                  <Link href={service.href} className="flex-1">
+                    <Button className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200">
+                      Learn More
+                    </Button>
+                  </Link>
+                  <Button 
+                    onClick={() => {
+                      if (window.location.pathname !== '/') {
+                        window.location.href = "/#contact";
+                      } else {
+                        const element = document.getElementById('contact');
+                        if (element) {
+                          element.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }
+                    }}
+                    variant="outline" 
+                    className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-200"
+                  >
+                    Contact Us
                   </Button>
-                </Link>
+                </div>
               </div>
             </motion.div>
           ))}

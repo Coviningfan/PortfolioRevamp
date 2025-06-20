@@ -75,7 +75,7 @@ export default function Navigation() {
               ))}
               <Button 
                 onClick={() => scrollToSection('contact')}
-                className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200"
+                className="bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200"
               >
                 Contact Us
               </Button>
@@ -111,7 +111,7 @@ export default function Navigation() {
                   ))}
                   <Button 
                     onClick={() => scrollToSection('contact')}
-                    className="gradient-dsx-orange text-white mt-4"
+                    className="bg-gradient-to-r from-blue-600 to-orange-500 text-white mt-4"
                   >
                     Contact Us
                   </Button>

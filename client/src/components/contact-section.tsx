@@ -205,7 +205,7 @@ export default function ContactSection() {
 
             <div className="space-y-6">
               <div className="flex items-center">
-                <div className="gradient-dsx w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                <div className="bg-gradient-to-r from-blue-600 to-orange-500 w-12 h-12 rounded-lg flex items-center justify-center mr-4">
                   <Phone className="text-white h-5 w-5" />
                 </div>
                 <div>
@@ -215,7 +215,7 @@ export default function ContactSection() {
               </div>
 
               <div className="flex items-center">
-                <div className="gradient-dsx-orange w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                <div className="bg-gradient-to-r from-blue-600 to-orange-500 w-12 h-12 rounded-lg flex items-center justify-center mr-4">
                   <Mail className="text-white h-5 w-5" />
                 </div>
                 <div>
