@@ -52,7 +52,6 @@ export default function Navigation() {
     { label: "Services", id: "services" },
     { label: "About", href: "/about" },
     { label: "Data Center", href: "/data-center" },
-    { label: "Contact", id: "contact", onClick: handleContactNavClick },
   ];
 
   return (
@@ -77,23 +76,19 @@ export default function Navigation() {
               {navItems.map((item, index) => (
                 item.href ? (
                   <Link key={index} href={item.href}>
-                    <button className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">
+                    <button className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-all duration-200 relative group">
                       {item.label}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-600 group-hover:w-full transition-all duration-300"></span>
                     </button>
                   </Link>
                 ) : (
                   <button
                     key={index}
-                    onClick={() => {
-                      if (item.onClick) {
-                        item.onClick();
-                      } else if (item.id) {
-                        scrollToSection(item.id);
-                      }
-                    }}
-                    className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                    onClick={() => scrollToSection(item.id!)}
+                    className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-all duration-200 relative group"
                   >
                     {item.label}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-600 group-hover:w-full transition-all duration-300"></span>
                   </button>
                 )
               ))}
@@ -101,7 +96,7 @@ export default function Navigation() {
                 onClick={handleContactClick}
                 className="bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200"
               >
-                Get Quote
+                Contact
               </Button>
             </div>
           </div>
@@ -119,23 +114,19 @@ export default function Navigation() {
                   {navItems.map((item, index) => (
                     item.href ? (
                       <Link key={index} href={item.href}>
-                        <button className="text-slate-700 hover:text-blue-600 text-left py-2 text-base font-medium transition-colors duration-200">
+                        <button className="text-slate-700 hover:text-blue-600 text-left py-2 text-base font-medium transition-all duration-200 relative group w-full">
                           {item.label}
+                          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-600 group-hover:w-full transition-all duration-300"></span>
                         </button>
                       </Link>
                     ) : (
                       <button
                         key={index}
-                        onClick={() => {
-                          if (item.onClick) {
-                            item.onClick();
-                          } else if (item.id) {
-                            scrollToSection(item.id);
-                          }
-                        }}
-                        className="text-slate-700 hover:text-blue-600 text-left py-2 text-base font-medium transition-colors duration-200"
+                        onClick={() => scrollToSection(item.id!)}
+                        className="text-slate-700 hover:text-blue-600 text-left py-2 text-base font-medium transition-all duration-200 relative group w-full"
                       >
                         {item.label}
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-600 group-hover:w-full transition-all duration-300"></span>
                       </button>
                     )
                   ))}
@@ -143,7 +134,7 @@ export default function Navigation() {
                     onClick={handleContactClick}
                     className="bg-gradient-to-r from-blue-600 to-orange-500 text-white mt-4"
                   >
-                    Get Quote
+                    Contact
                   </Button>
                 </div>
               </SheetContent>

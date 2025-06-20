@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Check } from "lucide-react";
 import { Link } from "wouter";
+import { useEffect } from "react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
@@ -12,6 +13,31 @@ export default function DSXVoicePage() {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  useEffect(() => {
+    // Initialize ElevenLabs ConvAI widget
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+    script.async = true;
+    script.onload = () => {
+      // Create widget element after script loads
+      const widgetContainer = document.getElementById('elevenlabs-convai-widget');
+      if (widgetContainer && !widgetContainer.querySelector('elevenlabs-convai')) {
+        const widget = document.createElement('elevenlabs-convai');
+        widget.setAttribute('agent-id', 'zqqSEgJMdjJZig2dV307');
+        widgetContainer.appendChild(widget);
+      }
+    };
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup script on unmount
+      const existingScript = document.querySelector('script[src="https://unpkg.com/@elevenlabs/convai-widget-embed"]');
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
 
   const features = [
     "Customized Solutions tailored to your operational needs",
@@ -460,7 +486,7 @@ export default function DSXVoicePage() {
       
       {/* ElevenLabs Conversational AI Widget */}
       <div className="fixed bottom-4 right-4 z-50">
-        <elevenlabs-convai agent-id="zqqSEgJMdjJZig2dV307"></elevenlabs-convai>
+        <div id="elevenlabs-convai-widget" data-agent-id="zqqSEgJMdjJZig2dV307"></div>
       </div>
     </div>
   );
