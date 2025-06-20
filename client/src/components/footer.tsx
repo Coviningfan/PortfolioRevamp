@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Facebook, Twitter, Linkedin } from "lucide-react";
-import dsxLogo from "@assets/DSX EDGE LOGO.png";
+import dsxLogo from "../assets/DSX EDGE LOGO.png";
 
 export default function Footer() {
   return (
