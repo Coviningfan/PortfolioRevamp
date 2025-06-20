@@ -73,22 +73,14 @@ export default function ServicesSection() {
                       Learn More
                     </Button>
                   </Link>
-                  <Button 
-                    onClick={() => {
-                      if (window.location.pathname === '/') {
-                        const element = document.getElementById('contact');
-                        if (element) {
-                          element.scrollIntoView({ behavior: "smooth" });
-                        }
-                      } else {
-                        window.location.href = "/contact";
-                      }
-                    }}
-                    variant="outline" 
-                    className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-200"
-                  >
-                    Contact Us
-                  </Button>
+                  <Link href="/contact">
+                    <Button 
+                      variant="outline" 
+                      className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-200"
+                    >
+                      Contact Us
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>

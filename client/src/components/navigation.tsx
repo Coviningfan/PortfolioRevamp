@@ -31,11 +31,7 @@ export default function Navigation() {
   };
 
   const handleContactClick = () => {
-    if (window.location.pathname === '/') {
-      scrollToSection('contact');
-    } else {
-      window.location.href = '/contact';
-    }
+    window.location.href = '/contact';
   };
 
   const navItems = [
@@ -43,6 +39,7 @@ export default function Navigation() {
     { label: "Services", id: "services" },
     { label: "About", href: "/about" },
     { label: "Data Center", href: "/data-center" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (

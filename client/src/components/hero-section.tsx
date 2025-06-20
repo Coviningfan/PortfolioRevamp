@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export default function HeroSection() {
   const scrollToSection = (sectionId: string) => {
@@ -76,13 +77,14 @@ export default function HeroSection() {
             >
               Explore Our Services
             </Button>
-            <Button
-              onClick={() => scrollToSection("contact")}
-              variant="outline"
-              className="border-2 border-blue-600 text-blue-600 px-8 py-4 text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300"
-            >
-              Contact Us
-            </Button>
+            <Link href="/contact">
+              <Button
+                variant="outline"
+                className="border-2 border-blue-600 text-blue-600 px-8 py-4 text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300"
+              >
+                Contact Us
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </div>
