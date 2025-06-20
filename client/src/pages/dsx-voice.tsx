@@ -457,6 +457,11 @@ export default function DSXVoicePage() {
       </section>
 
       <Footer />
+      
+      {/* ElevenLabs Conversational AI Widget */}
+      <div className="fixed bottom-4 right-4 z-50">
+        <elevenlabs-convai agent-id="zqqSEgJMdjJZig2dV307"></elevenlabs-convai>
+      </div>
     </div>
   );
 }

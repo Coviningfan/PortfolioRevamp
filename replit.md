@@ -101,6 +101,12 @@ DSX Edge is a comprehensive business communication and data management platform 
 
 ## Changelog
 
+### June 20, 2025 - Navigation and AI Integration Update
+- **Navigation Enhancement**: Restored styled "Get Quote" button in navigation while maintaining clean UX
+- **AI Integration**: Added ElevenLabs conversational AI widget to DSX Voice page (bottom-right position)
+- **TypeScript Support**: Created custom element declarations for third-party web components
+- **UX Improvement**: Eliminated duplicate contact buttons while preserving call-to-action functionality
+
 ### June 20, 2025 - Major Update: Professional Website Optimization
 - **Navigation System**: Fixed all contact button routing across all pages and sections
 - **Gradient Consistency**: Standardized blue-to-orange gradients, applied only to icons (not entire graphics)

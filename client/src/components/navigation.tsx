@@ -97,6 +97,12 @@ export default function Navigation() {
                   </button>
                 )
               ))}
+              <Button 
+                onClick={handleContactClick}
+                className="bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200"
+              >
+                Get Quote
+              </Button>
             </div>
           </div>
 
@@ -133,6 +139,12 @@ export default function Navigation() {
                       </button>
                     )
                   ))}
+                  <Button 
+                    onClick={handleContactClick}
+                    className="bg-gradient-to-r from-blue-600 to-orange-500 text-white mt-4"
+                  >
+                    Get Quote
+                  </Button>
                 </div>
               </SheetContent>
             </Sheet>
