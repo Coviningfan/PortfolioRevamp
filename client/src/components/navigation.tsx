@@ -34,12 +34,25 @@ export default function Navigation() {
     window.location.href = '/contact';
   };
 
+  const handleContactNavClick = () => {
+    // If we're not on the home page, navigate to home first
+    if (window.location.pathname !== '/') {
+      window.location.href = '/#contact';
+      return;
+    }
+    
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const navItems = [
     { label: "Home", href: "/" },
     { label: "Services", id: "services" },
     { label: "About", href: "/about" },
     { label: "Data Center", href: "/data-center" },
-    { label: "Contact", href: "/contact" },
+    { label: "Contact", id: "contact", onClick: handleContactNavClick },
   ];
 
   return (
@@ -71,7 +84,13 @@ export default function Navigation() {
                 ) : (
                   <button
                     key={index}
-                    onClick={() => item.id && scrollToSection(item.id)}
+                    onClick={() => {
+                      if (item.onClick) {
+                        item.onClick();
+                      } else if (item.id) {
+                        scrollToSection(item.id);
+                      }
+                    }}
                     className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
                   >
                     {item.label}
@@ -107,7 +126,13 @@ export default function Navigation() {
                     ) : (
                       <button
                         key={index}
-                        onClick={() => item.id && scrollToSection(item.id)}
+                        onClick={() => {
+                          if (item.onClick) {
+                            item.onClick();
+                          } else if (item.id) {
+                            scrollToSection(item.id);
+                          }
+                        }}
                         className="text-slate-700 hover:text-blue-600 text-left py-2 text-base font-medium transition-colors duration-200"
                       >
                         {item.label}
