@@ -7,24 +7,24 @@ export default function TestimonialsSection() {
 
   const testimonials = [
     {
-      name: "Johnathan Meyers",
-      title: "CEO, Tech Solutions Inc.",
-      content: "Switching to DSX Edge has been a game-changer for our business. Their integrated communication platform has streamlined our operations, enhancing team collaboration and customer engagement. The personalized support and attention to detail from the DSX team have exceeded our expectations.",
-      initials: "JM",
+      name: "Michael H. Bonner",
+      title: "Law Office of Michael H. Bonner",
+      content: "DSX Voice has revolutionized our law practice's communication efficiency. With 7 extensions including conference room and off-site capabilities, we've achieved 65% cost savings while maintaining the high-quality service our clients expect.",
+      initials: "MB",
       gradient: "gradient-dsx"
     },
     {
-      name: "Gabriella Spring",
-      title: "Operations Manager, Industrial Corp",
-      content: "From the very first interaction, the customer service at DSX Edge has been nothing short of exceptional. Their team not only helped us identify the best communication solutions for our complex industrial environment but also provided ongoing support that has been invaluable.",
-      initials: "GS",
+      name: "Synology Operations Team",
+      title: "Synology Inc.",
+      content: "As a leader in NAS servers, our call center handles 100,000+ minutes monthly. DSX Voice added 50% to our capacity at 16% lower cost than our original system. The scalability and reliability have been exceptional for our phone-intensive business.",
+      initials: "SY",
       gradient: "gradient-dsx-orange"
     },
     {
-      name: "Josh Phillips",
-      title: "Director, Communications Ltd",
-      content: "Switching to DSX Voice transformed our communication system. The clarity and reliability of the calls are exceptional, and the customized features fit our business needs perfectly. The DSX team was fantastic throughout, making the transition smooth and hassle-free.",
-      initials: "JP",
+      name: "Synergy Homeopathic",
+      title: "Global Homeopathic Software Solutions",
+      content: "With 17 users spread across California, Massachusetts, Germany, India, and Israel, DSX Voice seamlessly connects our global team. The international integration and soft phone capabilities have transformed our worldwide operations.",
+      initials: "SH",
       gradient: "bg-gradient-to-r from-blue-600 via-orange-500 to-red-500"
     }
   ];
