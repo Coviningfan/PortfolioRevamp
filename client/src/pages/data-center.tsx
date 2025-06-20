@@ -228,14 +228,11 @@ export default function DataCenterPage() {
                   Back to Home
                 </Button>
               </Link>
-              <Button 
-                onClick={() => {
-                  window.location.href = "/#contact";
-                }}
-                className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200"
-              >
-                Contact Our Experts
-              </Button>
+              <Link href="/#contact">
+                <Button className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200">
+                  Contact Our Experts
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>
