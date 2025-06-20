@@ -82,9 +82,9 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item, index) => (
+              {navItems.map((item) => (
                 <button
-                  key={`nav-${index}-${item.label}`}
+                  key={item.label}
                   onClick={() => handleNavigationClick(item)}
                   className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
                 >

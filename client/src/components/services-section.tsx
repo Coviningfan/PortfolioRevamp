@@ -7,7 +7,7 @@ export default function ServicesSection() {
     {
       icon: Phone,
       number: "01",
-      title: "Voice Solutions",
+      title: "DSX Voice",
       description: "Evolving excellence in communication with flexible, cost-effective VoIP services that integrate seamlessly with your existing systems.",
       gradient: "gradient-dsx"
     },
@@ -63,7 +63,7 @@ export default function ServicesSection() {
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">{service.title}</h3>
                 <p className="text-slate-600 mb-6">{service.description}</p>
-                <Link href={service.title === "Voice Solutions" ? "/dsx-voice" : service.title === "DSX Live" ? "/dsx-live" : "/dsx-data"}>
+                <Link href={service.title === "DSX Voice" ? "/dsx-voice" : service.title === "DSX Live" ? "/dsx-live" : "/dsx-data"}>
                   <button className="text-blue-600 font-semibold hover:text-orange-500 transition-colors duration-200 group-hover:underline">
                     Learn More →
                   </button>
