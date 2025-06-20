@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Phone, Headphones, Database } from "lucide-react";
 import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
 
 export default function ServicesSection() {
   const services = [

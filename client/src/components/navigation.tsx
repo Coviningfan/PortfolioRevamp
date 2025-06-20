@@ -1,14 +1,12 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Phone, Mail, MapPin } from "lucide-react";
-import { Link, useLocation } from "wouter";
+import { Menu } from "lucide-react";
+import { Link } from "wouter";
 import dsxLogo from "@assets/DSX EDGE LOGO.png";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,37 +24,6 @@ export default function Navigation() {
     }
   };
 
-  const handleHomeClick = () => {
-    if (location === "/") {
-      // Already on home page, just scroll to top
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      // Navigate to home page
-      setLocation("/");
-    }
-  };
-
-  const handleNavigationClick = (item: any) => {
-    if (item.href) {
-      // External navigation
-      if (location === item.href) {
-        // Already on the page, scroll to top
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        setLocation(item.href);
-      }
-    } else if (item.id) {
-      // Section navigation - only works on home page
-      if (location !== "/") {
-        // Navigate to home first, then scroll
-        setLocation("/");
-        setTimeout(() => scrollToSection(item.id), 100);
-      } else {
-        scrollToSection(item.id);
-      }
-    }
-  };
-
   const navItems = [
     { label: "Home", href: "/" },
     { label: "Services", id: "services" },
@@ -71,39 +38,40 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <img 
-              src={dsxLogo} 
-              alt="DSX Edge Logo" 
-              className="h-10 w-auto cursor-pointer"
-              onClick={handleHomeClick}
-            />
+            <Link href="/">
+              <img 
+                src={dsxLogo} 
+                alt="DSX Edge Logo" 
+                className="h-10 w-auto cursor-pointer"
+              />
+            </Link>
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item) => (
-                <button
-                  key={item.label}
-                  onClick={() => handleNavigationClick(item)}
-                  className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
-                >
-                  {item.label}
-                </button>
+              {navItems.map((item, index) => (
+                item.href ? (
+                  <Link key={index} href={item.href}>
+                    <button className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">
+                      {item.label}
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    key={index}
+                    onClick={() => item.id && scrollToSection(item.id)}
+                    className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  >
+                    {item.label}
+                  </button>
+                )
               ))}
-              <Button
-                onClick={() => {
-                  if (location !== "/") {
-                    setLocation("/");
-                    setTimeout(() => scrollToSection("contact"), 100);
-                  } else {
-                    scrollToSection("contact");
-                  }
-                }}
-                className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200"
-              >
-                Contact Us
-              </Button>
+              <Link href="/#contact">
+                <Button className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200">
+                  Contact Us
+                </Button>
+              </Link>
             </div>
           </div>
 
@@ -118,27 +86,27 @@ export default function Navigation() {
               <SheetContent>
                 <div className="flex flex-col space-y-4 mt-6">
                   {navItems.map((item, index) => (
-                    <button
-                      key={`mobile-nav-${index}-${item.label}`}
-                      onClick={() => handleNavigationClick(item)}
-                      className="text-slate-700 hover:text-blue-600 text-left py-2 text-base font-medium transition-colors duration-200"
-                    >
-                      {item.label}
-                    </button>
+                    item.href ? (
+                      <Link key={index} href={item.href}>
+                        <button className="text-slate-700 hover:text-blue-600 text-left py-2 text-base font-medium transition-colors duration-200">
+                          {item.label}
+                        </button>
+                      </Link>
+                    ) : (
+                      <button
+                        key={index}
+                        onClick={() => item.id && scrollToSection(item.id)}
+                        className="text-slate-700 hover:text-blue-600 text-left py-2 text-base font-medium transition-colors duration-200"
+                      >
+                        {item.label}
+                      </button>
+                    )
                   ))}
-                  <Button
-                    onClick={() => {
-                      if (location !== "/") {
-                        setLocation("/");
-                        setTimeout(() => scrollToSection("contact"), 100);
-                      } else {
-                        scrollToSection("contact");
-                      }
-                    }}
-                    className="gradient-dsx-orange text-white mt-4"
-                  >
-                    Contact Us
-                  </Button>
+                  <Link href="/#contact">
+                    <Button className="gradient-dsx-orange text-white mt-4">
+                      Contact Us
+                    </Button>
+                  </Link>
                 </div>
               </SheetContent>
             </Sheet>
