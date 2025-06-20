@@ -52,6 +52,15 @@ export default function Footer() {
           </div>
         </motion.div>
       </div>
+      
+      {/* Powered by section */}
+      <div className="bg-slate-950 py-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-slate-400 text-sm">
+            Powered by J.A.B.V Labs
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }
