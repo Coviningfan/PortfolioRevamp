@@ -61,7 +61,7 @@ export default function Navigation() {
     { label: "Home", href: "/" },
     { label: "Services", id: "services" },
     { label: "About", href: "/about" },
-    { label: "Data Center", href: "/data-center" },
+    { label: "Contact", id: "contact" },
   ];
 
   return (
@@ -86,10 +86,11 @@ export default function Navigation() {
                 <button
                   key={`${item.label}-${index}`}
                   onClick={() => handleNavigationClick(item)}
-                  className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-blue-50 rounded-md relative group"
                   aria-label={`Navigate to ${item.label}`}
                 >
                   {item.label}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
                 </button>
               ))}
               <Button
@@ -101,9 +102,10 @@ export default function Navigation() {
                     scrollToSection("contact");
                   }
                 }}
-                className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200"
+                className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200 hover:scale-105"
+                aria-label="Contact us for a consultation"
               >
-                Contact Us
+                Get Started
               </Button>
             </div>
           </div>

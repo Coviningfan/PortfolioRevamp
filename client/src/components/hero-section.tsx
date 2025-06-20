@@ -52,18 +52,20 @@ export default function HeroSection() {
           >
             <Button
               onClick={() => scrollToSection("services")}
-              className="gradient-dsx-orange text-white px-8 py-4 text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="gradient-dsx-orange text-white px-8 py-4 text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 group"
               aria-label="Explore our communication and data services"
             >
-              Explore Solutions
+              <span className="mr-2">Explore Solutions</span>
+              <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
             </Button>
             <Button
-              onClick={() => scrollToSection("about")}
+              onClick={() => scrollToSection("contact")}
               variant="outline"
-              className="border-2 border-blue-600 text-blue-600 px-8 py-4 text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300"
+              className="border-2 border-blue-600 text-blue-600 px-8 py-4 text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 group"
               aria-label="Contact us to get started"
             >
-              Learn More
+              <span className="mr-2">Get Started Free</span>
+              <span className="group-hover:scale-110 transition-transform duration-200">✓</span>
             </Button>
           </motion.div>
         </div>
