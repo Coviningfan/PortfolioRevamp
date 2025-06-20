@@ -11,6 +11,7 @@ import DSXDataPage from "@/pages/dsx-data";
 import DSXLivePage from "@/pages/dsx-live";
 import AboutPage from "@/pages/about";
 import DataCenterPage from "@/pages/data-center";
+import ContactPage from "@/pages/contact";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -24,6 +25,7 @@ function Router() {
         <Route path="/dsx-live" component={DSXLivePage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/data-center" component={DataCenterPage} />
+        <Route path="/contact" component={ContactPage} />
         <Route component={NotFound} />
       </Switch>
     </>

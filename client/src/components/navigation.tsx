@@ -30,6 +30,14 @@ export default function Navigation() {
     }
   };
 
+  const handleContactClick = () => {
+    if (window.location.pathname === '/') {
+      scrollToSection('contact');
+    } else {
+      window.location.href = '/contact';
+    }
+  };
+
   const navItems = [
     { label: "Home", href: "/" },
     { label: "Services", id: "services" },
@@ -74,7 +82,7 @@ export default function Navigation() {
                 )
               ))}
               <Button 
-                onClick={() => scrollToSection('contact')}
+                onClick={handleContactClick}
                 className="bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200"
               >
                 Contact Us
@@ -110,7 +118,7 @@ export default function Navigation() {
                     )
                   ))}
                   <Button 
-                    onClick={() => scrollToSection('contact')}
+                    onClick={handleContactClick}
                     className="bg-gradient-to-r from-blue-600 to-orange-500 text-white mt-4"
                   >
                     Contact Us

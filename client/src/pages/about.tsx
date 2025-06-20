@@ -210,7 +210,7 @@ export default function AboutPage() {
                   Back to Home
                 </Button>
               </Link>
-              <Link href="/#contact">
+              <Link href="/contact">
                 <Button className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200">
                   Contact Us Today
                 </Button>

@@ -12,6 +12,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import { insertContactSchema } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 import type { InsertContact } from "@shared/schema";
+import dsxLogo from "@assets/DSX EDGE LOGO.png";
 
 export default function ContactSection() {
   const { toast } = useToast();
@@ -197,7 +198,14 @@ export default function ContactSection() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">Get in touch</h3>
+              <div className="flex items-center mb-6">
+                <img 
+                  src={dsxLogo} 
+                  alt="DSX Edge Logo" 
+                  className="h-12 w-auto mr-4"
+                />
+                <h3 className="text-2xl font-bold text-slate-900">Get in touch</h3>
+              </div>
               <p className="text-slate-600 mb-8">
                 Ready to elevate your business communication? Our team of experts is here to help you find the perfect solution.
               </p>

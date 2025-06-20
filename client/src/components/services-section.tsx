@@ -75,13 +75,13 @@ export default function ServicesSection() {
                   </Link>
                   <Button 
                     onClick={() => {
-                      if (window.location.pathname !== '/') {
-                        window.location.href = "/#contact";
-                      } else {
+                      if (window.location.pathname === '/') {
                         const element = document.getElementById('contact');
                         if (element) {
                           element.scrollIntoView({ behavior: "smooth" });
                         }
+                      } else {
+                        window.location.href = "/contact";
                       }
                     }}
                     variant="outline" 

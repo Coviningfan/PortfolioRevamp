@@ -94,7 +94,7 @@ export default function DSXVoicePage() {
               <p className="text-slate-700 mb-6">
                 With DSX Voice, you're not just adopting a new phone system; you're embracing a new way of doing business. Our commitment to innovation, customer-centric solutions, and seamless integration makes DSX Voice the ideal partner for your communication needs.
               </p>
-              <Link href="/#contact">
+              <Link href="/contact">
                 <Button className="bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200">
                   Get Started Today
                 </Button>
@@ -446,7 +446,7 @@ export default function DSXVoicePage() {
                   Back to Home
                 </Button>
               </Link>
-              <Link href="/#contact">
+              <Link href="/contact">
                 <Button className="bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200">
                   Contact Our Experts
                 </Button>
