@@ -1,22 +1,17 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Check, MessageCircle, X } from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
 import { Link } from "wouter";
-import { useState } from "react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 export default function DSXVoicePage() {
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-
 
   const features = [
     "Customized Solutions tailored to your operational needs",
@@ -463,58 +458,9 @@ export default function DSXVoicePage() {
 
       <Footer />
       
-      {/* AI Chat Widget */}
+      {/* ElevenLabs Conversational AI Widget */}
       <div className="fixed bottom-4 right-4 z-50">
-        {isChatOpen && (
-          <div className="mb-4 w-80 h-96 bg-white rounded-lg shadow-2xl border border-gray-200 flex flex-col">
-            <div className="bg-gradient-to-r from-blue-600 to-orange-500 p-4 rounded-t-lg flex justify-between items-center">
-              <h3 className="text-white font-semibold">DSX Voice Assistant</h3>
-              <button 
-                onClick={() => setIsChatOpen(false)}
-                className="text-white hover:bg-white/20 rounded p-1"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-            <div className="flex-1 p-4 bg-gray-50">
-              <div className="bg-white p-3 rounded-lg mb-3 border-l-4 border-blue-600">
-                <p className="text-sm text-gray-800">
-                  Hello! I'm your DSX Voice assistant. How can I help you with our telephony solutions today?
-                </p>
-              </div>
-              <div className="text-center text-sm text-gray-500">
-                AI Assistant is coming soon...
-              </div>
-            </div>
-            <div className="p-4 border-t">
-              <div className="flex gap-2">
-                <input 
-                  type="text" 
-                  placeholder="Type your message..."
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm"
-                  disabled
-                />
-                <Button 
-                  size="sm" 
-                  className="bg-gradient-to-r from-blue-600 to-orange-500 text-white"
-                  disabled
-                >
-                  Send
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
-        
-        <button 
-          onClick={() => setIsChatOpen(!isChatOpen)}
-          className="bg-gradient-to-r from-blue-600 to-orange-500 p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
-        >
-          <MessageCircle className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
-          <div className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-black text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-            Chat with AI Assistant
-          </div>
-        </button>
+        <elevenlabs-convai agent-id="zqqSEgJMdjJZig2dV307"></elevenlabs-convai>
       </div>
     </div>
   );
