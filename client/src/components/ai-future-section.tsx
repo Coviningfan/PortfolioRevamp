@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Brain, Clock, TrendingUp, Bot, Users, Zap, ArrowRight } from "lucide-react";
+import { Brain, Sparkles, TrendingUp, Layers, MessageSquare, Zap, ArrowRight, Phone, BarChart3, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
@@ -39,42 +39,36 @@ export default function AIFutureSection() {
     );
   };
 
-  const comparisons = [
+  const valueAdds = [
     {
-      category: "Response Time",
-      ai: "< 1 second",
-      human: "45+ seconds avg",
-      aiWins: true,
+      icon: Brain,
+      title: "AI-Powered Call Intelligence",
+      description: "Real-time sentiment analysis, call scoring, and smart routing that turns every conversation into actionable business insight.",
     },
     {
-      category: "24/7 Availability",
-      ai: "Always On",
-      human: "Shift-dependent",
-      aiWins: true,
+      icon: Bot,
+      title: "Intelligent Virtual Agents",
+      description: "AI agents that handle inquiries naturally, qualify leads, and route to the right person — 24/7, without missing a beat.",
     },
     {
-      category: "Complex Problem Solving",
-      ai: "Learning",
-      human: "Expert Level",
-      aiWins: false,
+      icon: BarChart3,
+      title: "Predictive Analytics",
+      description: "Know what your customers need before they call. AI-driven insights that help you anticipate demand and optimize staffing.",
     },
     {
-      category: "Empathy & Nuance",
-      ai: "Improving",
-      human: "Natural",
-      aiWins: false,
+      icon: Layers,
+      title: "Seamless Integration Layer",
+      description: "AI that plugs into your existing 3CX system — no rip-and-replace. Your phone system becomes smarter overnight.",
     },
     {
-      category: "Cost Per Interaction",
-      ai: "$0.05 - $0.25",
-      human: "$6 - $12",
-      aiWins: true,
+      icon: MessageSquare,
+      title: "Omnichannel AI",
+      description: "Voice, chat, email, SMS — unified under one intelligent platform that learns and improves with every interaction.",
     },
     {
-      category: "Simultaneous Calls",
-      ai: "Unlimited",
-      human: "1 at a time",
-      aiWins: true,
+      icon: Zap,
+      title: "Automated Workflows",
+      description: "From post-call summaries to CRM updates, AI handles the busywork so your team focuses on what matters.",
     },
   ];
 
@@ -97,121 +91,95 @@ export default function AIFutureSection() {
             The Future is Now
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
-            How Much Time Does the{" "}
-            <span className="text-gradient-dsx">Human Call Center</span>{" "}
-            Have Left?
+            More Than a Phone System.{" "}
+            <span className="text-gradient-dsx">It's Intelligence.</span>
           </h2>
           <p className="text-lg text-slate-500 max-w-3xl mx-auto">
-            AI isn't coming for your call center — it's already here. The question isn't if, but how you adapt.
-            At DSX, we build the bridge between AI efficiency and human expertise, integrated directly into your 3CX system.
+            "Above the Cloud" means going beyond basic communications. DSX layers AI intelligence directly
+            into your platform — transforming how your business connects, engages, and grows.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start mb-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="bg-gradient-to-br from-slate-900 to-blue-900 rounded-2xl p-8 text-white">
-              <div className="flex items-center gap-3 mb-6">
-                <Brain className="h-8 w-8 text-orange-400" />
-                <h3 className="text-2xl font-bold">AI vs. Human: The Real Numbers</h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {valueAdds.map((item, index) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              viewport={{ once: true }}
+              className="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group"
+            >
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-orange-500 flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-blue-500/20 transition-all duration-300">
+                <item.icon className="h-6 w-6 text-white" />
               </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
+              <p className="text-slate-500 text-sm leading-relaxed">{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
 
-              <div className="space-y-3">
-                {comparisons.map((item, index) => (
-                  <motion.div
-                    key={item.category}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.08 }}
-                    viewport={{ once: true }}
-                    className="bg-white/5 rounded-xl p-4 border border-white/10"
-                  >
-                    <div className="text-xs text-slate-400 font-medium uppercase tracking-wider mb-2">
-                      {item.category}
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className={`flex items-center gap-2 ${item.aiWins ? 'text-emerald-400' : 'text-slate-400'}`}>
-                        <Bot className="h-4 w-4" />
-                        <span className="text-sm font-semibold">{item.ai}</span>
-                      </div>
-                      <div className={`flex items-center gap-2 ${!item.aiWins ? 'text-emerald-400' : 'text-slate-400'}`}>
-                        <Users className="h-4 w-4" />
-                        <span className="text-sm font-semibold">{item.human}</span>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="bg-gradient-to-br from-slate-900 to-blue-900 rounded-2xl p-10 text-white"
+        >
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Sparkles className="h-6 w-6 text-orange-400" />
+                <span className="text-orange-400 font-semibold uppercase text-sm tracking-wider">The DSX Value-Add</span>
               </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100">
-              <h4 className="font-bold text-slate-900 text-lg mb-3 flex items-center gap-2">
-                <Zap className="h-5 w-5 text-blue-600" />
-                The DSX Approach: Hybrid Intelligence
-              </h4>
-              <p className="text-slate-600 leading-relaxed mb-4">
-                We don't believe in replacing humans entirely. The smartest businesses are the ones that let AI handle
-                the volume while humans handle the value. DSX Live integrates both — seamlessly — into your 3CX infrastructure.
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                We Don't Just Deploy. We Transform.
+              </h3>
+              <p className="text-slate-300 leading-relaxed mb-6">
+                Anyone can install a phone system. DSX makes it intelligent. We implement AI
+                that understands your business, learns from every interaction, and delivers insights
+                that drive real growth. That's what "Above the Cloud" means — it's the intelligence layer
+                that sets you apart.
               </p>
-              <ul className="space-y-2">
-                {[
-                  "AI handles routine inquiries, freeing agents for complex issues",
-                  "Seamless handoff between AI and human agents",
-                  "Real-time AI coaching for human agents during calls",
-                  "Predictive routing based on caller intent and history",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-slate-700">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <Link href="/dsx-live">
+                <Button
+                  data-testid="button-explore-ai"
+                  className="bg-gradient-to-r from-blue-500 to-orange-500 text-white hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 rounded-xl py-5 text-base font-semibold group"
+                >
+                  Explore AI Solutions
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
-              <div className="bg-orange-50 rounded-xl p-4 text-center border border-orange-100">
-                <div className="text-3xl font-bold text-orange-600 mb-1">
-                  <AnimatedCounter value={80} suffix="%" />
-                </div>
-                <div className="text-xs text-slate-600">Calls Handled by AI</div>
-              </div>
-              <div className="bg-blue-50 rounded-xl p-4 text-center border border-blue-100">
-                <div className="text-3xl font-bold text-blue-600 mb-1">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center border border-white/10">
+                <div className="text-3xl font-bold text-orange-400 mb-1">
                   <AnimatedCounter value={60} suffix="%" />
                 </div>
-                <div className="text-xs text-slate-600">Cost Reduction</div>
+                <div className="text-xs text-slate-300">Cost Reduction</div>
               </div>
-              <div className="bg-emerald-50 rounded-xl p-4 text-center border border-emerald-100">
-                <div className="text-3xl font-bold text-emerald-600 mb-1">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center border border-white/10">
+                <div className="text-3xl font-bold text-blue-400 mb-1">
+                  <AnimatedCounter value={24} suffix="/7" />
+                </div>
+                <div className="text-xs text-slate-300">AI Availability</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center border border-white/10">
+                <div className="text-3xl font-bold text-emerald-400 mb-1">
                   <AnimatedCounter value={95} suffix="%" />
                 </div>
-                <div className="text-xs text-slate-600">Satisfaction Rate</div>
+                <div className="text-xs text-slate-300">Client Satisfaction</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center border border-white/10">
+                <div className="text-3xl font-bold text-violet-400 mb-1">
+                  <AnimatedCounter value={500} suffix="+" />
+                </div>
+                <div className="text-xs text-slate-300">Deployments</div>
               </div>
             </div>
-
-            <Link href="/dsx-live">
-              <Button
-                data-testid="button-explore-ai"
-                className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 rounded-xl py-6 text-base font-semibold group"
-              >
-                Explore DSX Live AI Solutions
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

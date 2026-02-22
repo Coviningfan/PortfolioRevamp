@@ -78,7 +78,7 @@ export default function Footer() {
         <div className="border-t border-slate-800 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-500 text-sm" data-testid="text-copyright">
-              &copy; 2026 DSX Edge. All rights reserved. Proud 3CX Partner.
+              &copy; 2026 DSX Edge. All rights reserved. 3CX Platinum Partner.
             </p>
             <div className="flex items-center gap-2 text-slate-600 text-xs">
               <span>Powered by</span>

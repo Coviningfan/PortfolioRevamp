@@ -11,8 +11,8 @@ export default function FactsSection() {
       icon: Calendar,
       value: 12,
       suffix: "+",
-      title: "Years with 3CX",
-      subtitle: "Dedicated partnership since 2013",
+      title: "Years of Innovation",
+      subtitle: "Pioneering intelligent communications",
       color: "text-blue-500",
       bg: "bg-blue-50",
       ring: "ring-blue-100",
@@ -31,8 +31,8 @@ export default function FactsSection() {
       icon: Award,
       value: 500,
       suffix: "+",
-      title: "3CX Deployments",
-      subtitle: "Businesses running on our 3CX solutions",
+      title: "Deployments",
+      subtitle: "Businesses transformed by DSX solutions",
       color: "text-emerald-500",
       bg: "bg-emerald-50",
       ring: "ring-emerald-100",
@@ -98,10 +98,10 @@ export default function FactsSection() {
             By the Numbers
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
-            12 Years of <span className="text-gradient-dsx">3CX Mastery</span>
+            Proven Results, <span className="text-gradient-dsx">Real Impact</span>
           </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            The numbers tell the story — DSX is the name businesses trust for 3CX solutions
+            The numbers tell the story — DSX delivers intelligent communications that drive real business value
           </p>
         </motion.div>
 

@@ -51,9 +51,9 @@ DSX Edge is an innovative business communication platform showcasing DSX's 12+ y
 ### UI Components
 - **Navigation**: Responsive navigation with mobile menu, "Solutions" link, "Talk to an Expert" CTA
 - **Hero Section**: "DSX Edge" headline, "Above the Cloud. Beyond Expectations." tagline, 12+ years innovation badge
-- **Services Section**: 3CX Solutions Suite — DSX Voice, DSX Live, DSX Data with 3CX branding
-- **3CX Partnership Section** (`threecx-section.tsx`): "Why Businesses Choose DSX" — 5 reasons, timeline milestones
-- **AI Future Section** (`ai-future-section.tsx`): "How Much Time Does the Human Call Center Have Left?" — AI vs Human comparison, hybrid intelligence pitch
+- **Services Section**: DSX Solutions Suite — DSX Voice, DSX Live, DSX Data with value-add messaging
+- **3CX Partnership Section** (`threecx-section.tsx`): "Why Businesses Choose DSX" — 5 reasons including AI Intelligence Layer, innovation journey timeline
+- **AI Future Section** (`ai-future-section.tsx`): "More Than a Phone System. It's Intelligence." — 6 AI value-add capabilities, DSX transformation pitch
 - **Facts Section**: 12+ Years of innovation, 500+ deployments, 60% cost savings, 99.9% uptime
 - **About Section**: "12 Years of Innovation. Zero Compromises." with DSX Difference card
 - **Testimonials**: Rotating customer testimonials with real savings data
@@ -104,21 +104,20 @@ DSX Edge is an innovative business communication platform showcasing DSX's 12+ y
 
 ## Changelog
 
-### February 22, 2026 - Major Identity Transformation: DSX-First Innovation
-- **Brand Identity Shift**: Repositioned site around DSX as an innovative communications leader; 3CX as proud partner/backbone, not primary identity
-- **Hero Overhaul**: "DSX Edge" headline, tagline "Above the Cloud. Beyond Expectations.", 12+ years of innovation badge
-- **Why Businesses Choose DSX Section**: Highlights DSX's value with 3CX as underlying platform
-- **AI vs Human Call Center Section**: Bold narrative on the future of call centers, AI vs Human comparison data, hybrid intelligence approach
-- **Services Reframed**: All services positioned as DSX-engineered, AI-enhanced
-- **DSX Live Page Redesigned**: Full AI vs Human narrative, "How Much Time Does the Human Call Center Have Left?"
-- **DSX Voice Page Updated**: "Powered by 3CX" badge, DSX-forward messaging
-- **Facts Section**: Updated to reflect 12+ years of innovation, 500+ deployments
-- **About Section**: "12 Years of Innovation. Zero Compromises." with "The DSX Difference" card
-- **Navigation**: "Services" renamed to "Solutions", mobile CTA now "Talk to an Expert"
-- **Footer**: Updated tagline to "Above the Cloud" messaging
-- **Contact Sections**: All CTAs now reference "Talk to an Expert" language
-- **Key Themes**: DSX innovation, AI integration, business communications focus, hybrid call center future
-- **Removed**: All "Gurus" branding per user preference — DSX is the star, not 3CX
+### February 22, 2026 - Major Identity & Vision Transformation
+- **Core Vision**: "Above the Cloud" = AI intelligence layered on communications. More than a phone system. The future is now.
+- **3CX Platinum Partner**: Badge updated from "Certified" to "Platinum Partner" across entire site
+- **Hero Overhaul**: "DSX Edge" headline, "Above the Cloud. Beyond Expectations." tagline, "This is the future, and the future is now." body copy
+- **AI Section Reworked**: Removed "Human Call Center" dying narrative. Replaced with AI value-add vision — 6 intelligence capabilities (Call Intelligence, Virtual Agents, Predictive Analytics, Integration Layer, Omnichannel AI, Automated Workflows)
+- **Why Businesses Choose DSX**: Value-add positioning, AI Intelligence Layer as key differentiator, innovation journey timeline
+- **Services Reframed**: DSX Solutions Suite, "More than a phone system" messaging, AI-enhanced descriptions
+- **DSX Live Redesigned**: "More Than a Phone System. It's Intelligence." — value-add features, "Above the Cloud" meaning explained, AI platform tiers
+- **Facts Section**: "Proven Results, Real Impact" — DSX-forward metrics
+- **About Section**: "12 Years of Innovation. Zero Compromises." with AI Intelligence Layer stat
+- **Navigation**: "Solutions" link, "Talk to an Expert" CTAs throughout
+- **Footer**: "3CX Platinum Partner" in copyright
+- **Removed**: All "Gurus" branding, call center dying narrative, heavy 3CX-first language
+- **Key Themes**: DSX innovation, AI as the intelligence layer, value-add beyond phone systems, "the future is now"
 
 ### June 20, 2025 - Navigation and AI Integration Update
 - **Navigation Fix**: Converted "Get Quote" back to "Contact" button in styled box format as requested

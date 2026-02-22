@@ -10,7 +10,7 @@ export default function ServicesSection() {
       number: "01",
       title: "DSX Voice",
       subtitle: "Powered by 3CX",
-      description: "Enterprise-grade VoIP built on 3CX — the world's most trusted business phone system. Customized, deployed, and managed by the experts who've lived it for 12 years.",
+      description: "More than a phone system. Enterprise VoIP built on 3CX and enhanced with AI intelligence — customized, deployed, and managed by a team with 12+ years of expertise.",
       href: "/dsx-voice",
       iconBg: "bg-blue-500",
       iconBgHover: "group-hover:bg-blue-600",
@@ -22,8 +22,8 @@ export default function ServicesSection() {
       icon: Headphones,
       number: "02",
       title: "DSX Live",
-      subtitle: "AI + Human Call Center",
-      description: "The future of customer engagement is here. AI-driven contact center solutions integrated with 3CX, blending automation with human expertise for 24/7 excellence.",
+      subtitle: "AI-Powered Engagement",
+      description: "The future is now. AI-driven customer engagement integrated with your communications platform — intelligent automation that makes every interaction count.",
       href: "/dsx-live",
       iconBg: "bg-orange-500",
       iconBgHover: "group-hover:bg-orange-600",
@@ -36,7 +36,7 @@ export default function ServicesSection() {
       number: "03",
       title: "DSX Data",
       subtitle: "Infrastructure & Hosting",
-      description: "Enterprise-class data center solutions with unparalleled reliability. Your 3CX systems hosted on infrastructure built for maximum uptime and security.",
+      description: "Enterprise-class data center solutions with unparalleled reliability. Your communications infrastructure hosted on our own facilities — built for maximum uptime and security.",
       href: "/dsx-data",
       iconBg: "bg-violet-500",
       iconBgHover: "group-hover:bg-violet-600",
@@ -57,7 +57,7 @@ export default function ServicesSection() {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-4">
-            3CX Solutions Suite
+            DSX Solutions Suite
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
             Business Communications,{" "}

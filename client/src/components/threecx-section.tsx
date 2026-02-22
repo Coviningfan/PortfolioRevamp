@@ -1,42 +1,42 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Award, Globe, Users, Wrench, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Award, Globe, Users, Wrench, ShieldCheck, Sparkles } from "lucide-react";
 import logo3cx from "@assets/3CX-Logo.wine_1771727597371.webp";
 
 export default function ThreeCXSection() {
   const reasons = [
     {
       icon: Award,
-      title: "12 Years, One Platform",
-      description: "Since day one, DSX has been a dedicated 3CX partner. We haven't bounced between providers — we've mastered one, and we're proud of it."
+      title: "3CX Platinum Partner",
+      description: "12+ years as a dedicated 3CX partner. We've mastered the platform and built an ecosystem of value-add services around it."
     },
     {
       icon: Wrench,
       title: "Engineered, Not Just Installed",
-      description: "We don't do cookie-cutter setups. Every 3CX deployment is custom-engineered to fit your business workflows, call flows, and growth plans."
+      description: "We don't do cookie-cutter setups. Every deployment is custom-engineered to fit your business workflows, growth plans, and AI strategy."
     },
     {
       icon: Globe,
       title: "Global Reach, Local Expertise",
-      description: "From single-office setups to multi-country deployments across 5+ countries, we've architected 3CX solutions that work everywhere."
+      description: "From single-office setups to multi-country deployments across 5+ countries, we've architected solutions that work everywhere."
     },
     {
       icon: ShieldCheck,
-      title: "Above the Cloud",
-      description: "While others offer basic cloud hosting, we go beyond — our 3CX deployments are backed by enterprise-grade data centers with 99.9% uptime."
+      title: "Enterprise-Grade Infrastructure",
+      description: "Your communications run on our own data centers with 99.9% uptime — because intelligent systems need a rock-solid foundation."
     },
     {
-      icon: Users,
-      title: "AI-Enhanced 3CX",
-      description: "We're pushing 3CX into the future with AI-powered contact centers, intelligent call routing, and automated customer interactions."
+      icon: Sparkles,
+      title: "AI Intelligence Layer",
+      description: "This is what sets us apart: we layer AI on top of your communications platform — making it smarter, faster, and more valuable every day."
     },
   ];
 
   const milestones = [
-    { year: "2013", event: "Became Official 3CX Partner" },
-    { year: "2016", event: "500+ 3CX Deployments" },
-    { year: "2020", event: "Cloud-First 3CX Architecture" },
-    { year: "2024", event: "AI Integration with 3CX" },
-    { year: "2025", event: "Next-Gen Contact Centers" },
+    { year: "2013", event: "Official 3CX Partner" },
+    { year: "2016", event: "500+ Deployments" },
+    { year: "2020", event: "Cloud-First Architecture" },
+    { year: "2024", event: "AI Intelligence Layer" },
+    { year: "2025", event: "Above the Cloud" },
   ];
 
   return (
@@ -57,7 +57,7 @@ export default function ThreeCXSection() {
           <div className="inline-flex items-center gap-3 mb-6 px-5 py-2.5 rounded-full border border-blue-500/30 bg-blue-500/10 backdrop-blur-sm">
             <img src={logo3cx} alt="3CX" className="h-5 w-auto brightness-0 invert opacity-90" />
             <span className="text-blue-300 text-sm font-semibold tracking-wide uppercase">
-              Proudly Powered by 3CX
+              3CX Platinum Partner
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
@@ -67,8 +67,9 @@ export default function ThreeCXSection() {
             </span>
           </h2>
           <p className="text-lg text-slate-400 max-w-3xl mx-auto">
-            12 years of innovation, 500+ deployments, and a relentless drive to push boundaries.
-            We build on proven platforms like 3CX and enhance them with AI — that's the DSX difference.
+            We don't just sell phone systems — we add intelligence, value, and vision.
+            12 years of 3CX mastery combined with AI innovation that makes your communications platform
+            work harder for your business.
           </p>
         </motion.div>
 
@@ -98,7 +99,7 @@ export default function ThreeCXSection() {
           viewport={{ once: true }}
         >
           <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-            <h3 className="text-xl font-bold text-white text-center mb-8">Our 3CX Journey</h3>
+            <h3 className="text-xl font-bold text-white text-center mb-8">Our Innovation Journey</h3>
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {milestones.map((milestone, index) => (
                 <div key={milestone.year} className="flex flex-col items-center text-center flex-1">

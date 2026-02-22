@@ -5,10 +5,10 @@ import { Link } from "wouter";
 
 export default function AboutSection() {
   const highlights = [
-    "Certified 3CX partner since 2013",
-    "AI-integrated business communication solutions",
+    "3CX Platinum Partner since 2013",
+    "AI intelligence layered on communications",
     "Enterprise-grade data center infrastructure",
-    "Hybrid AI + human contact center expertise",
+    "Making phone systems more than phone systems",
   ];
 
   return (
@@ -33,9 +33,9 @@ export default function AboutSection() {
               We combine proven platforms with cutting-edge AI to deliver solutions that actually transform how companies connect.
             </p>
             <p className="text-slate-500 mb-8 leading-relaxed">
-              From traditional VoIP deployments to cutting-edge AI-powered contact centers,
-              we've evolved with 3CX every step of the way. Today, DSX represents the future of
-              business communications — where 3CX meets artificial intelligence.
+              From traditional VoIP deployments to AI-enhanced intelligent platforms,
+              we've evolved every step of the way. Today, DSX is going Above the Cloud — layering
+              AI intelligence on communications to make your phone system work harder for your business.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-3 mb-8">
@@ -79,7 +79,7 @@ export default function AboutSection() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-4 rounded-xl bg-blue-50">
                     <div className="text-3xl font-bold text-blue-600 mb-1">12+</div>
-                    <div className="text-sm text-slate-500">Years with 3CX</div>
+                    <div className="text-sm text-slate-500">Years of Innovation</div>
                   </div>
                   <div className="text-center p-4 rounded-xl bg-orange-50">
                     <div className="text-3xl font-bold text-orange-600 mb-1">500+</div>
@@ -91,7 +91,7 @@ export default function AboutSection() {
                   </div>
                   <div className="text-center p-4 rounded-xl bg-violet-50">
                     <div className="text-3xl font-bold text-violet-600 mb-1">AI</div>
-                    <div className="text-sm text-slate-500">Integrated</div>
+                    <div className="text-sm text-slate-500">Intelligence Layer</div>
                   </div>
                 </div>
               </div>

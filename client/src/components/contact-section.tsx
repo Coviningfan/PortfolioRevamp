@@ -227,7 +227,7 @@ export default function ContactSection() {
             <div className="bg-gradient-to-br from-blue-600 to-orange-500 rounded-2xl p-6 text-white">
               <h4 className="font-bold text-lg mb-2">Innovation Starts Here</h4>
               <p className="text-white/80 text-sm leading-relaxed">
-                Join 500+ businesses running on 3CX solutions engineered by DSX. 12 years of expertise, one conversation away.
+                Join 500+ businesses with intelligent communications powered by DSX. 12 years of innovation, one conversation away.
               </p>
             </div>
           </motion.div>

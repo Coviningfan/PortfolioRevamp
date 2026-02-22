@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, Shield, Brain, Clock, Award } from "lucide-react";
+import { ArrowRight, Shield, Brain, Clock, Award, Sparkles } from "lucide-react";
 import logo3cx from "@assets/3CX-Logo.wine_1771727597371.webp";
 
 export default function HeroSection() {
@@ -33,7 +33,7 @@ export default function HeroSection() {
           >
             <Award className="w-4 h-4 text-orange-400" />
             <span className="text-orange-300 text-sm font-semibold tracking-wide uppercase">
-              12+ Years of Innovation
+              3CX Platinum Partner
             </span>
             <div className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse" />
           </motion.div>
@@ -68,9 +68,9 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-base md:text-lg text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            For over a decade, DSX has been engineering the future of how businesses connect.
-            We don't just install phone systems — we build intelligent communication ecosystems,
-            enhanced with AI that's redefining the call center.
+            Your phone system should be more than just a phone system. DSX layers AI intelligence
+            on top of your communications platform — turning every interaction into an opportunity.
+            This is the future, and the future is now.
           </motion.p>
 
           <motion.div
@@ -107,9 +107,10 @@ export default function HeroSection() {
             className="grid grid-cols-1 sm:grid-cols-4 gap-3 max-w-4xl mx-auto"
           >
             {[
-              { icon: Shield, label: "Certified 3CX Partner", color: "text-blue-400" },
-              { icon: Brain, label: "AI-Powered Solutions", color: "text-orange-400" },
+              { icon: Shield, label: "3CX Platinum Partner", color: "text-blue-400" },
+              { icon: Brain, label: "AI-Enhanced Communications", color: "text-orange-400" },
               { icon: Clock, label: "12+ Years of Innovation", color: "text-emerald-400" },
+              { icon: Sparkles, label: "The Future is Now", color: "text-violet-400" },
             ].map((item, i) => (
               <div
                 key={i}
@@ -119,10 +120,6 @@ export default function HeroSection() {
                 <span className="text-sm text-slate-300 font-medium">{item.label}</span>
               </div>
             ))}
-            <div className="flex items-center justify-center gap-3 px-4 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
-              <img src={logo3cx} alt="3CX" className="h-6 w-auto brightness-0 invert opacity-80" />
-              <span className="text-sm text-slate-300 font-medium">Powered by 3CX</span>
-            </div>
           </motion.div>
         </div>
       </div>
