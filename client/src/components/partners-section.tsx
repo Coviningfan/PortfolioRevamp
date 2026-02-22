@@ -1,13 +1,19 @@
 import { motion } from "framer-motion";
+import logo3cx from "@assets/3CX-Logo.wine_1771727597371.webp";
+import logoYealink from "@assets/Yealink_1771727597343.webp";
+import logoFanvil from "@assets/Fanvil-Logo-PNG-510x199-removebg-preview_1771727597345.webp";
+import logoGrandstream from "@assets/grandstream-seeklogo-removebg-preview_1771727597369.webp";
+import logoVtech from "@assets/VTech-logo-removebg-preview_1771727597297.webp";
+import logoSwitch from "@assets/Switch-Logo-Blue_1771727597368.webp";
 
 export default function PartnersSection() {
   const partners = [
-    { name: "3CX", description: "VoIP Platform" },
-    { name: "Yealink", description: "IP Phones" },
-    { name: "Fanvil", description: "Communication" },
-    { name: "Grandstream", description: "Networking" },
-    { name: "VTech", description: "Business Phones" },
-    { name: "Switch", description: "Data Centers" },
+    { name: "3CX", description: "VoIP Platform", logo: logo3cx },
+    { name: "Yealink", description: "IP Phones", logo: logoYealink },
+    { name: "Fanvil", description: "Communication", logo: logoFanvil },
+    { name: "Grandstream", description: "Networking", logo: logoGrandstream },
+    { name: "VTech", description: "Business Phones", logo: logoVtech },
+    { name: "Switch", description: "Data Centers", logo: logoSwitch },
   ];
 
   return (
@@ -32,10 +38,15 @@ export default function PartnersSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className="group bg-white rounded-xl p-6 border border-slate-100 hover:border-blue-200 hover:shadow-md transition-all duration-300 text-center"
+              className="group bg-white rounded-xl p-6 border border-slate-100 hover:border-blue-200 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center"
             >
-              <div className="text-2xl font-bold text-slate-400 group-hover:text-blue-600 transition-colors duration-300 mb-1">
-                {partner.name}
+              <div className="h-12 flex items-center justify-center mb-3">
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  data-testid={`img-partner-${partner.name.toLowerCase()}`}
+                  className="max-h-12 max-w-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                />
               </div>
               <div className="text-xs text-slate-400 font-medium">
                 {partner.description}
