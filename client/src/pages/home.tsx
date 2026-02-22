@@ -3,6 +3,8 @@ import { TrendingDown } from "lucide-react";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import ServicesSection from "@/components/services-section";
+import ThreeCXSection from "@/components/threecx-section";
+import AIFutureSection from "@/components/ai-future-section";
 import FactsSection from "@/components/facts-section";
 import AboutSection from "@/components/about-section";
 import TestimonialsSection from "@/components/testimonials-section";
@@ -55,6 +57,8 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <ServicesSection />
+      <ThreeCXSection />
+      <AIFutureSection />
       <FactsSection />
       <AboutSection />
       <TestimonialsSection />
@@ -71,9 +75,9 @@ export default function Home() {
             <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-sm font-semibold mb-4">
               Case Studies
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">Proven Results</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">Proven 3CX Results</h2>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-              Real client examples demonstrating the impact of DSX Voice on business communication costs
+              Real businesses, real savings — powered by 3CX, delivered by DSX
             </p>
           </motion.div>
 
@@ -121,9 +125,9 @@ export default function Home() {
             className="mt-12"
           >
             <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl p-10 text-center">
-              <p className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-2">Based on actual client installations</p>
+              <p className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-2">Based on actual 3CX installations by DSX</p>
               <p className="text-white text-2xl md:text-3xl font-bold">
-                DSX Voice reduces phone costs by up to{" "}
+                DSX + 3CX reduces phone costs by up to{" "}
                 <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">
                   60%
                 </span>

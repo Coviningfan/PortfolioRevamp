@@ -5,10 +5,10 @@ import { Link } from "wouter";
 
 export default function AboutSection() {
   const highlights = [
-    "Pioneering VoIP solutions since 2009",
-    "Seamless integration with existing systems",
-    "End-to-end communication & data management",
-    "State-of-the-art data center infrastructure",
+    "Certified 3CX partner since 2013",
+    "AI-integrated business communication solutions",
+    "Enterprise-grade data center infrastructure",
+    "Hybrid AI + human contact center expertise",
   ];
 
   return (
@@ -22,16 +22,20 @@ export default function AboutSection() {
             viewport={{ once: true }}
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-4">
-              About Us
+              The 3CX Gurus
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-              About DSX Edge
+              12 Years of 3CX.{" "}
+              <span className="text-gradient-dsx">Zero Compromises.</span>
             </h2>
             <p className="text-lg text-slate-500 mb-6 leading-relaxed">
-              DSX Edge represents the successful integration of DSX Voice and DSX Data, uniting pioneering communication services with expert data management solutions.
+              DSX has been a proud 3CX partner for over 12 years. We've never hidden behind generic branding —
+              we tell every client that 3CX is our backbone, and we're the experts who make it sing.
             </p>
             <p className="text-slate-500 mb-8 leading-relaxed">
-              Leveraging VoIP innovations and robust data handling capabilities, we offer a comprehensive suite of services designed to optimize and streamline business operations.
+              From traditional VoIP deployments to cutting-edge AI-powered contact centers,
+              we've evolved with 3CX every step of the way. Today, DSX represents the future of
+              business communications — where 3CX meets artificial intelligence.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-3 mb-8">
@@ -48,7 +52,7 @@ export default function AboutSection() {
                 data-testid="button-about-story"
                 className="bg-slate-900 text-white hover:bg-slate-800 rounded-xl px-6 py-3 group"
               >
-                Know the full story
+                Our Full Story
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
@@ -65,29 +69,29 @@ export default function AboutSection() {
               <div className="relative bg-white rounded-2xl p-10 border border-slate-100 shadow-sm">
                 <div className="text-center mb-8">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-orange-500 mb-4">
-                    <span className="text-white text-2xl font-bold">E</span>
+                    <span className="text-white text-2xl font-bold">3CX</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2">A Legacy of Innovation</h3>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">The DSX Difference</h3>
                   <p className="text-slate-500">
-                    Founded in 2009, we continue to redefine business communication with cutting-edge solutions.
+                    Not just another provider — we're the 3CX gurus who've seen it all, built it all, and continue to push boundaries.
                   </p>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-4 rounded-xl bg-blue-50">
-                    <div className="text-3xl font-bold text-blue-600 mb-1">15+</div>
-                    <div className="text-sm text-slate-500">Years</div>
+                    <div className="text-3xl font-bold text-blue-600 mb-1">12+</div>
+                    <div className="text-sm text-slate-500">Years with 3CX</div>
                   </div>
                   <div className="text-center p-4 rounded-xl bg-orange-50">
                     <div className="text-3xl font-bold text-orange-600 mb-1">500+</div>
-                    <div className="text-sm text-slate-500">Clients</div>
+                    <div className="text-sm text-slate-500">Deployments</div>
                   </div>
                   <div className="text-center p-4 rounded-xl bg-emerald-50">
                     <div className="text-3xl font-bold text-emerald-600 mb-1">60%</div>
                     <div className="text-sm text-slate-500">Avg Savings</div>
                   </div>
                   <div className="text-center p-4 rounded-xl bg-violet-50">
-                    <div className="text-3xl font-bold text-violet-600 mb-1">99.9%</div>
-                    <div className="text-sm text-slate-500">Uptime</div>
+                    <div className="text-3xl font-bold text-violet-600 mb-1">AI</div>
+                    <div className="text-sm text-slate-500">Integrated</div>
                   </div>
                 </div>
               </div>

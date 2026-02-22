@@ -26,13 +26,16 @@ export default function Footer() {
                 alt="DSX Edge Logo"
                 className="h-10 w-auto mb-4 brightness-0 invert"
               />
-              <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                Your trusted partner for unified communication and data solutions. Above the Cloud.
+              <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                Your 3CX Gurus. 12+ years of business communication excellence, powered by 3CX, enhanced with AI.
+              </p>
+              <p className="text-orange-400/80 text-sm font-medium italic">
+                Above the Cloud.
               </p>
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">Services</h4>
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">Solutions</h4>
               <ul className="space-y-3">
                 {serviceLinks.map((link) => (
                   <li key={link.href}>
@@ -75,7 +78,7 @@ export default function Footer() {
         <div className="border-t border-slate-800 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-500 text-sm" data-testid="text-copyright">
-              &copy; 2026 DSX Edge. All rights reserved.
+              &copy; 2026 DSX Edge. All rights reserved. Proud 3CX Partner.
             </p>
             <div className="flex items-center gap-2 text-slate-600 text-xs">
               <span>Powered by</span>

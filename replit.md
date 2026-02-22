@@ -1,8 +1,8 @@
-# DSX Edge - Business Communication Platform
+# DSX Edge - Your 3CX Gurus | Business Communication Platform
 
 ## Overview
 
-DSX Edge is a comprehensive business communication and data management platform that combines VoIP services, data solutions, and AI-powered customer service. The application is built as a full-stack web application with a React frontend and Express.js backend, featuring a modern corporate website with contact form functionality and service information pages.
+DSX Edge is the definitive 3CX business communication platform — positioning DSX as "The 3CX Gurus" with 12+ years of dedicated partnership. The site showcases DSX's expertise in 3CX deployments, AI-powered contact centers (DSX Live), enterprise VoIP (DSX Voice), and data center solutions (DSX Data). Core messaging: "Above the Cloud. Beyond Expectations." The application is built as a full-stack web application with a React frontend and Express.js backend.
 
 ## System Architecture
 
@@ -49,12 +49,15 @@ DSX Edge is a comprehensive business communication and data management platform 
 - **Data Center**: Infrastructure and facility information
 
 ### UI Components
-- **Navigation**: Responsive navigation with mobile menu
-- **Hero Section**: Animated landing section
-- **Services**: Three main service offerings presentation
-- **Contact Form**: Validated form with submission handling
-- **Testimonials**: Rotating customer testimonials
-- **Facts Section**: Animated statistics and achievements
+- **Navigation**: Responsive navigation with mobile menu, "Solutions" link, "Talk to a 3CX Expert" CTA
+- **Hero Section**: "Your 3CX Gurus" headline, "Above the Cloud" tagline, 12 years badge
+- **Services Section**: 3CX Solutions Suite — DSX Voice, DSX Live, DSX Data with 3CX branding
+- **3CX Partnership Section** (`threecx-section.tsx`): "Why DSX is The 3CX Authority" — 5 reasons, timeline milestones
+- **AI Future Section** (`ai-future-section.tsx`): "How Much Time Does the Human Call Center Have Left?" — AI vs Human comparison, hybrid intelligence pitch
+- **Facts Section**: 12+ Years with 3CX, 500+ deployments, 60% cost savings, 99.9% uptime
+- **About Section**: "12 Years of 3CX. Zero Compromises." with DSX Difference card
+- **Testimonials**: Rotating customer testimonials with real savings data
+- **Contact Form**: "Talk to a 3CX Expert" validated form with submission handling
 
 ## Data Flow
 
@@ -100,6 +103,21 @@ DSX Edge is a comprehensive business communication and data management platform 
 - **Storage Fallback**: In-memory storage for development without database
 
 ## Changelog
+
+### February 22, 2026 - Major Identity Transformation: "The 3CX Gurus"
+- **Brand Identity Shift**: Repositioned entire site around DSX as "The 3CX Gurus" — the go-to 3CX experts
+- **Hero Overhaul**: New headline "Your 3CX Gurus", tagline "Above the Cloud. Beyond Expectations.", 12-year badge
+- **New 3CX Partnership Section**: "Why DSX is The 3CX Authority" with 5 key differentiators and journey timeline
+- **AI vs Human Call Center Section**: Bold narrative on the future of call centers, AI vs Human comparison data, hybrid intelligence approach
+- **Services Reframed**: All services now positioned as 3CX-powered with AI enhancement
+- **DSX Live Page Redesigned**: Full AI vs Human narrative, "How Much Time Does the Human Call Center Have Left?"
+- **DSX Voice Page Updated**: "Powered by 3CX" badge, "3CX, the DSX Way" messaging
+- **Facts Section**: Updated to reflect 3CX mastery (12+ years, 500+ deployments)
+- **About Section**: "12 Years of 3CX. Zero Compromises." with "The DSX Difference" card
+- **Navigation**: "Services" renamed to "Solutions", mobile CTA now "Talk to a 3CX Expert"
+- **Footer**: Updated tagline to "Your 3CX Gurus", added "Above the Cloud" messaging
+- **Contact Sections**: All CTAs now reference "3CX Expert" language
+- **Key Themes**: 3CX loyalty, AI integration, business communications focus, hybrid call center future
 
 ### June 20, 2025 - Navigation and AI Integration Update
 - **Navigation Fix**: Converted "Get Quote" back to "Contact" button in styled box format as requested

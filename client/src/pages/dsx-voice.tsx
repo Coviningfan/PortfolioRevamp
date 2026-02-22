@@ -30,14 +30,17 @@ export default function DSXVoicePage() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold mb-4">
+              Powered by 3CX
+            </span>
             <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
               <span className="bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">DSX Voice</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-600 mb-8 max-w-4xl mx-auto">
-              Advanced Telephony Engineered for Business Efficiency
+              3CX Business Communications, Engineered by the Experts
             </p>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Not just a telephony service – it's a transformative communication solution crafted to meet the diverse and dynamic needs of modern businesses.
+              Not just a phone system — it's 3CX deployed the way it was meant to be. Custom-engineered by the team that's been doing this for 12 years.
             </p>
           </motion.div>
         </div>
@@ -83,9 +86,9 @@ export default function DSXVoicePage() {
             className="mt-12"
           >
             <div className="bg-gradient-to-br from-blue-600/10 to-orange-500/10 rounded-xl p-8">
-              <h3 className="text-xl font-semibold text-slate-900 mb-4">Join the Communication Revolution</h3>
+              <h3 className="text-xl font-semibold text-slate-900 mb-4">3CX, the DSX Way</h3>
               <p className="text-slate-700 mb-6">
-                With DSX Voice, you're not just adopting a new phone system; you're embracing a new way of doing business. Our commitment to innovation, customer-centric solutions, and seamless integration makes DSX Voice the ideal partner for your communication needs.
+                With DSX Voice, you're getting 3CX from the team that knows it inside and out. 12 years of expertise means every deployment is optimized, every feature is maximized, and every client gets the full power of the platform.
               </p>
               <Link href="/contact">
                 <Button className="bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200">

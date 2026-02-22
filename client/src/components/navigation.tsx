@@ -36,7 +36,7 @@ export default function Navigation() {
 
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "Services", id: "services" },
+    { label: "Solutions", id: "services" },
     { label: "About", href: "/about" },
     { label: "Data Center", href: "/data-center" },
   ];
@@ -162,7 +162,7 @@ export default function Navigation() {
                         data-testid="button-mobile-contact"
                         className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white rounded-lg py-3"
                       >
-                        Contact Us
+                        Talk to a 3CX Expert
                       </Button>
                     </Link>
                   </div>

@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Calendar, TrendingDown, Leaf, Handshake } from "lucide-react";
+import { Calendar, TrendingDown, Award, Handshake } from "lucide-react";
 
 export default function FactsSection() {
   const ref = useRef(null);
@@ -9,10 +9,10 @@ export default function FactsSection() {
   const facts = [
     {
       icon: Calendar,
-      value: 15,
+      value: 12,
       suffix: "+",
-      title: "Years of Experience",
-      subtitle: "With top-qualified experts",
+      title: "Years with 3CX",
+      subtitle: "Dedicated partnership since 2013",
       color: "text-blue-500",
       bg: "bg-blue-50",
       ring: "ring-blue-100",
@@ -22,27 +22,27 @@ export default function FactsSection() {
       value: 60,
       suffix: "%",
       title: "Cost Savings",
-      subtitle: "Average client phone bill reduction",
+      subtitle: "Average client communication cost reduction",
       color: "text-orange-500",
       bg: "bg-orange-50",
       ring: "ring-orange-100",
     },
     {
-      icon: Leaf,
-      value: 100,
-      suffix: "%",
-      title: "Green Energy",
-      subtitle: "Switch Citadel Campus, 650 MW",
+      icon: Award,
+      value: 500,
+      suffix: "+",
+      title: "3CX Deployments",
+      subtitle: "Businesses running on our 3CX solutions",
       color: "text-emerald-500",
       bg: "bg-emerald-50",
       ring: "ring-emerald-100",
     },
     {
       icon: Handshake,
-      value: 500,
-      suffix: "+",
-      title: "Businesses Served",
-      subtitle: "Nationwide trusted partnerships",
+      value: 99,
+      suffix: ".9%",
+      title: "Uptime Guarantee",
+      subtitle: "Enterprise-grade reliability",
       color: "text-violet-500",
       bg: "bg-violet-50",
       ring: "ring-violet-100",
@@ -98,10 +98,10 @@ export default function FactsSection() {
             By the Numbers
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
-            15 Years of Excellence
+            12 Years of <span className="text-gradient-dsx">3CX Mastery</span>
           </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            Building cutting-edge solutions and delivering exceptional service since 2009
+            The numbers tell the story — DSX is the name businesses trust for 3CX solutions
           </p>
         </motion.div>
 

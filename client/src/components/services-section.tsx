@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, Headphones, Database, ArrowRight } from "lucide-react";
+import { Phone, Headphones, Database, ArrowRight, Cpu } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 
@@ -9,9 +9,9 @@ export default function ServicesSection() {
       icon: Phone,
       number: "01",
       title: "DSX Voice",
-      description: "Flexible, cost-effective VoIP services that integrate seamlessly with your existing systems. Save up to 60% compared to traditional providers.",
+      subtitle: "Powered by 3CX",
+      description: "Enterprise-grade VoIP built on 3CX — the world's most trusted business phone system. Customized, deployed, and managed by the experts who've lived it for 12 years.",
       href: "/dsx-voice",
-      color: "blue",
       iconBg: "bg-blue-500",
       iconBgHover: "group-hover:bg-blue-600",
       accent: "border-blue-500/20",
@@ -22,9 +22,9 @@ export default function ServicesSection() {
       icon: Headphones,
       number: "02",
       title: "DSX Live",
-      description: "AI-human hybrid support that redefines customer engagement. Seamless integration with your telephone system for superior efficiency.",
+      subtitle: "AI + Human Call Center",
+      description: "The future of customer engagement is here. AI-driven contact center solutions integrated with 3CX, blending automation with human expertise for 24/7 excellence.",
       href: "/dsx-live",
-      color: "orange",
       iconBg: "bg-orange-500",
       iconBgHover: "group-hover:bg-orange-600",
       accent: "border-orange-500/20",
@@ -35,9 +35,9 @@ export default function ServicesSection() {
       icon: Database,
       number: "03",
       title: "DSX Data",
-      description: "Virtual DataSpace Management with unparalleled reliability and performance from our state-of-the-art data center infrastructure.",
+      subtitle: "Infrastructure & Hosting",
+      description: "Enterprise-class data center solutions with unparalleled reliability. Your 3CX systems hosted on infrastructure built for maximum uptime and security.",
       href: "/dsx-data",
-      color: "violet",
       iconBg: "bg-violet-500",
       iconBgHover: "group-hover:bg-violet-600",
       accent: "border-violet-500/20",
@@ -57,11 +57,14 @@ export default function ServicesSection() {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-4">
-            What We Offer
+            3CX Solutions Suite
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">Our Services</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
+            Business Communications,{" "}
+            <span className="text-gradient-dsx">Reimagined</span>
+          </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            Cutting-edge technology solutions designed to optimize and streamline your business operations
+            More than telecom. We deliver complete business communication ecosystems — built on 3CX, enhanced with AI, managed by gurus.
           </p>
         </motion.div>
 
@@ -88,7 +91,8 @@ export default function ServicesSection() {
                     {service.number}
                   </span>
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-3">{service.title}</h3>
+                <h3 className="text-2xl font-bold text-slate-900 mb-1">{service.title}</h3>
+                <p className="text-sm text-blue-600 font-medium mb-3">{service.subtitle}</p>
                 <p className="text-slate-500 mb-8 leading-relaxed">{service.description}</p>
                 <div className="flex gap-3 mt-auto">
                   <Link href={service.href} className="flex-1">
