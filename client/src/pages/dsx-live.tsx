@@ -312,7 +312,7 @@ export default function DSXLivePage() {
             <h2 className="text-3xl font-bold text-slate-900 mb-6">Ready to Future-Proof Your Call Center?</h2>
             <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
               The question isn't whether AI will transform your call center — it's whether you'll lead the change or be left behind.
-              Talk to a DSX 3CX expert today.
+              Talk to a DSX expert today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/">
@@ -323,7 +323,7 @@ export default function DSXLivePage() {
               </Link>
               <Link href="/contact">
                 <Button className="bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200">
-                  Talk to a 3CX Expert
+                  Talk to an Expert
                 </Button>
               </Link>
             </div>

@@ -33,7 +33,7 @@ export default function HeroSection() {
           >
             <Award className="w-4 h-4 text-orange-400" />
             <span className="text-orange-300 text-sm font-semibold tracking-wide uppercase">
-              12 Years as 3CX Experts
+              12+ Years of Innovation
             </span>
             <div className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse" />
           </motion.div>
@@ -44,9 +44,9 @@ export default function HeroSection() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[1.05] tracking-tight"
           >
-            Your{" "}
+            DSX{" "}
             <span className="bg-gradient-to-r from-blue-400 via-blue-300 to-orange-400 bg-clip-text text-transparent">
-              3CX Gurus
+              Edge
             </span>
           </motion.h1>
 
@@ -68,9 +68,9 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-base md:text-lg text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            For over a decade, DSX has been the trusted name in 3CX business communications.
-            We don't just install phone systems — we engineer the future of how businesses connect,
-            powered by 3CX and enhanced with AI that's redefining the call center.
+            For over a decade, DSX has been engineering the future of how businesses connect.
+            We don't just install phone systems — we build intelligent communication ecosystems,
+            enhanced with AI that's redefining the call center.
           </motion.p>
 
           <motion.div
@@ -95,7 +95,7 @@ export default function HeroSection() {
                 size="lg"
                 className="border-2 border-white/20 text-white bg-white/5 backdrop-blur-sm px-8 py-6 text-lg font-semibold hover:bg-white/10 hover:border-white/40 transition-all duration-300 rounded-xl"
               >
-                Talk to a 3CX Expert
+                Talk to an Expert
               </Button>
             </Link>
           </motion.div>
@@ -109,7 +109,7 @@ export default function HeroSection() {
             {[
               { icon: Shield, label: "Certified 3CX Partner", color: "text-blue-400" },
               { icon: Brain, label: "AI-Powered Solutions", color: "text-orange-400" },
-              { icon: Clock, label: "12+ Years with 3CX", color: "text-emerald-400" },
+              { icon: Clock, label: "12+ Years of Innovation", color: "text-emerald-400" },
             ].map((item, i) => (
               <div
                 key={i}

@@ -22,15 +22,15 @@ export default function AboutSection() {
             viewport={{ once: true }}
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-4">
-              The 3CX Gurus
+              The DSX Difference
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-              12 Years of 3CX.{" "}
+              12 Years of Innovation.{" "}
               <span className="text-gradient-dsx">Zero Compromises.</span>
             </h2>
             <p className="text-lg text-slate-500 mb-6 leading-relaxed">
-              DSX has been a proud 3CX partner for over 12 years. We've never hidden behind generic branding —
-              we tell every client that 3CX is our backbone, and we're the experts who make it sing.
+              For over 12 years, DSX has been engineering the future of business communications.
+              We combine proven platforms with cutting-edge AI to deliver solutions that actually transform how companies connect.
             </p>
             <p className="text-slate-500 mb-8 leading-relaxed">
               From traditional VoIP deployments to cutting-edge AI-powered contact centers,
@@ -73,7 +73,7 @@ export default function AboutSection() {
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-2">The DSX Difference</h3>
                   <p className="text-slate-500">
-                    Not just another provider — we're the 3CX gurus who've seen it all, built it all, and continue to push boundaries.
+                    Not just another provider — we're innovators who've seen it all, built it all, and continue to push boundaries.
                   </p>
                 </div>
                 <div className="grid grid-cols-2 gap-4">

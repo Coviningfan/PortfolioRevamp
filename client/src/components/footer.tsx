@@ -27,7 +27,7 @@ export default function Footer() {
                 className="h-10 w-auto mb-4 brightness-0 invert"
               />
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
-                Your 3CX Gurus. 12+ years of business communication excellence, powered by 3CX, enhanced with AI.
+                Above the Cloud. 12+ years of business communication excellence, powered by innovation and enhanced with AI.
               </p>
               <p className="text-orange-400/80 text-sm font-medium italic">
                 Above the Cloud.

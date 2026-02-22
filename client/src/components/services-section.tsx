@@ -64,7 +64,7 @@ export default function ServicesSection() {
             <span className="text-gradient-dsx">Reimagined</span>
           </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            More than telecom. We deliver complete business communication ecosystems — built on 3CX, enhanced with AI, managed by gurus.
+            More than telecom. We deliver complete business communication ecosystems — engineered by DSX, enhanced with AI.
           </p>
         </motion.div>
 

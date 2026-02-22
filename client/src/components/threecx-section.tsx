@@ -61,14 +61,14 @@ export default function ThreeCXSection() {
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
-            Why DSX is{" "}
+            Why Businesses{" "}
             <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">
-              The 3CX Authority
+              Choose DSX
             </span>
           </h2>
           <p className="text-lg text-slate-400 max-w-3xl mx-auto">
-            We've never been shy about who powers our solutions. 3CX is the backbone of everything we do —
-            and after 12 years, nobody knows it better than DSX.
+            12 years of innovation, 500+ deployments, and a relentless drive to push boundaries.
+            We build on proven platforms like 3CX and enhance them with AI — that's the DSX difference.
           </p>
         </motion.div>
 

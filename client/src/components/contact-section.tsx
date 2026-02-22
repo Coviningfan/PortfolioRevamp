@@ -72,9 +72,9 @@ export default function ContactSection() {
           <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-4">
             Get In Touch
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">Talk to a 3CX Expert</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">Talk to an Expert</h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            Ready to transform your business communications? Our 3CX gurus are here to help.
+            Ready to transform your business communications? Our team of specialists is here to help.
           </p>
         </motion.div>
 
@@ -225,7 +225,7 @@ export default function ContactSection() {
             </div>
 
             <div className="bg-gradient-to-br from-blue-600 to-orange-500 rounded-2xl p-6 text-white">
-              <h4 className="font-bold text-lg mb-2">Your 3CX Gurus Await</h4>
+              <h4 className="font-bold text-lg mb-2">Innovation Starts Here</h4>
               <p className="text-white/80 text-sm leading-relaxed">
                 Join 500+ businesses running on 3CX solutions engineered by DSX. 12 years of expertise, one conversation away.
               </p>
