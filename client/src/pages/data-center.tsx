@@ -36,7 +36,6 @@ export default function DataCenterPage() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-
       {/* Hero Section */}
       <section className="pt-24 pb-12 bg-gradient-to-br from-blue-50 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,7 +57,6 @@ export default function DataCenterPage() {
           </motion.div>
         </div>
       </section>
-
       {/* Main Description */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -75,7 +73,6 @@ export default function DataCenterPage() {
           </motion.div>
         </div>
       </section>
-
       {/* World-Class Features */}
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -109,7 +106,6 @@ export default function DataCenterPage() {
           </div>
         </div>
       </section>
-
       {/* Industry Leaders */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -183,7 +179,6 @@ export default function DataCenterPage() {
           </div>
         </div>
       </section>
-
       {/* Partnership Section */}
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -194,7 +189,7 @@ export default function DataCenterPage() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-12">DSX and the Citadel Campus: A Partnership for the Future</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-12">DSX and the Citadel Campus</h2>
 
             <div className="bg-gradient-to-br from-blue-600/10 to-orange-500/10 rounded-xl p-8 max-w-4xl mx-auto">
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
@@ -207,7 +202,6 @@ export default function DataCenterPage() {
           </motion.div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -237,7 +231,6 @@ export default function DataCenterPage() {
           </motion.div>
         </div>
       </section>
-
       <Footer />
     </div>
   );
