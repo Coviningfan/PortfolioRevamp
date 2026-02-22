@@ -223,7 +223,7 @@ export default function DataCenterPage() {
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200">
+                <Button className="bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200">
                   Contact Our Experts
                 </Button>
               </Link>

@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-import { Linkedin, Twitter, Facebook } from "lucide-react";
 import { Link } from "wouter";
 import dsxLogo from "@assets/DSX_EDGE_LOGO-removebg-preview_1771726835380.webp";
 import jabvLogo from "@assets/JABVLABS_LOGO_HD-removebg-preview_1771726977207.png";
@@ -31,23 +29,6 @@ export default function Footer() {
               <p className="text-slate-400 text-sm leading-relaxed mb-6">
                 Your trusted partner for unified communication and data solutions. Above the Cloud.
               </p>
-              <div className="flex gap-3">
-                {[
-                  { icon: Linkedin, label: "LinkedIn" },
-                  { icon: Twitter, label: "Twitter" },
-                  { icon: Facebook, label: "Facebook" },
-                ].map(({ icon: Icon, label }) => (
-                  <a
-                    key={label}
-                    href="#"
-                    aria-label={label}
-                    data-testid={`link-social-${label.toLowerCase()}`}
-                    className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white transition-all duration-200"
-                  >
-                    <Icon className="h-4 w-4" />
-                  </a>
-                ))}
-              </div>
             </div>
 
             <div>

@@ -6,13 +6,6 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 export default function DSXVoicePage() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   const features = [
     "Customized Solutions tailored to your operational needs",
     "Seamless Global Integration across multiple locations",

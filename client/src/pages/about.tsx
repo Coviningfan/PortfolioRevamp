@@ -6,13 +6,6 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 export default function AboutPage() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -211,7 +204,7 @@ export default function AboutPage() {
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button className="gradient-dsx-orange text-white hover:shadow-lg transition-all duration-200">
+                <Button className="bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200">
                   Contact Us Today
                 </Button>
               </Link>
