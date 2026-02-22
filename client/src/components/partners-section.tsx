@@ -40,12 +40,12 @@ export default function PartnersSection() {
               viewport={{ once: true }}
               className="group bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 flex flex-col items-center justify-center"
             >
-              <div className="h-12 flex items-center justify-center mb-3">
+              <div className="h-12 w-full flex items-center justify-center">
                 <img
                   src={partner.logo}
                   alt={partner.name}
                   data-testid={`img-partner-${partner.name.toLowerCase()}`}
-                  className="max-h-12 max-w-full object-contain brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                  className="max-h-12 max-w-full object-contain brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300 mx-auto"
                 />
               </div>
             </motion.div>
