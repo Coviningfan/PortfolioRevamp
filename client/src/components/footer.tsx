@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Linkedin, Twitter, Facebook } from "lucide-react";
 import { Link } from "wouter";
 import dsxLogo from "@assets/DSX_EDGE_LOGO-removebg-preview_1771726835380.webp";
+import jabvLogo from "@assets/JABVLABS_LOGO_HD-removebg-preview_1771726977207.png";
 
 export default function Footer() {
   const serviceLinks = [
@@ -95,9 +96,10 @@ export default function Footer() {
             <p className="text-slate-500 text-sm" data-testid="text-copyright">
               &copy; 2026 DSX Edge. All rights reserved.
             </p>
-            <p className="text-slate-600 text-xs">
-              Powered by J.A.B.V Labs
-            </p>
+            <div className="flex items-center gap-2 text-slate-600 text-xs">
+              <span>Powered by</span>
+              <img src={jabvLogo} alt="JABV Labs" className="h-4 w-auto" />
+            </div>
           </div>
         </div>
       </div>
