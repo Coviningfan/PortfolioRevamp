@@ -68,8 +68,8 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-base md:text-lg text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            Your phone system should be more than just a phone system. DSX layers AI intelligence
-            on top of your communications platform — turning every interaction into an opportunity.
+            Business communications should be intelligent, reliable, and accessible to everyone —
+            from the local shop to the global enterprise. DSX makes it happen.
             This is the future, and the future is now.
           </motion.p>
 

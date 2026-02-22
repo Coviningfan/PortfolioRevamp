@@ -8,7 +8,7 @@ export default function AboutSection() {
     "3CX Platinum Partner since 2013",
     "AI intelligence layered on communications",
     "Enterprise-grade data center infrastructure",
-    "Making phone systems more than phone systems",
+    "Accessible to businesses of every size",
   ];
 
   return (
@@ -30,12 +30,13 @@ export default function AboutSection() {
             </h2>
             <p className="text-lg text-slate-500 mb-6 leading-relaxed">
               For over 12 years, DSX has been engineering the future of business communications.
-              We combine proven platforms with cutting-edge AI to deliver solutions that actually transform how companies connect.
+              We believe the best technology shouldn't be reserved for the biggest companies — it should
+              be accessible to everyone.
             </p>
             <p className="text-slate-500 mb-8 leading-relaxed">
-              From traditional VoIP deployments to AI-enhanced intelligent platforms,
-              we've evolved every step of the way. Today, DSX is going Above the Cloud — layering
-              AI intelligence on communications to make your phone system work harder for your business.
+              That's why we built DSX Edge: world-class, AI-enhanced communications that work
+              for the 5-person office and the 500-seat enterprise alike. Above the Cloud means
+              everyone gets to fly.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-3 mb-8">
@@ -73,7 +74,7 @@ export default function AboutSection() {
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-2">The DSX Difference</h3>
                   <p className="text-slate-500">
-                    Not just another provider — we're innovators who've seen it all, built it all, and continue to push boundaries.
+                    Not just another provider — we're innovators who've built it all and continue to push boundaries.
                   </p>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -82,12 +83,12 @@ export default function AboutSection() {
                     <div className="text-sm text-slate-500">Years of Innovation</div>
                   </div>
                   <div className="text-center p-4 rounded-xl bg-orange-50">
-                    <div className="text-3xl font-bold text-orange-600 mb-1">500+</div>
-                    <div className="text-sm text-slate-500">Deployments</div>
+                    <div className="text-3xl font-bold text-orange-600 mb-1">60%</div>
+                    <div className="text-sm text-slate-500">Avg Cost Savings</div>
                   </div>
                   <div className="text-center p-4 rounded-xl bg-emerald-50">
-                    <div className="text-3xl font-bold text-emerald-600 mb-1">60%</div>
-                    <div className="text-sm text-slate-500">Avg Savings</div>
+                    <div className="text-3xl font-bold text-emerald-600 mb-1">99.9%</div>
+                    <div className="text-sm text-slate-500">Uptime</div>
                   </div>
                   <div className="text-center p-4 rounded-xl bg-violet-50">
                     <div className="text-3xl font-bold text-violet-600 mb-1">AI</div>

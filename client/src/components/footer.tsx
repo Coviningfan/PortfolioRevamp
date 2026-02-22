@@ -4,9 +4,9 @@ import jabvLogo from "@assets/JABVLABS_LOGO_HD-removebg-preview_1771726977207.pn
 
 export default function Footer() {
   const serviceLinks = [
-    { label: "DSX Voice", href: "/dsx-voice" },
-    { label: "DSX Live", href: "/dsx-live" },
-    { label: "DSX Data", href: "/dsx-data" },
+    { label: "Enterprise Voice", href: "/contact" },
+    { label: "AI Intelligence", href: "/contact" },
+    { label: "Infrastructure", href: "/data-center" },
   ];
 
   const companyLinks = [

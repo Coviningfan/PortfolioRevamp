@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Calendar, TrendingDown, Award, Handshake } from "lucide-react";
+import { Calendar, TrendingDown, Globe, Handshake } from "lucide-react";
 
 export default function FactsSection() {
   const ref = useRef(null);
@@ -28,11 +28,11 @@ export default function FactsSection() {
       ring: "ring-orange-100",
     },
     {
-      icon: Award,
-      value: 500,
+      icon: Globe,
+      value: 5,
       suffix: "+",
-      title: "Deployments",
-      subtitle: "Businesses transformed by DSX solutions",
+      title: "Countries Served",
+      subtitle: "Global reach with local expertise",
       color: "text-emerald-500",
       bg: "bg-emerald-50",
       ring: "ring-emerald-100",

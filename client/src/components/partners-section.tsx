@@ -3,17 +3,15 @@ import logo3cx from "@assets/3CX-Logo.wine_1771727597371.webp";
 import logoYealink from "@assets/Yealink_1771727597343.webp";
 import logoFanvil from "@assets/Fanvil-Logo-PNG-510x199-removebg-preview_1771727597345.webp";
 import logoGrandstream from "@assets/grandstream-seeklogo-removebg-preview_1771727597369.webp";
-import logoVtech from "@assets/VTech-logo-removebg-preview_1771727597297.webp";
 import logoSwitch from "@assets/141-1413900_switch-logo-switch-data-center-logo-clipart-remov_1771728017696.webp";
 
 export default function PartnersSection() {
   const partners = [
-    { name: "3CX", description: "VoIP Platform", logo: logo3cx },
-    { name: "Yealink", description: "IP Phones", logo: logoYealink },
-    { name: "Fanvil", description: "Communication", logo: logoFanvil },
-    { name: "Grandstream", description: "Networking", logo: logoGrandstream },
-    { name: "VTech", description: "Business Phones", logo: logoVtech },
-    { name: "Switch", description: "Data Centers", logo: logoSwitch },
+    { name: "3CX", logo: logo3cx },
+    { name: "Yealink", logo: logoYealink },
+    { name: "Fanvil", logo: logoFanvil },
+    { name: "Grandstream", logo: logoGrandstream },
+    { name: "Switch", logo: logoSwitch },
   ];
 
   return (
@@ -30,7 +28,7 @@ export default function PartnersSection() {
           <h2 className="text-2xl md:text-3xl font-bold text-white">Our Network</h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
           {partners.map((partner, index) => (
             <motion.div
               key={partner.name}
@@ -38,7 +36,7 @@ export default function PartnersSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className="group bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 flex flex-col items-center justify-center"
+              className="group bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 flex items-center justify-center w-[calc(20%-1rem)] min-w-[140px]"
             >
               <div className="h-12 w-full flex items-center justify-center">
                 <img

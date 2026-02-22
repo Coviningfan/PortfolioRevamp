@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Brain, Sparkles, TrendingUp, Layers, MessageSquare, Zap, ArrowRight, Phone, BarChart3, Bot } from "lucide-react";
+import { Brain, Sparkles, Layers, MessageSquare, Zap, ArrowRight, BarChart3, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
@@ -42,23 +42,23 @@ export default function AIFutureSection() {
   const valueAdds = [
     {
       icon: Brain,
-      title: "AI-Powered Call Intelligence",
+      title: "Call Intelligence",
       description: "Real-time sentiment analysis, call scoring, and smart routing that turns every conversation into actionable business insight.",
     },
     {
       icon: Bot,
-      title: "Intelligent Virtual Agents",
+      title: "Virtual Agents",
       description: "AI agents that handle inquiries naturally, qualify leads, and route to the right person — 24/7, without missing a beat.",
     },
     {
       icon: BarChart3,
       title: "Predictive Analytics",
-      description: "Know what your customers need before they call. AI-driven insights that help you anticipate demand and optimize staffing.",
+      description: "Know what your customers need before they call. AI-driven insights that help you anticipate demand and optimize resources.",
     },
     {
       icon: Layers,
-      title: "Seamless Integration Layer",
-      description: "AI that plugs into your existing 3CX system — no rip-and-replace. Your phone system becomes smarter overnight.",
+      title: "Seamless Integration",
+      description: "AI that plugs into your existing system — no rip-and-replace. Your communications become smarter overnight.",
     },
     {
       icon: MessageSquare,
@@ -141,12 +141,12 @@ export default function AIFutureSection() {
                 that drive real growth. That's what "Above the Cloud" means — it's the intelligence layer
                 that sets you apart.
               </p>
-              <Link href="/dsx-live">
+              <Link href="/contact">
                 <Button
                   data-testid="button-explore-ai"
                   className="bg-gradient-to-r from-blue-500 to-orange-500 text-white hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 rounded-xl py-5 text-base font-semibold group"
                 >
-                  Explore AI Solutions
+                  Talk to an Expert
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
@@ -173,9 +173,9 @@ export default function AIFutureSection() {
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center border border-white/10">
                 <div className="text-3xl font-bold text-violet-400 mb-1">
-                  <AnimatedCounter value={500} suffix="+" />
+                  <AnimatedCounter value={12} suffix="+" />
                 </div>
-                <div className="text-xs text-slate-300">Deployments</div>
+                <div className="text-xs text-slate-300">Years Innovating</div>
               </div>
             </div>
           </div>

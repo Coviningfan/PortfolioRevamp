@@ -41,22 +41,23 @@ DSX Edge is an innovative business communication platform showcasing DSX's 12+ y
 - `GET /api/contacts` - Retrieve contact submissions (admin)
 
 ### Frontend Pages
-- **Home**: Main landing page with hero, services, testimonials
-- **DSX Voice**: VoIP telephony services information
-- **DSX Data**: Data management and infrastructure services
-- **DSX Live**: AI-powered customer service solutions
+- **Home**: Main landing page with hero, services, testimonials, case studies
 - **About**: Company history and background
 - **Data Center**: Infrastructure and facility information
+- **DSX Voice** (legacy): VoIP telephony page (may be deprecated)
+- **DSX Data** (legacy): Data management page (may be deprecated)
+- **DSX Live** (legacy): AI contact center page (may be deprecated)
 
 ### UI Components
-- **Navigation**: Responsive navigation with mobile menu, "Solutions" link, "Talk to an Expert" CTA
-- **Hero Section**: "DSX Edge" headline, "Above the Cloud. Beyond Expectations." tagline, 12+ years innovation badge
-- **Services Section**: DSX Solutions Suite — DSX Voice, DSX Live, DSX Data with value-add messaging
-- **3CX Partnership Section** (`threecx-section.tsx`): "Why Businesses Choose DSX" — 5 reasons including AI Intelligence Layer, innovation journey timeline
-- **AI Future Section** (`ai-future-section.tsx`): "More Than a Phone System. It's Intelligence." — 6 AI value-add capabilities, DSX transformation pitch
-- **Facts Section**: 12+ Years of innovation, 500+ deployments, 60% cost savings, 99.9% uptime
-- **About Section**: "12 Years of Innovation. Zero Compromises." with DSX Difference card
-- **Testimonials**: Rotating customer testimonials with real savings data
+- **Navigation**: Responsive navigation with mobile menu, "Solutions" scroll link, "Talk to an Expert" CTA
+- **Hero Section**: "DSX Edge" headline, "Above the Cloud. Beyond Expectations." tagline, accessible-to-everyone messaging
+- **Services Section**: Enterprise Voice, AI Intelligence, Infrastructure & Security — "Built for Every Business" from local shops to Fortune 500
+- **Why DSX Section** (`threecx-section.tsx`): 6 centered reasons including "Built for Real Businesses", AI Intelligence Layer, 3CX Platinum Partner
+- **AI Future Section** (`ai-future-section.tsx`): "More Than a Phone System. It's Intelligence." — 6 AI capabilities, DSX transformation pitch
+- **Facts Section**: 12+ Years, 60% cost savings, 5+ countries, 99.9% uptime (no repeated "500 deployments")
+- **About Section**: "12 Years of Innovation. Zero Compromises." — accessible to all businesses messaging
+- **Testimonials**: Rotating customer testimonials with real savings data (DSX-branded, not product-specific)
+- **Partners**: 3CX, Yealink, Fanvil, Grandstream, Switch (VTech removed)
 - **Contact Form**: "Talk to an Expert" validated form with submission handling
 
 ## Data Flow
@@ -104,20 +105,19 @@ DSX Edge is an innovative business communication platform showcasing DSX's 12+ y
 
 ## Changelog
 
-### February 22, 2026 - Major Identity & Vision Transformation
-- **Core Vision**: "Above the Cloud" = AI intelligence layered on communications. More than a phone system. The future is now.
-- **3CX Platinum Partner**: Badge updated from "Certified" to "Platinum Partner" across entire site
-- **Hero Overhaul**: "DSX Edge" headline, "Above the Cloud. Beyond Expectations." tagline, "This is the future, and the future is now." body copy
-- **AI Section Reworked**: Removed "Human Call Center" dying narrative. Replaced with AI value-add vision — 6 intelligence capabilities (Call Intelligence, Virtual Agents, Predictive Analytics, Integration Layer, Omnichannel AI, Automated Workflows)
-- **Why Businesses Choose DSX**: Value-add positioning, AI Intelligence Layer as key differentiator, innovation journey timeline
-- **Services Reframed**: DSX Solutions Suite, "More than a phone system" messaging, AI-enhanced descriptions
-- **DSX Live Redesigned**: "More Than a Phone System. It's Intelligence." — value-add features, "Above the Cloud" meaning explained, AI platform tiers
-- **Facts Section**: "Proven Results, Real Impact" — DSX-forward metrics
-- **About Section**: "12 Years of Innovation. Zero Compromises." with AI Intelligence Layer stat
-- **Navigation**: "Solutions" link, "Talk to an Expert" CTAs throughout
-- **Footer**: "3CX Platinum Partner" in copyright
-- **Removed**: All "Gurus" branding, call center dying narrative, heavy 3CX-first language
-- **Key Themes**: DSX innovation, AI as the intelligence layer, value-add beyond phone systems, "the future is now"
+### February 22, 2026 - Major Rebrand: Business Communications for Everyone
+- **Product Names Retired**: Removed DSX Voice, DSX Live, DSX Data product branding — moving past individual product labels
+- **New Positioning**: "Business Communications, Reimagined" — accessible to everyone from Joe's Pizza to Fortune 500
+- **Services Redesigned**: Enterprise Voice, AI Intelligence, Infrastructure & Security — universal, not product-specific
+- **Why DSX Section**: 6 centered cards including "Built for Real Businesses", removed innovation timeline, added accessibility focus
+- **Facts Section Cleaned**: Replaced repeated "500+ Deployments" with "5+ Countries Served" — each stat unique across sections
+- **About Section Updated**: "Above the Cloud means everyone gets to fly" — accessibility messaging
+- **VTech Removed**: From partners section as requested
+- **Testimonials Updated**: Removed "DSX Voice" product references, now DSX-branded generically
+- **Hero Updated**: "From the local shop to the global enterprise" messaging
+- **AI Section**: Removed DSX Live link, now points to Contact; unique stats (no repeated 500 deployments)
+- **Case Studies**: Reframed from "extensions" to business size labels (Small Business, Enterprise, International)
+- **Key Theme**: The best communications technology should be accessible to every business, not just the biggest
 
 ### June 20, 2025 - Navigation and AI Integration Update
 - **Navigation Fix**: Converted "Get Quote" back to "Contact" button in styled box format as requested

@@ -16,10 +16,10 @@ const caseStudies = [
   {
     name: "Law Office of Michael H. Bonner",
     description: "California-based business law practice with emphasis on international matters.",
-    extensions: "7",
+    size: "Small Business",
     monthlyCost: "$199.95",
     savings: "65%",
-    note: "Includes conference room and off-site extensions",
+    note: "Includes conference room and off-site capabilities",
     color: "blue",
     bg: "bg-blue-50",
     accent: "text-blue-600",
@@ -27,8 +27,8 @@ const caseStudies = [
   },
   {
     name: "Synology Inc.",
-    description: "Leader in NAS servers. Call center with 40+ agents using 100,000+ minutes monthly.",
-    extensions: "40+",
+    description: "Global technology leader handling 100,000+ minutes of communications monthly.",
+    size: "Enterprise",
     monthlyCost: "$686.00",
     savings: "46%",
     note: "Added 50% capacity at 16% lower cost",
@@ -39,11 +39,11 @@ const caseStudies = [
   },
   {
     name: "Synergy Homeopathic",
-    description: "Global homeopathic software solutions with users across 5 countries.",
-    extensions: "17",
+    description: "Global software solutions with users across 5 countries.",
+    size: "International",
     monthlyCost: "$239.00",
     savings: "64%",
-    note: "International users via soft phones",
+    note: "Seamless international connectivity",
     color: "violet",
     bg: "bg-violet-50",
     accent: "text-violet-600",
@@ -77,7 +77,7 @@ export default function Home() {
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">Proven Results</h2>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-              Real businesses, real savings — intelligent communications delivered by DSX
+              From small businesses to global enterprises — real savings, real impact
             </p>
           </motion.div>
 
@@ -98,15 +98,14 @@ export default function Home() {
                   <div className={`text-3xl font-bold ${study.accent}`}>{study.savings}</div>
                   <span className="text-sm text-slate-400 font-medium">saved</span>
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2" data-testid={`text-case-study-${index}`}>
+                <h3 className="text-lg font-bold text-slate-900 mb-1" data-testid={`text-case-study-${index}`}>
                   {study.name}
                 </h3>
+                <span className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full ${study.bg} ${study.accent} mb-3`}>
+                  {study.size}
+                </span>
                 <p className="text-sm text-slate-500 mb-5">{study.description}</p>
-                <div className={`${study.bg} rounded-xl p-4 space-y-2`}>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-slate-600">Extensions</span>
-                    <span className={`font-bold ${study.accent}`}>{study.extensions}</span>
-                  </div>
+                <div className={`${study.bg} rounded-xl p-4`}>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-slate-600">Monthly Cost</span>
                     <span className={`font-bold ${study.accent}`}>{study.monthlyCost}</span>

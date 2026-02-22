@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, Headphones, Database, ArrowRight, Cpu } from "lucide-react";
+import { Phone, Brain, Shield, Wifi, Users, Zap, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 
@@ -7,42 +7,30 @@ export default function ServicesSection() {
   const services = [
     {
       icon: Phone,
-      number: "01",
-      title: "DSX Voice",
-      subtitle: "Powered by 3CX",
-      description: "More than a phone system. Enterprise VoIP built on 3CX and enhanced with AI intelligence — customized, deployed, and managed by a team with 12+ years of expertise.",
-      href: "/dsx-voice",
+      title: "Enterprise Voice",
+      description: "Crystal-clear communications that scale with you. Whether you're a 5-person office or a 500-seat operation, your voice matters — and it should sound like it.",
       iconBg: "bg-blue-500",
       iconBgHover: "group-hover:bg-blue-600",
       accent: "border-blue-500/20",
       accentHover: "group-hover:border-blue-500/50",
-      badge: "bg-blue-50 text-blue-600",
     },
     {
-      icon: Headphones,
-      number: "02",
-      title: "DSX Live",
-      subtitle: "AI-Powered Engagement",
-      description: "The future is now. AI-driven customer engagement integrated with your communications platform — intelligent automation that makes every interaction count.",
-      href: "/dsx-live",
+      icon: Brain,
+      title: "AI Intelligence",
+      description: "Your communications platform should learn, adapt, and work for you. AI that understands context, routes intelligently, and turns every conversation into insight.",
       iconBg: "bg-orange-500",
       iconBgHover: "group-hover:bg-orange-600",
       accent: "border-orange-500/20",
       accentHover: "group-hover:border-orange-500/50",
-      badge: "bg-orange-50 text-orange-600",
     },
     {
-      icon: Database,
-      number: "03",
-      title: "DSX Data",
-      subtitle: "Infrastructure & Hosting",
-      description: "Enterprise-class data center solutions with unparalleled reliability. Your communications infrastructure hosted on our own facilities — built for maximum uptime and security.",
-      href: "/dsx-data",
+      icon: Shield,
+      title: "Infrastructure & Security",
+      description: "Enterprise-grade reliability built on our own data centers. 99.9% uptime isn't a promise — it's the standard. Your business never sleeps, and neither do we.",
       iconBg: "bg-violet-500",
       iconBgHover: "group-hover:bg-violet-600",
       accent: "border-violet-500/20",
       accentHover: "group-hover:border-violet-500/50",
-      badge: "bg-violet-50 text-violet-600",
     },
   ];
 
@@ -54,19 +42,31 @@ export default function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-6"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-4">
-            DSX Solutions Suite
+            Built for Every Business
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
             Business Communications,{" "}
             <span className="text-gradient-dsx">Reimagined</span>
           </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            More than telecom. We deliver complete business communication ecosystems — engineered by DSX, enhanced with AI.
+            From the local pizza shop to the Fortune 500 — every business deserves communications
+            that are intelligent, reliable, and built to grow with you.
           </p>
         </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="text-center text-sm text-slate-400 mb-16 max-w-xl mx-auto"
+        >
+          The best products shouldn't only be available to the biggest companies.
+          We made world-class communications accessible to everyone.
+        </motion.p>
 
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
@@ -81,34 +81,40 @@ export default function ServicesSection() {
               <div
                 className={`relative bg-white rounded-2xl border ${service.accent} ${service.accentHover} p-8 h-full transition-all duration-500 hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1`}
               >
-                <div className="flex items-center justify-between mb-6">
+                <div className="mb-6">
                   <div
                     className={`${service.iconBg} ${service.iconBgHover} w-14 h-14 rounded-xl flex items-center justify-center transition-colors duration-300 shadow-lg`}
                   >
                     <service.icon className="text-white h-7 w-7" />
                   </div>
-                  <span className={`${service.badge} text-xs font-bold px-3 py-1 rounded-full`}>
-                    {service.number}
-                  </span>
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-1">{service.title}</h3>
-                <p className="text-sm text-blue-600 font-medium mb-3">{service.subtitle}</p>
-                <p className="text-slate-500 mb-8 leading-relaxed">{service.description}</p>
-                <div className="flex gap-3 mt-auto">
-                  <Link href={service.href} className="flex-1">
-                    <Button
-                      data-testid={`button-learn-${service.title.toLowerCase().replace(' ', '-')}`}
-                      className="w-full bg-slate-900 text-white hover:bg-slate-800 transition-all duration-200 rounded-xl group/btn"
-                    >
-                      Learn More
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
-                  </Link>
-                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-3">{service.title}</h3>
+                <p className="text-slate-500 leading-relaxed">{service.description}</p>
               </div>
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mt-12 text-center"
+        >
+          <div className="inline-flex flex-wrap justify-center gap-6 text-sm text-slate-500">
+            {[
+              { icon: Users, text: "5 users or 5,000" },
+              { icon: Wifi, text: "Cloud or on-premise" },
+              { icon: Zap, text: "Deploy in days, not months" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <item.icon className="h-4 w-4 text-blue-500" />
+                <span>{item.text}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

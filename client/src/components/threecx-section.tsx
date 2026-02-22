@@ -1,42 +1,39 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Award, Globe, Users, Wrench, ShieldCheck, Sparkles } from "lucide-react";
+import { Award, Globe, Wrench, ShieldCheck, Sparkles, Heart } from "lucide-react";
 import logo3cx from "@assets/3CX-Logo.wine_1771727597371.webp";
 
 export default function ThreeCXSection() {
   const reasons = [
     {
-      icon: Award,
-      title: "3CX Platinum Partner",
-      description: "12+ years as a dedicated 3CX partner. We've mastered the platform and built an ecosystem of value-add services around it."
+      icon: Heart,
+      title: "Built for Real Businesses",
+      description: "From a 3-person office to a 300-seat operation — we engineer solutions that fit your reality, not the other way around."
     },
     {
       icon: Wrench,
       title: "Engineered, Not Just Installed",
-      description: "We don't do cookie-cutter setups. Every deployment is custom-engineered to fit your business workflows, growth plans, and AI strategy."
+      description: "Every deployment is custom-built for your workflows, your growth plans, and your vision. No cookie-cutter setups."
     },
     {
       icon: Globe,
       title: "Global Reach, Local Expertise",
-      description: "From single-office setups to multi-country deployments across 5+ countries, we've architected solutions that work everywhere."
+      description: "Single-office startups to multi-country enterprises across 5+ countries — we've architected solutions that work everywhere."
     },
     {
       icon: ShieldCheck,
       title: "Enterprise-Grade Infrastructure",
-      description: "Your communications run on our own data centers with 99.9% uptime — because intelligent systems need a rock-solid foundation."
+      description: "Your communications run on our own data centers with 99.9% uptime — because your business can't afford downtime."
     },
     {
       icon: Sparkles,
       title: "AI Intelligence Layer",
-      description: "This is what sets us apart: we layer AI on top of your communications platform — making it smarter, faster, and more valuable every day."
+      description: "We layer AI on top of your communications — making it smarter, faster, and more valuable every day. That's the DSX difference."
     },
-  ];
-
-  const milestones = [
-    { year: "2013", event: "Official 3CX Partner" },
-    { year: "2016", event: "500+ Deployments" },
-    { year: "2020", event: "Cloud-First Architecture" },
-    { year: "2024", event: "AI Intelligence Layer" },
-    { year: "2025", event: "Above the Cloud" },
+    {
+      icon: Award,
+      title: "3CX Platinum Partner",
+      description: "12+ years mastering the platform. We've built an ecosystem of value-add services that transform how businesses communicate."
+    },
   ];
 
   return (
@@ -67,13 +64,12 @@ export default function ThreeCXSection() {
             </span>
           </h2>
           <p className="text-lg text-slate-400 max-w-3xl mx-auto">
-            We don't just sell phone systems — we add intelligence, value, and vision.
-            12 years of 3CX mastery combined with AI innovation that makes your communications platform
-            work harder for your business.
+            We don't just sell phone systems — we build intelligent communications platforms
+            that grow with your business. From day one.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.title}
@@ -91,32 +87,6 @@ export default function ThreeCXSection() {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-            <h3 className="text-xl font-bold text-white text-center mb-8">Our Innovation Journey</h3>
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              {milestones.map((milestone, index) => (
-                <div key={milestone.year} className="flex flex-col items-center text-center flex-1">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-orange-500 flex items-center justify-center mb-3">
-                    <span className="text-white text-xs font-bold">{index + 1}</span>
-                  </div>
-                  <div className="text-orange-400 font-bold text-lg">{milestone.year}</div>
-                  <div className="text-slate-400 text-sm mt-1">{milestone.event}</div>
-                  {index < milestones.length - 1 && (
-                    <div className="hidden md:block absolute">
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
