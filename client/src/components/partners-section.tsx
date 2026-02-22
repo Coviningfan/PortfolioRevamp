@@ -4,7 +4,7 @@ import logoYealink from "@assets/Yealink_1771727597343.webp";
 import logoFanvil from "@assets/Fanvil-Logo-PNG-510x199-removebg-preview_1771727597345.webp";
 import logoGrandstream from "@assets/grandstream-seeklogo-removebg-preview_1771727597369.webp";
 import logoVtech from "@assets/VTech-logo-removebg-preview_1771727597297.webp";
-import logoSwitch from "@assets/Switch-Logo-Blue_1771727597368.webp";
+import logoSwitch from "@assets/141-1413900_switch-logo-switch-data-center-logo-clipart-remov_1771728017696.webp";
 
 export default function PartnersSection() {
   const partners = [
@@ -45,11 +45,8 @@ export default function PartnersSection() {
                   src={partner.logo}
                   alt={partner.name}
                   data-testid={`img-partner-${partner.name.toLowerCase()}`}
-                  className="max-h-12 max-w-full object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  className="max-h-12 max-w-full object-contain brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                 />
-              </div>
-              <div className="text-xs text-slate-400 group-hover:text-slate-300 font-medium">
-                {partner.description}
               </div>
             </motion.div>
           ))}
