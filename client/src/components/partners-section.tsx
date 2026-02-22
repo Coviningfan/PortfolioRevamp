@@ -45,7 +45,7 @@ export default function PartnersSection() {
                   src={partner.logo}
                   alt={partner.name}
                   data-testid={`img-partner-${partner.name.toLowerCase()}`}
-                  className="max-h-12 max-w-full object-contain brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                  className="max-h-12 max-w-full object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
               <div className="text-xs text-slate-400 group-hover:text-slate-300 font-medium">
