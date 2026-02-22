@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { Link } from "wouter";
-import dsxLogo from "@assets/DSX EDGE LOGO.png";
+import dsxLogo from "@assets/DSX_EDGE_LOGO_1771724948531.png";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);

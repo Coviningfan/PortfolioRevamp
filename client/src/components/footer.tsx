@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Facebook, Twitter, Linkedin } from "lucide-react";
-import dsxLogo from "../assets/DSX EDGE LOGO.png";
+import dsxLogo from "@assets/DSX_EDGE_LOGO_1771724948531.png";
 
 export default function Footer() {
   return (
@@ -24,7 +24,7 @@ export default function Footer() {
           
           <div className="border-t border-slate-700 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
-              <p className="text-slate-400 text-sm">© 2024 DSX Edge. All rights reserved.</p>
+              <p className="text-slate-400 text-sm">© 2026 DSX Edge. All rights reserved.</p>
               <div className="flex space-x-6 mt-4 md:mt-0">
                 <a 
                   href="#" 

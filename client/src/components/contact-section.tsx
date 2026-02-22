@@ -12,7 +12,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import { insertContactSchema } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 import type { InsertContact } from "@shared/schema";
-import dsxLogo from "@assets/DSX EDGE LOGO.png";
+import dsxLogo from "@assets/DSX_EDGE_LOGO_1771724948531.png";
 
 export default function ContactSection() {
   const { toast } = useToast();
