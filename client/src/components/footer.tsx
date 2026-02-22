@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Linkedin, Twitter, Facebook } from "lucide-react";
 import { Link } from "wouter";
-import dsxLogo from "@assets/DSX_EDGE_LOGO_1771724948531.png";
+import dsxLogo from "@assets/DSX_EDGE_LOGO-removebg-preview_1771726835380.webp";
 
 export default function Footer() {
   const serviceLinks = [
