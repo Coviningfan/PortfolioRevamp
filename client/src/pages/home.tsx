@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { TrendingDown } from "lucide-react";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import ServicesSection from "@/components/services-section";
@@ -9,18 +10,56 @@ import PartnersSection from "@/components/partners-section";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 
+const caseStudies = [
+  {
+    name: "Law Office of Michael H. Bonner",
+    description: "California-based business law practice with emphasis on international matters.",
+    extensions: "7",
+    monthlyCost: "$199.95",
+    savings: "65%",
+    note: "Includes conference room and off-site extensions",
+    color: "blue",
+    bg: "bg-blue-50",
+    accent: "text-blue-600",
+    border: "border-blue-200",
+  },
+  {
+    name: "Synology Inc.",
+    description: "Leader in NAS servers. Call center with 40+ agents using 100,000+ minutes monthly.",
+    extensions: "40+",
+    monthlyCost: "$686.00",
+    savings: "46%",
+    note: "Added 50% capacity at 16% lower cost",
+    color: "orange",
+    bg: "bg-orange-50",
+    accent: "text-orange-600",
+    border: "border-orange-200",
+  },
+  {
+    name: "Synergy Homeopathic",
+    description: "Global homeopathic software solutions with users across 5 countries.",
+    extensions: "17",
+    monthlyCost: "$239.00",
+    savings: "64%",
+    note: "International users via soft phones",
+    color: "violet",
+    bg: "bg-violet-50",
+    accent: "text-violet-600",
+    border: "border-violet-200",
+  },
+];
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <HeroSection />
       <ServicesSection />
       <FactsSection />
       <AboutSection />
       <TestimonialsSection />
-      
-      {/* Case Studies Section */}
-      <section className="py-20 bg-slate-50">
+
+      <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -29,118 +68,65 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Proven Results</h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-sm font-semibold mb-4">
+              Case Studies
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">Proven Results</h2>
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
               Real client examples demonstrating the impact of DSX Voice on business communication costs
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Law Office Case Study */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-xl shadow-lg p-8 border-l-4 border-blue-600"
-            >
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Law Office of Michael H. Bonner</h3>
-              <p className="text-slate-600 mb-6">
-                California-based business law practice with emphasis on international matters. Highly computerized operations requiring efficient communication systems.
-              </p>
-              <div className="bg-blue-50 rounded-lg p-4 mb-4">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-slate-700">Extensions</span>
-                  <span className="text-lg font-bold text-blue-600">7</span>
+          <div className="grid md:grid-cols-3 gap-6">
+            {caseStudies.map((study, index) => (
+              <motion.div
+                key={study.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className={`bg-white rounded-2xl p-8 border ${study.border} hover:shadow-lg transition-all duration-300`}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`w-10 h-10 rounded-xl ${study.bg} flex items-center justify-center`}>
+                    <TrendingDown className={`h-5 w-5 ${study.accent}`} />
+                  </div>
+                  <div className={`text-3xl font-bold ${study.accent}`}>{study.savings}</div>
+                  <span className="text-sm text-slate-400 font-medium">saved</span>
                 </div>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-slate-700">Monthly Cost</span>
-                  <span className="text-lg font-bold text-blue-600">$199.95</span>
+                <h3 className="text-lg font-bold text-slate-900 mb-2" data-testid={`text-case-study-${index}`}>
+                  {study.name}
+                </h3>
+                <p className="text-sm text-slate-500 mb-5">{study.description}</p>
+                <div className={`${study.bg} rounded-xl p-4 space-y-2`}>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-slate-600">Extensions</span>
+                    <span className={`font-bold ${study.accent}`}>{study.extensions}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-slate-600">Monthly Cost</span>
+                    <span className={`font-bold ${study.accent}`}>{study.monthlyCost}</span>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-slate-700">Cost Savings</span>
-                  <span className="text-2xl font-bold text-green-600">65%</span>
-                </div>
-              </div>
-              <p className="text-sm text-slate-500">
-                Includes conference room extension and off-site extension capabilities
-              </p>
-            </motion.div>
-
-            {/* Synology Case Study */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-xl shadow-lg p-8 border-l-4 border-orange-500"
-            >
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Synology Inc.</h3>
-              <p className="text-slate-600 mb-6">
-                Leader in NAS servers for SME markets. Call center operation with 40+ agents using 100,000+ minutes monthly in phone-intensive business operations.
-              </p>
-              <div className="bg-orange-50 rounded-lg p-4 mb-4">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-slate-700">Extensions</span>
-                  <span className="text-lg font-bold text-orange-600">40+</span>
-                </div>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-slate-700">Monthly Cost</span>
-                  <span className="text-lg font-bold text-orange-600">$686.00</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-slate-700">Cost Savings</span>
-                  <span className="text-2xl font-bold text-green-600">46%</span>
-                </div>
-              </div>
-              <p className="text-sm text-slate-500">
-                Added 50% capacity at 16% lower cost than original system
-              </p>
-            </motion.div>
-
-            {/* Synergy Homeopathic Case Study */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-xl shadow-lg p-8 border-l-4 border-purple-600"
-            >
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Synergy Homeopathic</h3>
-              <p className="text-slate-600 mb-6">
-                Pioneer in homeopathic software solutions. Global operation with users across California, Massachusetts, Germany, India, and Israel.
-              </p>
-              <div className="bg-purple-50 rounded-lg p-4 mb-4">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-slate-700">Extensions</span>
-                  <span className="text-lg font-bold text-purple-600">17</span>
-                </div>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-slate-700">Monthly Cost</span>
-                  <span className="text-lg font-bold text-purple-600">$239.00</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-slate-700">Cost Savings</span>
-                  <span className="text-2xl font-bold text-green-600">64%</span>
-                </div>
-              </div>
-              <p className="text-sm text-slate-500">
-                International users integrated via soft phones on computers
-              </p>
-            </motion.div>
+                <p className="text-xs text-slate-400 mt-3">{study.note}</p>
+              </motion.div>
+            ))}
           </div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-center mt-12"
+            className="mt-12"
           >
-            <div className="bg-gradient-to-r from-blue-600 to-orange-500 rounded-2xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-4">Based on Actual Client Installations</h3>
-              <p className="text-xl">
-                DSX Voice reduces company phone costs by up to <span className="text-3xl font-bold">60%</span>
+            <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl p-10 text-center">
+              <p className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-2">Based on actual client installations</p>
+              <p className="text-white text-2xl md:text-3xl font-bold">
+                DSX Voice reduces phone costs by up to{" "}
+                <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">
+                  60%
+                </span>
               </p>
             </div>
           </motion.div>

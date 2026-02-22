@@ -95,18 +95,31 @@ html {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--muted));
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--dsx-blue));
-  border-radius: 4px;
+  background: hsl(var(--dsx-blue) / 0.3);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--dsx-orange));
+  background: hsl(var(--dsx-blue) / 0.5);
+}
+
+/* Selection */
+::selection {
+  background: hsl(var(--dsx-blue) / 0.15);
+  color: hsl(var(--dsx-blue));
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid hsl(var(--dsx-blue));
+  outline-offset: 2px;
+  border-radius: 4px;
 }

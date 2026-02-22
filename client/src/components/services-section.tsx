@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, Headphones, Database } from "lucide-react";
+import { Phone, Headphones, Database, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 
@@ -9,30 +9,45 @@ export default function ServicesSection() {
       icon: Phone,
       number: "01",
       title: "DSX Voice",
-      description: "Evolving excellence in communication with flexible, cost-effective VoIP services that integrate seamlessly with your existing systems. Delivering up to 60% in cost savings compared to traditional providers.",
-      gradient: "bg-gradient-to-r from-blue-600 to-orange-500",
-      href: "/dsx-voice"
+      description: "Flexible, cost-effective VoIP services that integrate seamlessly with your existing systems. Save up to 60% compared to traditional providers.",
+      href: "/dsx-voice",
+      color: "blue",
+      iconBg: "bg-blue-500",
+      iconBgHover: "group-hover:bg-blue-600",
+      accent: "border-blue-500/20",
+      accentHover: "group-hover:border-blue-500/50",
+      badge: "bg-blue-50 text-blue-600",
     },
     {
       icon: Headphones,
-      number: "02", 
+      number: "02",
       title: "DSX Live",
-      description: "Your dynamic communication powerhouse that redefines efficiency by seamlessly integrating with your telephone system. Advanced AI-human hybrid support for superior customer engagement.",
-      gradient: "bg-gradient-to-r from-blue-600 to-orange-500",
-      href: "/dsx-live"
+      description: "AI-human hybrid support that redefines customer engagement. Seamless integration with your telephone system for superior efficiency.",
+      href: "/dsx-live",
+      color: "orange",
+      iconBg: "bg-orange-500",
+      iconBgHover: "group-hover:bg-orange-600",
+      accent: "border-orange-500/20",
+      accentHover: "group-hover:border-orange-500/50",
+      badge: "bg-orange-50 text-orange-600",
     },
     {
       icon: Database,
       number: "03",
-      title: "DSX Data", 
-      description: "Virtual DataSpace Management with cutting-edge technology, delivering unparalleled reliability and performance from our state-of-the-art data center infrastructure.",
-      gradient: "bg-gradient-to-r from-blue-600 to-orange-500",
-      href: "/dsx-data"
-    }
+      title: "DSX Data",
+      description: "Virtual DataSpace Management with unparalleled reliability and performance from our state-of-the-art data center infrastructure.",
+      href: "/dsx-data",
+      color: "violet",
+      iconBg: "bg-violet-500",
+      iconBgHover: "group-hover:bg-violet-600",
+      accent: "border-violet-500/20",
+      accentHover: "group-hover:border-violet-500/50",
+      badge: "bg-violet-50 text-violet-600",
+    },
   ];
 
   return (
-    <section id="services" className="py-20 bg-slate-50">
+    <section id="services" className="py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,9 +56,12 @@ export default function ServicesSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Our Services</h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Empowering your business with cutting-edge technology solutions designed to optimize and streamline operations
+          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-4">
+            What We Offer
+          </span>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">Our Services</h2>
+          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+            Cutting-edge technology solutions designed to optimize and streamline your business operations
           </p>
         </motion.div>
 
@@ -51,34 +69,35 @@ export default function ServicesSection() {
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
               viewport={{ once: true }}
-              whileHover={{ y: -8 }}
-              className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 group"
+              className="group"
             >
-              <div className="p-8">
+              <div
+                className={`relative bg-white rounded-2xl border ${service.accent} ${service.accentHover} p-8 h-full transition-all duration-500 hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1`}
+              >
                 <div className="flex items-center justify-between mb-6">
-                  <div className={`${service.gradient} w-16 h-16 rounded-lg flex items-center justify-center`}>
-                    <service.icon className="text-white h-8 w-8" />
+                  <div
+                    className={`${service.iconBg} ${service.iconBgHover} w-14 h-14 rounded-xl flex items-center justify-center transition-colors duration-300 shadow-lg`}
+                  >
+                    <service.icon className="text-white h-7 w-7" />
                   </div>
-                  <span className="text-orange-500 font-bold text-sm">{service.number}</span>
+                  <span className={`${service.badge} text-xs font-bold px-3 py-1 rounded-full`}>
+                    {service.number}
+                  </span>
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">{service.title}</h3>
-                <p className="text-slate-600 mb-6">{service.description}</p>
-                <div className="flex gap-3">
+                <h3 className="text-2xl font-bold text-slate-900 mb-3">{service.title}</h3>
+                <p className="text-slate-500 mb-8 leading-relaxed">{service.description}</p>
+                <div className="flex gap-3 mt-auto">
                   <Link href={service.href} className="flex-1">
-                    <Button className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg transition-all duration-200">
-                      Learn More
-                    </Button>
-                  </Link>
-                  <Link href="/contact">
-                    <Button 
-                      variant="outline" 
-                      className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-200"
+                    <Button
+                      data-testid={`button-learn-${service.title.toLowerCase().replace(' ', '-')}`}
+                      className="w-full bg-slate-900 text-white hover:bg-slate-800 transition-all duration-200 rounded-xl group/btn"
                     >
-                      Contact Us
+                      Learn More
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                     </Button>
                   </Link>
                 </div>

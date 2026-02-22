@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Calendar, Percent, Leaf, Handshake } from "lucide-react";
+import { Calendar, TrendingDown, Leaf, Handshake } from "lucide-react";
 
 export default function FactsSection() {
   const ref = useRef(null);
@@ -10,18 +10,22 @@ export default function FactsSection() {
     {
       icon: Calendar,
       value: 15,
-      suffix: "",
+      suffix: "+",
       title: "Years of Experience",
-      subtitle: "With Top-Qualified Experts",
-      gradient: "gradient-dsx"
+      subtitle: "With top-qualified experts",
+      color: "text-blue-500",
+      bg: "bg-blue-50",
+      ring: "ring-blue-100",
     },
     {
-      icon: Percent,
+      icon: TrendingDown,
       value: 60,
       suffix: "%",
-      title: "Savings",
-      subtitle: "Reducing client phone bills",
-      gradient: "gradient-dsx-orange"
+      title: "Cost Savings",
+      subtitle: "Average client phone bill reduction",
+      color: "text-orange-500",
+      bg: "bg-orange-50",
+      ring: "ring-orange-100",
     },
     {
       icon: Leaf,
@@ -29,16 +33,20 @@ export default function FactsSection() {
       suffix: "%",
       title: "Green Energy",
       subtitle: "Switch Citadel Campus, 650 MW",
-      gradient: "bg-gradient-to-r from-blue-600 via-orange-500 to-red-500"
+      color: "text-emerald-500",
+      bg: "bg-emerald-50",
+      ring: "ring-emerald-100",
     },
     {
       icon: Handshake,
-      value: 5,
+      value: 500,
       suffix: "+",
-      title: "Strategic Partnerships",
-      subtitle: "Industry-leading collaborations",
-      gradient: "bg-gradient-to-r from-orange-500 to-blue-600"
-    }
+      title: "Businesses Served",
+      subtitle: "Nationwide trusted partnerships",
+      color: "text-violet-500",
+      bg: "bg-violet-50",
+      ring: "ring-violet-100",
+    },
   ];
 
   const AnimatedCounter = ({ value, suffix }: { value: number; suffix: string }) => {
@@ -46,8 +54,8 @@ export default function FactsSection() {
 
     useEffect(() => {
       if (isInView) {
-        const duration = 2000; // 2 seconds
-        const steps = 60; // 60 frames for smooth animation
+        const duration = 2000;
+        const steps = 60;
         const increment = value / steps;
         let currentStep = 0;
 
@@ -74,8 +82,11 @@ export default function FactsSection() {
   };
 
   return (
-    <section ref={ref} className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={ref} className="py-24 bg-white relative overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-blue-50/50 to-transparent rounded-full blur-3xl" />
+      </div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -83,30 +94,35 @@ export default function FactsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">15 Years of Excellence</h2>
-          <p className="text-xl text-slate-600">
-            Building cutting-edge solutions and delivering exceptional service
+          <span className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-semibold mb-4">
+            By the Numbers
+          </span>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
+            15 Years of Excellence
+          </h2>
+          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+            Building cutting-edge solutions and delivering exceptional service since 2009
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {facts.map((fact, index) => (
             <motion.div
               key={fact.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="text-center"
+              className={`relative rounded-2xl p-8 ${fact.bg} ring-1 ${fact.ring} text-center group hover:shadow-lg transition-all duration-300`}
             >
-              <div className={`${fact.gradient} w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4`}>
-                <fact.icon className="text-white h-10 w-10" />
+              <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-white shadow-sm mb-5 ${fact.color}`}>
+                <fact.icon className="h-7 w-7" />
               </div>
-              <div className="text-4xl font-bold text-slate-900 mb-2">
+              <div className={`text-5xl font-bold ${fact.color} mb-2 tabular-nums`}>
                 <AnimatedCounter value={fact.value} suffix={fact.suffix} />
               </div>
-              <div className="text-lg font-semibold text-slate-700">{fact.title}</div>
-              <div className="text-sm text-slate-600">{fact.subtitle}</div>
+              <div className="text-lg font-semibold text-slate-800 mb-1">{fact.title}</div>
+              <div className="text-sm text-slate-500">{fact.subtitle}</div>
             </motion.div>
           ))}
         </div>

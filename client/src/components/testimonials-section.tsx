@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 export default function TestimonialsSection() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -11,34 +11,36 @@ export default function TestimonialsSection() {
       title: "Law Office of Michael H. Bonner",
       content: "DSX Voice has revolutionized our law practice's communication efficiency. With 7 extensions including conference room and off-site capabilities, we've achieved 65% cost savings while maintaining the high-quality service our clients expect.",
       initials: "MB",
-      gradient: "gradient-dsx"
+      savings: "65%",
     },
     {
       name: "Synology Operations Team",
       title: "Synology Inc.",
       content: "As a leader in NAS servers, our call center handles 100,000+ minutes monthly. DSX Voice added 50% to our capacity at 16% lower cost than our original system. The scalability and reliability have been exceptional for our phone-intensive business.",
       initials: "SY",
-      gradient: "gradient-dsx-orange"
+      savings: "46%",
     },
     {
       name: "Synergy Homeopathic",
       title: "Global Homeopathic Software Solutions",
       content: "With 17 users spread across California, Massachusetts, Germany, India, and Israel, DSX Voice seamlessly connects our global team. The international integration and soft phone capabilities have transformed our worldwide operations.",
       initials: "SH",
-      gradient: "bg-gradient-to-r from-blue-600 via-orange-500 to-red-500"
-    }
+      savings: "64%",
+    },
   ];
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-
+    }, 6000);
     return () => clearInterval(timer);
   }, [testimonials.length]);
 
+  const next = () => setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  const prev = () => setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+
   return (
-    <section id="testimonials" className="py-20 bg-white">
+    <section id="testimonials" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -47,58 +49,89 @@ export default function TestimonialsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">What Our Clients Say</h2>
-          <p className="text-xl text-slate-600">Real testimonials from satisfied customers</p>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-orange-50 text-orange-600 text-sm font-semibold mb-4">
+            Testimonials
+          </span>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">What Our Clients Say</h2>
+          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+            Real testimonials from businesses that transformed their communications
+          </p>
         </motion.div>
 
-        <div className="relative">
-          <div className="max-w-4xl mx-auto">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentTestimonial}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="bg-slate-50 rounded-xl p-8"
-              >
-                <div className="flex items-center mb-6">
-                  <div className={`w-16 h-16 ${testimonials[currentTestimonial].gradient} rounded-full flex items-center justify-center mr-4`}>
-                    <span className="text-white font-bold text-xl">
+        <div className="relative max-w-4xl mx-auto">
+          <div className="absolute -top-6 left-8 opacity-10">
+            <Quote className="h-24 w-24 text-blue-600" />
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentTestimonial}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.4 }}
+              className="relative bg-gradient-to-br from-slate-50 to-blue-50/30 rounded-2xl p-8 md:p-12 border border-slate-100"
+            >
+              <div className="flex flex-col md:flex-row md:items-start gap-6">
+                <div className="flex-shrink-0 flex flex-col items-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg mb-3">
+                    <span className="text-white font-bold text-lg">
                       {testimonials[currentTestimonial].initials}
                     </span>
                   </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-emerald-600">
+                      {testimonials[currentTestimonial].savings}
+                    </div>
+                    <div className="text-xs text-slate-500 font-medium">saved</div>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <p className="text-lg md:text-xl text-slate-700 leading-relaxed mb-6 italic">
+                    "{testimonials[currentTestimonial].content}"
+                  </p>
                   <div>
-                    <h4 className="font-bold text-slate-900">
+                    <h4 className="font-bold text-slate-900 text-lg">
                       {testimonials[currentTestimonial].name}
                     </h4>
-                    <p className="text-slate-600">
+                    <p className="text-slate-500">
                       {testimonials[currentTestimonial].title}
                     </p>
                   </div>
                 </div>
-                <p className="text-lg text-slate-700 leading-relaxed">
-                  "{testimonials[currentTestimonial].content}"
-                </p>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
-          {/* Navigation dots */}
-          <div className="flex justify-center mt-8 space-x-2">
-            {testimonials.map((_, index) => (
-              <Button
-                key={index}
-                variant="ghost"
-                size="sm"
-                className={`w-3 h-3 rounded-full p-0 ${
-                  index === currentTestimonial 
-                    ? "bg-orange-500" 
-                    : "bg-slate-300 hover:bg-slate-400"
-                }`}
-                onClick={() => setCurrentTestimonial(index)}
-              />
-            ))}
+          <div className="flex items-center justify-center gap-4 mt-8">
+            <button
+              data-testid="button-testimonial-prev"
+              onClick={prev}
+              className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-slate-300 hover:shadow-md transition-all duration-200"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <div className="flex gap-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  data-testid={`button-testimonial-dot-${index}`}
+                  onClick={() => setCurrentTestimonial(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    index === currentTestimonial
+                      ? "bg-gradient-to-r from-blue-500 to-orange-500 w-8"
+                      : "bg-slate-300 w-2 hover:bg-slate-400"
+                  }`}
+                />
+              ))}
+            </div>
+            <button
+              data-testid="button-testimonial-next"
+              onClick={next}
+              className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-slate-300 hover:shadow-md transition-all duration-200"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
           </div>
         </div>
       </div>
