@@ -235,6 +235,18 @@ function OrbSVG({
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
+
+        <radialGradient id="sg-conic" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="rgba(96,165,250,0)" />
+          <stop offset="70%" stopColor="rgba(96,165,250,0.18)" />
+          <stop offset="100%" stopColor="rgba(96,165,250,0)" />
+        </radialGradient>
+
+        <linearGradient id="sg-shimmer" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="rgba(255,255,255,0)" />
+          <stop offset="50%" stopColor="rgba(255,255,255,0.45)" />
+          <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+        </linearGradient>
       </defs>
 
       <circle cx="0" cy="0" r="78" fill="none" stroke="rgba(96,165,250,0.12)" strokeWidth="12" />
@@ -259,6 +271,24 @@ function OrbSVG({
           opacity="0.5"
         />
       </g>
+
+      {!reduced && (
+        <motion.g
+          animate={{ rotate: 360 }}
+          transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
+          style={{ originX: "0", originY: "0" }}
+        >
+          <path
+            d="M 0 -78 A 78 78 0 0 1 67.5 39"
+            fill="none"
+            stroke="rgba(96,165,250,0.35)"
+            strokeWidth="6"
+            strokeLinecap="round"
+            opacity="0.5"
+            filter="url(#sg-glow-strong)"
+          />
+        </motion.g>
+      )}
 
       {!reduced && (
         <>
@@ -289,13 +319,104 @@ function OrbSVG({
         </>
       )}
 
+      {!reduced && (
+        <g clipPath="url(#sg-clip)">
+          <motion.rect
+            x="-100"
+            y="-6"
+            width="50"
+            height="12"
+            fill="url(#sg-shimmer)"
+            transform="rotate(-22)"
+            animate={{ x: [-100, 100] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+            opacity="0.7"
+          />
+        </g>
+      )}
+
+      {!reduced &&
+        [0, 1, 2, 3, 4, 5].map((i) => {
+          const a = (i / 6) * 360;
+          const r = 28 + (i % 2) * 12;
+          return (
+            <motion.g
+              key={`inner-${i}`}
+              initial={{ rotate: a }}
+              animate={{ rotate: a + 360 }}
+              transition={{
+                duration: 9 + i * 1.4,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{ transformOrigin: "0px 0px" }}
+            >
+              <motion.circle
+                cx={r}
+                cy={0}
+                r={i % 2 === 0 ? 1.6 : 1.1}
+                fill={i % 3 === 0 ? "rgba(251,186,116,0.95)" : "rgba(191,219,254,0.95)"}
+                filter="url(#sg-glow)"
+                animate={{ opacity: [0.35, 0.95, 0.35] }}
+                transition={{
+                  duration: 3 + i * 0.3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.25,
+                }}
+              />
+            </motion.g>
+          );
+        })}
+
       {rings.map((ring, ri) => (
         <OrbitalRingEl key={ri} ring={ring} reduced={reduced} />
       ))}
 
+      {!reduced && (
+        <motion.circle
+          cx="0"
+          cy="0"
+          r="14"
+          fill="rgba(96,165,250,0.4)"
+          filter="url(#sg-glow-strong)"
+          animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0.8, 0.4] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+          style={{ transformOrigin: "0px 0px" }}
+        />
+      )}
       <circle cx="0" cy="0" r="10" fill="rgba(219,234,254,0.95)" filter="url(#sg-glow)" />
       <circle cx="0" cy="0" r="5" fill="white" />
       <circle cx="-2" cy="-2" r="2" fill="rgba(255,255,255,0.9)" />
+
+      {!reduced && (
+        <>
+          <motion.circle
+            cx="0"
+            cy="0"
+            r="10"
+            fill="none"
+            stroke="rgba(255,255,255,0.6)"
+            strokeWidth="0.5"
+            initial={{ scale: 1, opacity: 0.8 }}
+            animate={{ scale: 4.5, opacity: 0 }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
+            style={{ transformOrigin: "0px 0px" }}
+          />
+          <motion.circle
+            cx="0"
+            cy="0"
+            r="10"
+            fill="none"
+            stroke="rgba(251,146,60,0.5)"
+            strokeWidth="0.4"
+            initial={{ scale: 1, opacity: 0.7 }}
+            animate={{ scale: 4.5, opacity: 0 }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay: 1.5 }}
+            style={{ transformOrigin: "0px 0px" }}
+          />
+        </>
+      )}
 
       <circle cx="0" cy="0" r="68" fill="none" stroke="rgba(147,197,253,0.25)" strokeWidth="0.5" />
     </motion.svg>
@@ -491,6 +612,37 @@ function ArcConnector({
         animate={{ pathLength: 1, opacity: active ? 1 : 0.65 }}
         transition={{ delay: pillar.delay + 0.15, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       />
+
+      <motion.circle
+        r={active ? 4 : 3}
+        fill={tone.arc}
+        filter={`url(#arc-glow-${pillar.key})`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 1, 1, 0], offsetDistance: ["0%", "100%"] as never }}
+        transition={{
+          duration: 2.4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: pillar.delay + 1,
+          times: [0, 0.1, 0.9, 1],
+        }}
+        style={{ offsetPath: `path('${pathD}')`, offsetRotate: "auto" } as never}
+      />
+      <motion.circle
+        r={active ? 4 : 3}
+        fill={tone.arc}
+        filter={`url(#arc-glow-${pillar.key})`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 1, 1, 0], offsetDistance: ["100%", "0%"] as never }}
+        transition={{
+          duration: 2.4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: pillar.delay + 2.2,
+          times: [0, 0.1, 0.9, 1],
+        }}
+        style={{ offsetPath: `path('${pathD}')`, offsetRotate: "auto" } as never}
+      />
     </svg>
   );
 }
@@ -600,7 +752,7 @@ export default function SignalOrb() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-[520px] mx-auto aspect-square select-none"
+      className="relative w-full max-w-[580px] mx-auto aspect-square select-none"
       data-testid="signal-orb"
       style={{ perspective: 1400 }}
     >
@@ -676,8 +828,17 @@ export default function SignalOrb() {
       ))}
 
       <motion.div
-        className="absolute inset-[12%]"
+        className="absolute inset-[8%]"
         style={{ x: shiftX, y: shiftY, transformStyle: "preserve-3d" }}
+        animate={{
+          y: [0, -8, 0, 6, 0],
+          scale: [1, 1.015, 1, 1.01, 1],
+        }}
+        transition={{
+          duration: 9,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       >
         <OrbSVG rings={rings} reduced={reduced} tiltX={tiltX} tiltY={tiltY} />
       </motion.div>
