@@ -40,12 +40,42 @@ export default function AIFutureSection() {
   };
 
   const industries = [
-    { icon: Wrench, name: "Contractors & Trades", example: "AI answers estimate requests, qualifies job scope, and books site visits — while you're on the job." },
-    { icon: Scale, name: "Law Practices", example: "AI captures new client inquiries, gathers case details, and schedules consultations without interrupting billable work." },
-    { icon: Heart, name: "Medical & Dental", example: "AI handles appointment requests, insurance verification questions, and reminders — 24/7, without hold times." },
-    { icon: Building2, name: "Insurance & Finance", example: "AI qualifies inbound leads, collects policy details, and routes warm prospects to the right agent automatically." },
-    { icon: Home, name: "Real Estate", example: "AI answers property inquiries, qualifies buyer intent, and schedules showings directly into your calendar." },
-    { icon: Briefcase, name: "Any Business That Gets Calls", example: "If your business loses time or leads through routine phone calls, DSX Edge can change that." },
+    {
+      icon: Wrench,
+      name: "Contractors & Trades",
+      example: "AI answers estimate requests, qualifies job scope, and books site visits — while you're on the job.",
+      flow: "New quote request → AI intake → appointment booked",
+    },
+    {
+      icon: Scale,
+      name: "Law Practices",
+      example: "AI captures new client inquiries, gathers case details, and schedules consultations without interrupting billable work.",
+      flow: "New caller → case type identified → consultation scheduled",
+    },
+    {
+      icon: Heart,
+      name: "Medical & Dental",
+      example: "AI handles appointment requests, insurance questions, and reminders — 24/7, without hold times.",
+      flow: "Patient call → reason captured → office notified",
+    },
+    {
+      icon: Building2,
+      name: "Insurance & Finance",
+      example: "AI qualifies inbound leads, collects policy details, and routes warm prospects to the right agent automatically.",
+      flow: "Inbound lead → qualified → routed to agent",
+    },
+    {
+      icon: Home,
+      name: "Real Estate",
+      example: "AI answers property inquiries, qualifies buyer intent, and schedules showings directly into your calendar.",
+      flow: "Property inquiry → intent gauged → showing booked",
+    },
+    {
+      icon: Briefcase,
+      name: "Any Business That Gets Calls",
+      example: "If your business loses time or leads through routine phone calls, DSX Edge can change that.",
+      flow: "Inbound contact → qualified → action taken",
+    },
   ];
 
   return (
@@ -159,13 +189,18 @@ export default function AIFutureSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group"
+              className="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg hover:border-cyan-300 hover:bg-white transition-all duration-300 group overflow-hidden"
+              data-testid={`industry-card-${index}`}
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-orange-500 flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-blue-500/20 transition-all duration-300">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-cyan-500/20 transition-all duration-300">
                 <item.icon className="h-5 w-5 text-white" />
               </div>
               <h4 className="text-base font-bold text-slate-900 mb-2">{item.name}</h4>
-              <p className="text-slate-500 text-sm leading-relaxed">{item.example}</p>
+              <p className="text-slate-500 text-sm leading-relaxed mb-4">{item.example}</p>
+              <div className="pt-3 border-t border-slate-200 flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
+                <span className="text-[11px] font-mono text-slate-600 tracking-tight">{item.flow}</span>
+              </div>
             </motion.div>
           ))}
         </div>
