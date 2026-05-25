@@ -1,383 +1,720 @@
-import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useMemo } from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+  animate,
+} from "framer-motion";
+import { useEffect, useRef, useMemo, useCallback, useState } from "react";
+import { PhoneCall, Server, Sparkles } from "lucide-react";
+
+type Tone = "blue" | "slate" | "orange";
+
+interface Pillar {
+  key: string;
+  icon: React.ElementType;
+  label: string;
+  tone: Tone;
+  position: string;
+  angle: number;
+  delay: number;
+}
+
+interface OrbitalRing {
+  rx: number;
+  ry: number;
+  rotate: number;
+  color: string;
+  width: number;
+  dash: string;
+  duration: number;
+  packetCount: number;
+  packetColor: string;
+  packetGlow: string;
+  dir: 1 | -1;
+}
+
+interface Star {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  duration: number;
+  delay: number;
+  opacity: number;
+}
+
+const PILLARS: Pillar[] = [
+  {
+    key: "comms",
+    icon: PhoneCall,
+    label: "Business Communications",
+    tone: "blue",
+    position: "top-0 left-1/2 -translate-x-1/2 -translate-y-3",
+    angle: 270,
+    delay: 0.25,
+  },
+  {
+    key: "infra",
+    icon: Server,
+    label: "Hosted Infrastructure",
+    tone: "slate",
+    position: "bottom-6 left-0 -translate-x-2",
+    angle: 30,
+    delay: 0.45,
+  },
+  {
+    key: "ai",
+    icon: Sparkles,
+    label: "DSX AI Enabled",
+    tone: "orange",
+    position: "bottom-6 right-0 translate-x-2",
+    angle: 150,
+    delay: 0.65,
+  },
+];
+
+const TONES: Record<
+  Tone,
+  {
+    chip: string;
+    icon: string;
+    dot: string;
+    arc: string;
+    arcGlow: string;
+    pulse: string;
+  }
+> = {
+  blue: {
+    chip: "bg-slate-950/90 border-blue-400/50 text-blue-100 shadow-blue-500/20",
+    icon: "text-blue-300",
+    dot: "bg-blue-400",
+    arc: "rgba(96,165,250,0.9)",
+    arcGlow: "rgba(96,165,250,0.55)",
+    pulse: "rgba(96,165,250,0.15)",
+  },
+  slate: {
+    chip: "bg-slate-950/90 border-slate-400/30 text-slate-100 shadow-slate-500/10",
+    icon: "text-slate-300",
+    dot: "bg-slate-300",
+    arc: "rgba(203,213,225,0.75)",
+    arcGlow: "rgba(203,213,225,0.4)",
+    pulse: "rgba(203,213,225,0.12)",
+  },
+  orange: {
+    chip: "bg-slate-950/90 border-orange-400/55 text-orange-100 shadow-orange-500/20",
+    icon: "text-orange-300",
+    dot: "bg-orange-400",
+    arc: "rgba(251,146,60,0.95)",
+    arcGlow: "rgba(251,146,60,0.6)",
+    pulse: "rgba(251,146,60,0.15)",
+  },
+};
+
+function usePointerParallax(containerRef: React.RefObject<HTMLDivElement>) {
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const reduced = useReducedMotion();
+
+  const sx = useSpring(mx, { stiffness: 45, damping: 20, mass: 0.8 });
+  const sy = useSpring(my, { stiffness: 45, damping: 20, mass: 0.8 });
+
+  useEffect(() => {
+    if (reduced) return;
+
+    const onMove = (e: PointerEvent) => {
+      const el = containerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const dx = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+      const dy = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+      mx.set(Math.max(-1.8, Math.min(1.8, dx)));
+      my.set(Math.max(-1.8, Math.min(1.8, dy)));
+    };
+
+    const onLeave = () => {
+      mx.set(0);
+      my.set(0);
+    };
+
+    window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("pointerleave", onLeave);
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerleave", onLeave);
+    };
+  }, [mx, my, reduced, containerRef]);
+
+  return { sx, sy };
+}
+
+function OrbSVG({
+  rings,
+  reduced,
+  tiltX,
+  tiltY,
+}: {
+  rings: OrbitalRing[];
+  reduced: boolean | null;
+  tiltX: ReturnType<typeof useTransform>;
+  tiltY: ReturnType<typeof useTransform>;
+}) {
+  const size = 100;
+
+  return (
+    <motion.svg
+      viewBox={`-${size} -${size} ${size * 2} ${size * 2}`}
+      className="absolute inset-0 w-full h-full overflow-visible pointer-events-none"
+      style={{ rotateX: tiltX, rotateY: tiltY, transformStyle: "preserve-3d" }}
+    >
+      <defs>
+        <radialGradient id="sg-orb-core" cx="38%" cy="32%" r="68%">
+          <stop offset="0%" stopColor="rgba(224,242,255,0.98)" />
+          <stop offset="12%" stopColor="rgba(147,197,253,0.92)" />
+          <stop offset="35%" stopColor="rgba(59,130,246,0.82)" />
+          <stop offset="62%" stopColor="rgba(29,78,216,0.72)" />
+          <stop offset="86%" stopColor="rgba(15,23,42,0.6)" />
+          <stop offset="100%" stopColor="rgba(15,23,42,0)" />
+        </radialGradient>
+
+        <radialGradient id="sg-specular" cx="32%" cy="26%" r="32%">
+          <stop offset="0%" stopColor="rgba(255,255,255,0.95)" />
+          <stop offset="40%" stopColor="rgba(255,255,255,0.35)" />
+          <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+        </radialGradient>
+
+        <radialGradient id="sg-amber-sub" cx="76%" cy="80%" r="52%">
+          <stop offset="0%" stopColor="rgba(251,146,60,0.45)" />
+          <stop offset="100%" stopColor="rgba(251,146,60,0)" />
+        </radialGradient>
+
+        <radialGradient id="sg-rim" cx="50%" cy="50%" r="50%">
+          <stop offset="76%" stopColor="rgba(96,165,250,0)" />
+          <stop offset="90%" stopColor="rgba(147,197,253,0.55)" />
+          <stop offset="100%" stopColor="rgba(96,165,250,0)" />
+        </radialGradient>
+
+        <radialGradient id="sg-ambient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="rgba(255,255,255,0.14)" />
+          <stop offset="65%" stopColor="rgba(255,255,255,0)" />
+        </radialGradient>
+
+        <linearGradient id="sg-flare" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="rgba(255,255,255,0)" />
+          <stop offset="42%" stopColor="rgba(255,255,255,0.55)" />
+          <stop offset="58%" stopColor="rgba(255,255,255,0.55)" />
+          <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+        </linearGradient>
+
+        <linearGradient id="sg-sweep" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="rgba(96,165,250,0)" />
+          <stop offset="55%" stopColor="rgba(96,165,250,0.7)" />
+          <stop offset="72%" stopColor="rgba(147,197,253,0.5)" />
+          <stop offset="100%" stopColor="rgba(219,234,254,1)" />
+        </linearGradient>
+
+        <linearGradient id="sg-equator-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="rgba(96,165,250,0)" />
+          <stop offset="50%" stopColor="rgba(96,165,250,0.3)" />
+          <stop offset="100%" stopColor="rgba(96,165,250,0)" />
+        </linearGradient>
+
+        <clipPath id="sg-clip">
+          <circle cx="0" cy="0" r="68" />
+        </clipPath>
+
+        <filter id="sg-glow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="1.8" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+
+        <filter id="sg-glow-strong" x="-120%" y="-120%" width="340%" height="340%">
+          <feGaussianBlur stdDeviation="3.2" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <circle cx="0" cy="0" r="78" fill="none" stroke="rgba(96,165,250,0.12)" strokeWidth="12" />
+      <circle cx="0" cy="0" r="84" fill="none" stroke="rgba(96,165,250,0.05)" strokeWidth="6" />
+
+      <circle cx="0" cy="0" r="68" fill="url(#sg-orb-core)" />
+      <circle cx="0" cy="0" r="68" fill="url(#sg-amber-sub)" />
+      <circle cx="0" cy="0" r="68" fill="url(#sg-ambient)" />
+      <circle cx="0" cy="0" r="68" fill="url(#sg-rim)" />
+      <circle cx="0" cy="0" r="68" fill="url(#sg-specular)" />
+
+      <ellipse cx="0" cy="0" rx="68" ry="8" fill="url(#sg-equator-grad)" opacity="0.6" />
+
+      <g clipPath="url(#sg-clip)">
+        <rect
+          x="-68"
+          y="-3"
+          width="136"
+          height="6"
+          fill="url(#sg-flare)"
+          transform="rotate(-28)"
+          opacity="0.5"
+        />
+      </g>
+
+      {!reduced && (
+        <>
+          <motion.line
+            x1="0"
+            y1="0"
+            x2="68"
+            y2="0"
+            stroke="url(#sg-sweep)"
+            strokeWidth="1.5"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            style={{ originX: "0", originY: "0" }}
+            filter="url(#sg-glow)"
+          />
+          <motion.line
+            x1="0"
+            y1="0"
+            x2="68"
+            y2="0"
+            stroke="rgba(251,146,60,0.6)"
+            strokeWidth="1"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+            style={{ originX: "0", originY: "0" }}
+            filter="url(#sg-glow)"
+          />
+        </>
+      )}
+
+      {rings.map((ring, ri) => (
+        <OrbitalRingEl key={ri} ring={ring} reduced={reduced} />
+      ))}
+
+      <circle cx="0" cy="0" r="10" fill="rgba(219,234,254,0.95)" filter="url(#sg-glow)" />
+      <circle cx="0" cy="0" r="5" fill="white" />
+      <circle cx="-2" cy="-2" r="2" fill="rgba(255,255,255,0.9)" />
+
+      <circle cx="0" cy="0" r="68" fill="none" stroke="rgba(147,197,253,0.25)" strokeWidth="0.5" />
+    </motion.svg>
+  );
+}
+
+function OrbitalRingEl({
+  ring,
+  reduced,
+}: {
+  ring: OrbitalRing;
+  reduced: boolean | null;
+}) {
+  const packets = useMemo(
+    () =>
+      Array.from({ length: ring.packetCount }, (_, i) => ({
+        id: i,
+        offset: i / ring.packetCount,
+      })),
+    [ring.packetCount],
+  );
+
+  if (reduced) {
+    return (
+      <ellipse
+        cx="0"
+        cy="0"
+        rx={ring.rx}
+        ry={ring.ry}
+        fill="none"
+        stroke={ring.color}
+        strokeWidth={ring.width}
+        strokeDasharray={ring.dash}
+        transform={`rotate(${ring.rotate})`}
+      />
+    );
+  }
+
+  return (
+    <g transform={`rotate(${ring.rotate})`}>
+      <ellipse
+        cx="0"
+        cy="0"
+        rx={ring.rx}
+        ry={ring.ry}
+        fill="none"
+        stroke={ring.color}
+        strokeWidth={ring.width}
+        strokeDasharray={ring.dash}
+      />
+      {packets.map((p) => (
+        <AnimatedPacket
+          key={p.id}
+          rx={ring.rx}
+          ry={ring.ry}
+          color={ring.packetColor}
+          glowColor={ring.packetGlow}
+          duration={ring.duration}
+          dir={ring.dir}
+          startOffset={p.offset}
+        />
+      ))}
+    </g>
+  );
+}
+
+function AnimatedPacket({
+  rx,
+  ry,
+  color,
+  duration,
+  dir,
+  startOffset,
+}: {
+  rx: number;
+  ry: number;
+  color: string;
+  glowColor: string;
+  duration: number;
+  dir: 1 | -1;
+  startOffset: number;
+}) {
+  const t = useMotionValue(startOffset);
+  const cx = useTransform(t, (v) => rx * Math.cos(v * Math.PI * 2 * dir));
+  const cy = useTransform(t, (v) => ry * Math.sin(v * Math.PI * 2 * dir));
+
+  useEffect(() => {
+    const ctrl = animate(t, startOffset + 1, {
+      duration,
+      repeat: Infinity,
+      ease: "linear",
+    });
+    return ctrl.stop;
+  }, [t, duration, startOffset]);
+
+  return <motion.circle r={2.8} cx={cx} cy={cy} fill={color} filter="url(#sg-glow-strong)" />;
+}
+
+function PillarChip({
+  pillar,
+  onClick,
+}: {
+  pillar: Pillar;
+  index: number;
+  active: boolean;
+  onClick: () => void;
+}) {
+  const toneStyle = TONES[pillar.tone];
+  const Icon = pillar.icon;
+
+  return (
+    <motion.button
+      className={`absolute flex items-center gap-2 px-3 py-2 rounded-xl border backdrop-blur-md shadow-lg cursor-pointer select-none ${pillar.position} ${toneStyle.chip}`}
+      initial={{ opacity: 0, scale: 0.85 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: pillar.delay, duration: 0.4, type: "spring", stiffness: 260, damping: 22 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.97 }}
+      onClick={onClick}
+      data-testid={`button-pillar-${pillar.key}`}
+    >
+      <span className={`w-2 h-2 rounded-full flex-shrink-0 ${toneStyle.dot}`} />
+      <Icon size={14} className={`flex-shrink-0 ${toneStyle.icon}`} />
+      <span className="text-xs font-medium whitespace-nowrap tracking-wide">{pillar.label}</span>
+    </motion.button>
+  );
+}
+
+function ArcConnector({
+  pillar,
+  orbCenter,
+  containerSize,
+  active,
+}: {
+  pillar: Pillar;
+  orbCenter: { x: number; y: number };
+  containerSize: number;
+  active: boolean;
+}) {
+  const tone = TONES[pillar.tone];
+  const rad = (pillar.angle * Math.PI) / 180;
+  const orbRadius = containerSize * 0.145;
+  const startX = orbCenter.x + Math.cos(rad) * orbRadius;
+  const startY = orbCenter.y + Math.sin(rad) * orbRadius;
+
+  const chipPos: Record<string, { x: number; y: number }> = {
+    comms: { x: orbCenter.x, y: containerSize * 0.03 },
+    infra: { x: containerSize * 0.06, y: containerSize * 0.85 },
+    ai: { x: containerSize * 0.94, y: containerSize * 0.85 },
+  };
+
+  const end = chipPos[pillar.key] ?? { x: orbCenter.x, y: orbCenter.y };
+  const mx = (startX + end.x) / 2 + (end.y - startY) * 0.3;
+  const my = (startY + end.y) / 2 - (end.x - startX) * 0.3;
+
+  const pathD = `M${startX},${startY} Q${mx},${my} ${end.x},${end.y}`;
+
+  return (
+    <svg
+      className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
+      viewBox={`0 0 ${containerSize} ${containerSize}`}
+    >
+      <defs>
+        <filter id={`arc-glow-${pillar.key}`} x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="2.5" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <motion.path
+        d={pathD}
+        fill="none"
+        stroke={tone.arcGlow}
+        strokeWidth={active ? 4 : 2.5}
+        strokeLinecap="round"
+        filter={`url(#arc-glow-${pillar.key})`}
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: active ? 1 : 0.5 }}
+        transition={{ delay: pillar.delay + 0.15, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      />
+
+      <motion.path
+        d={pathD}
+        fill="none"
+        stroke={tone.arc}
+        strokeWidth={active ? 1.5 : 1}
+        strokeLinecap="round"
+        strokeDasharray="3 4"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: active ? 1 : 0.65 }}
+        transition={{ delay: pillar.delay + 0.15, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      />
+    </svg>
+  );
+}
 
 export default function SignalOrb() {
   const reduced = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const sx = useSpring(mx, { stiffness: 50, damping: 18, mass: 0.7 });
-  const sy = useSpring(my, { stiffness: 50, damping: 18, mass: 0.7 });
-
-  const tiltX = useTransform(sy, [-1, 1], [10, -10]);
-  const tiltY = useTransform(sx, [-1, 1], [-12, 12]);
-  const shiftX = useTransform(sx, [-1, 1], [-14, 14]);
-  const shiftY = useTransform(sy, [-1, 1], [-14, 14]);
-  const specX = useTransform(sx, [-1, 1], [-22, 22]);
-  const specY = useTransform(sy, [-1, 1], [-22, 22]);
-  const nucleusX = useTransform(sx, [-1, 1], [-6, 6]);
-  const nucleusY = useTransform(sy, [-1, 1], [-6, 6]);
-  const haloOpacity = useTransform(sx, [-1, 0, 1], [0.6, 1, 0.6]);
+  const [containerSize, setContainerSize] = useState(480);
+  const [activePillar, setActivePillar] = useState<string | null>(null);
 
   useEffect(() => {
-    if (reduced) return;
-    const el = containerRef.current;
-    if (!el) return;
+    const obs = new ResizeObserver(([entry]) => {
+      setContainerSize(entry.contentRect.width);
+    });
+    if (containerRef.current) obs.observe(containerRef.current);
+    return () => obs.disconnect();
+  }, []);
 
-    const onMove = (e: PointerEvent) => {
-      const rect = el.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = (e.clientX - cx) / (rect.width / 2);
-      const dy = (e.clientY - cy) / (rect.height / 2);
-      mx.set(Math.max(-1.6, Math.min(1.6, dx)));
-      my.set(Math.max(-1.6, Math.min(1.6, dy)));
-    };
-    window.addEventListener("pointermove", onMove);
-    return () => window.removeEventListener("pointermove", onMove);
-  }, [mx, my, reduced]);
+  const { sx, sy } = usePointerParallax(containerRef);
 
-  const starfield = useMemo(
+  const tiltX = useTransform(sy, [-1, 1], [12, -12]);
+  const tiltY = useTransform(sx, [-1, 1], [-14, 14]);
+  const shiftX = useTransform(sx, [-1, 1], [-16, 16]);
+  const shiftY = useTransform(sy, [-1, 1], [-16, 16]);
+  const haloX = useTransform(sx, [-1, 1], [-6, 6]);
+  const haloY = useTransform(sy, [-1, 1], [-6, 6]);
+
+  const stars = useMemo<Star[]>(
     () =>
-      Array.from({ length: 44 }).map((_, i) => ({
+      Array.from({ length: 55 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 1.6 + 0.3,
+        size: Math.random() * 1.8 + 0.3,
         duration: 3 + Math.random() * 6,
         delay: Math.random() * 5,
-        maxOpacity: 0.3 + Math.random() * 0.5,
+        opacity: 0.25 + Math.random() * 0.6,
       })),
     [],
   );
 
-  const orbitalRings = useMemo(
+  const rings = useMemo<OrbitalRing[]>(
     () => [
-      { rx: 90, ry: 30, rotate: -22, color: "rgba(96,165,250,0.32)", width: 0.5, dash: "0", duration: 22, packets: 2, packetColor: "rgba(147,197,253,0.95)", packetGlow: "rgba(96,165,250,0.7)", dir: 1 },
-      { rx: 86, ry: 36, rotate: 18, color: "rgba(148,163,184,0.22)", width: 0.4, dash: "1 2.5", duration: 34, packets: 3, packetColor: "rgba(226,232,240,0.9)", packetGlow: "rgba(255,255,255,0.5)", dir: -1 },
-      { rx: 92, ry: 26, rotate: 58, color: "rgba(251,146,60,0.3)", width: 0.5, dash: "0", duration: 28, packets: 2, packetColor: "rgba(253,186,116,0.95)", packetGlow: "rgba(251,146,60,0.7)", dir: 1 },
-      { rx: 88, ry: 42, rotate: -55, color: "rgba(103,232,249,0.15)", width: 0.35, dash: "0.5 3", duration: 46, packets: 1, packetColor: "rgba(165,243,252,0.85)", packetGlow: "rgba(103,232,249,0.55)", dir: -1 },
+      {
+        rx: 88,
+        ry: 28,
+        rotate: -22,
+        color: "rgba(96,165,250,0.35)",
+        width: 0.6,
+        dash: "0",
+        duration: 20,
+        packetCount: 2,
+        packetColor: "rgba(147,197,253,0.98)",
+        packetGlow: "rgba(96,165,250,0.75)",
+        dir: 1,
+      },
+      {
+        rx: 84,
+        ry: 34,
+        rotate: 18,
+        color: "rgba(148,163,184,0.22)",
+        width: 0.4,
+        dash: "1 3",
+        duration: 32,
+        packetCount: 3,
+        packetColor: "rgba(226,232,240,0.92)",
+        packetGlow: "rgba(255,255,255,0.55)",
+        dir: -1,
+      },
+      {
+        rx: 91,
+        ry: 24,
+        rotate: 58,
+        color: "rgba(251,146,60,0.32)",
+        width: 0.55,
+        dash: "0",
+        duration: 26,
+        packetCount: 2,
+        packetColor: "rgba(253,186,116,0.98)",
+        packetGlow: "rgba(251,146,60,0.75)",
+        dir: 1,
+      },
+      {
+        rx: 86,
+        ry: 40,
+        rotate: -55,
+        color: "rgba(103,232,249,0.14)",
+        width: 0.35,
+        dash: "0.5 3.5",
+        duration: 44,
+        packetCount: 1,
+        packetColor: "rgba(165,243,252,0.88)",
+        packetGlow: "rgba(103,232,249,0.6)",
+        dir: -1,
+      },
     ],
+    [],
+  );
+
+  const orbCenter = { x: containerSize / 2, y: containerSize / 2 };
+
+  const handlePillarClick = useCallback(
+    (key: string) => setActivePillar((prev) => (prev === key ? null : key)),
     [],
   );
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-[540px] mx-auto aspect-square"
+      className="relative w-full max-w-[520px] mx-auto aspect-square select-none"
       data-testid="signal-orb"
       style={{ perspective: 1400 }}
     >
       {!reduced && (
-        <div className="absolute inset-0 pointer-events-none">
-          {starfield.map((s) => (
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          {stars.map((s) => (
             <motion.div
               key={s.id}
               className="absolute rounded-full bg-white"
               style={{ left: `${s.x}%`, top: `${s.y}%`, width: s.size, height: s.size }}
-              animate={{ opacity: [0, s.maxOpacity, 0], scale: [0.6, 1, 0.6] }}
-              transition={{ duration: s.duration, delay: s.delay, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ opacity: [0, s.opacity, 0], scale: [0.5, 1, 0.5] }}
+              transition={{
+                duration: s.duration,
+                delay: s.delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             />
           ))}
         </div>
       )}
 
       <motion.div
-        className="absolute inset-[6%] rounded-full pointer-events-none"
-        style={{ opacity: haloOpacity }}
+        className="absolute inset-[-8%] rounded-full pointer-events-none"
+        style={{ x: haloX, y: haloY }}
+        aria-hidden="true"
       >
         <div
-          className="absolute inset-0 rounded-full blur-[60px]"
+          className="absolute inset-0 rounded-full"
           style={{
             background:
-              "radial-gradient(circle at 38% 32%, rgba(96,165,250,0.55) 0%, rgba(30,64,175,0.3) 45%, rgba(15,23,42,0) 75%)",
+              "radial-gradient(circle at 38% 32%, rgba(96,165,250,0.22) 0%, rgba(30,64,175,0.12) 45%, transparent 72%)",
+            filter: "blur(40px)",
           }}
         />
         <div
-          className="absolute inset-[20%] rounded-full blur-[40px]"
+          className="absolute inset-[15%] rounded-full"
           style={{
             background:
-              "radial-gradient(circle at 65% 70%, rgba(251,146,60,0.35) 0%, rgba(251,146,60,0) 70%)",
+              "radial-gradient(circle at 68% 72%, rgba(251,146,60,0.16) 0%, transparent 65%)",
+            filter: "blur(30px)",
           }}
         />
+        {PILLARS.map((p) =>
+          !reduced ? (
+            <motion.div
+              key={p.key}
+              className="absolute inset-[20%] rounded-full border"
+              style={{ borderColor: TONES[p.tone].arc }}
+              animate={{
+                scale: [1, 1.6],
+                opacity: [0.35, 0],
+              }}
+              transition={{
+                duration: 2.8,
+                delay: p.delay * 2.5,
+                repeat: Infinity,
+                ease: "easeOut",
+              }}
+            />
+          ) : null,
+        )}
       </motion.div>
+
+      {PILLARS.map((p) => (
+        <ArcConnector
+          key={p.key}
+          pillar={p}
+          orbCenter={orbCenter}
+          containerSize={containerSize}
+          active={activePillar === p.key}
+        />
+      ))}
 
       <motion.div
-        style={{ x: shiftX, y: shiftY, rotateX: tiltX, rotateY: tiltY, transformStyle: "preserve-3d" }}
-        className="absolute inset-0"
+        className="absolute inset-[12%]"
+        style={{ x: shiftX, y: shiftY, transformStyle: "preserve-3d" }}
       >
-        <svg viewBox="-100 -100 200 200" className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
-          <defs>
-            <radialGradient id="orbDeep" cx="38%" cy="32%" r="72%">
-              <stop offset="0%" stopColor="rgba(219,234,254,0.95)" />
-              <stop offset="14%" stopColor="rgba(147,197,253,0.85)" />
-              <stop offset="38%" stopColor="rgba(59,130,246,0.75)" />
-              <stop offset="68%" stopColor="rgba(30,58,138,0.65)" />
-              <stop offset="92%" stopColor="rgba(15,23,42,0.5)" />
-              <stop offset="100%" stopColor="rgba(15,23,42,0)" />
-            </radialGradient>
-            <radialGradient id="orbInner" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="rgba(255,255,255,0.18)" />
-              <stop offset="70%" stopColor="rgba(255,255,255,0)" />
-            </radialGradient>
-            <radialGradient id="amberSide" cx="78%" cy="78%" r="55%">
-              <stop offset="0%" stopColor="rgba(251,146,60,0.4)" />
-              <stop offset="100%" stopColor="rgba(251,146,60,0)" />
-            </radialGradient>
-            <radialGradient id="rimLight" cx="50%" cy="50%" r="50%">
-              <stop offset="80%" stopColor="rgba(96,165,250,0)" />
-              <stop offset="94%" stopColor="rgba(147,197,253,0.6)" />
-              <stop offset="100%" stopColor="rgba(96,165,250,0)" />
-            </radialGradient>
-            <radialGradient id="bottomShadow" cx="50%" cy="92%" r="40%">
-              <stop offset="0%" stopColor="rgba(0,0,0,0.5)" />
-              <stop offset="100%" stopColor="rgba(0,0,0,0)" />
-            </radialGradient>
-            <linearGradient id="sweepArm" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="rgba(96,165,250,0)" />
-              <stop offset="65%" stopColor="rgba(147,197,253,0.55)" />
-              <stop offset="100%" stopColor="rgba(219,234,254,1)" />
-            </linearGradient>
-            <linearGradient id="sweepArm2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="rgba(251,146,60,0)" />
-              <stop offset="100%" stopColor="rgba(251,146,60,0.7)" />
-            </linearGradient>
-            <radialGradient id="equator" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="rgba(96,165,250,0)" />
-              <stop offset="50%" stopColor="rgba(96,165,250,0.4)" />
-              <stop offset="100%" stopColor="rgba(96,165,250,0)" />
-            </radialGradient>
-
-            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="1.2" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            <filter id="strongGlow" x="-100%" y="-100%" width="300%" height="300%">
-              <feGaussianBlur stdDeviation="2.5" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            <filter id="liquidNoise" x="-20%" y="-20%" width="140%" height="140%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="3" result="noise">
-                {!reduced && (
-                  <animate attributeName="baseFrequency" values="0.012;0.018;0.012" dur="14s" repeatCount="indefinite" />
-                )}
-              </feTurbulence>
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" />
-            </filter>
-
-            <clipPath id="orbClip">
-              <circle cx="0" cy="0" r="48" />
-            </clipPath>
-          </defs>
-
-          <circle cx="0" cy="0" r="96" fill="none" stroke="rgba(148,163,184,0.06)" strokeWidth="0.3" />
-          <circle cx="0" cy="0" r="86" fill="none" stroke="rgba(148,163,184,0.08)" strokeWidth="0.3" strokeDasharray="0.4 3" />
-          <circle cx="0" cy="0" r="72" fill="none" stroke="rgba(96,165,250,0.12)" strokeWidth="0.4" />
-
-          {!reduced &&
-            [0, 1, 2, 3].map((i) => (
-              <motion.circle
-                key={`pulse-${i}`}
-                cx="0"
-                cy="0"
-                r="22"
-                fill="none"
-                stroke="rgba(96,165,250,0.55)"
-                strokeWidth="0.5"
-                initial={{ scale: 0.55, opacity: 0 }}
-                animate={{ scale: 4.2, opacity: [0, 0.5, 0] }}
-                transition={{ duration: 5.5, delay: i * 1.4, repeat: Infinity, ease: "easeOut" }}
-                style={{ transformOrigin: "0px 0px" }}
-              />
-            ))}
-
-          {!reduced && (
-            <>
-              <motion.g
-                style={{ transformOrigin: "0px 0px" }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-              >
-                <path
-                  d="M 0 -96 A 96 96 0 0 1 68 -68"
-                  fill="none"
-                  stroke="url(#sweepArm)"
-                  strokeWidth="1.2"
-                  strokeLinecap="round"
-                  filter="url(#softGlow)"
-                />
-              </motion.g>
-              <motion.g
-                style={{ transformOrigin: "0px 0px" }}
-                animate={{ rotate: -360 }}
-                transition={{ duration: 36, repeat: Infinity, ease: "linear" }}
-              >
-                <path
-                  d="M 0 -86 A 86 86 0 0 1 86 0"
-                  fill="none"
-                  stroke="url(#sweepArm2)"
-                  strokeWidth="0.7"
-                  strokeLinecap="round"
-                  opacity="0.6"
-                />
-              </motion.g>
-            </>
-          )}
-
-          {orbitalRings.map((ring, ri) => (
-            <g key={`ring-${ri}`} transform={`rotate(${ring.rotate})`}>
-              <ellipse cx="0" cy="0" rx={ring.rx} ry={ring.ry} fill="none" stroke={ring.color} strokeWidth={ring.width} strokeDasharray={ring.dash} />
-              {!reduced &&
-                Array.from({ length: ring.packets }).map((_, pi) => {
-                  const offset = (pi / ring.packets) * ring.duration;
-                  return (
-                    <motion.g
-                      key={`p-${ri}-${pi}`}
-                      style={{ transformOrigin: "0px 0px" }}
-                      animate={{ rotate: ring.dir * 360 }}
-                      transition={{ duration: ring.duration, repeat: Infinity, ease: "linear", delay: -offset }}
-                    >
-                      <circle
-                        cx={ring.rx}
-                        cy="0"
-                        r="1.4"
-                        fill={ring.packetColor}
-                        filter="url(#strongGlow)"
-                        style={{ filter: `drop-shadow(0 0 4px ${ring.packetGlow})` }}
-                      />
-                      <ellipse
-                        cx={ring.rx - 4}
-                        cy="0"
-                        rx="3.5"
-                        ry="0.5"
-                        fill={ring.packetGlow}
-                        opacity="0.55"
-                      />
-                    </motion.g>
-                  );
-                })}
-            </g>
-          ))}
-
-          <g clipPath="url(#orbClip)">
-            <circle cx="0" cy="0" r="48" fill="url(#orbDeep)" />
-            <circle cx="0" cy="0" r="48" fill="url(#amberSide)" />
-
-            <g opacity="0.22" stroke="rgba(147,197,253,0.55)" strokeWidth="0.25" fill="none" filter="url(#liquidNoise)">
-              <ellipse cx="0" cy="0" rx="48" ry="14" />
-              <ellipse cx="0" cy="0" rx="48" ry="28" />
-              <ellipse cx="0" cy="0" rx="48" ry="42" />
-              <ellipse cx="0" cy="0" rx="14" ry="48" />
-              <ellipse cx="0" cy="0" rx="28" ry="48" />
-              <ellipse cx="0" cy="0" rx="42" ry="48" />
-            </g>
-
-            {!reduced && (
-              <motion.g
-                style={{ transformOrigin: "0px 0px" }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-              >
-                <ellipse cx="0" cy="0" rx="48" ry="5" fill="url(#equator)" opacity="0.85" />
-              </motion.g>
-            )}
-
-            <motion.ellipse
-              cx="-12"
-              cy="-16"
-              rx="22"
-              ry="16"
-              fill="rgba(255,255,255,0.35)"
-              animate={reduced ? {} : { opacity: [0.6, 0.9, 0.6] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              filter="url(#softGlow)"
-            />
-
-            <circle cx="0" cy="0" r="48" fill="url(#orbInner)" />
-          </g>
-
-          <circle cx="0" cy="0" r="48" fill="none" stroke="rgba(147,197,253,0.4)" strokeWidth="0.4" />
-          <circle cx="0" cy="0" r="48" fill="url(#rimLight)" />
-
-          {!reduced && (
-            <motion.circle
-              cx="0"
-              cy="0"
-              r="48"
-              fill="none"
-              stroke="rgba(255,255,255,0.18)"
-              strokeWidth="0.4"
-              strokeDasharray="0.4 4"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-              style={{ transformOrigin: "0px 0px" }}
-            />
-          )}
-
-          <ellipse cx="0" cy="58" rx="40" ry="6" fill="url(#bottomShadow)" />
-        </svg>
-
-        <motion.div
-          className="absolute top-1/2 left-1/2 pointer-events-none"
-          style={{
-            x: specX,
-            y: specY,
-            width: 80,
-            height: 80,
-            translateX: "-50%",
-            translateY: "-50%",
-            background: "radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 60%)",
-            borderRadius: "50%",
-            mixBlendMode: "screen",
-          }}
-        />
-
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          style={{ x: nucleusX, y: nucleusY }}
-        >
-          <motion.div
-            className="relative w-3 h-3 rounded-full bg-white"
-            animate={
-              reduced
-                ? {}
-                : {
-                    boxShadow: [
-                      "0 0 12px rgba(255,255,255,0.9), 0 0 28px rgba(96,165,250,0.8), 0 0 56px rgba(96,165,250,0.45), 0 0 90px rgba(96,165,250,0.2)",
-                      "0 0 18px rgba(255,255,255,1), 0 0 44px rgba(251,146,60,0.7), 0 0 72px rgba(251,146,60,0.4), 0 0 110px rgba(251,146,60,0.15)",
-                      "0 0 12px rgba(255,255,255,0.9), 0 0 28px rgba(96,165,250,0.8), 0 0 56px rgba(96,165,250,0.45), 0 0 90px rgba(96,165,250,0.2)",
-                    ],
-                  }
-            }
-            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-          />
-          {!reduced && (
-            <>
-              <motion.div
-                aria-hidden
-                className="absolute inset-0 rounded-full"
-                animate={{ scale: [1, 4], opacity: [0.7, 0] }}
-                transition={{ duration: 2.6, repeat: Infinity, ease: "easeOut" }}
-                style={{ boxShadow: "0 0 0 1px rgba(255,255,255,0.45)" }}
-              />
-              <motion.div
-                aria-hidden
-                className="absolute inset-0 rounded-full"
-                animate={{ scale: [1, 4], opacity: [0.7, 0] }}
-                transition={{ duration: 2.6, delay: 1.3, repeat: Infinity, ease: "easeOut" }}
-                style={{ boxShadow: "0 0 0 1px rgba(251,146,60,0.35)" }}
-              />
-            </>
-          )}
-        </motion.div>
+        <OrbSVG rings={rings} reduced={reduced} tiltX={tiltX} tiltY={tiltY} />
       </motion.div>
+
+      {PILLARS.map((p, i) => (
+        <PillarChip
+          key={p.key}
+          pillar={p}
+          index={i}
+          active={activePillar === p.key}
+          onClick={() => handlePillarClick(p.key)}
+        />
+      ))}
+
+      {activePillar &&
+        (() => {
+          const p = PILLARS.find((x) => x.key === activePillar)!;
+          const tone = TONES[p.tone];
+          return (
+            <motion.div
+              key={activePillar}
+              className="absolute inset-x-[18%] bottom-[14%] text-center pointer-events-none"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 4 }}
+              transition={{ duration: 0.25 }}
+            >
+              <p className={`text-[11px] font-semibold uppercase tracking-widest ${tone.icon}`}>
+                {p.label}
+              </p>
+            </motion.div>
+          );
+        })()}
     </div>
   );
 }
