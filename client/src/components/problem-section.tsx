@@ -30,9 +30,10 @@ export default function ProblemSection() {
   ];
 
   return (
-    <section id="problem" className="py-24 bg-white relative overflow-hidden">
+    <section id="problem" className="py-24 bg-slate-50 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-red-50/50 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-100/40 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,7 +63,7 @@ export default function ProblemSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
             viewport={{ once: true }}
-            className="bg-slate-50 rounded-2xl p-8 border border-slate-100"
+            className="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm"
           >
             <p className="text-sm uppercase tracking-wider text-slate-400 font-semibold mb-3">
               The buyer's reality

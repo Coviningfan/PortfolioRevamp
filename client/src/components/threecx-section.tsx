@@ -37,10 +37,10 @@ export default function ThreeCXSection() {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 relative overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-1/3 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 left-0 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

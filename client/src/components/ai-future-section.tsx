@@ -79,10 +79,10 @@ export default function AIFutureSection() {
   ];
 
   return (
-    <section ref={ref} className="py-24 bg-white relative overflow-hidden">
+    <section ref={ref} className="py-24 bg-slate-50 relative overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-50 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-orange-50 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-100/60 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-orange-100/50 to-transparent rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -112,10 +112,10 @@ export default function AIFutureSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-br from-slate-900 to-blue-950 rounded-2xl p-8 md:p-12 mb-16 text-white overflow-hidden relative"
+          className="bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 rounded-2xl p-8 md:p-12 mb-16 text-white overflow-hidden relative"
         >
-          <div className="absolute top-0 right-0 w-72 h-72 bg-orange-500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl" />
 
           <div className="relative">
             <div className="flex items-center gap-2 mb-3">
@@ -190,7 +190,7 @@ export default function AIFutureSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg hover:border-cyan-300 hover:bg-white transition-all duration-300 group overflow-hidden"
+              className="bg-white rounded-2xl p-6 border border-slate-100 hover:shadow-lg hover:border-blue-300 transition-all duration-300 group overflow-hidden"
               data-testid={`industry-card-${index}`}
             >
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-cyan-500/20 transition-all duration-300">
@@ -211,9 +211,11 @@ export default function AIFutureSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-slate-900 to-blue-900 rounded-2xl p-10 text-white"
+          className="relative bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 rounded-2xl p-10 text-white overflow-hidden"
         >
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
+          <div className="absolute top-0 right-0 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative grid lg:grid-cols-2 gap-10 items-center">
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Sparkles className="h-6 w-6 text-orange-400" />

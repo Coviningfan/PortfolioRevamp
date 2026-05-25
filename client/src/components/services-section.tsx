@@ -56,7 +56,12 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-24 bg-slate-50">
+    <section id="services" className="py-24 bg-slate-50 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-orange-100/40 rounded-full blur-3xl" />
+      </div>
+      <div className="relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -143,7 +148,7 @@ export default function ServicesSection() {
           <Link href="/contact">
             <Button
               data-testid="button-services-cta"
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 rounded-xl px-8 py-5 text-base font-semibold group"
+              className="bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 rounded-xl px-8 py-5 text-base font-semibold group"
             >
               Show Us How Your Business Receives Calls
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -151,6 +156,7 @@ export default function ServicesSection() {
           </Link>
           <p className="text-xs text-slate-400 mt-3">We'll map your call flow and show you exactly what can be automated.</p>
         </motion.div>
+      </div>
       </div>
     </section>
   );
