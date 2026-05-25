@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { Link, useLocation } from "wouter";
-import dsxLogo from "@assets/DSX_EDGE_LOGO-removebg-preview_1771726835380.webp";
+import dsxLogo from "@assets/DSX_EDGE_LOGO-removebg-preview_1779695521508.webp";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -65,9 +65,7 @@ export default function Navigation() {
                 data-testid="img-logo"
                 src={dsxLogo}
                 alt="DSX Edge Logo"
-                className={`h-10 w-auto cursor-pointer transition-all duration-300 ${
-                  showDark ? "brightness-0 invert" : ""
-                }`}
+                className="h-11 w-auto cursor-pointer transition-all duration-300"
               />
             </Link>
           </div>

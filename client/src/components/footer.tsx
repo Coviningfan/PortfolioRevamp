@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import dsxLogo from "@assets/DSX_EDGE_LOGO-removebg-preview_1771726835380.webp";
+import dsxLogo from "@assets/DSX_EDGE_LOGO-removebg-preview_1779695521508.webp";
 import jabvLogo from "@assets/JABVLABS_LOGO_HD-removebg-preview_1771726977207.png";
 
 export default function Footer() {
@@ -25,7 +25,7 @@ export default function Footer() {
               <img
                 src={dsxLogo}
                 alt="DSX Edge Logo"
-                className="h-10 w-auto mb-4 brightness-0 invert"
+                className="h-12 w-auto mb-4"
               />
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
                 We start with your phone system. Then we make it intelligent. 12+ years of
