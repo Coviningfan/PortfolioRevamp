@@ -3,7 +3,6 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-  useReducedMotion,
   animate,
 } from "framer-motion";
 import { useEffect, useRef, useMemo, useCallback, useState } from "react";
@@ -115,14 +114,11 @@ const TONES: Record<
 function usePointerParallax(containerRef: React.RefObject<HTMLDivElement>) {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const reduced = useReducedMotion();
 
   const sx = useSpring(mx, { stiffness: 45, damping: 20, mass: 0.8 });
   const sy = useSpring(my, { stiffness: 45, damping: 20, mass: 0.8 });
 
   useEffect(() => {
-    if (reduced) return;
-
     const onMove = (e: PointerEvent) => {
       const el = containerRef.current;
       if (!el) return;
@@ -144,7 +140,7 @@ function usePointerParallax(containerRef: React.RefObject<HTMLDivElement>) {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerleave", onLeave);
     };
-  }, [mx, my, reduced, containerRef]);
+  }, [mx, my, containerRef]);
 
   return { sx, sy };
 }
@@ -500,7 +496,7 @@ function ArcConnector({
 }
 
 export default function SignalOrb() {
-  const reduced = useReducedMotion();
+  const reduced = false;
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerSize, setContainerSize] = useState(480);
   const [activePillar, setActivePillar] = useState<string | null>(null);
