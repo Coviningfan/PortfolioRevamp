@@ -25,7 +25,7 @@ export default function Footer() {
               <img
                 src={dsxLogo}
                 alt="DSX Edge Logo"
-                className="h-12 w-auto mb-4"
+                className="h-12 w-auto mb-4 brightness-0 invert"
               />
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
                 We start with your phone system. Then we make it intelligent. 12+ years of

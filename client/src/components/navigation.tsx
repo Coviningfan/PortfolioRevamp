@@ -65,7 +65,9 @@ export default function Navigation() {
                 data-testid="img-logo"
                 src={dsxLogo}
                 alt="DSX Edge Logo"
-                className="h-11 w-auto cursor-pointer transition-all duration-300"
+                className={`h-11 w-auto cursor-pointer transition-all duration-500 ${
+                  showDark && !isScrolled ? "brightness-0 invert opacity-90" : ""
+                }`}
               />
             </Link>
           </div>
