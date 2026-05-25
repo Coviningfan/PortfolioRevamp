@@ -93,17 +93,18 @@ export default function AIFutureSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-cyan-50 text-cyan-700 text-sm font-semibold mb-4">
-            What Happens After the PBX
+          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 text-sm font-semibold mb-4">
+            Practical Intelligence
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
-            Once the call lands, the{" "}
-            <span className="text-gradient-dsx">intelligence takes over.</span>
+            AI that starts where your{" "}
+            <span className="text-gradient-dsx">business already works.</span>
           </h2>
           <p className="text-lg text-slate-500 max-w-3xl mx-auto">
-            The PBX gets the call into your business. The DSX Intelligence Layer decides
-            what should happen next — qualifying, booking, routing, notifying, and following
-            up with the same logic your best staff would use.
+            Most companies don't need a generic chatbot. They need intelligence connected
+            to the systems their customers and staff already use. DSX Edge begins with
+            communications, maps the workflow around it, and applies AI only where it
+            creates measurable operational value.
           </p>
         </motion.div>
 
@@ -120,21 +121,23 @@ export default function AIFutureSection() {
           <div className="relative">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles className="h-5 w-5 text-orange-400" />
-              <span className="text-orange-400 font-semibold uppercase text-sm tracking-wider">A Real Example</span>
+              <span className="text-orange-400 font-semibold uppercase text-sm tracking-wider">One example among many</span>
             </div>
             <h3 className="text-2xl md:text-3xl font-bold mb-6 max-w-2xl">
-              A painter gets calls asking for estimates.
+              A small contractor gets calls asking for estimates.
             </h3>
 
             <div className="grid md:grid-cols-2 gap-8 items-start">
               <div>
                 <p className="text-slate-300 leading-relaxed mb-6">
-                  The DSX Edge AI answers the call, asks whether the house is one story or two,
-                  asks for square footage, collects job details, and follows the painter's own estimating
-                  logic. By the end of the call, an appointment is booked.
+                  The DSX Edge platform answers the call, asks the qualifying questions
+                  the owner would ask, follows the business's own estimating logic, updates
+                  the CRM, and books the appointment into the calendar. Communications,
+                  workflow, and intelligence — connected as one system.
                 </p>
                 <p className="text-slate-400 leading-relaxed">
-                  The painter spends more time painting. Not returning calls.
+                  This is one workflow. The same model applies across intake, qualification,
+                  routing, follow-up, reporting, and escalation in any business.
                 </p>
               </div>
 
@@ -159,8 +162,9 @@ export default function AIFutureSection() {
 
             <div className="mt-8 pt-6 border-t border-white/10">
               <p className="text-slate-400 text-sm italic">
-                This same model applies to lawyers, insurance agencies, electricians, plumbers,
-                real estate, finance, medical offices, hotels, and more.
+                The same approach scales across law, insurance, medical, real estate, trades,
+                finance, and operations-heavy businesses — anywhere communications, workflow,
+                and data should be working together.
               </p>
             </div>
           </div>
@@ -174,11 +178,11 @@ export default function AIFutureSection() {
           className="text-center mb-10"
         >
           <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
-            Any Industry. Any Workflow.
+            Any industry. Any workflow.
           </h3>
           <p className="text-slate-500 max-w-xl mx-auto">
-            DSX Edge is not a generic AI product. The AI is trained around your business process —
-            your questions, your routing logic, your calendar.
+            Intelligence is designed around the business's real process — its routing logic,
+            its records, its calendar, its operational reality. Not a generic chatbot.
           </p>
         </motion.div>
 
@@ -219,21 +223,22 @@ export default function AIFutureSection() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Sparkles className="h-6 w-6 text-orange-400" />
-                <span className="text-orange-400 font-semibold uppercase text-sm tracking-wider">Cloud vs. Intelligence</span>
+                <span className="text-orange-400 font-semibold uppercase text-sm tracking-wider">Above the Cloud · Into the Business</span>
               </div>
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Cloud is infrastructure. DSX Edge is intelligence.
+                Cloud is infrastructure. DSX Edge is integration.
               </h3>
               <p className="text-slate-300 leading-relaxed mb-4">
-                Every provider offers cloud. DSX Edge goes above it — layering AI into the
-                daily communications workflow of your business. Not a future promise. Active,
-                practical automation built around how your business already operates.
+                Every provider offers cloud. DSX Edge goes above it — unifying business
+                communications, hosted infrastructure, and intelligent workflows under
+                one partner, so the systems a business already depends on finally operate
+                as one.
               </p>
               <div className="space-y-2 mb-6">
                 {[
-                  "AI trained on your specific workflows — not generic scripts",
-                  "Integrates with your existing communications system",
-                  "Backed by 12+ years of real-world deployment experience",
+                  "Communications, infrastructure, and integration from one partner",
+                  "AI applied to real business workflows — not generic chatbots",
+                  "12+ years of deployed, supported, real-world business systems",
                 ].map((point, i) => (
                   <div key={i} className="flex items-start gap-2">
                     <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" />
@@ -267,9 +272,9 @@ export default function AIFutureSection() {
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center border border-white/10">
                 <div className="text-3xl font-bold text-emerald-400 mb-1">
-                  Zero
+                  One
                 </div>
-                <div className="text-xs text-slate-300">Calls Lost to Voicemail</div>
+                <div className="text-xs text-slate-300">Partner Across Comms, Infra & AI</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center border border-white/10">
                 <div className="text-3xl font-bold text-violet-400 mb-1">

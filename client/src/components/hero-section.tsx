@@ -33,7 +33,7 @@ export default function HeroSection() {
             >
               <Award className="w-4 h-4 text-cyan-400" />
               <span className="text-cyan-300 text-xs font-semibold tracking-wide uppercase">
-                3CX Platinum Partner · 12+ Years in Communications
+                Communications · Infrastructure · Intelligent Integration
               </span>
             </motion.div>
 
@@ -43,9 +43,9 @@ export default function HeroSection() {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 leading-[1.05] tracking-tight"
             >
-              Reliable Communications.{" "}
-              <span className="text-cyan-300">
-                Smarter Operations.
+              Business Communications.{" "}
+              <span className="text-orange-400">
+                Intelligent Integration.
               </span>
             </motion.h1>
 
@@ -55,10 +55,11 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-base md:text-lg text-slate-300 mb-8 max-w-2xl lg:max-w-none leading-relaxed"
             >
-              DSX Edge builds, manages, and modernizes the communication systems
-              businesses depend on — VoIP, PBX, 3CX, connectivity, routing, and support —
-              then connects those systems to the automation, integrations, and intelligence
-              that help the business operate better.
+              DSX Edge unifies business communications, hosted infrastructure, and
+              AI-enabled workflow integration. We start with the systems companies already
+              depend on — VoIP, PBX, 3CX, SIP routing, connectivity, and support — then
+              integrate practical intelligence into the parts of the business where it
+              actually creates value.
             </motion.p>
 
             <motion.div
@@ -73,7 +74,7 @@ export default function HeroSection() {
                 size="lg"
                 className="bg-gradient-to-r from-blue-600 to-orange-500 text-white px-7 py-6 text-base font-semibold hover:shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:-translate-y-0.5 rounded-xl group"
               >
-                See What DSX Manages
+                Explore DSX Edge
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Link href="/contact">
@@ -96,15 +97,15 @@ export default function HeroSection() {
             >
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>12+ Years in Business Communications</span>
+                <span>DSX Voice · 3CX Platinum Partner</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>3CX Platinum Partner</span>
+                <span>DSX Data · Hosted Infrastructure</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>Connectivity · Routing · Monitoring · Support</span>
+                <span>12+ Years of Managed Business Systems</span>
               </div>
             </motion.div>
           </div>
