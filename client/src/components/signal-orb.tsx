@@ -831,11 +831,10 @@ export default function SignalOrb() {
         className="absolute inset-[8%]"
         style={{ x: shiftX, y: shiftY, transformStyle: "preserve-3d" }}
         animate={{
-          y: [0, -8, 0, 6, 0],
-          scale: [1, 1.015, 1, 1.01, 1],
+          scale: [1, 1.02, 1, 1.015, 1],
         }}
         transition={{
-          duration: 9,
+          duration: 7,
           repeat: Infinity,
           ease: "easeInOut",
         }}
