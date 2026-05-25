@@ -82,7 +82,7 @@ export default function FactsSection() {
   };
 
   return (
-    <section ref={ref} className="py-24 bg-white relative overflow-hidden">
+    <section ref={ref} className="py-24 bg-[#e8eef6] relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-blue-50/50 to-transparent rounded-full blur-3xl" />
       </div>

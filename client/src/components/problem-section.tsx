@@ -30,7 +30,7 @@ export default function ProblemSection() {
   ];
 
   return (
-    <section id="problem" className="py-24 bg-slate-50 relative overflow-hidden">
+    <section id="problem" className="py-24 bg-[#e8eef6] relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-100/40 rounded-full blur-3xl" />

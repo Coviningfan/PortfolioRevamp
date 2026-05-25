@@ -40,7 +40,7 @@ export default function TestimonialsSection() {
   const prev = () => setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section id="testimonials" className="py-24 bg-white">
+    <section id="testimonials" className="py-24 bg-[#e8eef6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -79,7 +79,7 @@ export default function AIFutureSection() {
   ];
 
   return (
-    <section ref={ref} className="py-24 bg-slate-50 relative overflow-hidden">
+    <section ref={ref} className="py-24 bg-[#e8eef6] relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-100/60 to-transparent rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-orange-100/50 to-transparent rounded-full blur-3xl" />

@@ -44,7 +44,7 @@ export default function HeroSection() {
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 leading-[1.05] tracking-tight"
             >
               Your phone system is the front door of your business.{" "}
-              <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-cyan-200 bg-clip-text text-transparent">
+              <span className="text-cyan-300">
                 DSX Edge makes it intelligent.
               </span>
             </motion.h1>
@@ -122,7 +122,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-50 to-transparent" />
     </section>
   );
 }
