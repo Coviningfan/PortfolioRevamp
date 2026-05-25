@@ -116,9 +116,15 @@ export default function HeroSection() {
             className="lg:col-span-5"
           >
             <SignalOrb />
-            <p className="text-center text-xs text-slate-500 mt-8 tracking-widest uppercase">
-              Above the Cloud. <span className="text-orange-400/80">Into the Business.</span>
-            </p>
+            <div className="text-center mt-4">
+              <div className="inline-flex items-center gap-3 text-[10px] tracking-[0.32em] uppercase text-slate-400">
+                <span className="h-px w-8 bg-gradient-to-r from-transparent to-slate-500/60" />
+                <span>Above the Cloud</span>
+                <span className="text-orange-400/90">/</span>
+                <span>Into the Business</span>
+                <span className="h-px w-8 bg-gradient-to-l from-transparent to-slate-500/60" />
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
