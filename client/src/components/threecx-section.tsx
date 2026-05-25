@@ -16,8 +16,8 @@ export default function ThreeCXSection() {
     },
     {
       icon: Sparkles,
-      title: "Ready for 3CX v20 & Agentic Features",
-      description: "3CX Version 20 brings agentic and AI-enabled features into the communications platform itself. DSX Edge is positioned to design, implement, and operationalize those capabilities inside real business workflows.",
+      title: "DSX AI Enabled — On Top of the Platform",
+      description: "DSX Edge layers DSX AI Enabled workflows on top of the 3CX communications platform — intake, qualification, routing, notifications, and operational intelligence — owned and supported by DSX, not dependent on any single vendor roadmap.",
     },
     {
       icon: Network,

@@ -93,11 +93,11 @@ export default function AIFutureSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 text-sm font-semibold mb-4">
-            Practical Intelligence
+          <span className="inline-block px-4 py-1.5 rounded-full bg-orange-50 text-orange-700 text-sm font-semibold mb-4">
+            DSX AI Enabled
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
-            AI that starts where your{" "}
+            AI where your{" "}
             <span className="text-gradient-dsx">business already works.</span>
           </h2>
           <p className="text-lg text-slate-500 max-w-3xl mx-auto">
@@ -130,7 +130,7 @@ export default function AIFutureSection() {
             <div className="grid md:grid-cols-2 gap-8 items-start">
               <div>
                 <p className="text-slate-300 leading-relaxed mb-6">
-                  The DSX Edge platform answers the call, asks the qualifying questions
+                  A DSX AI Enabled workflow answers the call, asks the qualifying questions
                   the owner would ask, follows the business's own estimating logic, updates
                   the CRM, and books the appointment into the calendar. Communications,
                   workflow, and intelligence — connected as one system.

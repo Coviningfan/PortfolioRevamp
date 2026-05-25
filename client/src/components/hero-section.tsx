@@ -55,11 +55,10 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-base md:text-lg text-slate-300 mb-8 max-w-2xl lg:max-w-none leading-relaxed"
             >
-              DSX Edge unifies business communications, hosted infrastructure, and
-              AI-enabled workflow integration. We start with the systems companies already
-              depend on — VoIP, PBX, 3CX, SIP routing, connectivity, and support — then
-              integrate practical intelligence into the parts of the business where it
-              actually creates value.
+              DSX installs, manages, and supports the communication systems businesses
+              depend on — VoIP, PBX, 3CX, SIP routing, connectivity, and support — backed
+              by hosted infrastructure, and extended with DSX AI Enabled workflows
+              integrated into the parts of the business where they actually create value.
             </motion.p>
 
             <motion.div

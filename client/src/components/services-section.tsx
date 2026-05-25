@@ -40,7 +40,7 @@ export default function ServicesSection() {
     {
       icon: PlugZap,
       number: "03",
-      title: "Integrate the Systems",
+      title: "Connect the Systems",
       tagline: "Make the business operate as one.",
       description:
         "Connect communications with CRM, calendars, notifications, reporting, support workflows, and the business tools the company already runs. Vendors stop working in isolation and start working together.",
@@ -56,11 +56,11 @@ export default function ServicesSection() {
     {
       icon: Sparkles,
       number: "04",
-      title: "Add Practical Intelligence",
-      tagline: "AI where it actually helps.",
+      title: "Enable DSX AI",
+      tagline: "DSX AI Enabled workflows.",
       description:
-        "Intake, qualification, routing, summaries, follow-up, scheduling, reporting, escalation, and operational visibility — applied where it creates measurable value, not as a generic chatbot bolted on.",
-      flow: ["AI intake & qualification", "Workflow routing & follow-up", "Operational reporting & visibility"],
+        "DSX AI Enabled workflows for intake, qualification, routing, summaries, follow-up, scheduling, reporting, and escalation — applied where they create measurable operational value across the business.",
+      flow: ["AI-enabled intake & qualification", "Automated workflow routing & follow-up", "Operational reporting & visibility"],
       iconBg: "bg-orange-600",
       accent: "border-orange-200",
       accentHover: "group-hover:border-orange-500/50",
@@ -106,7 +106,7 @@ export default function ServicesSection() {
           viewport={{ once: true }}
           className="text-center text-sm text-slate-400 mb-16 max-w-2xl mx-auto font-mono tracking-tight"
         >
-          Modernize → Map → Integrate → Add Intelligence
+          Modernize → Map → Connect → Enable DSX AI
         </motion.p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
