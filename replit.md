@@ -1,8 +1,23 @@
-# DSX Edge - Above the Cloud | Business Communication Platform
+# DSX Edge - AI Implementation Through Business Communications
 
 ## Overview
 
-DSX Edge is an innovative business communication platform showcasing DSX's 12+ years of expertise in enterprise communications, AI-powered contact centers (DSX Live), VoIP (DSX Voice), and data center solutions (DSX Data). Core messaging: "Above the Cloud. Beyond Expectations." DSX is the star — innovative, forward-thinking, with 3CX as a proud partner/backbone rather than the primary identity. The application is built as a full-stack web application with a React frontend and Express.js backend.
+DSX Edge is the next evolution of DSX: using 12+ years of business communications expertise as the entry point for practical AI implementation inside real business workflows. The site positions DSX neither as a generic VoIP provider nor as a generic AI SaaS startup — instead as the experienced communications company that brings AI to the front line of business operations.
+
+**Core narrative**: Business owners are asking "How can we use AI?" DSX already sits at the communications layer (calls, routing, voicemail, scheduling). That makes DSX the natural partner to bring AI into daily operations — answering calls, qualifying leads, booking appointments, and following workflows.
+
+**Tagline**: "Above the Cloud. Into the Business."
+- Cloud is infrastructure. DSX Edge is intelligence layered on top.
+- "Above the Cloud" means going above ordinary cloud communications by adding AI agents, business-specific workflows, integrations, and automation.
+
+**Service framework**: Answer → Qualify → Act (customer journey, not abstract product categories).
+
+**Key guiding phrases**:
+- "Your phone system should not just ring. It should work."
+- "DSX Edge gives your communications system intelligence."
+- "From the first call to the booked appointment, DSX Edge helps your business act faster."
+
+The application is built as a full-stack web application with a React frontend and Express.js backend.
 
 ## System Architecture
 
@@ -49,16 +64,17 @@ DSX Edge is an innovative business communication platform showcasing DSX's 12+ y
 - **DSX Live** (legacy): AI contact center page (may be deprecated)
 
 ### UI Components
-- **Navigation**: Responsive navigation with mobile menu, "Solutions" scroll link, "Talk to an Expert" CTA
-- **Hero Section**: "DSX Edge" headline, "Above the Cloud. Beyond Expectations." tagline, accessible-to-everyone messaging
-- **Services Section**: Enterprise Voice, AI Intelligence, Infrastructure & Security — "Built for Every Business" from local shops to Fortune 500
-- **Why DSX Section** (`threecx-section.tsx`): 6 centered reasons including "Built for Real Businesses", AI Intelligence Layer, 3CX Platinum Partner
-- **AI Future Section** (`ai-future-section.tsx`): "More Than a Phone System. It's Intelligence." — 6 AI capabilities, DSX transformation pitch
-- **Facts Section**: 12+ Years, 60% cost savings, 5+ countries, 99.9% uptime (no repeated "500 deployments")
-- **About Section**: "12 Years of Innovation. Zero Compromises." — accessible to all businesses messaging
-- **Testimonials**: Rotating customer testimonials with real savings data (DSX-branded, not product-specific)
-- **Partners**: 3CX, Yealink, Fanvil, Grandstream, Switch (VTech removed)
-- **Contact Form**: "Talk to an Expert" validated form with submission handling
+- **Navigation**: Responsive navigation with mobile menu, "Solutions" scroll link, Contact CTA
+- **Hero Section**: "DSX Edge" headline, "Your communications system should do more than connect calls" subheadline, primary CTA "Show Me What DSX Edge Can Do", secondary CTA "Talk to DSX", tagline "Above the Cloud. Into the Business."
+- **Services Section** (`services-section.tsx`): Answer / Qualify / Act — 3-step customer journey framework, "Your phone system should not just ring. It should work."
+- **Why DSX Section** (`threecx-section.tsx`): 6 reasons including "AI Built Around Your Workflow", "Communications-First, Not AI-First", "Implementation, Not a Subscription", "Above the Cloud", "3CX Platinum Partner"
+- **AI Future Section** (`ai-future-section.tsx`): "From the first call to the booked appointment" — includes the painter example (step-by-step workflow demo), 6 industry examples (contractors, law, medical, insurance, real estate, etc.), and a "Cloud vs. Intelligence" pitch
+- **Facts Section**: "The Foundation Under the Intelligence" — 12+ Years, 60% cost reduction, 5+ countries, 99.9% uptime
+- **About Section**: "12 years in communications. The natural place for AI." — bridge story from communications heritage to AI implementation
+- **Testimonials**: Real customer testimonials — framed as the proven communications backbone DSX Edge is built on
+- **Case Studies** (in home.tsx): "Real Businesses. Real Savings." — proven communications results
+- **Partners**: 3CX, Yealink, Fanvil, Grandstream, Switch
+- **Contact Form**: "Talk to DSX" validated form with submission handling
 
 ## Data Flow
 
@@ -104,6 +120,17 @@ DSX Edge is an innovative business communication platform showcasing DSX's 12+ y
 - **Storage Fallback**: In-memory storage for development without database
 
 ## Changelog
+
+### May 25, 2026 - Strategic Repositioning: AI Implementation Through Communications
+- **Core strategy shift**: Site rewritten to reflect business model evolution — DSX Edge is no longer positioned as a generic communications company or generic AI SaaS. It's the experienced communications company (12+ years) using the communications layer as the entry point for practical AI implementation in real business workflows.
+- **New tagline**: "Above the Cloud. Into the Business." (replacing "Beyond Expectations") — clarifies that "Above the Cloud" means intelligence layered on infrastructure, not just cloud hosting.
+- **Hero rewrite**: New subheadline "Your communications system should do more than connect calls." New CTAs: "Show Me What DSX Edge Can Do" / "Talk to DSX". Body copy explains the transformation from communications company to AI implementer.
+- **Services restructured as customer journey**: Answer → Qualify → Act (replacing generic "Enterprise Voice / AI Intelligence / Infrastructure & Security"). Each step describes concrete AI behavior in business workflow terms.
+- **AI Future Section rebuilt**: Centers on a concrete example (the painter receiving estimate calls, with step-by-step workflow). Adds 6 industry use cases (contractors, law, medical, insurance, real estate, any business). Explains "Cloud vs. Intelligence" — cloud is infrastructure, DSX Edge is intelligence.
+- **Why Choose DSX rewritten**: Reframed around implementation, workflow-specific AI, and communications-first positioning. 3CX is the platform/backbone, not the identity.
+- **About Section reframed**: "12 years in communications. The natural place for AI." — tells the bridge story from communications heritage to AI implementer.
+- **Facts/Testimonials/Case Studies**: Reframed as the proven foundation that DSX Edge is built on, not the product itself.
+- **Footer**: Service links updated to Answer/Qualify/Act; tagline updated to "Above the Cloud. Into the Business."
 
 ### February 22, 2026 - Major Rebrand: Business Communications for Everyone
 - **Product Names Retired**: Removed DSX Voice, DSX Live, DSX Data product branding — moving past individual product labels

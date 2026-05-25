@@ -54,7 +54,7 @@ export default function TestimonialsSection() {
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">What Our Clients Say</h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            Real testimonials from businesses that transformed their communications
+            The communications backbone DSX Edge is built on — proven in real businesses.
           </p>
         </motion.div>
 

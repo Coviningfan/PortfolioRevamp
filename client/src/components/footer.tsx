@@ -4,9 +4,10 @@ import jabvLogo from "@assets/JABVLABS_LOGO_HD-removebg-preview_1771726977207.pn
 
 export default function Footer() {
   const serviceLinks = [
-    { label: "Enterprise Voice", href: "/contact" },
-    { label: "AI Intelligence", href: "/contact" },
-    { label: "Infrastructure", href: "/data-center" },
+    { label: "Answer", href: "/contact" },
+    { label: "Qualify", href: "/contact" },
+    { label: "Act", href: "/contact" },
+    { label: "Data Center", href: "/data-center" },
   ];
 
   const companyLinks = [
@@ -27,18 +28,18 @@ export default function Footer() {
                 className="h-10 w-auto mb-4 brightness-0 invert"
               />
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
-                Above the Cloud. 12+ years of business communication excellence, powered by innovation and enhanced with AI.
+                AI implementation through business communications. 12+ years of experience, now bringing intelligence to the front line of your business.
               </p>
               <p className="text-orange-400/80 text-sm font-medium italic">
-                Above the Cloud.
+                Above the Cloud. Into the Business.
               </p>
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">Solutions</h4>
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">How It Works</h4>
               <ul className="space-y-3">
                 {serviceLinks.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <Link href={link.href}>
                       <span data-testid={`link-footer-${link.label.toLowerCase().replace(' ', '-')}`} className="text-slate-400 hover:text-white text-sm transition-colors duration-200 cursor-pointer">
                         {link.label}

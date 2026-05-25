@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, Shield, Brain, Clock, Award, Sparkles } from "lucide-react";
-import logo3cx from "@assets/3CX-Logo.wine_1771727597371.webp";
+import { ArrowRight, Award, Phone, Brain, Calendar } from "lucide-react";
 
 export default function HeroSection() {
   const scrollToSection = (sectionId: string) => {
@@ -33,7 +32,7 @@ export default function HeroSection() {
           >
             <Award className="w-4 h-4 text-orange-400" />
             <span className="text-orange-300 text-sm font-semibold tracking-wide uppercase">
-              3CX Platinum Partner
+              3CX Platinum Partner · 12+ Years
             </span>
             <div className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse" />
           </motion.div>
@@ -56,9 +55,9 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mb-8"
           >
-            <p className="text-xl md:text-2xl text-slate-300 font-light tracking-wide">
-              Above the Cloud.{" "}
-              <span className="text-orange-400 font-medium">Beyond Expectations.</span>
+            <p className="text-xl md:text-3xl text-white font-semibold tracking-wide">
+              Your communications system should do{" "}
+              <span className="text-orange-400">more than connect calls.</span>
             </p>
           </motion.div>
 
@@ -66,11 +65,11 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-base md:text-lg text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed"
+            className="text-base md:text-lg text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            Business communications should be intelligent, reliable, and accessible to everyone —
-            from the local shop to the global enterprise. DSX makes it happen.
-            This is the future, and the future is now.
+            For more than a decade, DSX has helped businesses communicate. Now DSX Edge brings AI
+            into the front line of those communications — answering calls, qualifying leads, booking
+            appointments, routing requests, and following the workflows that keep your business moving.
           </motion.p>
 
           <motion.div
@@ -85,7 +84,7 @@ export default function HeroSection() {
               size="lg"
               className="bg-gradient-to-r from-blue-500 to-orange-500 text-white px-8 py-6 text-lg font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:-translate-y-0.5 rounded-xl group"
             >
-              Discover Our Solutions
+              Show Me What DSX Edge Can Do
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Link href="/contact">
@@ -95,7 +94,7 @@ export default function HeroSection() {
                 size="lg"
                 className="border-2 border-white/20 text-white bg-white/5 backdrop-blur-sm px-8 py-6 text-lg font-semibold hover:bg-white/10 hover:border-white/40 transition-all duration-300 rounded-xl"
               >
-                Talk to an Expert
+                Talk to DSX
               </Button>
             </Link>
           </motion.div>
@@ -104,23 +103,32 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="grid grid-cols-1 sm:grid-cols-4 gap-3 max-w-4xl mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto mb-10"
           >
             {[
-              { icon: Shield, label: "3CX Platinum Partner", color: "text-blue-400" },
-              { icon: Brain, label: "AI-Enhanced Communications", color: "text-orange-400" },
-              { icon: Clock, label: "12+ Years of Innovation", color: "text-emerald-400" },
-              { icon: Sparkles, label: "The Future is Now", color: "text-violet-400" },
+              { icon: Phone, label: "Calls answered by AI" },
+              { icon: Brain, label: "Leads qualified automatically" },
+              { icon: Calendar, label: "Appointments booked for you" },
             ].map((item, i) => (
               <div
                 key={i}
                 className="flex items-center justify-center gap-3 px-4 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10"
               >
-                <item.icon className={`h-5 w-5 ${item.color}`} />
+                <item.icon className="h-5 w-5 text-orange-400" />
                 <span className="text-sm text-slate-300 font-medium">{item.label}</span>
               </div>
             ))}
           </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.75 }}
+            className="text-slate-500 text-sm tracking-widest uppercase font-medium"
+          >
+            Above the Cloud.{" "}
+            <span className="text-orange-400/70">Into the Business.</span>
+          </motion.p>
         </div>
       </div>
 

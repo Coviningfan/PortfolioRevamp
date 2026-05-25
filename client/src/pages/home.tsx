@@ -75,9 +75,9 @@ export default function Home() {
             <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-sm font-semibold mb-4">
               Case Studies
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">Proven Results</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">Real Businesses. Real Savings.</h2>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-              From small businesses to global enterprises — real savings, real impact
+              The communications work that proved DSX is the right place to bring AI next.
             </p>
           </motion.div>
 

@@ -11,8 +11,8 @@ export default function FactsSection() {
       icon: Calendar,
       value: 12,
       suffix: "+",
-      title: "Years of Innovation",
-      subtitle: "Pioneering intelligent communications",
+      title: "Years in Communications",
+      subtitle: "The foundation we now bring AI to",
       color: "text-blue-500",
       bg: "bg-blue-50",
       ring: "ring-blue-100",
@@ -21,8 +21,8 @@ export default function FactsSection() {
       icon: TrendingDown,
       value: 60,
       suffix: "%",
-      title: "Cost Savings",
-      subtitle: "Average client communication cost reduction",
+      title: "Avg Cost Reduction",
+      subtitle: "Real savings from real deployments",
       color: "text-orange-500",
       bg: "bg-orange-50",
       ring: "ring-orange-100",
@@ -98,10 +98,11 @@ export default function FactsSection() {
             By the Numbers
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
-            Proven Results, <span className="text-gradient-dsx">Real Impact</span>
+            The Foundation Under <span className="text-gradient-dsx">the Intelligence</span>
           </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            The numbers tell the story — DSX delivers intelligent communications that drive real business value
+            Before DSX Edge brought AI to the front line, we spent 12+ years building the
+            communications expertise that makes it work.
           </p>
         </motion.div>
 

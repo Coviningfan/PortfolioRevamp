@@ -162,7 +162,7 @@ export default function Navigation() {
                         data-testid="button-mobile-contact"
                         className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white rounded-lg py-3"
                       >
-                        Talk to an Expert
+                        Talk to DSX
                       </Button>
                     </Link>
                   </div>

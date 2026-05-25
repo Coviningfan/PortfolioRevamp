@@ -72,9 +72,9 @@ export default function ContactSection() {
           <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-4">
             Get In Touch
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">Talk to an Expert</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">Talk to DSX</h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            Ready to transform your business communications? Our team of specialists is here to help.
+            Ready to bring AI into the front line of your business? Tell us about your workflow — we'll show you what DSX Edge can do.
           </p>
         </motion.div>
 

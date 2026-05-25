@@ -1,38 +1,38 @@
 import { motion } from "framer-motion";
-import { Award, Globe, Wrench, ShieldCheck, Sparkles, Heart } from "lucide-react";
+import { Award, Workflow, Wrench, ShieldCheck, Sparkles, Heart } from "lucide-react";
 import logo3cx from "@assets/3CX-Logo.wine_1771727597371.webp";
 
 export default function ThreeCXSection() {
   const reasons = [
     {
+      icon: Workflow,
+      title: "AI Built Around Your Workflow",
+      description: "Not a generic chatbot. The DSX Edge AI follows your actual process — your questions, your routing, your calendar. Trained around how your business already operates."
+    },
+    {
       icon: Heart,
-      title: "Built for Real Businesses",
-      description: "From a 3-person office to a 300-seat operation — we engineer solutions that fit your reality, not the other way around."
+      title: "Communications-First, Not AI-First",
+      description: "We're not a new AI startup guessing at communications. We've spent 12+ years inside business communications — now we bring AI to the place we know best."
     },
     {
       icon: Wrench,
-      title: "Engineered, Not Just Installed",
-      description: "Every deployment is custom-built for your workflows, your growth plans, and your vision. No cookie-cutter setups."
-    },
-    {
-      icon: Globe,
-      title: "Global Reach, Local Expertise",
-      description: "Single-office startups to multi-country enterprises across 5+ countries — we've architected solutions that work everywhere."
+      title: "Implementation, Not a Subscription",
+      description: "DSX Edge is implemented for your business, not handed to you in a self-serve dashboard. We do the integration work so the AI is ready on day one."
     },
     {
       icon: ShieldCheck,
-      title: "Enterprise-Grade Infrastructure",
-      description: "Your communications run on our own data centers with 99.9% uptime — because your business can't afford downtime."
+      title: "Foundation That Doesn't Go Down",
+      description: "The AI sits on top of our own data centers and 99.9% uptime. Intelligence is only useful if the system is always there to deliver it."
     },
     {
       icon: Sparkles,
-      title: "AI Intelligence Layer",
-      description: "We layer AI on top of your communications — making it smarter, faster, and more valuable every day. That's the DSX difference."
+      title: "Above the Cloud",
+      description: "Cloud is infrastructure. DSX Edge is intelligence. We sit above the cloud layer and turn passive phone systems into active business tools."
     },
     {
       icon: Award,
       title: "3CX Platinum Partner",
-      description: "12+ years mastering the platform. We've built an ecosystem of value-add services that transform how businesses communicate."
+      description: "3CX is the platform we know best — the proven backbone. DSX Edge layers AI and workflow automation on top of it to make it work like a modern business tool."
     },
   ];
 
@@ -60,12 +60,12 @@ export default function ThreeCXSection() {
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
             Why Businesses{" "}
             <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">
-              Choose DSX
+              Choose DSX Edge
             </span>
           </h2>
           <p className="text-lg text-slate-400 max-w-3xl mx-auto">
-            We don't just sell phone systems — we build intelligent communications platforms
-            that grow with your business. From day one.
+            We're not a CRM. We're not a generic AI product. We're the implementer who brings
+            AI to the communications layer of your business — the place where customers already reach you.
           </p>
         </motion.div>
 
