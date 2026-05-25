@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, Award } from "lucide-react";
-import WorkflowDiagram from "./workflow-diagram";
+import SignalOrb from "./signal-orb";
 
 export default function HeroSection() {
   const scrollToSection = (sectionId: string) => {
@@ -115,9 +115,9 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="lg:col-span-5"
           >
-            <WorkflowDiagram />
-            <p className="text-center text-xs text-slate-500 mt-4 tracking-widest uppercase">
-              Above the Cloud. <span className="text-cyan-400/70">Into the Business.</span>
+            <SignalOrb />
+            <p className="text-center text-xs text-slate-500 mt-8 tracking-widest uppercase">
+              Above the Cloud. <span className="text-orange-400/80">Into the Business.</span>
             </p>
           </motion.div>
         </div>
