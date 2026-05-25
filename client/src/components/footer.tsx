@@ -4,9 +4,9 @@ import jabvLogo from "@assets/JABVLABS_LOGO_HD-removebg-preview_1771726977207.pn
 
 export default function Footer() {
   const serviceLinks = [
-    { label: "Answer", href: "/contact" },
-    { label: "Qualify", href: "/contact" },
-    { label: "Act", href: "/contact" },
+    { label: "Modernize the Phone System", href: "/contact" },
+    { label: "Map the Communication Flow", href: "/contact" },
+    { label: "Add the Intelligence Layer", href: "/contact" },
     { label: "Data Center", href: "/data-center" },
   ];
 
@@ -28,7 +28,8 @@ export default function Footer() {
                 className="h-10 w-auto mb-4 brightness-0 invert"
               />
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
-                AI implementation through business communications. 12+ years of experience, now bringing intelligence to the front line of your business.
+                We start with your phone system. Then we make it intelligent. 12+ years of
+                business communications — now the foundation for practical AI workflows.
               </p>
               <p className="text-orange-400/80 text-sm font-medium italic">
                 Above the Cloud. Into the Business.

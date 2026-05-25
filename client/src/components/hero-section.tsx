@@ -43,9 +43,9 @@ export default function HeroSection() {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 leading-[1.05] tracking-tight"
             >
-              Your communications system should do{" "}
+              Your phone system is the front door of your business.{" "}
               <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-cyan-200 bg-clip-text text-transparent">
-                more than connect calls.
+                DSX Edge makes it intelligent.
               </span>
             </motion.h1>
 
@@ -55,9 +55,9 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-base md:text-lg text-slate-300 mb-8 max-w-2xl lg:max-w-none leading-relaxed"
             >
-              DSX Edge turns customer communication into completed business action — answering calls,
-              qualifying leads, booking appointments, routing requests, and triggering follow-ups
-              through practical AI workflows built around your business.
+              DSX Edge modernizes your VoIP/PBX foundation, maps your call flow, and adds AI
+              workflows that answer, qualify, route, schedule, notify, and follow up —
+              without replacing the communications infrastructure your business depends on.
             </motion.p>
 
             <motion.div
@@ -95,11 +95,11 @@ export default function HeroSection() {
             >
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>No replatforming required</span>
+                <span>Built on 3CX / VoIP / PBX</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>AI trained on your workflow</span>
+                <span>AI trained on your call flow</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />

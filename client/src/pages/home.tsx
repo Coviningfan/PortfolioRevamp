@@ -59,8 +59,8 @@ export default function Home() {
       <HeroSection />
       <ProblemSection />
       <ServicesSection />
-      <AIFutureSection />
       <ThreeCXSection />
+      <AIFutureSection />
       <FactsSection />
       <AboutSection />
       <TestimonialsSection />

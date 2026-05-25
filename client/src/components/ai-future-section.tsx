@@ -93,16 +93,17 @@ export default function AIFutureSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-orange-50 text-orange-600 text-sm font-semibold mb-4">
-            The Intelligence Layer
+          <span className="inline-block px-4 py-1.5 rounded-full bg-cyan-50 text-cyan-700 text-sm font-semibold mb-4">
+            What Happens After the PBX
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
-            From the first call to the{" "}
-            <span className="text-gradient-dsx">booked appointment.</span>
+            Once the call lands, the{" "}
+            <span className="text-gradient-dsx">intelligence takes over.</span>
           </h2>
           <p className="text-lg text-slate-500 max-w-3xl mx-auto">
-            "Above the Cloud" doesn't mean cloud hosting. It means DSX Edge sits above your communications
-            platform and adds intelligence — AI trained around your actual business process, not a generic script.
+            The PBX gets the call into your business. The DSX Intelligence Layer decides
+            what should happen next — qualifying, booking, routing, notifying, and following
+            up with the same logic your best staff would use.
           </p>
         </motion.div>
 

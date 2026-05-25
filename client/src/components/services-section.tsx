@@ -1,18 +1,34 @@
 import { motion } from "framer-motion";
-import { Phone, MessageSquare, Zap, ArrowRight, Check } from "lucide-react";
+import { Network, Map, Brain, ArrowRight, Check } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 
 export default function ServicesSection() {
   const steps = [
     {
-      icon: Phone,
+      icon: Network,
       number: "01",
-      title: "Answer",
-      tagline: "Every call gets handled.",
+      title: "Modernize the Phone System",
+      tagline: "The foundation, done right.",
       description:
-        "AI answers routine calls, captures the reason for contact, and keeps customers from falling into voicemail. No matter the hour, no matter the volume.",
-      flow: ["Caller dials in", "AI greets professionally", "Reason captured"],
+        "VoIP, PBX, 3CX, SIP trunks, routing, extensions, queues, voicemail, reliability. Before anything intelligent runs on top, the communications layer has to work — and we've been doing this for 12+ years.",
+      flow: ["3CX Platinum Partner platform", "Reliable SIP & extension routing", "Queue, voicemail, after-hours handling"],
+      iconBg: "bg-slate-800",
+      accent: "border-slate-200",
+      accentHover: "group-hover:border-slate-500/50",
+      numberColor: "text-slate-400/20",
+      taglineColor: "text-slate-700",
+      taglineBg: "bg-slate-100",
+      flowDot: "bg-slate-700",
+    },
+    {
+      icon: Map,
+      number: "02",
+      title: "Map the Communication Flow",
+      tagline: "See where calls actually go.",
+      description:
+        "Where do calls come in? Who answers? What gets missed? What should happen after each interaction? We map your real call flow — the loss points, the bottlenecks, the manual follow-ups — before we automate anything.",
+      flow: ["Inbound + after-hours pattern audit", "Loss-point and bottleneck mapping", "Workflow blueprint for automation"],
       iconBg: "bg-cyan-500",
       accent: "border-cyan-200",
       accentHover: "group-hover:border-cyan-500/50",
@@ -22,29 +38,13 @@ export default function ServicesSection() {
       flowDot: "bg-cyan-500",
     },
     {
-      icon: MessageSquare,
-      number: "02",
-      title: "Qualify",
-      tagline: "The right questions, automatically.",
-      description:
-        "The AI asks the right questions, collects details, identifies urgency, and routes the opportunity to the right person. No more playing phone tag.",
-      flow: ["Questions tailored to you", "Details collected", "Urgency identified"],
-      iconBg: "bg-blue-600",
-      accent: "border-blue-200",
-      accentHover: "group-hover:border-blue-500/50",
-      numberColor: "text-blue-500/15",
-      taglineColor: "text-blue-700",
-      taglineBg: "bg-blue-50",
-      flowDot: "bg-blue-600",
-    },
-    {
-      icon: Zap,
+      icon: Brain,
       number: "03",
-      title: "Act",
-      tagline: "From call to calendar — automatically.",
+      title: "Add the Intelligence Layer",
+      tagline: "AI on top of what already works.",
       description:
-        "DSX Edge books appointments, sends follow-up messages, creates tasks, and updates your workflows — without waiting for a human to process every call.",
-      flow: ["Appointment booked", "Staff notified", "Follow-up sent"],
+        "AI reception, lead qualification, appointment booking, staff notifications, CRM updates, and follow-up — all built on top of your modernized PBX. The intelligence is attached to your communications backbone, not floating above it.",
+      flow: ["AI intake trained on your script", "Auto-booking + staff alerts", "CRM updates + follow-up loops"],
       iconBg: "bg-emerald-600",
       accent: "border-emerald-200",
       accentHover: "group-hover:border-emerald-500/50",
@@ -69,11 +69,12 @@ export default function ServicesSection() {
             How DSX Edge Works
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
-            Your phone system should not just ring.{" "}
-            <span className="text-gradient-dsx">It should work.</span>
+            We start with your phone system.{" "}
+            <span className="text-gradient-dsx">Then we make it intelligent.</span>
           </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            Three steps. One unified system. AI that follows your business process — not a generic script.
+            DSX Edge is not a chatbot bolted onto your business. It's an intelligence layer
+            built on top of a communications foundation we've been deploying for 12+ years.
           </p>
         </motion.div>
 
@@ -82,9 +83,9 @@ export default function ServicesSection() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="text-center text-sm text-slate-400 mb-16 max-w-xl mx-auto"
+          className="text-center text-sm text-slate-400 mb-16 max-w-xl mx-auto font-mono tracking-tight"
         >
-          Answer · Qualify · Act — built around how customers already reach you.
+          Modernize → Map → Add Intelligence
         </motion.p>
 
         <div className="grid md:grid-cols-3 gap-8 mb-14">
@@ -99,7 +100,7 @@ export default function ServicesSection() {
             >
               <div
                 className={`relative bg-white rounded-2xl border ${step.accent} ${step.accentHover} p-8 h-full transition-all duration-500 hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1 overflow-hidden`}
-                data-testid={`service-card-${step.title.toLowerCase()}`}
+                data-testid={`service-card-${index}`}
               >
                 <div className={`absolute top-6 right-6 text-7xl font-black ${step.numberColor} leading-none select-none`}>
                   {step.number}
@@ -111,7 +112,7 @@ export default function ServicesSection() {
                     <step.icon className="text-white h-7 w-7" />
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-2 relative">{step.title}</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-2 relative leading-snug">{step.title}</h3>
                 <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full ${step.taglineBg} ${step.taglineColor} mb-4 relative`}>
                   {step.tagline}
                 </span>
@@ -148,7 +149,7 @@ export default function ServicesSection() {
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
-          <p className="text-xs text-slate-400 mt-3">We'll show you what can be automated.</p>
+          <p className="text-xs text-slate-400 mt-3">We'll map your call flow and show you exactly what can be automated.</p>
         </motion.div>
       </div>
     </section>
