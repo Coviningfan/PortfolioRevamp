@@ -50,7 +50,7 @@ const PILLARS: Pillar[] = [
     icon: PhoneCall,
     label: "Business Communications",
     tone: "blue",
-    position: "top-0 left-1/2 -translate-x-1/2 -translate-y-3",
+    position: "top-0 left-1/2 -translate-y-3",
     angle: 270,
     delay: 0.25,
   },
@@ -59,7 +59,7 @@ const PILLARS: Pillar[] = [
     icon: Server,
     label: "Hosted Infrastructure",
     tone: "slate",
-    position: "bottom-6 left-0 -translate-x-2",
+    position: "bottom-6 left-0",
     angle: 30,
     delay: 0.45,
   },
@@ -68,7 +68,7 @@ const PILLARS: Pillar[] = [
     icon: Sparkles,
     label: "DSX AI Enabled",
     tone: "orange",
-    position: "bottom-6 right-0 translate-x-2",
+    position: "bottom-6 right-0",
     angle: 150,
     delay: 0.65,
   },
@@ -527,21 +527,27 @@ function PillarChip({
   const toneStyle = TONES[pillar.tone];
   const Icon = pillar.icon;
 
+  const isTopCenter = pillar.key === "comms";
   return (
-    <motion.button
-      className={`absolute flex items-center gap-2 px-3 py-2 rounded-xl border backdrop-blur-md shadow-lg cursor-pointer select-none ${pillar.position} ${toneStyle.chip}`}
-      initial={{ opacity: 0, scale: 0.85 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: pillar.delay, duration: 0.4, type: "spring", stiffness: 260, damping: 22 }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.97 }}
-      onClick={onClick}
-      data-testid={`button-pillar-${pillar.key}`}
+    <div
+      className={`absolute ${pillar.position}`}
+      style={isTopCenter ? { transform: "translate(-50%, -12px)" } : undefined}
     >
-      <span className={`w-2 h-2 rounded-full flex-shrink-0 ${toneStyle.dot}`} />
-      <Icon size={14} className={`flex-shrink-0 ${toneStyle.icon}`} />
-      <span className="text-xs font-medium whitespace-nowrap tracking-wide">{pillar.label}</span>
-    </motion.button>
+      <motion.button
+        className={`flex items-center gap-2 px-3 py-2 rounded-xl border backdrop-blur-md shadow-lg cursor-pointer select-none ${toneStyle.chip}`}
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: pillar.delay, duration: 0.4, type: "spring", stiffness: 260, damping: 22 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.97 }}
+        onClick={onClick}
+        data-testid={`button-pillar-${pillar.key}`}
+      >
+        <span className={`w-2 h-2 rounded-full flex-shrink-0 ${toneStyle.dot}`} />
+        <Icon size={14} className={`flex-shrink-0 ${toneStyle.icon}`} />
+        <span className="text-xs font-medium whitespace-nowrap tracking-wide">{pillar.label}</span>
+      </motion.button>
+    </div>
   );
 }
 
