@@ -16,11 +16,13 @@ interface Pillar {
   key: PillarKey;
   icon: React.ElementType;
   label: string;
+  shortLabel: string;
   tone: Tone;
   position: string;
   angle: number;
   delay: number;
   chip: { x: number; y: number };
+  chipMobile: { x: number; y: number };
 }
 
 interface OrbitalRing {
@@ -55,31 +57,37 @@ const PILLARS: Pillar[] = [
     key: "comms",
     icon: PhoneCall,
     label: "Business Communications",
+    shortLabel: "Comms",
     tone: "blue",
     position: "",
     angle: 270,
     delay: 0.2,
     chip: { x: 0.5, y: 0.06 },
+    chipMobile: { x: 0.5, y: 0.04 },
   },
   {
     key: "infra",
     icon: Server,
     label: "Hosted Infrastructure",
+    shortLabel: "Hosting",
     tone: "slate",
     position: "",
     angle: 150,
     delay: 0.38,
     chip: { x: 0.22, y: 0.92 },
+    chipMobile: { x: 0.18, y: 0.93 },
   },
   {
     key: "ai",
     icon: Sparkles,
     label: "DSX AI Enabled",
+    shortLabel: "AI Layer",
     tone: "orange",
     position: "",
     angle: 30,
     delay: 0.56,
     chip: { x: 0.78, y: 0.92 },
+    chipMobile: { x: 0.82, y: 0.93 },
   },
 ];
 
@@ -548,21 +556,24 @@ function AnimatedPacket({
 function PillarChip({
   pillar,
   active,
+  isMobile,
   onClick,
 }: {
   pillar: Pillar;
   active: boolean;
+  isMobile: boolean;
   onClick: () => void;
 }) {
   const toneStyle = TONES[pillar.tone];
   const Icon = pillar.icon;
+  const coord = isMobile ? pillar.chipMobile : pillar.chip;
 
   return (
     <div
       className="absolute"
       style={{
-        left: `${pillar.chip.x * 100}%`,
-        top: `${pillar.chip.y * 100}%`,
+        left: `${coord.x * 100}%`,
+        top: `${coord.y * 100}%`,
         transform: "translate(-50%, -50%)",
       }}
     >
@@ -571,7 +582,7 @@ function PillarChip({
         aria-pressed={active}
         aria-label={pillar.label}
         className={[
-          "flex items-center gap-2 rounded-xl border px-3 py-2 backdrop-blur-md shadow-lg",
+          "flex items-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl border px-2 py-1.5 sm:px-3 sm:py-2 backdrop-blur-md shadow-lg",
           "cursor-pointer select-none transition-colors",
           toneStyle.chip,
           active ? toneStyle.chipActive : "",
@@ -613,9 +624,10 @@ function PillarChip({
           />
           <span className={`relative h-2 w-2 rounded-full ${toneStyle.dot} shadow-[0_0_8px_currentColor]`} />
         </span>
-        <Icon size={14} className={`flex-shrink-0 ${toneStyle.icon}`} />
-        <span className="whitespace-nowrap text-xs font-medium tracking-wide">
-          {pillar.label}
+        <Icon size={13} className={`flex-shrink-0 ${toneStyle.icon}`} />
+        <span className="whitespace-nowrap text-[10px] sm:text-xs font-medium tracking-wide">
+          <span className="hidden sm:inline">{pillar.label}</span>
+          <span className="sm:hidden">{pillar.shortLabel}</span>
         </span>
       </motion.button>
     </div>
@@ -626,12 +638,14 @@ function ArcConnector({
   pillar,
   orbCenter,
   containerSize,
+  chipCoord,
   active,
   reduced,
 }: {
   pillar: Pillar;
   orbCenter: { x: number; y: number };
   containerSize: number;
+  chipCoord: { x: number; y: number };
   active: boolean;
   reduced: boolean;
 }) {
@@ -640,8 +654,8 @@ function ArcConnector({
   const chipInset = containerSize * 0.018;
 
   const end = {
-    x: containerSize * pillar.chip.x,
-    y: containerSize * pillar.chip.y,
+    x: containerSize * chipCoord.x,
+    y: containerSize * chipCoord.y,
   };
 
   const dxTotal = end.x - orbCenter.x;
@@ -731,15 +745,19 @@ export default function SignalOrb() {
   void shouldReduceMotion;
   const reduced = false;
 
-  const [containerSize, setContainerSize] = useState(480);
+  const [containerSize, setContainerSize] = useState(() => {
+    if (typeof window === "undefined") return 420;
+    return window.innerWidth < 640 ? 320 : 480;
+  });
   const [activePillar, setActivePillar] = useState<PillarKey | null>(null);
+  const isMobile = containerSize < 420;
 
   useEffect(() => {
     const node = containerRef.current;
     if (!node) return;
 
     const obs = new ResizeObserver(([entry]) => {
-      const next = entry.contentRect.width;
+      const next = Math.round(entry.contentRect.width);
       if (next) setContainerSize(next);
     });
 
@@ -825,7 +843,7 @@ export default function SignalOrb() {
   return (
     <section
       ref={containerRef}
-      className="relative mx-auto aspect-square w-full max-w-[580px] select-none"
+      className="relative mx-auto aspect-square w-full max-w-[320px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[560px] select-none touch-pan-y"
       data-testid="signal-orb"
       style={{ perspective: 1400 }}
       aria-label="Interactive signal orb"
@@ -898,6 +916,7 @@ export default function SignalOrb() {
           pillar={p}
           orbCenter={orbCenter}
           containerSize={containerSize}
+          chipCoord={isMobile ? p.chipMobile : p.chip}
           active={activePillar === p.key}
           reduced={reduced}
         />
@@ -917,6 +936,7 @@ export default function SignalOrb() {
           key={p.key}
           pillar={p}
           active={activePillar === p.key}
+          isMobile={isMobile}
           onClick={() => handlePillarClick(p.key)}
         />
       ))}

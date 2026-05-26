@@ -13,7 +13,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative pt-20 overflow-hidden min-h-screen flex items-center">
+    <section id="home" className="relative pt-20 overflow-hidden min-h-[100svh] flex items-center">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900" />
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl animate-pulse" />
@@ -22,9 +22,9 @@ export default function HeroSection() {
       </div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.6)_100%)]" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          <div className="lg:col-span-7 text-center lg:text-left">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 w-full">
+        <div className="grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
+          <div className="lg:col-span-7 text-center lg:text-left order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -128,7 +128,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="lg:col-span-5"
+            className="lg:col-span-5 order-1 lg:order-2 w-full"
           >
             <SignalOrb />
             <div className="text-center mt-4">
