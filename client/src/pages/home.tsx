@@ -55,17 +55,56 @@ const caseStudies = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-950">
-      <Navigation />
-      <HeroSection />
-      <ProblemSection />
-      <PlatformSection />
-      <ServicesSection />
-      <ThreeCXSection />
-      <AIFutureSection />
-      <FactsSection />
-      <AboutSection />
-      <TestimonialsSection />
+    <div className="min-h-screen page-canvas relative overflow-hidden">
+      {/* Brand watermark layer — fixed orbital arcs + signal grid */}
+      <div className="pointer-events-none fixed inset-0 z-0 brand-grid opacity-[0.35]" />
+      <svg
+        className="pointer-events-none fixed inset-0 z-0 w-full h-full opacity-[0.08]"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+      >
+        <defs>
+          <radialGradient id="brand-orb-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#60a5fa" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id="brand-arc" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#60a5fa" stopOpacity="0" />
+            <stop offset="50%" stopColor="#60a5fa" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#fb923c" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        {/* Concentric orbital arcs — echo of the hero orb */}
+        <g transform="translate(1200 200)" stroke="url(#brand-arc)" fill="none" strokeWidth="1">
+          <ellipse cx="0" cy="0" rx="380" ry="380" />
+          <ellipse cx="0" cy="0" rx="280" ry="280" opacity="0.7" />
+          <ellipse cx="0" cy="0" rx="180" ry="180" opacity="0.5" />
+        </g>
+        <g transform="translate(180 700)" stroke="url(#brand-arc)" fill="none" strokeWidth="1">
+          <ellipse cx="0" cy="0" rx="320" ry="320" opacity="0.6" />
+          <ellipse cx="0" cy="0" rx="220" ry="220" opacity="0.4" />
+        </g>
+        {/* Signal dots — particle motif */}
+        {Array.from({ length: 24 }).map((_, i) => {
+          const x = (i * 137) % 1440;
+          const y = (i * 211) % 900;
+          const r = (i % 3) + 1;
+          return <circle key={i} cx={x} cy={y} r={r} fill="#60a5fa" opacity={0.3 + (i % 3) * 0.2} />;
+        })}
+      </svg>
+
+      <div className="relative z-10">
+        <Navigation />
+        <HeroSection />
+        <ProblemSection />
+        <PlatformSection />
+        <ServicesSection />
+        <ThreeCXSection />
+        <AIFutureSection />
+        <FactsSection />
+        <AboutSection />
+        <TestimonialsSection />
 
       <section className="py-24 section-dark relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -149,6 +188,7 @@ export default function Home() {
       <PartnersSection />
       <ContactSection />
       <Footer />
+      </div>
     </div>
   );
 }
