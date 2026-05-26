@@ -81,8 +81,6 @@ export default function AIFutureSection() {
   return (
     <section ref={ref} className="py-24 section-dark relative overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -115,8 +113,6 @@ export default function AIFutureSection() {
           viewport={{ once: true }}
           className="bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 rounded-2xl p-8 md:p-12 mb-16 text-white overflow-hidden relative"
         >
-          <div className="absolute top-0 right-0 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl" />
 
           <div className="relative">
             <div className="flex items-center gap-2 mb-3">
@@ -217,8 +213,6 @@ export default function AIFutureSection() {
           viewport={{ once: true }}
           className="relative bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 rounded-2xl p-10 text-white overflow-hidden"
         >
-          <div className="absolute top-0 right-0 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
           <div className="relative grid lg:grid-cols-2 gap-10 items-center">
             <div>
               <div className="flex items-center gap-2 mb-4">
