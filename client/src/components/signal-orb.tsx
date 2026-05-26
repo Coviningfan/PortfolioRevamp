@@ -636,19 +636,26 @@ function ArcConnector({
   reduced: boolean;
 }) {
   const tone = TONES[pillar.tone];
-  const rad = (pillar.angle * Math.PI) / 180;
-  const orbRadius = containerSize * 0.145;
+  const orbRadius = containerSize * 0.155;
+  const chipInset = containerSize * 0.018;
 
-  const startX = orbCenter.x + Math.cos(rad) * orbRadius;
-  const startY = orbCenter.y + Math.sin(rad) * orbRadius;
   const end = {
     x: containerSize * pillar.chip.x,
     y: containerSize * pillar.chip.y,
   };
 
-  const mx = (startX + end.x) / 2 + (end.y - startY) * 0.3;
-  const my = (startY + end.y) / 2 - (end.x - startX) * 0.3;
-  const pathD = `M${startX},${startY} Q${mx},${my} ${end.x},${end.y}`;
+  const dxTotal = end.x - orbCenter.x;
+  const dyTotal = end.y - orbCenter.y;
+  const totalLen = Math.hypot(dxTotal, dyTotal) || 1;
+  const ux = dxTotal / totalLen;
+  const uy = dyTotal / totalLen;
+
+  const startX = orbCenter.x + ux * orbRadius;
+  const startY = orbCenter.y + uy * orbRadius;
+  const endX = end.x - ux * chipInset;
+  const endY = end.y - uy * chipInset;
+
+  const pathD = `M${startX},${startY} L${endX},${endY}`;
 
   return (
     <svg
