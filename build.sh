@@ -9,3 +9,7 @@ npx esbuild server/index.ts --platform=node --packages=external --bundle --forma
 
 # Create CJS wrapper for deployment compatibility
 echo 'import("./index.js");' > dist/index.cjs
+
+# Copy blog markdown into dist so the sitemap route can scan it in production
+mkdir -p dist/blog-content
+cp -r client/src/content/blog/*.md dist/blog-content/ 2>/dev/null || true

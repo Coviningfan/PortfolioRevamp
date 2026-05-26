@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { TrendingDown } from "lucide-react";
+import Seo from "@/components/seo";
+import { SITE, absoluteUrl } from "@/lib/site";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import ProblemSection from "@/components/problem-section";
@@ -121,6 +123,47 @@ export default function Home() {
         ))}
       </svg>
 
+      <Seo
+        title="AI-Ready Business Phone Systems & 3CX Implementation"
+        description="DSX Edge is a 3CX Platinum Partner with 12+ years in business communications. We answer, qualify, and book every call — with AI built into your real workflow."
+        path="/"
+        keywords={["business phone system", "3CX Platinum Partner", "AI voice agent", "VoIP for business", "AI answering service", "DSX Edge"]}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: SITE.name,
+            url: SITE.domain,
+            logo: absoluteUrl("/og-image.png"),
+            description: SITE.defaultDescription,
+            contactPoint: [{
+              "@type": "ContactPoint",
+              contactType: "sales",
+              areaServed: ["US", "MX", "CA"],
+              availableLanguage: ["English", "Spanish"],
+            }],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            url: SITE.domain,
+            name: SITE.name,
+            potentialAction: {
+              "@type": "SearchAction",
+              target: `${SITE.domain}/blog?q={search_term_string}`,
+              "query-input": "required name=search_term_string",
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            serviceType: "AI-Enabled Business Communications",
+            provider: { "@type": "Organization", name: SITE.name, url: SITE.domain },
+            areaServed: "Worldwide",
+            description: "AI voice agents layered on top of 3CX phone systems — answering, qualifying, and booking customer calls.",
+          },
+        ]}
+      />
       <div className="relative z-10">
         <Navigation />
         <HeroSection />

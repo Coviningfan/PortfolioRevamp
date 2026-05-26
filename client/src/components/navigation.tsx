@@ -37,6 +37,7 @@ export default function Navigation() {
   const navItems = [
     { label: "Home", href: "/" },
     { label: "Solutions", id: "services" },
+    { label: "Blog", href: "/blog" },
     { label: "About", href: "/about" },
     { label: "Data Center", href: "/data-center" },
   ];

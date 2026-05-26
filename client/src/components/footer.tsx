@@ -12,6 +12,7 @@ export default function Footer() {
 
   const companyLinks = [
     { label: "About", href: "/about" },
+    { label: "Blog", href: "/blog" },
     { label: "Data Center", href: "/data-center" },
     { label: "Contact", href: "/contact" },
   ];

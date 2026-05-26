@@ -4,6 +4,7 @@ import { ArrowLeft, Shield, Zap, Leaf, Building, Globe } from "lucide-react";
 import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import Seo from "@/components/seo";
 
 function BrandCanvas() {
   return (
@@ -101,6 +102,11 @@ export default function DataCenterPage() {
 
   return (
     <div className="min-h-screen page-canvas relative overflow-hidden">
+      <Seo
+        title="Data Center — Hosted at Citadel Campus"
+        description="DSX Edge infrastructure is hosted at Citadel Campus — one of the world's most advanced data centers, with 99.9% uptime, renewable power, and unrivaled connectivity."
+        path="/data-center"
+      />
       <BrandCanvas />
       <div className="relative z-10">
         <Navigation />
