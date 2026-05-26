@@ -706,7 +706,8 @@ function ArcConnector({
 export default function SignalOrb() {
   const containerRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
-  const reduced = !!shouldReduceMotion;
+  void shouldReduceMotion;
+  const reduced = false;
 
   const [containerSize, setContainerSize] = useState(480);
   const [activePillar, setActivePillar] = useState<PillarKey | null>(null);
