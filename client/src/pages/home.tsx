@@ -56,42 +56,70 @@ const caseStudies = [
 export default function Home() {
   return (
     <div className="min-h-screen page-canvas relative overflow-hidden">
-      {/* Brand watermark layer — fixed orbital arcs + signal grid */}
-      <div className="pointer-events-none fixed inset-0 z-0 brand-grid opacity-[0.35]" />
+      {/* Brand watermark layer — fixed dot pattern + animated orbital arcs + twinkling signal dots */}
+      <div className="pointer-events-none fixed inset-0 z-0 brand-dots opacity-[0.18]" />
+      <div className="pointer-events-none fixed inset-0 z-0 brand-glow-drift" style={{
+        background:
+          "radial-gradient(ellipse 50% 35% at 70% 20%, rgba(96,165,250,0.10), transparent 60%), radial-gradient(ellipse 40% 30% at 20% 80%, rgba(251,146,60,0.07), transparent 60%)"
+      }} />
       <svg
-        className="pointer-events-none fixed inset-0 z-0 w-full h-full opacity-[0.08]"
+        className="pointer-events-none fixed inset-0 z-0 w-full h-full"
         viewBox="0 0 1440 900"
         preserveAspectRatio="xMidYMid slice"
         aria-hidden="true"
       >
         <defs>
-          <radialGradient id="brand-orb-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#60a5fa" stopOpacity="0" />
-          </radialGradient>
-          <linearGradient id="brand-arc" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id="brand-arc-blue" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#60a5fa" stopOpacity="0" />
-            <stop offset="50%" stopColor="#60a5fa" stopOpacity="0.8" />
+            <stop offset="50%" stopColor="#60a5fa" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#60a5fa" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="brand-arc-orange" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#fb923c" stopOpacity="0" />
+            <stop offset="50%" stopColor="#fb923c" stopOpacity="0.55" />
             <stop offset="100%" stopColor="#fb923c" stopOpacity="0" />
           </linearGradient>
         </defs>
-        {/* Concentric orbital arcs — echo of the hero orb */}
-        <g transform="translate(1200 200)" stroke="url(#brand-arc)" fill="none" strokeWidth="1">
-          <ellipse cx="0" cy="0" rx="380" ry="380" />
-          <ellipse cx="0" cy="0" rx="280" ry="280" opacity="0.7" />
-          <ellipse cx="0" cy="0" rx="180" ry="180" opacity="0.5" />
+
+        {/* Top-right orbital cluster — slow spin */}
+        <g transform="translate(1200 200)" fill="none" strokeWidth="0.6" opacity="0.18">
+          <g className="brand-arc-spin-slow">
+            <ellipse cx="0" cy="0" rx="380" ry="380" stroke="url(#brand-arc-blue)" />
+          </g>
+          <g className="brand-arc-spin-reverse">
+            <ellipse cx="0" cy="0" rx="280" ry="280" stroke="url(#brand-arc-blue)" strokeDasharray="2 6" />
+          </g>
+          <g className="brand-arc-spin-slow">
+            <ellipse cx="0" cy="0" rx="180" ry="180" stroke="url(#brand-arc-orange)" />
+          </g>
         </g>
-        <g transform="translate(180 700)" stroke="url(#brand-arc)" fill="none" strokeWidth="1">
-          <ellipse cx="0" cy="0" rx="320" ry="320" opacity="0.6" />
-          <ellipse cx="0" cy="0" rx="220" ry="220" opacity="0.4" />
+
+        {/* Bottom-left orbital cluster — reverse spin */}
+        <g transform="translate(180 700)" fill="none" strokeWidth="0.6" opacity="0.15">
+          <g className="brand-arc-spin-reverse">
+            <ellipse cx="0" cy="0" rx="320" ry="320" stroke="url(#brand-arc-blue)" />
+          </g>
+          <g className="brand-arc-spin-slow">
+            <ellipse cx="0" cy="0" rx="220" ry="220" stroke="url(#brand-arc-orange)" strokeDasharray="1 5" />
+          </g>
         </g>
-        {/* Signal dots — particle motif */}
-        {Array.from({ length: 24 }).map((_, i) => {
-          const x = (i * 137) % 1440;
-          const y = (i * 211) % 900;
-          const r = (i % 3) + 1;
-          return <circle key={i} cx={x} cy={y} r={r} fill="#60a5fa" opacity={0.3 + (i % 3) * 0.2} />;
-        })}
+
+        {/* Twinkling signal dots — sparse, deliberate */}
+        {[
+          [120, 180], [340, 90], [560, 240], [820, 130], [1080, 310], [1320, 180],
+          [220, 460], [480, 540], [740, 420], [980, 520], [1240, 480],
+          [160, 760], [420, 820], [680, 700], [920, 800], [1180, 740], [1380, 820],
+        ].map(([x, y], i) => (
+          <circle
+            key={i}
+            cx={x}
+            cy={y}
+            r={i % 4 === 0 ? 1.6 : 1}
+            fill={i % 5 === 0 ? "#fb923c" : "#60a5fa"}
+            className="brand-twinkle"
+            style={{ animationDelay: `${(i * 0.37) % 4}s`, transformOrigin: `${x}px ${y}px` }}
+          />
+        ))}
       </svg>
 
       <div className="relative z-10">
