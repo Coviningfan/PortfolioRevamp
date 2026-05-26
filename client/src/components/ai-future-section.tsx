@@ -79,10 +79,10 @@ export default function AIFutureSection() {
   ];
 
   return (
-    <section ref={ref} className="py-24 bg-[#e8eef6] relative overflow-hidden">
+    <section ref={ref} className="py-24 section-dark relative overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-100/60 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-orange-100/50 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,14 +93,14 @@ export default function AIFutureSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-orange-50 text-orange-700 text-sm font-semibold mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full border border-orange-400/30 bg-orange-500/10 text-orange-200 text-sm font-semibold mb-4 tracking-wide uppercase">
             DSX AI Enabled
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
             AI where your{" "}
-            <span className="text-gradient-dsx">business already works.</span>
+            <span className="accent-serif text-orange-300">business already works.</span>
           </h2>
-          <p className="text-lg text-slate-500 max-w-3xl mx-auto">
+          <p className="text-lg text-slate-300 max-w-3xl mx-auto">
             Most companies don't need a generic chatbot. They need intelligence connected
             to the systems their customers and staff already use. DSX Edge begins with
             communications, maps the workflow around it, and applies AI only where it
@@ -177,10 +177,10 @@ export default function AIFutureSection() {
           viewport={{ once: true }}
           className="text-center mb-10"
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
-            Any industry. Any workflow.
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+            Any industry. <span className="accent-serif text-orange-300">Any workflow.</span>
           </h3>
-          <p className="text-slate-500 max-w-xl mx-auto">
+          <p className="text-slate-300 max-w-xl mx-auto">
             Intelligence is designed around the business's real process — its routing logic,
             its records, its calendar, its operational reality. Not a generic chatbot.
           </p>
@@ -194,17 +194,17 @@ export default function AIFutureSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-6 border border-slate-100 hover:shadow-lg hover:border-blue-300 transition-all duration-300 group overflow-hidden"
+              className="card-glass rounded-2xl p-6 hover:border-blue-400/40 hover:bg-white/[0.07] transition-all duration-300 group overflow-hidden"
               data-testid={`industry-card-${index}`}
             >
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-cyan-500/20 transition-all duration-300">
                 <item.icon className="h-5 w-5 text-white" />
               </div>
-              <h4 className="text-base font-bold text-slate-900 mb-2">{item.name}</h4>
-              <p className="text-slate-500 text-sm leading-relaxed mb-4">{item.example}</p>
-              <div className="pt-3 border-t border-slate-200 flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
-                <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
-                <span className="text-[11px] font-mono text-slate-600 tracking-tight">{item.flow}</span>
+              <h4 className="text-base font-bold text-white mb-2">{item.name}</h4>
+              <p className="text-slate-400 text-sm leading-relaxed mb-4">{item.example}</p>
+              <div className="pt-3 border-t border-white/10 flex items-center gap-2 opacity-70 group-hover:opacity-100 transition-opacity">
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="text-[11px] font-mono text-slate-300 tracking-tight">{item.flow}</span>
               </div>
             </motion.div>
           ))}

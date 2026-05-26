@@ -59,7 +59,7 @@ export default function ThreeCXSection() {
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
             The platform is 3CX.{" "}
-            <span className="bg-gradient-to-r from-blue-300 to-orange-300 bg-clip-text text-transparent">
+            <span className="accent-serif text-orange-300">
               The implementation, integration, and intelligence is DSX Edge.
             </span>
           </h2>

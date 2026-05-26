@@ -60,10 +60,10 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-24 bg-[#e8eef6] relative overflow-hidden">
+    <section id="contact" className="py-24 section-dark relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-100/40 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-500/10 rounded-full blur-3xl" />
       </div>
       <div className="relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,13 +74,13 @@ export default function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full border border-blue-400/30 bg-blue-500/10 text-blue-200 text-sm font-semibold mb-4 tracking-wide uppercase">
             Get In Touch
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
-            Let DSX map your first <span className="text-gradient-dsx">automation workflow.</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
+            Let DSX map your first <span className="accent-serif text-orange-300">automation workflow.</span>
           </h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             Tell us how your business receives calls. We'll show you exactly what can be automated —
             no pitch, no platform demo. A diagnostic conversation.
           </p>
@@ -94,11 +94,11 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="lg:col-span-3"
           >
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100">
+            <div className="card-glass rounded-2xl p-8">
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Send us a message</h3>
-                <div className="flex items-center gap-2 text-sm text-emerald-600">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                <h3 className="text-xl font-bold text-white mb-2">Send us a message</h3>
+                <div className="flex items-center gap-2 text-sm text-emerald-300">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
                   <span>Typically respond within 2 hours</span>
                 </div>
               </div>
@@ -111,9 +111,9 @@ export default function ContactSection() {
                       name="firstName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-slate-700 font-medium">First Name</FormLabel>
+                          <FormLabel className="text-slate-200 font-medium">First Name</FormLabel>
                           <FormControl>
-                            <Input data-testid="input-first-name" {...field} className="rounded-xl border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 h-11" />
+                            <Input data-testid="input-first-name" {...field} className="rounded-xl bg-white/5 border-white/10 text-white placeholder:text-slate-400 focus:border-blue-400 focus:ring-blue-400/20 h-11" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -124,9 +124,9 @@ export default function ContactSection() {
                       name="lastName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-slate-700 font-medium">Last Name</FormLabel>
+                          <FormLabel className="text-slate-200 font-medium">Last Name</FormLabel>
                           <FormControl>
-                            <Input data-testid="input-last-name" {...field} className="rounded-xl border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 h-11" />
+                            <Input data-testid="input-last-name" {...field} className="rounded-xl bg-white/5 border-white/10 text-white placeholder:text-slate-400 focus:border-blue-400 focus:ring-blue-400/20 h-11" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -139,9 +139,9 @@ export default function ContactSection() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-slate-700 font-medium">Email</FormLabel>
+                        <FormLabel className="text-slate-200 font-medium">Email</FormLabel>
                         <FormControl>
-                          <Input data-testid="input-email" type="email" {...field} className="rounded-xl border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 h-11" />
+                          <Input data-testid="input-email" type="email" {...field} className="rounded-xl bg-white/5 border-white/10 text-white placeholder:text-slate-400 focus:border-blue-400 focus:ring-blue-400/20 h-11" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -153,9 +153,9 @@ export default function ContactSection() {
                     name="company"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-slate-700 font-medium">Company</FormLabel>
+                        <FormLabel className="text-slate-200 font-medium">Company</FormLabel>
                         <FormControl>
-                          <Input data-testid="input-company" {...field} className="rounded-xl border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 h-11" />
+                          <Input data-testid="input-company" {...field} className="rounded-xl bg-white/5 border-white/10 text-white placeholder:text-slate-400 focus:border-blue-400 focus:ring-blue-400/20 h-11" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -167,13 +167,13 @@ export default function ContactSection() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-slate-700 font-medium">Message</FormLabel>
+                        <FormLabel className="text-slate-200 font-medium">Message</FormLabel>
                         <FormControl>
                           <Textarea
                             data-testid="input-message"
                             {...field}
                             rows={4}
-                            className="rounded-xl border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 resize-none"
+                            className="rounded-xl bg-white/5 border-white/10 text-white placeholder:text-slate-400 focus:border-blue-400 focus:ring-blue-400/20 resize-none"
                           />
                         </FormControl>
                         <FormMessage />
@@ -212,21 +212,21 @@ export default function ContactSection() {
             className="lg:col-span-2 space-y-6"
           >
             <div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Get in touch</h3>
-              <p className="text-slate-500 leading-relaxed">
+              <h3 className="text-xl font-bold text-white mb-2">Get in touch</h3>
+              <p className="text-slate-300 leading-relaxed">
                 Our team of experts is here to help you find the perfect solution for your business.
               </p>
             </div>
 
             <div className="space-y-4">
               {contactInfo.map((info, i) => (
-                <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-blue-200 transition-colors duration-200">
+                <div key={i} className="flex items-center gap-4 p-4 rounded-xl card-glass hover:border-blue-400/40 hover:bg-white/[0.07] transition-all duration-200">
                   <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center flex-shrink-0">
                     <info.icon className="text-white h-5 w-5" />
                   </div>
                   <div>
-                    <div className="text-sm text-slate-500 font-medium">{info.label}</div>
-                    <div className="text-slate-900 font-semibold">{info.value}</div>
+                    <div className="text-sm text-slate-400 font-medium">{info.label}</div>
+                    <div className="text-white font-semibold">{info.value}</div>
                   </div>
                 </div>
               ))}

@@ -82,9 +82,9 @@ export default function FactsSection() {
   };
 
   return (
-    <section ref={ref} className="py-24 bg-[#e8eef6] relative overflow-hidden">
+    <section ref={ref} className="py-24 section-dark relative overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-blue-50/50 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-500/15 rounded-full blur-3xl" />
       </div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -94,13 +94,13 @@ export default function FactsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-semibold mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full border border-blue-400/30 bg-blue-500/10 text-blue-200 text-sm font-semibold mb-4 tracking-wide uppercase">
             By the Numbers
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
-            The Foundation Under <span className="text-gradient-dsx">the Intelligence</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
+            The Foundation Under <span className="accent-serif text-orange-300">the Intelligence</span>
           </h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             Before DSX Edge brought AI to the front line, we spent 12+ years building the
             communications expertise that makes it work.
           </p>
@@ -114,16 +114,16 @@ export default function FactsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className={`relative rounded-2xl p-8 ${fact.bg} ring-1 ${fact.ring} text-center group hover:shadow-lg transition-all duration-300`}
+              className={`relative rounded-2xl p-8 card-glass text-center group hover:border-blue-400/40 hover:bg-white/[0.07] transition-all duration-300`}
             >
-              <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-white shadow-sm mb-5 ${fact.color}`}>
+              <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-white/10 border border-white/10 mb-5 ${fact.color}`}>
                 <fact.icon className="h-7 w-7" />
               </div>
               <div className={`text-5xl font-bold ${fact.color} mb-2 tabular-nums`}>
                 <AnimatedCounter value={fact.value} suffix={fact.suffix} />
               </div>
-              <div className="text-lg font-semibold text-slate-800 mb-1">{fact.title}</div>
-              <div className="text-sm text-slate-500">{fact.subtitle}</div>
+              <div className="text-lg font-semibold text-white mb-1">{fact.title}</div>
+              <div className="text-sm text-slate-400">{fact.subtitle}</div>
             </motion.div>
           ))}
         </div>

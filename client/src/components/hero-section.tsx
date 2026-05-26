@@ -45,7 +45,7 @@ export default function HeroSection() {
             >
               Business Communications.{" "}
               <span
-                className="text-orange-400 italic font-light tracking-tight"
+                className="accent-serif text-orange-400"
                 style={{ fontFamily: "'Fraunces', serif", fontOpticalSizing: "auto" }}
               >
                 Intelligent Integration.

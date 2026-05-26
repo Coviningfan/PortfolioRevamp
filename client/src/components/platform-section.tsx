@@ -23,7 +23,7 @@ export default function PlatformSection() {
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
               One partner. Three layers.{" "}
-              <span className="bg-gradient-to-r from-blue-300 to-orange-300 bg-clip-text text-transparent">
+              <span className="accent-serif text-orange-300">
                 One integrated platform.
               </span>
             </h2>

@@ -40,8 +40,12 @@ export default function TestimonialsSection() {
   const prev = () => setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section id="testimonials" className="py-24 bg-[#e8eef6]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="py-24 section-dark relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-500/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-orange-500/10 rounded-full blur-3xl" />
+      </div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -49,18 +53,20 @@ export default function TestimonialsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-orange-50 text-orange-600 text-sm font-semibold mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full border border-orange-400/30 bg-orange-500/10 text-orange-200 text-sm font-semibold mb-4 tracking-wide uppercase">
             Testimonials
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">What Our Clients Say</h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
+            What Our <span className="accent-serif text-orange-300">Clients Say</span>
+          </h2>
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             The communications backbone DSX Edge is built on — proven in real businesses.
           </p>
         </motion.div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="absolute -top-6 left-8 opacity-10">
-            <Quote className="h-24 w-24 text-blue-600" />
+          <div className="absolute -top-6 left-8 opacity-20">
+            <Quote className="h-24 w-24 text-blue-400" />
           </div>
 
           <AnimatePresence mode="wait">
@@ -70,7 +76,7 @@ export default function TestimonialsSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 }}
               transition={{ duration: 0.4 }}
-              className="relative bg-gradient-to-br from-slate-50 to-blue-50/30 rounded-2xl p-8 md:p-12 border border-slate-100"
+              className="relative card-glass rounded-2xl p-8 md:p-12"
             >
               <div className="flex flex-col md:flex-row md:items-start gap-6">
                 <div className="flex-shrink-0 flex flex-col items-center">
@@ -80,21 +86,21 @@ export default function TestimonialsSection() {
                     </span>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-emerald-600">
+                    <div className="text-2xl font-bold text-emerald-300">
                       {testimonials[currentTestimonial].savings}
                     </div>
-                    <div className="text-xs text-slate-500 font-medium">saved</div>
+                    <div className="text-xs text-slate-400 font-medium">saved</div>
                   </div>
                 </div>
                 <div className="flex-1">
-                  <p className="text-lg md:text-xl text-slate-700 leading-relaxed mb-6 italic">
+                  <p className="text-lg md:text-xl text-slate-200 leading-relaxed mb-6 italic">
                     "{testimonials[currentTestimonial].content}"
                   </p>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-lg">
+                    <h4 className="font-bold text-white text-lg">
                       {testimonials[currentTestimonial].name}
                     </h4>
-                    <p className="text-slate-500">
+                    <p className="text-slate-400">
                       {testimonials[currentTestimonial].title}
                     </p>
                   </div>
@@ -107,7 +113,7 @@ export default function TestimonialsSection() {
             <button
               data-testid="button-testimonial-prev"
               onClick={prev}
-              className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-slate-300 hover:shadow-md transition-all duration-200"
+              className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-white/30 hover:bg-white/10 transition-all duration-200"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -119,8 +125,8 @@ export default function TestimonialsSection() {
                   onClick={() => setCurrentTestimonial(index)}
                   className={`h-2 rounded-full transition-all duration-300 ${
                     index === currentTestimonial
-                      ? "bg-gradient-to-r from-blue-500 to-orange-500 w-8"
-                      : "bg-slate-300 w-2 hover:bg-slate-400"
+                      ? "bg-gradient-to-r from-blue-400 to-orange-400 w-8"
+                      : "bg-white/20 w-2 hover:bg-white/30"
                   }`}
                 />
               ))}
@@ -128,7 +134,7 @@ export default function TestimonialsSection() {
             <button
               data-testid="button-testimonial-next"
               onClick={next}
-              className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-slate-300 hover:shadow-md transition-all duration-200"
+              className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-white/30 hover:bg-white/10 transition-all duration-200"
             >
               <ChevronRight className="h-5 w-5" />
             </button>

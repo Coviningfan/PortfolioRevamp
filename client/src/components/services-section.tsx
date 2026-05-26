@@ -72,10 +72,10 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-24 bg-[#e8eef6] relative overflow-hidden">
+    <section id="services" className="py-24 section-dark relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-orange-100/40 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-500/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-orange-500/10 rounded-full blur-3xl" />
       </div>
       <div className="relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -86,14 +86,14 @@ export default function ServicesSection() {
           viewport={{ once: true }}
           className="text-center mb-5"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 text-sm font-semibold mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full border border-blue-400/30 bg-blue-500/10 text-blue-200 text-sm font-semibold mb-4 tracking-wide uppercase">
             How DSX Edge Works
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
             Communications first.{" "}
-            <span className="text-gradient-dsx">Then everything around it.</span>
+            <span className="accent-serif text-orange-300">Then everything around it.</span>
           </h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             A four-step path from modern business communications to integrated, intelligent
             operations — delivered by the same partner.
           </p>
@@ -120,10 +120,10 @@ export default function ServicesSection() {
               className="group"
             >
               <div
-                className={`relative bg-white rounded-2xl border ${step.accent} ${step.accentHover} p-6 h-full transition-all duration-500 hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1 overflow-hidden`}
+                className={`relative card-glass rounded-2xl p-6 h-full transition-all duration-500 hover:border-blue-400/40 hover:bg-white/[0.07] hover:-translate-y-1 overflow-hidden`}
                 data-testid={`service-card-${index}`}
               >
-                <div className={`absolute top-4 right-5 text-6xl font-black ${step.numberColor} leading-none select-none`}>
+                <div className={`absolute top-4 right-5 text-6xl font-black text-white/5 leading-none select-none`}>
                   {step.number}
                 </div>
                 <div className="mb-5 relative">
@@ -133,19 +133,19 @@ export default function ServicesSection() {
                     <step.icon className="text-white h-6 w-6" />
                   </div>
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2 relative leading-snug">{step.title}</h3>
-                <span className={`inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full ${step.taglineBg} ${step.taglineColor} mb-3 relative`}>
+                <h3 className="text-lg font-bold text-white mb-2 relative leading-snug">{step.title}</h3>
+                <span className={`inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-white/10 text-blue-200 border border-white/10 mb-3 relative`}>
                   {step.tagline}
                 </span>
-                <p className="text-slate-500 leading-relaxed relative mb-4 text-[13px]">{step.description}</p>
+                <p className="text-slate-400 leading-relaxed relative mb-4 text-[13px]">{step.description}</p>
 
-                <div className="relative pt-3 border-t border-slate-100 space-y-2">
+                <div className="relative pt-3 border-t border-white/10 space-y-2">
                   {step.flow.map((line, j) => (
                     <div key={j} className="flex items-start gap-2">
-                      <div className={`w-4 h-4 rounded-full ${step.flowDot} flex items-center justify-center flex-shrink-0 opacity-60 group-hover:opacity-100 transition-opacity mt-0.5`}>
+                      <div className={`w-4 h-4 rounded-full ${step.flowDot} flex items-center justify-center flex-shrink-0 opacity-70 group-hover:opacity-100 transition-opacity mt-0.5`}>
                         <Check className="h-2.5 w-2.5 text-white" />
                       </div>
-                      <span className="text-[11.5px] text-slate-600 font-medium leading-snug">{line}</span>
+                      <span className="text-[11.5px] text-slate-300 font-medium leading-snug">{line}</span>
                     </div>
                   ))}
                 </div>

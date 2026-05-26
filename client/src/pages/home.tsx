@@ -55,7 +55,7 @@ const caseStudies = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#e8eef6]">
+    <div className="min-h-screen bg-slate-950">
       <Navigation />
       <HeroSection />
       <ProblemSection />
@@ -67,8 +67,12 @@ export default function Home() {
       <AboutSection />
       <TestimonialsSection />
 
-      <section className="py-24 bg-[#e8eef6]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 section-dark relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-500/15 rounded-full blur-3xl" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -76,11 +80,13 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-sm font-semibold mb-4">
+            <span className="inline-block px-4 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 text-emerald-200 text-sm font-semibold mb-4 tracking-wide uppercase">
               Case Studies
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5">Real Businesses. Real Savings.</h2>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
+              Real Businesses. <span className="accent-serif text-orange-300">Real Savings.</span>
+            </h2>
+            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
               The communications work that proved DSX is the right place to bring AI next.
             </p>
           </motion.div>
@@ -93,26 +99,26 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className={`bg-white rounded-2xl p-8 border ${study.border} hover:shadow-lg transition-all duration-300`}
+                className="card-glass rounded-2xl p-8 hover:border-blue-400/40 hover:bg-white/[0.07] transition-all duration-300"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-10 h-10 rounded-xl ${study.bg} flex items-center justify-center`}>
-                    <TrendingDown className={`h-5 w-5 ${study.accent}`} />
+                  <div className={`w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center`}>
+                    <TrendingDown className={`h-5 w-5 ${study.accent.replace('600', '300')}`} />
                   </div>
-                  <div className={`text-3xl font-bold ${study.accent}`}>{study.savings}</div>
+                  <div className={`text-3xl font-bold ${study.accent.replace('600', '300')}`}>{study.savings}</div>
                   <span className="text-sm text-slate-400 font-medium">saved</span>
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-1" data-testid={`text-case-study-${index}`}>
+                <h3 className="text-lg font-bold text-white mb-1" data-testid={`text-case-study-${index}`}>
                   {study.name}
                 </h3>
-                <span className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full ${study.bg} ${study.accent} mb-3`}>
+                <span className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full bg-white/10 border border-white/10 ${study.accent.replace('600', '300')} mb-3`}>
                   {study.size}
                 </span>
-                <p className="text-sm text-slate-500 mb-5">{study.description}</p>
-                <div className={`${study.bg} rounded-xl p-4`}>
+                <p className="text-sm text-slate-400 mb-5">{study.description}</p>
+                <div className="bg-white/5 border border-white/5 rounded-xl p-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-slate-600">Monthly Cost</span>
-                    <span className={`font-bold ${study.accent}`}>{study.monthlyCost}</span>
+                    <span className="text-sm text-slate-300">Monthly Cost</span>
+                    <span className={`font-bold ${study.accent.replace('600', '300')}`}>{study.monthlyCost}</span>
                   </div>
                 </div>
                 <p className="text-xs text-slate-400 mt-3">{study.note}</p>

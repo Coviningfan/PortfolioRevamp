@@ -79,6 +79,24 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  .accent-serif {
+    font-family: 'Fraunces', 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "SOFT" 100, "WONK" 0;
+    letter-spacing: -0.01em;
+  }
+
+  .section-dark {
+    background: linear-gradient(135deg, #020617 0%, #0c1f3f 50%, #0f172a 100%);
+  }
+
+  .card-glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
   
   .text-gradient-orange {
     background: linear-gradient(135deg, hsl(var(--dsx-orange)), hsl(var(--dsx-red)));
