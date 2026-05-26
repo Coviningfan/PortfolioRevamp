@@ -63,8 +63,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
         "User-agent: *",
         "Allow: /",
         "Disallow: /api/",
+        "Disallow: /404",
+        "",
+        "User-agent: GPTBot",
+        "Allow: /blog/",
+        "Disallow: /",
+        "",
+        "User-agent: CCBot",
+        "Allow: /blog/",
+        "Disallow: /",
+        "",
+        "User-agent: ClaudeBot",
+        "Allow: /blog/",
+        "Disallow: /",
+        "",
+        "User-agent: Google-Extended",
+        "Allow: /blog/",
+        "Disallow: /",
+        "",
+        "User-agent: PerplexityBot",
+        "Allow: /blog/",
+        "Disallow: /",
         "",
         `Sitemap: ${SITE_URL}/sitemap.xml`,
+        `Host: ${SITE_URL.replace(/^https?:\/\//, "")}`,
       ].join("\n"),
     );
   });
@@ -72,28 +94,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/sitemap.xml", (_req, res) => {
     const today = new Date().toISOString().slice(0, 10);
     const posts = getBlogSlugs();
-    const urls = [
-      ...STATIC_ROUTES.map((r) => ({
-        loc: `${SITE_URL}${r.loc}`,
-        lastmod: today,
-        changefreq: r.changefreq,
-        priority: r.priority,
-      })),
-      ...posts.map((p) => ({
+    const latestPostDate = posts.reduce(
+      (max, p) => (p.date > max ? p.date : max),
+      "1970-01-01",
+    );
+    const homeLastmod = latestPostDate > "1970-01-01" ? latestPostDate : today;
+    const blogLastmod = latestPostDate > "1970-01-01" ? latestPostDate : today;
+
+    const urls = STATIC_ROUTES.map((r) => ({
+      loc: `${SITE_URL}${r.loc}`,
+      lastmod: r.loc === "/" ? homeLastmod : r.loc === "/blog" ? blogLastmod : today,
+      changefreq: r.changefreq,
+      priority: r.priority,
+      image: `${SITE_URL}/og-image.png`,
+    })).concat(
+      posts.map((p) => ({
         loc: `${SITE_URL}/blog/${p.slug}`,
         lastmod: p.date,
         changefreq: "monthly",
         priority: "0.7",
+        image: `${SITE_URL}/og-image.png`,
       })),
-    ];
+    );
 
     const xml =
       `<?xml version="1.0" encoding="UTF-8"?>\n` +
-      `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+      `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
       urls
         .map(
           (u) =>
-            `  <url><loc>${u.loc}</loc><lastmod>${u.lastmod}</lastmod><changefreq>${u.changefreq}</changefreq><priority>${u.priority}</priority></url>`,
+            `  <url>\n` +
+            `    <loc>${u.loc}</loc>\n` +
+            `    <lastmod>${u.lastmod}</lastmod>\n` +
+            `    <changefreq>${u.changefreq}</changefreq>\n` +
+            `    <priority>${u.priority}</priority>\n` +
+            `    <image:image><image:loc>${u.image}</image:loc></image:image>\n` +
+            `  </url>`,
         )
         .join("\n") +
       `\n</urlset>\n`;

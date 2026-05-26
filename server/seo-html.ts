@@ -1,0 +1,207 @@
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import {
+  SITE_DEFAULTS,
+  STATIC_ROUTE_META,
+  metaForStaticPath,
+  buildJsonLdForPath,
+  type RouteMeta,
+} from "../shared/seo-meta";
+
+function safeJsonLd(obj: object): string {
+  // Escape `</` to prevent breakout of <script> in case any string contains it
+  return JSON.stringify(obj).replace(/</g, "\\u003c");
+}
+
+const SITE_URL = (
+  process.env.VITE_SITE_URL ||
+  process.env.SITE_URL ||
+  "https://dsxedge.com"
+).replace(/\/$/, "");
+
+function absUrl(p: string) {
+  return p.startsWith("http") ? p : `${SITE_URL}${p.startsWith("/") ? p : `/${p}`}`;
+}
+
+function esc(s: string) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function blogContentDir(): string | null {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  const candidates = [
+    path.resolve(__dirname, "blog-content"),
+    path.resolve(__dirname, "..", "dist", "blog-content"),
+    path.resolve(__dirname, "..", "client", "src", "content", "blog"),
+    path.resolve(process.cwd(), "client", "src", "content", "blog"),
+    path.resolve(process.cwd(), "dist", "blog-content"),
+  ];
+  return candidates.find((p) => {
+    try { return fs.existsSync(p); } catch { return false; }
+  }) || null;
+}
+
+function readFrontmatter(slug: string): Record<string, string> | null {
+  const dir = blogContentDir();
+  if (!dir) return null;
+  const fp = path.join(dir, `${slug}.md`);
+  if (!fs.existsSync(fp)) return null;
+  try {
+    const raw = fs.readFileSync(fp, "utf8");
+    const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    if (!m) return null;
+    const data: Record<string, string> = {};
+    for (const line of m[1].split(/\r?\n/)) {
+      const kv = line.match(/^([a-zA-Z0-9_]+):\s*"?([^"\n]*?)"?\s*$/);
+      if (kv) data[kv[1]] = kv[2];
+    }
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+interface ResolvedMeta extends RouteMeta {
+  canonicalPath: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  jsonLd?: object[];
+  status: 200 | 404;
+}
+
+export function resolveMetaForUrl(rawUrl: string): ResolvedMeta {
+  const pathname = (rawUrl.split("?")[0] || "/").replace(/\/+$/, "") || "/";
+
+  const staticMeta = metaForStaticPath(pathname);
+  if (staticMeta) {
+    return {
+      ...staticMeta,
+      canonicalPath: pathname,
+      status: 200,
+      jsonLd: buildJsonLdForPath(pathname, SITE_URL),
+    };
+  }
+
+  const blogMatch = pathname.match(/^\/blog\/([a-zA-Z0-9-]+)$/);
+  if (blogMatch) {
+    const slug = blogMatch[1].toLowerCase();
+    const fm = readFrontmatter(slug);
+    if (fm && fm.title) {
+      const ld = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: fm.title,
+        description: fm.description || "",
+        datePublished: fm.date,
+        dateModified: fm.date,
+        author: { "@type": "Organization", name: fm.author || SITE_DEFAULTS.name },
+        publisher: {
+          "@type": "Organization",
+          name: SITE_DEFAULTS.name,
+          logo: { "@type": "ImageObject", url: absUrl(SITE_DEFAULTS.defaultImage) },
+        },
+        mainEntityOfPage: { "@type": "WebPage", "@id": absUrl(pathname) },
+        image: absUrl(SITE_DEFAULTS.defaultImage),
+      };
+      const breadcrumb = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: absUrl("/") },
+          { "@type": "ListItem", position: 2, name: "Blog", item: absUrl("/blog") },
+          { "@type": "ListItem", position: 3, name: fm.title, item: absUrl(pathname) },
+        ],
+      };
+      return {
+        title: fm.title,
+        description: fm.description || SITE_DEFAULTS.defaultDescription,
+        canonicalPath: pathname,
+        type: "article",
+        publishedTime: fm.date,
+        modifiedTime: fm.date,
+        jsonLd: [ld, breadcrumb],
+        status: 200,
+      };
+    }
+    return {
+      title: "Post Not Found",
+      description: "This blog post could not be found.",
+      canonicalPath: pathname,
+      noIndex: true,
+      status: 404,
+    };
+  }
+
+  return {
+    title: "Page Not Found",
+    description: "The page you're looking for doesn't exist or has been moved.",
+    canonicalPath: pathname,
+    noIndex: true,
+    status: 404,
+  };
+}
+
+export function applyMetaToHtml(html: string, rawUrl: string): { html: string; status: 200 | 404 } {
+  const meta = resolveMetaForUrl(rawUrl);
+  const fullTitle =
+    meta.canonicalPath === "/"
+      ? SITE_DEFAULTS.defaultTitle
+      : SITE_DEFAULTS.titleTemplate.replace("%s", meta.title);
+  const description = meta.description || SITE_DEFAULTS.defaultDescription;
+  const canonical = absUrl(meta.canonicalPath);
+  const image = absUrl(meta.image || SITE_DEFAULTS.defaultImage);
+  const robots = meta.noIndex
+    ? "noindex, nofollow"
+    : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+
+  let out = html;
+  out = out.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(fullTitle)}</title>`);
+  out = out.replace(
+    /<meta\s+name="description"[^>]*>/i,
+    `<meta name="description" content="${esc(description)}">`,
+  );
+
+  const tags: string[] = [];
+  tags.push(`<link rel="canonical" href="${esc(canonical)}">`);
+  tags.push(`<meta name="robots" content="${robots}">`);
+  if (meta.keywords?.length) {
+    tags.push(`<meta name="keywords" content="${esc(meta.keywords.join(", "))}">`);
+  }
+  tags.push(`<meta property="og:type" content="${meta.type || "website"}">`);
+  tags.push(`<meta property="og:site_name" content="${esc(SITE_DEFAULTS.name)}">`);
+  tags.push(`<meta property="og:title" content="${esc(fullTitle)}">`);
+  tags.push(`<meta property="og:description" content="${esc(description)}">`);
+  tags.push(`<meta property="og:url" content="${esc(canonical)}">`);
+  tags.push(`<meta property="og:image" content="${esc(image)}">`);
+  tags.push(`<meta property="og:image:width" content="1200">`);
+  tags.push(`<meta property="og:image:height" content="630">`);
+  tags.push(`<meta property="og:image:alt" content="${esc(SITE_DEFAULTS.name)} — Above the Cloud. Into the Business.">`);
+  tags.push(`<meta property="og:locale" content="${SITE_DEFAULTS.locale}">`);
+  if (meta.publishedTime) tags.push(`<meta property="article:published_time" content="${esc(meta.publishedTime)}">`);
+  if (meta.modifiedTime) tags.push(`<meta property="article:modified_time" content="${esc(meta.modifiedTime)}">`);
+  tags.push(`<meta name="twitter:card" content="summary_large_image">`);
+  tags.push(`<meta name="twitter:site" content="${esc(SITE_DEFAULTS.twitter)}">`);
+  tags.push(`<meta name="twitter:title" content="${esc(fullTitle)}">`);
+  tags.push(`<meta name="twitter:description" content="${esc(description)}">`);
+  tags.push(`<meta name="twitter:image" content="${esc(image)}">`);
+  if (meta.jsonLd?.length) {
+    for (const ld of meta.jsonLd) {
+      tags.push(`<script type="application/ld+json">${safeJsonLd(ld)}</script>`);
+    }
+  }
+
+  const block = `\n    <!-- SEO (server-injected) -->\n    ${tags.join("\n    ")}\n    <!-- /SEO -->\n  `;
+  out = out.replace(/<\/head>/i, `${block}</head>`);
+
+  return { html: out, status: meta.status };
+}
+
+export function listKnownRoutes(): string[] {
+  return Object.keys(STATIC_ROUTE_META);
+}

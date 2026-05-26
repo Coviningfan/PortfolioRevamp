@@ -77,11 +77,7 @@ function BrandCanvas() {
 export default function AboutPage() {
   return (
     <div className="min-h-screen page-canvas relative overflow-hidden">
-      <Seo
-        title="About DSX Edge — 12 Years in Business Communications"
-        description="DSX Edge built its foundation on 12+ years of business communications. Today we layer AI on top of the phone systems we already run — the natural place for practical AI."
-        path="/about"
-      />
+      <Seo path="/about" />
       <BrandCanvas />
       <div className="relative z-10">
         <Navigation />

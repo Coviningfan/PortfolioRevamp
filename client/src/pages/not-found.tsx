@@ -3,10 +3,17 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import Seo from "@/components/seo";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-white">
+      <Seo
+        title="Page Not Found"
+        description="The page you're looking for doesn't exist or has been moved."
+        path="/404"
+        noIndex
+      />
       <Navigation />
       <section className="pt-32 pb-24 flex items-center justify-center">
         <div className="max-w-lg mx-auto px-4 text-center">

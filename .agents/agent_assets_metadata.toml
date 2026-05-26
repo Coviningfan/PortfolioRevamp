@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "NlEvjY5jgjJFizg82YgLO"
+uri = "file://attached_assets/generated_images/premium_tech_brand_social_e0a5.png"
+type = "image"
+title = "generated_image"

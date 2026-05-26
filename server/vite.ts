@@ -5,6 +5,7 @@ import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
 import viteConfig from "../vite.config";
 import { nanoid } from "nanoid";
+import { applyMetaToHtml } from "./seo-html";
 
 const viteLogger = createLogger();
 
@@ -59,7 +60,8 @@ export async function setupVite(app: Express, server: Server) {
         `src="/src/main.tsx?v=${nanoid()}"`,
       );
       const page = await vite.transformIndexHtml(url, template);
-      res.status(200).set({ "Content-Type": "text/html" }).end(page);
+      const { html, status } = applyMetaToHtml(page, url);
+      res.status(status).set({ "Content-Type": "text/html" }).end(html);
     } catch (e) {
       vite.ssrFixStacktrace(e as Error);
       next(e);
@@ -76,10 +78,17 @@ export function serveStatic(app: Express) {
     );
   }
 
-  app.use(express.static(distPath));
+  app.use(express.static(distPath, { index: false }));
 
-  // fall through to index.html if the file doesn't exist
-  app.use("*", (_req, res) => {
-    res.sendFile(path.resolve(distPath, "index.html"));
+  // fall through to index.html if the file doesn't exist, with server-side SEO meta injection
+  app.use("*", (req, res) => {
+    const indexFile = path.resolve(distPath, "index.html");
+    try {
+      const template = fs.readFileSync(indexFile, "utf-8");
+      const { html, status } = applyMetaToHtml(template, req.originalUrl);
+      res.status(status).set({ "Content-Type": "text/html" }).end(html);
+    } catch (e) {
+      res.sendFile(indexFile);
+    }
   });
 }

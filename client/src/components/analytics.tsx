@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
+import { onCLS, onFCP, onINP, onLCP, onTTFB, type Metric } from "web-vitals";
 
 declare global {
   interface Window {
@@ -12,6 +13,7 @@ const GA_ID = import.meta.env.VITE_GA_ID as string | undefined;
 const GTM_ID = import.meta.env.VITE_GTM_ID as string | undefined;
 
 let injected = false;
+let vitalsBound = false;
 
 function injectScripts() {
   if (injected || typeof document === "undefined") return;
@@ -39,11 +41,42 @@ function injectScripts() {
   }
 }
 
+function reportVital(metric: Metric) {
+  const payload = {
+    metric_name: metric.name,
+    metric_value: Math.round(metric.name === "CLS" ? metric.value * 1000 : metric.value),
+    metric_id: metric.id,
+    metric_rating: metric.rating,
+    page_path: window.location.pathname,
+  };
+  if (GA_ID && window.gtag) {
+    window.gtag("event", "web_vitals", payload);
+  }
+  if (GTM_ID && window.dataLayer) {
+    window.dataLayer.push({ event: "web_vitals", ...payload });
+  }
+}
+
+function bindVitals() {
+  if (vitalsBound) return;
+  vitalsBound = true;
+  try {
+    onCLS(reportVital);
+    onFCP(reportVital);
+    onINP(reportVital);
+    onLCP(reportVital);
+    onTTFB(reportVital);
+  } catch {
+    // ignore
+  }
+}
+
 export default function Analytics() {
   const [location] = useLocation();
 
   useEffect(() => {
     injectScripts();
+    bindVitals();
   }, []);
 
   useEffect(() => {

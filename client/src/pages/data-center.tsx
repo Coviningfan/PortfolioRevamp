@@ -102,11 +102,7 @@ export default function DataCenterPage() {
 
   return (
     <div className="min-h-screen page-canvas relative overflow-hidden">
-      <Seo
-        title="Data Center — Hosted at Citadel Campus"
-        description="DSX Edge infrastructure is hosted at Citadel Campus — one of the world's most advanced data centers, with 99.9% uptime, renewable power, and unrivaled connectivity."
-        path="/data-center"
-      />
+      <Seo path="/data-center" />
       <BrandCanvas />
       <div className="relative z-10">
         <Navigation />

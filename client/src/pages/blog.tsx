@@ -5,38 +5,27 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Seo from "@/components/seo";
 import { getAllPosts } from "@/content/blog";
-import { SITE, absoluteUrl } from "@/lib/site";
+import { absoluteUrl } from "@/lib/site";
 
 export default function BlogIndexPage() {
   const posts = getAllPosts();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    name: `${SITE.name} Blog`,
-    url: absoluteUrl("/blog"),
-    publisher: {
-      "@type": "Organization",
-      name: SITE.name,
-      url: SITE.domain,
+  const extraJsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: posts.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: absoluteUrl(`/blog/${p.slug}`),
+        name: p.title,
+      })),
     },
-    blogPost: posts.map((p) => ({
-      "@type": "BlogPosting",
-      headline: p.title,
-      url: absoluteUrl(`/blog/${p.slug}`),
-      datePublished: p.date,
-      author: { "@type": "Organization", name: p.author },
-    })),
-  };
+  ];
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
-      <Seo
-        title="Blog — AI & Business Communications Insights"
-        description="Field notes from the DSX Edge team on AI voice agents, 3CX deployments, and bringing intelligence to business phone systems."
-        path="/blog"
-        jsonLd={jsonLd}
-      />
+      <Seo path="/blog" jsonLd={extraJsonLd} />
       <Navigation />
 
       <section className="relative pt-32 pb-16 overflow-hidden">

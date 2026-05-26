@@ -6,11 +6,7 @@ import Seo from "@/components/seo";
 export default function ContactPage() {
   return (
     <div className="min-h-screen page-canvas">
-      <Seo
-        title="Talk to DSX — Get a Workflow Audit"
-        description="Talk to DSX about bringing AI into your phone system. Free workflow audit, no pressure. 3CX Platinum Partner with 12+ years of deployments."
-        path="/contact"
-      />
+      <Seo path="/contact" />
       <Navigation />
       <div className="pt-20">
         <ContactSection />

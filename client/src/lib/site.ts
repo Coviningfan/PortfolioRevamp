@@ -1,5 +1,6 @@
 export const SITE = {
   name: "DSX Edge",
+  legalName: "DSX",
   domain: import.meta.env.VITE_SITE_URL || "https://dsxedge.com",
   defaultTitle: "DSX Edge — Above the Cloud. Into the Business.",
   titleTemplate: "%s | DSX Edge",
@@ -9,6 +10,19 @@ export const SITE = {
   twitter: "@dsxedge",
   locale: "en_US",
   phone: "+1-000-000-0000",
+  email: "hello@dsxedge.com",
+  founded: "2013",
+  address: {
+    streetAddress: "",
+    addressLocality: "San Diego",
+    addressRegion: "CA",
+    postalCode: "",
+    addressCountry: "US",
+  },
+  sameAs: [
+    "https://www.linkedin.com/company/dsx-edge",
+  ],
+  areaServed: ["US", "MX", "CA"],
 };
 
 export const absoluteUrl = (path: string = "/") => {
