@@ -673,29 +673,19 @@ function ArcConnector({
         </filter>
       </defs>
 
-      <motion.path
-        d={pathD}
-        fill="none"
-        stroke={tone.arcGlow}
-        strokeWidth={active ? 4 : 2.5}
-        strokeLinecap="round"
-        filter={`url(#arc-glow-${pillar.key})`}
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: active ? 1 : 0.5 }}
-        transition={{ delay: pillar.delay + 0.15, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-      />
-
-      <motion.path
-        d={pathD}
-        fill="none"
-        stroke={tone.arc}
-        strokeWidth={active ? 1.5 : 1}
-        strokeLinecap="round"
-        strokeDasharray="3 4"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: active ? 1 : 0.65 }}
-        transition={{ delay: pillar.delay + 0.15, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-      />
+      {active && (
+        <motion.path
+          d={pathD}
+          fill="none"
+          stroke={tone.arcGlow}
+          strokeWidth={1}
+          strokeLinecap="round"
+          strokeDasharray="2 5"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.45 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        />
+      )}
 
       {!reduced && (
         <>
