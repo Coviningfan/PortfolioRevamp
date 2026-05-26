@@ -5,9 +5,9 @@ export default function ProblemSection() {
   const frictions = [
     {
       icon: Shuffle,
-      label: "Communications that leak",
+      label: "Phones that miss customers",
       detail:
-        "Missed calls, bad routing, voicemail dependency, slow response. Customers move to whoever picks up first.",
+        "Missed calls, dead-end voicemail, slow callbacks. The customer hangs up and dials your competitor.",
     },
     {
       icon: PlugZap,
@@ -86,7 +86,7 @@ export default function ProblemSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true }}
-              className="group relative card-glass rounded-2xl p-7 hover:border-blue-400/40 hover:bg-white/[0.07] hover:-translate-y-0.5 transition-all duration-300"
+              className="group relative card-glass card-sheen hover-lift rounded-2xl p-6 hover:border-blue-400/50 hover:bg-white/[0.07]"
               data-testid={`problem-card-${i}`}
             >
               <div className="flex items-start gap-5">

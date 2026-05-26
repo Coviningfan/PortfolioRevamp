@@ -44,7 +44,7 @@ export default function AboutSection() {
             <div className="grid sm:grid-cols-2 gap-3 mb-8">
               {highlights.map((item, i) => (
                 <div key={i} className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="h-5 w-5 text-orange-300 flex-shrink-0 mt-0.5" />
                   <span className="text-sm text-slate-300 font-medium">{item}</span>
                 </div>
               ))}
@@ -89,13 +89,13 @@ export default function AboutSection() {
                     <div className="text-3xl font-bold text-orange-300 mb-1">AI</div>
                     <div className="text-sm text-slate-400">Brought to Real Workflows</div>
                   </div>
-                  <div className="text-center p-4 rounded-xl bg-emerald-500/10 border border-emerald-400/20">
-                    <div className="text-3xl font-bold text-emerald-300 mb-1">99.9%</div>
-                    <div className="text-sm text-slate-400">Always-On Reliability</div>
+                  <div className="text-center p-4 rounded-xl bg-blue-500/10 border border-blue-400/20">
+                    <div className="text-3xl font-bold text-blue-300 mb-1">99.9%</div>
+                    <div className="text-sm text-slate-300">Always-On Reliability</div>
                   </div>
-                  <div className="text-center p-4 rounded-xl bg-violet-500/10 border border-violet-400/20">
-                    <div className="text-3xl font-bold text-violet-300 mb-1">3CX</div>
-                    <div className="text-sm text-slate-400">Platinum Partner Backbone</div>
+                  <div className="text-center p-4 rounded-xl bg-orange-500/10 border border-orange-400/20">
+                    <div className="text-3xl font-bold text-orange-300 mb-1">3CX</div>
+                    <div className="text-sm text-slate-300">Platinum Partner Backbone</div>
                   </div>
                 </div>
               </div>

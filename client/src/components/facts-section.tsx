@@ -13,9 +13,7 @@ export default function FactsSection() {
       suffix: "+",
       title: "Years in Communications",
       subtitle: "The foundation we now bring AI to",
-      color: "text-blue-500",
-      bg: "bg-blue-50",
-      ring: "ring-blue-100",
+      color: "text-blue-300",
     },
     {
       icon: TrendingDown,
@@ -23,9 +21,7 @@ export default function FactsSection() {
       suffix: "%",
       title: "Avg Cost Reduction",
       subtitle: "Real savings from real deployments",
-      color: "text-orange-500",
-      bg: "bg-orange-50",
-      ring: "ring-orange-100",
+      color: "text-orange-300",
     },
     {
       icon: Globe,
@@ -33,9 +29,7 @@ export default function FactsSection() {
       suffix: "+",
       title: "Countries Served",
       subtitle: "Global reach with local expertise",
-      color: "text-emerald-500",
-      bg: "bg-emerald-50",
-      ring: "ring-emerald-100",
+      color: "text-blue-300",
     },
     {
       icon: Handshake,
@@ -43,9 +37,7 @@ export default function FactsSection() {
       suffix: ".9%",
       title: "Uptime Guarantee",
       subtitle: "Enterprise-grade reliability",
-      color: "text-violet-500",
-      bg: "bg-violet-50",
-      ring: "ring-violet-100",
+      color: "text-orange-300",
     },
   ];
 
@@ -113,7 +105,7 @@ export default function FactsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className={`relative rounded-2xl p-8 card-glass text-center group hover:border-blue-400/40 hover:bg-white/[0.07] transition-all duration-300`}
+              className={`relative rounded-2xl p-8 card-glass card-sheen hover-lift text-center group hover:border-blue-400/50 hover:bg-white/[0.07]`}
             >
               <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-white/10 border border-white/10 mb-5 ${fact.color}`}>
                 <fact.icon className="h-7 w-7" />

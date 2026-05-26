@@ -79,7 +79,7 @@ export default function AIFutureSection() {
   ];
 
   return (
-    <section ref={ref} className="py-24 section-dark relative overflow-hidden">
+    <section id="ai-future" ref={ref} className="py-24 section-dark relative overflow-hidden">
       <div className="absolute inset-0">
       </div>
 
@@ -236,7 +236,7 @@ export default function AIFutureSection() {
                   "12+ years installing systems that actually stay running",
                 ].map((point, i) => (
                   <div key={i} className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-orange-300 flex-shrink-0 mt-0.5" />
                     <span className="text-slate-300 text-sm">{point}</span>
                   </div>
                 ))}
@@ -266,14 +266,14 @@ export default function AIFutureSection() {
                 </div>
                 <div className="text-xs text-slate-300">Agents never sleep</div>
               </div>
-              <div className="card-sheen hover-lift bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center border border-white/10 hover:border-emerald-400/40">
-                <div className="text-3xl font-bold text-emerald-400 mb-1">
+              <div className="card-sheen hover-lift bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center border border-white/10 hover:border-blue-400/40">
+                <div className="text-3xl font-bold text-blue-300 mb-1">
                   <AnimatedCounter value={99} suffix=".9%" />
                 </div>
                 <div className="text-xs text-slate-300">Uptime SLA on hosted systems</div>
               </div>
-              <div className="card-sheen hover-lift bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center border border-white/10 hover:border-violet-400/40">
-                <div className="text-3xl font-bold text-violet-400 mb-1">
+              <div className="card-sheen hover-lift bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center border border-white/10 hover:border-orange-400/40">
+                <div className="text-3xl font-bold text-orange-300 mb-1">
                   <AnimatedCounter value={12} suffix="+" />
                 </div>
                 <div className="text-xs text-slate-300">Years deploying real systems</div>

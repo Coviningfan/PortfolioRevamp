@@ -4,9 +4,9 @@ import jabvLogo from "@assets/JABVLABS_LOGO_HD-removebg-preview_1771726977207.pn
 
 export default function Footer() {
   const serviceLinks = [
-    { label: "Modernize the Phone System", href: "/contact" },
-    { label: "Map the Communication Flow", href: "/contact" },
-    { label: "Add the Intelligence Layer", href: "/contact" },
+    { label: "Modernize the Phone System", href: "/#services" },
+    { label: "Map the Communication Flow", href: "/#services" },
+    { label: "Deploy AI Agents", href: "/#ai-future" },
     { label: "Data Center", href: "/data-center" },
   ];
 

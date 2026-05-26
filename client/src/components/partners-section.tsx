@@ -36,7 +36,7 @@ export default function PartnersSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className="group bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 flex items-center justify-center w-[calc(20%-1rem)] min-w-[140px]"
+              className="group card-glass card-sheen hover-lift rounded-xl p-6 hover:border-blue-400/50 flex items-center justify-center w-[calc(20%-1rem)] min-w-[140px]"
             >
               <div className="h-12 w-full flex items-center justify-center">
                 <img

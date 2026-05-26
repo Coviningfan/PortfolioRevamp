@@ -26,9 +26,9 @@ export default function PlatformSection() {
               </span>
             </h2>
             <p className="text-lg text-slate-300 leading-relaxed mb-6">
-              DSX Edge is the unified evolution of business communications, hosted
-              infrastructure, and DSX AI Enabled workflows. The systems your business
-              already depends on, finally operating as one.
+              Phones at the bottom. Hosting in the middle. AI agents on top.
+              The same partner builds all three so they actually work together —
+              not just sit next to each other in your stack.
             </p>
 
             <div className="space-y-4">
@@ -50,7 +50,7 @@ export default function PlatformSection() {
                 {
                   num: "03",
                   label: "DSX AI Enabled",
-                  detail: "AI Workflows · CRM Actions · Automation · Notifications · Operational Intelligence",
+                  detail: "AI Agents · CRM Actions · Booking · Notifications · Call Summaries",
                   accent: "border-orange-400/40 bg-orange-500/5",
                   numColor: "text-orange-300",
                 },

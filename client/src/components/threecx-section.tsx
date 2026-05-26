@@ -7,7 +7,7 @@ export default function ThreeCXSection() {
     {
       icon: Layers,
       title: "3CX is the Phone Platform",
-      description: "3CX gives you a modern PBX. DSX gives you the install, the integrations, the call flows, the support — and the AI agents that sit on top. A platform alone doesn't run a business. We do.",
+      description: "3CX gives you the phone system. DSX gives you the install, the integrations, the call flows, the support — and the AI agents that sit on top. A platform alone doesn't run a business. We do.",
     },
     {
       icon: Award,
@@ -22,7 +22,7 @@ export default function ThreeCXSection() {
     {
       icon: Network,
       title: "One Vendor — Phones, Hosting, Agents",
-      description: "Managed PBX, SIP trunking, business connectivity, hosted infrastructure, and AI agents — from one partner. One throat to choke when something breaks. (It rarely does.)",
+      description: "Phones, trunking, connectivity, hosting, and AI agents — from one partner. One number to call when something needs attention. (It rarely does.)",
     },
     {
       icon: Wrench,

@@ -46,10 +46,10 @@ const caseStudies = [
     monthlyCost: "$239.00",
     savings: "64%",
     note: "Seamless international connectivity",
-    color: "violet",
-    bg: "bg-violet-50",
-    accent: "text-violet-600",
-    border: "border-violet-200",
+    color: "blue",
+    bg: "bg-blue-50",
+    accent: "text-blue-600",
+    border: "border-blue-200",
   },
 ];
 
@@ -134,7 +134,7 @@ export default function Home() {
         <AboutSection />
         <TestimonialsSection />
 
-      <section className="py-24 section-dark relative overflow-hidden">
+      <section id="case-studies" className="py-24 section-dark relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -145,7 +145,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 text-emerald-200 text-sm font-semibold mb-4 tracking-wide uppercase">
+            <span className="inline-block px-4 py-1.5 rounded-full border border-orange-400/30 bg-orange-500/10 text-orange-200 text-sm font-semibold mb-4 tracking-wide uppercase">
               Case Studies
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
@@ -164,7 +164,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="card-glass rounded-2xl p-8 hover:border-blue-400/40 hover:bg-white/[0.07] transition-all duration-300"
+                className="card-glass card-sheen hover-lift rounded-2xl p-8 hover:border-blue-400/50 hover:bg-white/[0.07]"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className={`w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center`}>
@@ -198,7 +198,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="mt-12"
           >
-            <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl p-10 text-center">
+            <div className="card-glass brand-halo rounded-2xl p-10 text-center">
               <p className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-2">Based on actual DSX deployments</p>
               <p className="text-white text-2xl md:text-3xl font-bold">
                 DSX reduces communication costs by up to{" "}

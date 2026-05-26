@@ -95,8 +95,8 @@ export default function ContactSection() {
             <div className="card-glass rounded-2xl p-8">
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-white mb-2">Send us a message</h3>
-                <div className="flex items-center gap-2 text-sm text-emerald-300">
-                  <div className="w-2 h-2 bg-emerald-400 rounded-full motion-safe:animate-pulse" />
+                <div className="flex items-center gap-2 text-sm text-blue-200">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full motion-safe:animate-pulse" />
                   <span>Typically respond within 2 hours</span>
                 </div>
               </div>
@@ -183,7 +183,7 @@ export default function ContactSection() {
                     data-testid="button-submit-contact"
                     type="submit"
                     disabled={contactMutation.isPending}
-                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 rounded-xl h-12 text-base font-semibold group"
+                    className="btn-shimmer w-full bg-gradient-to-r from-blue-500 to-orange-500 text-white hover:shadow-2xl hover:shadow-orange-500/40 transition-all duration-500 rounded-xl h-12 text-base font-semibold group"
                   >
                     {contactMutation.isPending ? (
                       <span className="flex items-center gap-2">

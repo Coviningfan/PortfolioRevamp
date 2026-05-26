@@ -63,8 +63,8 @@ export default function TestimonialsSection() {
         </motion.div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="absolute -top-6 left-8 opacity-20">
-            <Quote className="h-24 w-24 text-blue-400" />
+          <div className="absolute -top-4 left-6 opacity-15 pointer-events-none">
+            <Quote className="h-16 w-16 text-blue-300" />
           </div>
 
           <AnimatePresence mode="wait">
@@ -74,7 +74,7 @@ export default function TestimonialsSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 }}
               transition={{ duration: 0.4 }}
-              className="relative card-glass rounded-2xl p-8 md:p-12"
+              className="relative card-glass card-sheen hover-lift rounded-2xl p-8 md:p-12"
             >
               <div className="flex flex-col md:flex-row md:items-start gap-6">
                 <div className="flex-shrink-0 flex flex-col items-center">
@@ -84,7 +84,7 @@ export default function TestimonialsSection() {
                     </span>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-emerald-300">
+                    <div className="text-2xl font-bold text-orange-300">
                       {testimonials[currentTestimonial].savings}
                     </div>
                     <div className="text-xs text-slate-400 font-medium">saved</div>

@@ -29,10 +29,10 @@ export default function HeroSection() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="brand-halo inline-flex items-center gap-3 mb-6 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-sm"
+              className="brand-halo inline-flex items-center gap-3 mb-6 px-4 py-2 rounded-full border border-blue-400/40 bg-blue-500/10 backdrop-blur-sm"
             >
-              <Award className="w-4 h-4 text-cyan-400" />
-              <span className="text-cyan-200 text-xs font-semibold tracking-wide uppercase">
+              <Award className="w-4 h-4 text-blue-300" />
+              <span className="text-blue-200 text-xs font-semibold tracking-wide uppercase">
                 3CX Platinum Partner · 12+ Years · AI Agents Built In
               </span>
             </motion.div>
