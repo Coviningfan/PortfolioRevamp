@@ -41,20 +41,15 @@ export default function Navigation() {
     { label: "Data Center", href: "/data-center" },
   ];
 
-  const isHome = location === "/";
-  const showDark = isHome;
+  const showDark = true;
 
   return (
     <nav
       data-testid="navigation-bar"
       className={`fixed w-full top-0 z-50 transition-[background-color,backdrop-filter,border-color,box-shadow] duration-700 ease-out backdrop-blur-xl ${
-        isHome
-          ? isScrolled
-            ? "bg-slate-950/80 border-b border-white/10 shadow-lg shadow-black/20"
-            : "bg-slate-950/0 border-b border-transparent"
-          : isScrolled
-            ? "bg-white/90 border-b border-slate-200/50 shadow-lg shadow-black/5"
-            : "bg-white/70 border-b border-slate-200/30"
+        isScrolled
+          ? "bg-slate-950/80 border-b border-white/10 shadow-lg shadow-black/20"
+          : "bg-slate-950/0 border-b border-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
