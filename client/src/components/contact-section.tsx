@@ -72,8 +72,8 @@ export default function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full border border-blue-400/30 bg-blue-500/10 text-blue-200 text-sm font-semibold mb-4 tracking-wide uppercase">
-            Get In Touch
+          <span className="brand-halo inline-block px-4 py-1.5 rounded-full border border-blue-400/40 bg-blue-500/10 text-blue-200 text-sm font-semibold mb-4 tracking-wide uppercase">
+            Free Workflow Audit
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
             Let DSX map your first <span className="accent-serif text-orange-300">automation workflow.</span>
@@ -96,7 +96,7 @@ export default function ContactSection() {
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-white mb-2">Send us a message</h3>
                 <div className="flex items-center gap-2 text-sm text-emerald-300">
-                  <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full motion-safe:animate-pulse" />
                   <span>Typically respond within 2 hours</span>
                 </div>
               </div>
@@ -210,9 +210,10 @@ export default function ContactSection() {
             className="lg:col-span-2 space-y-6"
           >
             <div>
-              <h3 className="text-xl font-bold text-white mb-2">Get in touch</h3>
+              <h3 className="text-xl font-bold text-white mb-2">Talk to a real human.</h3>
               <p className="text-slate-300 leading-relaxed">
-                Our team of experts is here to help you find the perfect solution for your business.
+                No bots on this line. A DSX engineer reviews every request and gets back
+                to you the same business day.
               </p>
             </div>
 
@@ -230,10 +231,11 @@ export default function ContactSection() {
               ))}
             </div>
 
-            <div className="bg-gradient-to-br from-blue-600 to-orange-500 rounded-2xl p-6 text-white">
-              <h4 className="font-bold text-lg mb-2">Innovation Starts Here</h4>
-              <p className="text-white/80 text-sm leading-relaxed">
-                Join 500+ businesses with intelligent communications powered by DSX. 12 years of innovation, one conversation away.
+            <div className="brand-halo bg-gradient-to-br from-blue-600 to-orange-500 rounded-2xl p-6 text-white">
+              <h4 className="font-bold text-lg mb-2">You keep the blueprint either way.</h4>
+              <p className="text-white/90 text-sm leading-relaxed">
+                On the call, we map your call flow, find the gaps, and sketch the agent that fills them.
+                Walk away with a working diagram — hire us or don't.
               </p>
             </div>
           </motion.div>
