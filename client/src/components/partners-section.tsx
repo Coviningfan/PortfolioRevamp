@@ -15,7 +15,7 @@ export default function PartnersSection() {
   ];
 
   return (
-    <section className="py-20 bg-slate-900 border-t border-slate-800">
+    <section className="py-20 section-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

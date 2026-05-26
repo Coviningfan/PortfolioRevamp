@@ -37,7 +37,7 @@ export default function ThreeCXSection() {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 relative overflow-hidden">
+    <section className="py-24 section-dark relative overflow-hidden">
       <div className="absolute inset-0">
       </div>
 
