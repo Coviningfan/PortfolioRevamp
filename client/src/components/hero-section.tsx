@@ -44,7 +44,10 @@ export default function HeroSection() {
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 leading-[1.05] tracking-tight"
             >
               Business Communications.{" "}
-              <span className="text-orange-400">
+              <span
+                className="text-orange-400 italic font-light tracking-tight"
+                style={{ fontFamily: "'Fraunces', serif", fontOpticalSizing: "auto" }}
+              >
                 Intelligent Integration.
               </span>
             </motion.h1>
