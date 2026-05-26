@@ -56,30 +56,30 @@ const PILLARS: Pillar[] = [
     icon: PhoneCall,
     label: "Business Communications",
     tone: "blue",
-    position: "top-0 left-1/2 -translate-y-3",
+    position: "",
     angle: 270,
     delay: 0.2,
-    chip: { x: 0.5, y: 0.03 },
+    chip: { x: 0.5, y: 0.06 },
   },
   {
     key: "infra",
     icon: Server,
     label: "Hosted Infrastructure",
     tone: "slate",
-    position: "bottom-6 left-0",
-    angle: 30,
+    position: "",
+    angle: 150,
     delay: 0.38,
-    chip: { x: 0.08, y: 0.85 },
+    chip: { x: 0.22, y: 0.92 },
   },
   {
     key: "ai",
     icon: Sparkles,
     label: "DSX AI Enabled",
     tone: "orange",
-    position: "bottom-6 right-0",
-    angle: 150,
+    position: "",
+    angle: 30,
     delay: 0.56,
-    chip: { x: 0.92, y: 0.85 },
+    chip: { x: 0.78, y: 0.92 },
   },
 ];
 
@@ -556,12 +556,15 @@ function PillarChip({
 }) {
   const toneStyle = TONES[pillar.tone];
   const Icon = pillar.icon;
-  const isTopCenter = pillar.key === "comms";
 
   return (
     <div
-      className={`absolute ${pillar.position}`}
-      style={isTopCenter ? { transform: "translate(-50%, -12px)" } : undefined}
+      className="absolute"
+      style={{
+        left: `${pillar.chip.x * 100}%`,
+        top: `${pillar.chip.y * 100}%`,
+        transform: "translate(-50%, -50%)",
+      }}
     >
       <motion.button
         type="button"
@@ -587,7 +590,29 @@ function PillarChip({
         onClick={onClick}
         data-testid={`button-pillar-${pillar.key}`}
       >
-        <span className={`h-2 w-2 rounded-full flex-shrink-0 ${toneStyle.dot}`} />
+        <span className="relative flex h-2 w-2 flex-shrink-0 items-center justify-center">
+          <motion.span
+            className={`absolute inset-0 rounded-full ${toneStyle.dot}`}
+            animate={{ scale: [1, 2.6, 2.6], opacity: [0.55, 0, 0] }}
+            transition={{
+              duration: 1.8,
+              repeat: Infinity,
+              ease: "easeOut",
+              delay: pillar.delay + 0.4,
+            }}
+          />
+          <motion.span
+            className={`absolute inset-0 rounded-full ${toneStyle.dot}`}
+            animate={{ scale: [1, 3.4, 3.4], opacity: [0.35, 0, 0] }}
+            transition={{
+              duration: 2.4,
+              repeat: Infinity,
+              ease: "easeOut",
+              delay: pillar.delay + 0.9,
+            }}
+          />
+          <span className={`relative h-2 w-2 rounded-full ${toneStyle.dot} shadow-[0_0_8px_currentColor]`} />
+        </span>
         <Icon size={14} className={`flex-shrink-0 ${toneStyle.icon}`} />
         <span className="whitespace-nowrap text-xs font-medium tracking-wide">
           {pillar.label}
