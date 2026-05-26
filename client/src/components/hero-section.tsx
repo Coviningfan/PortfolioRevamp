@@ -33,7 +33,7 @@ export default function HeroSection() {
             >
               <Award className="w-4 h-4 text-blue-300" />
               <span className="text-blue-200 text-xs font-semibold tracking-wide uppercase">
-                3CX Platinum Partner · 12+ Years · AI Agents Built In
+                12+ Years in Business Communications · 3CX Platinum Partner
               </span>
             </motion.div>
 
@@ -48,7 +48,7 @@ export default function HeroSection() {
                 className="accent-serif text-orange-400"
                 style={{ fontFamily: "'Fraunces', serif", fontOpticalSizing: "auto" }}
               >
-                with an AI agent inside.
+                done right for 12 years.
               </span>
             </motion.h1>
 
@@ -58,9 +58,9 @@ export default function HeroSection() {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-base md:text-lg text-slate-300 mb-3 max-w-2xl lg:max-w-none leading-relaxed"
             >
-              DSX runs the calls, the routing, and the infrastructure. Then we add{" "}
-              <span className="text-white font-semibold">AI agents</span> that answer the phone,
-              qualify the caller, update your CRM, and book the appointment — around the clock.
+              We've built business phone systems for 12 years — calls, routing, hosting, support.
+              Now we layer in <span className="text-white font-semibold">AI</span> that answers,
+              qualifies, updates your CRM, and books the appointment when you can't pick up.
             </motion.p>
 
             <motion.p
@@ -69,7 +69,7 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm md:text-base text-orange-200/90 mb-8 max-w-2xl lg:max-w-none italic"
             >
-              A missed call is a missed customer. Your AI agent doesn't miss calls.
+              A missed call is a missed customer. We make sure the phone gets answered — every time.
             </motion.p>
 
             <motion.div
@@ -84,7 +84,7 @@ export default function HeroSection() {
                 size="lg"
                 className="btn-shimmer bg-gradient-to-r from-blue-600 to-orange-500 text-white px-7 py-6 text-base font-semibold hover:shadow-2xl hover:shadow-orange-500/40 transition-all duration-500 transform hover:-translate-y-0.5 rounded-xl group"
               >
-                See How Agents Work
+                See How DSX Works
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Link href="/contact">

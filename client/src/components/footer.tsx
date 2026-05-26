@@ -6,7 +6,7 @@ export default function Footer() {
   const serviceLinks = [
     { label: "Modernize the Phone System", href: "/#services" },
     { label: "Map the Communication Flow", href: "/#services" },
-    { label: "Deploy AI Agents", href: "/#ai-future" },
+    { label: "Add the AI Layer (Optional)", href: "/#ai-future" },
     { label: "Data Center", href: "/data-center" },
   ];
 
@@ -29,7 +29,7 @@ export default function Footer() {
               />
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
                 We start with your phone system. Then we make it intelligent. 12+ years of
-                business communications — now the foundation for practical AI workflows.
+                business communications. Now with an AI layer when you want it.
               </p>
               <p className="text-orange-400/80 text-sm font-medium italic">
                 Above the Cloud. Into the Business.

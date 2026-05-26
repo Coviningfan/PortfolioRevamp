@@ -43,31 +43,31 @@ export default function AIFutureSection() {
     {
       icon: Wrench,
       name: "Contractors & Trades",
-      example: "AI answers estimate requests, qualifies job scope, and books site visits — while you're on the job.",
-      flow: "New quote request → AI intake → appointment booked",
+      example: "Your phone system answers estimate requests, qualifies job scope, and books site visits — while you're on the job.",
+      flow: "New quote request → intake → appointment booked",
     },
     {
       icon: Scale,
       name: "Law Practices",
-      example: "AI captures new client inquiries, gathers case details, and schedules consultations without interrupting billable work.",
+      example: "Your phone system captures new client inquiries, gathers case details, and schedules consultations without interrupting billable work.",
       flow: "New caller → case type identified → consultation scheduled",
     },
     {
       icon: Heart,
       name: "Medical & Dental",
-      example: "AI handles appointment requests, insurance questions, and reminders — 24/7, without hold times.",
+      example: "Your phone system handles appointment requests, insurance questions, and reminders — 24/7, without hold times.",
       flow: "Patient call → reason captured → office notified",
     },
     {
       icon: Building2,
       name: "Insurance & Finance",
-      example: "AI qualifies inbound leads, collects policy details, and routes warm prospects to the right agent automatically.",
-      flow: "Inbound lead → qualified → routed to agent",
+      example: "Your phone system qualifies inbound leads, collects policy details, and routes warm prospects to the right rep automatically.",
+      flow: "Inbound lead → qualified → routed to rep",
     },
     {
       icon: Home,
       name: "Real Estate",
-      example: "AI answers property inquiries, qualifies buyer intent, and schedules showings directly into your calendar.",
+      example: "Your phone system answers property inquiries, qualifies buyer intent, and schedules showings directly into your calendar.",
       flow: "Property inquiry → intent gauged → showing booked",
     },
     {
@@ -92,16 +92,16 @@ export default function AIFutureSection() {
           className="text-center mb-16"
         >
           <span className="brand-halo inline-block px-4 py-1.5 rounded-full border border-orange-400/40 bg-orange-500/10 text-orange-200 text-sm font-semibold mb-4 tracking-wide uppercase">
-            AI Agents · DSX Edge
+            What's New on Top of the Phones
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
-            AI agents that actually{" "}
-            <span className="accent-serif text-orange-300">do the work.</span>
+            The same phone system —{" "}
+            <span className="accent-serif text-orange-300">now it answers, too.</span>
           </h2>
           <p className="text-lg text-slate-300 max-w-3xl mx-auto">
-            A chatbot answers questions. An <span className="text-white font-semibold">AI agent</span>{" "}
-            takes action — answers your phone, qualifies the caller, updates your CRM, books the appointment,
-            sends the follow-up. We deploy agents that run your business logic, on your phone system, around the clock.
+            For 12 years we've handled the calls, the routing, the queues, the voicemail.
+            When you can't pick up, we now let the system take the call — qualify the caller,
+            update your CRM, and book the appointment. Your phones, doing more.
           </p>
         </motion.div>
 
@@ -116,7 +116,7 @@ export default function AIFutureSection() {
           <div className="relative">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles className="h-5 w-5 text-orange-400 motion-safe:animate-pulse" />
-              <span className="text-orange-400 font-semibold uppercase text-sm tracking-wider">Watch an agent work</span>
+              <span className="text-orange-400 font-semibold uppercase text-sm tracking-wider">A real after-hours call</span>
             </div>
             <h3 className="text-2xl md:text-3xl font-bold mb-6 max-w-2xl">
               A painter gets an estimate call at 9pm on a Saturday.
@@ -129,9 +129,9 @@ export default function AIFutureSection() {
                   Lead lost.
                 </p>
                 <p className="text-slate-200 leading-relaxed mb-6">
-                  With DSX: an <span className="text-white font-semibold">AI agent</span> picks up,
-                  asks the same qualifying questions the owner would ask, logs the job in the CRM,
-                  and books the site visit straight into the calendar — before the homeowner hangs up.
+                  With DSX: the phone system picks up, asks the same qualifying questions the owner
+                  would ask, logs the job in the CRM, and books the site visit straight into the
+                  calendar — before the homeowner hangs up.
                 </p>
                 <p className="text-slate-400 leading-relaxed text-sm">
                   Same pattern works for law intake, medical scheduling, insurance qualification,
@@ -140,9 +140,9 @@ export default function AIFutureSection() {
               </div>
 
               <div className="space-y-3 bg-black/20 rounded-xl p-5 border border-white/5">
-                <div className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold mb-2">Agent execution log</div>
+                <div className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold mb-2">Call log</div>
                 {[
-                  "21:04 — Inbound call routed to AI agent",
+                  "21:04 — Inbound call answered by DSX",
                   "21:04 — Intent classified: exterior paint estimate",
                   "21:05 — Asked: one story or two? Sq ft? Timeline?",
                   "21:06 — Job logged in HubSpot, tagged 'qualified'",
@@ -161,7 +161,7 @@ export default function AIFutureSection() {
 
             <div className="mt-8 pt-6 border-t border-white/10">
               <p className="text-orange-200/90 text-sm italic">
-                One booked job from one after-hours call can cover the agent that caught it.
+                One booked job from one after-hours call pays for the whole setup.
               </p>
             </div>
           </div>
@@ -175,12 +175,12 @@ export default function AIFutureSection() {
           className="text-center mb-10"
         >
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            One agent pattern. <span className="accent-serif text-orange-300">Every industry.</span>
+            Same idea. <span className="accent-serif text-orange-300">Every industry.</span>
           </h3>
           <p className="text-slate-300 max-w-xl mx-auto">
-            Agents are built around <span className="text-white font-semibold">your</span> routing,
+            The phone flow is built around <span className="text-white font-semibold">your</span> routing,
             <span className="text-white font-semibold"> your</span> CRM, and{" "}
-            <span className="text-white font-semibold">your</span> playbook — not someone else's chatbot script.
+            <span className="text-white font-semibold">your</span> playbook — not someone else's script.
           </p>
         </motion.div>
 
@@ -222,17 +222,17 @@ export default function AIFutureSection() {
                 <span className="text-orange-400 font-semibold uppercase text-sm tracking-wider">Above the Cloud · Into the Business</span>
               </div>
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Cloud rents you servers. DSX gives you agents.
+                Cloud rents you servers. DSX runs your phones.
               </h3>
               <p className="text-slate-300 leading-relaxed mb-4">
-                Every vendor sells you cloud. We go further — phones, infrastructure, and{" "}
-                <span className="text-white font-semibold">AI agents</span> from one partner.
+                Every vendor sells you cloud. We deliver the whole communications stack —
+                phones, hosting, integrations, and the AI layer when you want it — from one partner.
                 Your tools stop sitting next to each other and start working together.
               </p>
               <div className="space-y-2 mb-6">
                 {[
-                  "One partner for phones, hosting, and AI agents",
-                  "Agents built on your business logic — not a generic chatbot",
+                  "One partner for phones, hosting, and the AI layer",
+                  "Built on your business logic — not a generic chatbot",
                   "12+ years installing systems that actually stay running",
                 ].map((point, i) => (
                   <div key={i} className="flex items-start gap-2">

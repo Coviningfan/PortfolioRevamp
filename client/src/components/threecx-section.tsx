@@ -7,32 +7,32 @@ export default function ThreeCXSection() {
     {
       icon: Layers,
       title: "3CX is the Phone Platform",
-      description: "3CX gives you the phone system. DSX gives you the install, the integrations, the call flows, the support — and the AI agents that sit on top. A platform alone doesn't run a business. We do.",
+      description: "3CX gives you the phone system. DSX gives you the install, the integrations, the call flows, and the support. A platform alone doesn't run a business — a partner does.",
     },
     {
       icon: Award,
       title: "3CX Platinum Partner",
-      description: "Top-tier partner status. Certified engineers. Direct line to the vendor. Not a generic AI startup reselling someone else's phones.",
-    },
-    {
-      icon: Sparkles,
-      title: "Agentic AI on Your Phone System",
-      description: "We layer AI agents on top of 3CX — agents that answer, qualify, route, schedule, summarize, and follow up. Owned by DSX. Built around your business. Not locked into one vendor's roadmap.",
+      description: "Top-tier partner status. Certified engineers. Direct line to the vendor. A real communications company — not a generic AI startup reselling someone else's phones.",
     },
     {
       icon: Network,
-      title: "One Vendor — Phones, Hosting, Agents",
-      description: "Phones, trunking, connectivity, hosting, and AI agents — from one partner. One number to call when something needs attention. (It rarely does.)",
+      title: "One Vendor for the Whole Stack",
+      description: "Phones, trunking, connectivity, hosting, support — from one partner. One number to call when something needs attention. (It rarely does.)",
+    },
+    {
+      icon: Sparkles,
+      title: "AI Where It Actually Helps",
+      description: "When the foundation is solid, we add AI to the parts that move the needle: answering after hours, qualifying leads, booking appointments. Optional, not the whole pitch.",
     },
     {
       icon: Wrench,
       title: "Built for Your Business — Not a SaaS Login",
-      description: "DSX Edge is implemented, not subscribed-to. We design the call flow, wire up the CRM, connect the calendar, and tune the agent to your playbook.",
+      description: "DSX Edge is implemented, not subscribed-to. We design the call flow, wire up the CRM, connect the calendar, and tune the system to how your team actually works.",
     },
     {
       icon: ShieldCheck,
       title: "99.9% Uptime — In Writing",
-      description: "Data-center-backed infrastructure with a 99.9% uptime SLA. Reliable phones, reliable hosting, reliable agents. The foundation under the intelligence.",
+      description: "Data-center-backed infrastructure with a 99.9% uptime SLA. Reliable phones, reliable hosting. The foundation everything else stands on.",
     },
   ];
 
@@ -58,13 +58,13 @@ export default function ThreeCXSection() {
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
             3CX is the platform.{" "}
             <span className="accent-serif text-orange-300">
-              DSX is the partner who makes it work — and adds the agent.
+              DSX is the partner who makes it work.
             </span>
           </h2>
           <p className="text-lg text-slate-300">
-            3CX gives you the phone system. We deliver the install, the integrations, the workflow design,
-            the support, and the <span className="text-white font-semibold">AI agents</span> that run
-            on top of it. One partner. One bill. One number to call.
+            3CX gives you the phone system. We deliver the install, the integrations, the call flows,
+            the hosting, and the support — same team, for 12 years. When you're ready, we add AI
+            on top. One partner. One bill. One number to call.
           </p>
         </motion.div>
 

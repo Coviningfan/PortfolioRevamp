@@ -26,7 +26,7 @@ export default function PlatformSection() {
               </span>
             </h2>
             <p className="text-lg text-slate-300 leading-relaxed mb-6">
-              Phones at the bottom. Hosting in the middle. AI agents on top.
+              Phones at the bottom. Hosting in the middle. AI on top — when you want it.
               The same partner builds all three so they actually work together —
               not just sit next to each other in your stack.
             </p>
@@ -49,8 +49,8 @@ export default function PlatformSection() {
                 },
                 {
                   num: "03",
-                  label: "DSX AI Enabled",
-                  detail: "AI Agents · CRM Actions · Booking · Notifications · Call Summaries",
+                  label: "Optional Intelligence Layer",
+                  detail: "After-hours answering · Qualification · Booking · CRM actions · Call summaries",
                   accent: "border-orange-400/40 bg-orange-500/5",
                   numColor: "text-orange-300",
                 },

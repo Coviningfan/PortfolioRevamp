@@ -56,11 +56,11 @@ export default function ServicesSection() {
     {
       icon: Sparkles,
       number: "04",
-      title: "Deploy AI Agents",
-      tagline: "Agentic workflows that take action.",
+      title: "Add AI Where It Pays Off",
+      tagline: "Optional — only where it makes a difference.",
       description:
-        "AI agents that answer, qualify, schedule, follow up, summarize, and escalate. Each agent runs your business's logic — not a generic chatbot script — and takes action across your CRM, calendar, and tools.",
-      flow: ["AI agent answers & qualifies 24/7", "Books, updates CRM, sends follow-ups", "Escalates only when a human is needed"],
+        "When the phones, the flow, and the integrations are solid, we add an AI layer to the spots that move the needle: after-hours answering, lead qualification, booking, follow-up, call summaries. Your logic, not a generic script.",
+      flow: ["Phone system answers & qualifies 24/7", "Books, updates CRM, sends follow-ups", "Escalates only when a human is needed"],
       iconBg: "bg-orange-600",
       accent: "border-orange-200",
       accentHover: "group-hover:border-orange-500/50",
@@ -88,12 +88,12 @@ export default function ServicesSection() {
             How DSX Edge Works
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
-            Four steps from{" "}
-            <span className="accent-serif text-orange-300">a phone line to an AI agent.</span>
+            Built on communications.{" "}
+            <span className="accent-serif text-orange-300">Finished with intelligence.</span>
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            We start with the calls. We end with AI agents that run your business
-            day and night. Same partner. One plan.
+            We modernize the phones, map your real workflow, connect the tools you
+            already use — and then, only then, add AI where it actually pays off.
           </p>
         </motion.div>
 
@@ -104,7 +104,7 @@ export default function ServicesSection() {
           viewport={{ once: true }}
           className="text-center text-sm text-slate-400 mb-16 max-w-2xl mx-auto font-mono tracking-tight"
         >
-          Modernize → Map → Connect → Enable DSX AI
+          Modernize → Map → Connect → Add AI
         </motion.p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
