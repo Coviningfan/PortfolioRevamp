@@ -230,7 +230,7 @@ export default function DSXVoicePage() {
                     <span className="text-sm font-medium text-slate-700">Extensions</span>
                     <span className="text-xl font-bold text-purple-600">17</span>
                   </div>
-                  <div className="text-xs text-slate-500">Global users across 5 countries</div>
+                  <div className="text-xs text-slate-500">Distributed global users</div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-3">

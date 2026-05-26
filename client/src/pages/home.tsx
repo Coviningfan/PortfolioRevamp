@@ -41,7 +41,7 @@ const caseStudies = [
   },
   {
     name: "Synergy Homeopathic",
-    description: "Global software solutions with users across 5 countries.",
+    description: "Global software solutions with distributed teams across multiple regions.",
     size: "International",
     monthlyCost: "$239.00",
     savings: "64%",

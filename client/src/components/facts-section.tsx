@@ -1,12 +1,22 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Calendar, TrendingDown, Globe, Handshake } from "lucide-react";
+import { Calendar, TrendingDown, Award, Handshake } from "lucide-react";
+
+type Fact = {
+  icon: typeof Calendar;
+  title: string;
+  subtitle: string;
+  color: string;
+  value?: number;
+  suffix?: string;
+  badge?: string;
+};
 
 export default function FactsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const facts = [
+  const facts: Fact[] = [
     {
       icon: Calendar,
       value: 12,
@@ -24,11 +34,10 @@ export default function FactsSection() {
       color: "text-orange-300",
     },
     {
-      icon: Globe,
-      value: 5,
-      suffix: "+",
-      title: "Countries Served",
-      subtitle: "Global reach with local expertise",
+      icon: Award,
+      badge: "Platinum",
+      title: "3CX Partner",
+      subtitle: "Top-tier certified deployment partner",
       color: "text-blue-300",
     },
     {
@@ -111,7 +120,11 @@ export default function FactsSection() {
                 <fact.icon className="h-7 w-7" />
               </div>
               <div className={`text-5xl font-bold ${fact.color} mb-2 tabular-nums`}>
-                <AnimatedCounter value={fact.value} suffix={fact.suffix} />
+                {fact.badge ? (
+                  <span>{fact.badge}</span>
+                ) : (
+                  <AnimatedCounter value={fact.value ?? 0} suffix={fact.suffix ?? ""} />
+                )}
               </div>
               <div className="text-lg font-semibold text-white mb-1">{fact.title}</div>
               <div className="text-sm text-slate-400">{fact.subtitle}</div>
