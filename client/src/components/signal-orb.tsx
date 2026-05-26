@@ -140,23 +140,24 @@ function usePointerParallax(containerRef: React.RefObject<HTMLDivElement>, reduc
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
 
-  const sx = useSpring(mx, { stiffness: 60, damping: 22, mass: 0.75 });
-  const sy = useSpring(my, { stiffness: 60, damping: 22, mass: 0.75 });
+  const sx = useSpring(mx, { stiffness: 45, damping: 20, mass: 0.85 });
+  const sy = useSpring(my, { stiffness: 45, damping: 20, mass: 0.85 });
 
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el || reduced) {
+    if (reduced) {
       mx.set(0);
       my.set(0);
       return;
     }
 
     const onMove = (e: PointerEvent) => {
+      const el = containerRef.current;
+      if (!el) return;
       const rect = el.getBoundingClientRect();
       const dx = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
       const dy = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
-      mx.set(clamp(dx, -1, 1));
-      my.set(clamp(dy, -1, 1));
+      mx.set(clamp(dx, -1.8, 1.8));
+      my.set(clamp(dy, -1.8, 1.8));
     };
 
     const onLeave = () => {
@@ -164,12 +165,12 @@ function usePointerParallax(containerRef: React.RefObject<HTMLDivElement>, reduc
       my.set(0);
     };
 
-    el.addEventListener("pointermove", onMove, { passive: true });
-    el.addEventListener("pointerleave", onLeave);
+    window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("pointerleave", onLeave);
 
     return () => {
-      el.removeEventListener("pointermove", onMove);
-      el.removeEventListener("pointerleave", onLeave);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerleave", onLeave);
     };
   }, [containerRef, mx, my, reduced]);
 
@@ -725,12 +726,12 @@ export default function SignalOrb() {
 
   const { sx, sy } = usePointerParallax(containerRef, reduced);
 
-  const tiltX = useTransform(sy, [-1, 1], reduced ? [0, 0] : [10, -10]);
-  const tiltY = useTransform(sx, [-1, 1], reduced ? [0, 0] : [-12, 12]);
-  const shiftX = useTransform(sx, [-1, 1], reduced ? [0, 0] : [-14, 14]);
-  const shiftY = useTransform(sy, [-1, 1], reduced ? [0, 0] : [-14, 14]);
-  const haloX = useTransform(sx, [-1, 1], reduced ? [0, 0] : [-6, 6]);
-  const haloY = useTransform(sy, [-1, 1], reduced ? [0, 0] : [-6, 6]);
+  const tiltX = useTransform(sy, [-1, 1], reduced ? [0, 0] : [16, -16]);
+  const tiltY = useTransform(sx, [-1, 1], reduced ? [0, 0] : [-20, 20]);
+  const shiftX = useTransform(sx, [-1, 1], reduced ? [0, 0] : [-22, 22]);
+  const shiftY = useTransform(sy, [-1, 1], reduced ? [0, 0] : [-22, 22]);
+  const haloX = useTransform(sx, [-1, 1], reduced ? [0, 0] : [-12, 12]);
+  const haloY = useTransform(sy, [-1, 1], reduced ? [0, 0] : [-12, 12]);
 
   const stars = useMemo(() => createStars(reduced ? 18 : 42), [reduced]);
 
@@ -829,17 +830,27 @@ export default function SignalOrb() {
           className="absolute inset-0 rounded-full"
           style={{
             background:
-              "radial-gradient(circle at 38% 32%, rgba(96,165,250,0.22) 0%, rgba(30,64,175,0.12) 45%, transparent 72%)",
-            filter: "blur(40px)",
+              "radial-gradient(circle at 38% 32%, rgba(96,165,250,0.32) 0%, rgba(30,64,175,0.18) 45%, transparent 72%)",
+            filter: "blur(50px)",
           }}
         />
         <div
           className="absolute inset-[15%] rounded-full"
           style={{
             background:
-              "radial-gradient(circle at 68% 72%, rgba(251,146,60,0.16) 0%, transparent 65%)",
-            filter: "blur(30px)",
+              "radial-gradient(circle at 68% 72%, rgba(251,146,60,0.24) 0%, transparent 65%)",
+            filter: "blur(36px)",
           }}
+        />
+        <motion.div
+          className="absolute inset-[-4%] rounded-full opacity-60"
+          style={{
+            background:
+              "conic-gradient(from 140deg at 50% 50%, rgba(96,165,250,0.0) 0deg, rgba(96,165,250,0.18) 80deg, rgba(251,146,60,0.18) 200deg, rgba(96,165,250,0.0) 360deg)",
+            filter: "blur(28px)",
+          }}
+          animate={reduced ? undefined : { rotate: 360 }}
+          transition={reduced ? undefined : { duration: 36, repeat: Infinity, ease: "linear" }}
         />
         {!reduced &&
           PILLARS.map((p) => (
