@@ -8,11 +8,11 @@ export default function ServicesSection() {
     {
       icon: Network,
       number: "01",
-      title: "Modernize Communications",
-      tagline: "The foundation, done right.",
+      title: "Modernize the Phones",
+      tagline: "VoIP done right — by a 3CX Platinum Partner.",
       description:
-        "VoIP, PBX, 3CX, SIP, routing, queues, extensions, voicemail, call handling, and support. The communications layer your customers and staff actually use, deployed and managed by a 3CX Platinum Partner.",
-      flow: ["3CX platform · VoIP & SIP routing", "Queues, extensions, voicemail, support", "Reliable business telephony"],
+        "VoIP, PBX, 3CX, SIP trunking, queues, extensions, voicemail, and support. The phone system your customers and staff actually use — deployed, managed, and supported by us.",
+      flow: ["3CX platform · VoIP & SIP routing", "Queues, extensions, voicemail, support", "99.9% uptime infrastructure"],
       iconBg: "bg-blue-700",
       accent: "border-blue-200",
       accentHover: "group-hover:border-blue-500/50",
@@ -24,11 +24,11 @@ export default function ServicesSection() {
     {
       icon: Map,
       number: "02",
-      title: "Map the Business Flow",
-      tagline: "Understand how the business actually runs.",
+      title: "Map How You Actually Work",
+      tagline: "Free workflow audit — no commitment.",
       description:
-        "How do customers contact the business? How does staff respond? Where does information go? What gets missed, what gets repeated manually, and what systems need to connect? We map it before we automate it.",
-      flow: ["Customer & staff workflow audit", "Loss points · bottlenecks · gaps", "System & data flow blueprint"],
+        "How do customers reach you? Where do leads go cold? What gets repeated by hand? We map every step before we automate anything. You see exactly where money is leaking before you spend a dollar.",
+      flow: ["Customer & staff workflow audit", "Where you lose leads · bottlenecks · gaps", "Clear blueprint, yours to keep"],
       iconBg: "bg-slate-800",
       accent: "border-slate-200",
       accentHover: "group-hover:border-slate-500/50",
@@ -40,11 +40,11 @@ export default function ServicesSection() {
     {
       icon: PlugZap,
       number: "03",
-      title: "Connect the Systems",
-      tagline: "Make the business operate as one.",
+      title: "Wire It All Together",
+      tagline: "Phones, CRM, calendar — one system.",
       description:
-        "Connect communications with CRM, calendars, notifications, reporting, support workflows, and the business tools the company already runs. Vendors stop working in isolation and start working together.",
-      flow: ["CRM & calendar connections", "Notifications & reporting", "Support & workflow integration"],
+        "Connect the phones to your CRM, calendar, ticket system, and reporting. No more copying numbers between tabs. No more leads lost in voicemail. Every tool you already pay for, finally talking to each other.",
+      flow: ["CRM & calendar connections", "Notifications & reporting", "One source of truth"],
       iconBg: "bg-cyan-600",
       accent: "border-cyan-200",
       accentHover: "group-hover:border-cyan-500/50",
@@ -56,11 +56,11 @@ export default function ServicesSection() {
     {
       icon: Sparkles,
       number: "04",
-      title: "Enable DSX AI",
-      tagline: "DSX AI Enabled workflows.",
+      title: "Deploy AI Agents",
+      tagline: "Agentic workflows that take action.",
       description:
-        "DSX AI Enabled workflows for intake, qualification, routing, summaries, follow-up, scheduling, reporting, and escalation — applied where they create measurable operational value across the business.",
-      flow: ["AI-enabled intake & qualification", "Automated workflow routing & follow-up", "Operational reporting & visibility"],
+        "AI agents that answer, qualify, schedule, follow up, summarize, and escalate. Each agent runs your business's logic — not a generic chatbot script — and takes action across your CRM, calendar, and tools.",
+      flow: ["AI agent answers & qualifies 24/7", "Books, updates CRM, sends follow-ups", "Escalates only when a human is needed"],
       iconBg: "bg-orange-600",
       accent: "border-orange-200",
       accentHover: "group-hover:border-orange-500/50",
@@ -88,12 +88,12 @@ export default function ServicesSection() {
             How DSX Edge Works
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-5">
-            Communications first.{" "}
-            <span className="accent-serif text-orange-300">Then everything around it.</span>
+            Four steps from{" "}
+            <span className="accent-serif text-orange-300">a phone line to an AI agent.</span>
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            A four-step path from modern business communications to integrated, intelligent
-            operations — delivered by the same partner.
+            We start with the calls. We end with AI agents that run your business
+            day and night. Same partner. One plan.
           </p>
         </motion.div>
 
@@ -118,7 +118,7 @@ export default function ServicesSection() {
               className="group"
             >
               <div
-                className={`relative card-glass rounded-2xl p-6 h-full transition-all duration-500 hover:border-blue-400/40 hover:bg-white/[0.07] hover:-translate-y-1 overflow-hidden`}
+                className={`relative card-glass card-sheen hover-lift rounded-2xl p-6 h-full hover:border-blue-400/50 hover:bg-white/[0.07] overflow-hidden`}
                 data-testid={`service-card-${index}`}
               >
                 <div className={`absolute top-4 right-5 text-6xl font-black text-white/5 leading-none select-none`}>
@@ -162,13 +162,13 @@ export default function ServicesSection() {
           <Link href="/contact">
             <Button
               data-testid="button-services-cta"
-              className="bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 rounded-xl px-8 py-5 text-base font-semibold group"
+              className="btn-shimmer bg-gradient-to-r from-blue-600 to-orange-500 text-white hover:shadow-2xl hover:shadow-orange-500/40 transition-all duration-500 rounded-xl px-8 py-6 text-base font-semibold group"
             >
-              Talk to DSX About Your Business
+              Claim Your Free Workflow Audit
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
-          <p className="text-xs text-slate-400 mt-3">We'll start with your communications and map a path through integration to intelligence.</p>
+          <p className="text-xs text-slate-400 mt-3">No commitment. You keep the blueprint either way.</p>
         </motion.div>
       </div>
       </div>

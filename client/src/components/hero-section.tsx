@@ -28,55 +28,63 @@ export default function HeroSection() {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-3 mb-6 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-sm"
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="brand-halo inline-flex items-center gap-3 mb-6 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-sm"
             >
               <Award className="w-4 h-4 text-cyan-400" />
-              <span className="text-cyan-300 text-xs font-semibold tracking-wide uppercase">
-                Communications · Infrastructure · Intelligent Integration
+              <span className="text-cyan-200 text-xs font-semibold tracking-wide uppercase">
+                3CX Platinum Partner · 12+ Years · AI Agents Built In
               </span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 leading-[1.05] tracking-tight"
             >
-              Business Communications.{" "}
+              Your phone system,{" "}
               <span
                 className="accent-serif text-orange-400"
                 style={{ fontFamily: "'Fraunces', serif", fontOpticalSizing: "auto" }}
               >
-                Intelligent Integration.
+                with an AI agent inside.
               </span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-base md:text-lg text-slate-300 mb-8 max-w-2xl lg:max-w-none leading-relaxed"
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="text-base md:text-lg text-slate-300 mb-3 max-w-2xl lg:max-w-none leading-relaxed"
             >
-              DSX installs, manages, and supports the communication systems businesses
-              depend on — VoIP, PBX, 3CX, SIP routing, connectivity, and support — backed
-              by hosted infrastructure, and extended with DSX AI Enabled workflows
-              integrated into the parts of the business where they actually create value.
+              DSX runs the calls, the routing, and the infrastructure. Then we add{" "}
+              <span className="text-white font-semibold">AI agents</span> that answer the phone,
+              qualify the caller, update your CRM, and book the appointment — around the clock.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="text-sm md:text-base text-orange-200/90 mb-8 max-w-2xl lg:max-w-none italic"
+            >
+              A missed call is a missed customer. Your AI agent doesn't miss calls.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45 }}
-              className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-10"
+              transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-8"
             >
               <Button
                 data-testid="button-see-workflow"
                 onClick={() => scrollToSection("services")}
                 size="lg"
-                className="bg-gradient-to-r from-blue-600 to-orange-500 text-white px-7 py-6 text-base font-semibold hover:shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:-translate-y-0.5 rounded-xl group"
+                className="btn-shimmer bg-gradient-to-r from-blue-600 to-orange-500 text-white px-7 py-6 text-base font-semibold hover:shadow-2xl hover:shadow-orange-500/40 transition-all duration-500 transform hover:-translate-y-0.5 rounded-xl group"
               >
-                Explore DSX Edge
+                See How Agents Work
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Link href="/contact">
@@ -84,9 +92,9 @@ export default function HeroSection() {
                   data-testid="button-contact-hero"
                   variant="outline"
                   size="lg"
-                  className="border-2 border-white/20 text-white bg-white/5 backdrop-blur-sm px-7 py-6 text-base font-semibold hover:bg-white/10 hover:border-white/40 transition-all duration-300 rounded-xl w-full sm:w-auto"
+                  className="border-2 border-white/20 text-white bg-white/5 backdrop-blur-sm px-7 py-6 text-base font-semibold hover:bg-white/10 hover:border-white/40 transition-all duration-500 rounded-xl w-full sm:w-auto"
                 >
-                  Talk to DSX
+                  Get a Free Workflow Audit
                 </Button>
               </Link>
             </motion.div>
@@ -94,20 +102,24 @@ export default function HeroSection() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 text-xs text-slate-400"
+              transition={{ duration: 0.7, delay: 0.7 }}
+              className="flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 text-xs text-slate-400"
             >
               <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>DSX Voice · 3CX Platinum Partner</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" />
+                <span><span className="text-white font-semibold">3CX</span> Platinum Partner</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>DSX Data · Hosted Infrastructure</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" style={{ animationDelay: "0.5s" }} />
+                <span><span className="text-white font-semibold">Up to 60%</span> cost reduction</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>12+ Years of Managed Business Systems</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" style={{ animationDelay: "1s" }} />
+                <span><span className="text-white font-semibold">99.9%</span> uptime SLA</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" style={{ animationDelay: "1.5s" }} />
+                <span><span className="text-white font-semibold">12+ yrs</span> deploying real systems</span>
               </div>
             </motion.div>
           </div>

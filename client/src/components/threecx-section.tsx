@@ -6,33 +6,33 @@ export default function ThreeCXSection() {
   const reasons = [
     {
       icon: Layers,
-      title: "3CX as the Communications Platform",
-      description: "3CX provides the modern PBX, calling, and unified communications platform. DSX Edge provides the implementation, integration, workflow design, and support around it — turning a platform into a business solution.",
+      title: "3CX is the Phone Platform",
+      description: "3CX gives you a modern PBX. DSX gives you the install, the integrations, the call flows, the support — and the AI agents that sit on top. A platform alone doesn't run a business. We do.",
     },
     {
       icon: Award,
       title: "3CX Platinum Partner",
-      description: "Top-tier partner status means deep platform expertise, certified engineers, and direct vendor relationships. Not a generic AI vendor reselling someone else's PBX.",
+      description: "Top-tier partner status. Certified engineers. Direct line to the vendor. Not a generic AI startup reselling someone else's phones.",
     },
     {
       icon: Sparkles,
-      title: "DSX AI Enabled — On Top of the Platform",
-      description: "DSX Edge layers DSX AI Enabled workflows on top of the 3CX communications platform — intake, qualification, routing, notifications, and operational intelligence — owned and supported by DSX, not dependent on any single vendor roadmap.",
+      title: "Agentic AI on Your Phone System",
+      description: "We layer AI agents on top of 3CX — agents that answer, qualify, route, schedule, summarize, and follow up. Owned by DSX. Built around your business. Not locked into one vendor's roadmap.",
     },
     {
       icon: Network,
-      title: "Communications, Hosting & Connectivity",
-      description: "DSX brings the full stack: managed PBX, SIP trunking, business connectivity, and hosted infrastructure under one partner — not stitched together from disconnected vendors.",
+      title: "One Vendor — Phones, Hosting, Agents",
+      description: "Managed PBX, SIP trunking, business connectivity, hosted infrastructure, and AI agents — from one partner. One throat to choke when something breaks. (It rarely does.)",
     },
     {
       icon: Wrench,
-      title: "Implementation & Integration, Not a Subscription",
-      description: "DSX Edge is implemented for your business. We design the call flow, integrate CRM and calendars, connect workflows, and build the intelligent layer around the platform you depend on.",
+      title: "Built for Your Business — Not a SaaS Login",
+      description: "DSX Edge is implemented, not subscribed-to. We design the call flow, wire up the CRM, connect the calendar, and tune the agent to your playbook.",
     },
     {
       icon: ShieldCheck,
-      title: "A Foundation That Stays Up",
-      description: "Communications run on data-center-backed infrastructure with 99.9% uptime targets. Reliable communications, reliable hosting, reliable support — the credibility behind the intelligent layer.",
+      title: "99.9% Uptime — In Writing",
+      description: "Data-center-backed infrastructure with a 99.9% uptime SLA. Reliable phones, reliable hosting, reliable agents. The foundation under the intelligence.",
     },
   ];
 
@@ -49,22 +49,22 @@ export default function ThreeCXSection() {
           viewport={{ once: true }}
           className="text-center mb-16 max-w-4xl mx-auto"
         >
-          <div className="inline-flex items-center gap-3 mb-6 px-5 py-2.5 rounded-full border border-blue-400/30 bg-blue-500/10 backdrop-blur-sm">
+          <div className="brand-halo inline-flex items-center gap-3 mb-6 px-5 py-2.5 rounded-full border border-blue-400/40 bg-blue-500/10 backdrop-blur-sm">
             <img src={logo3cx} alt="3CX" className="h-5 w-auto brightness-0 invert opacity-90" />
-            <span className="text-blue-200 text-sm font-semibold tracking-wide uppercase">
-              3CX Platinum Partner · Communications Platform
+            <span className="text-blue-100 text-sm font-semibold tracking-wide uppercase">
+              3CX Platinum Partner · Highest Tier
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
-            The platform is 3CX.{" "}
+            3CX is the platform.{" "}
             <span className="accent-serif text-orange-300">
-              The implementation, integration, and intelligence is DSX Edge.
+              DSX is the partner who makes it work — and adds the agent.
             </span>
           </h2>
-          <p className="text-lg text-slate-400">
-            3CX is the modern PBX and unified communications platform we build on. DSX Edge
-            adds the implementation, workflow design, integration, support, and business-specific
-            intelligence around it.
+          <p className="text-lg text-slate-300">
+            3CX gives you the phone system. We deliver the install, the integrations, the workflow design,
+            the support, and the <span className="text-white font-semibold">AI agents</span> that run
+            on top of it. One partner. One bill. One number to call.
           </p>
         </motion.div>
 
@@ -76,7 +76,7 @@ export default function ThreeCXSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-blue-400/40 transition-all duration-300 group"
+              className="card-glass card-sheen hover-lift rounded-2xl p-6 hover:border-blue-400/50 hover:bg-white/[0.07] group"
               data-testid={`threecx-card-${index}`}
             >
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-blue-500/20 transition-all duration-300">

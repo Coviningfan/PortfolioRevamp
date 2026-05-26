@@ -60,9 +60,7 @@ export default function Navigation() {
                 data-testid="img-logo"
                 src={dsxLogo}
                 alt="DSX Edge Logo"
-                className={`h-11 w-auto cursor-pointer transition-all duration-500 ${
-                  showDark && !isScrolled ? "brightness-0 invert opacity-90" : ""
-                }`}
+                className="h-12 w-auto cursor-pointer transition-all duration-500 drop-shadow-[0_2px_10px_rgba(96,165,250,0.22)] hover:drop-shadow-[0_2px_14px_rgba(251,146,60,0.35)] hover:scale-[1.03]"
               />
             </Link>
           </div>
