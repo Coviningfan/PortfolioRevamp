@@ -125,7 +125,7 @@ export default function Navigation() {
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent className="w-80">
+              <SheetContent className="w-80 bg-slate-950 border-l border-white/10 text-white [&>button]:text-white/70 [&>button:hover]:text-white">
                 <div className="flex flex-col mt-8">
                   <img
                     src={dsxLogo}
@@ -133,7 +133,7 @@ export default function Navigation() {
                     width={735}
                     height={339}
                     decoding="async"
-                    className="h-8 w-auto mb-8"
+                    className="h-9 w-auto mb-8"
                   />
                   <div className="space-y-1">
                     {navItems.map((item, index) =>
@@ -143,8 +143,8 @@ export default function Navigation() {
                             data-testid={`link-mobile-${item.label.toLowerCase().replace(' ', '-')}`}
                             className={`w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
                               location === item.href
-                                ? "text-blue-600 bg-blue-50"
-                                : "text-slate-700 hover:text-blue-600 hover:bg-slate-50"
+                                ? "text-orange-300 bg-white/[0.06] border border-white/10"
+                                : "text-slate-200 hover:text-orange-300 hover:bg-white/[0.04]"
                             }`}
                           >
                             {item.label}
@@ -155,7 +155,7 @@ export default function Navigation() {
                           key={index}
                           data-testid={`link-mobile-${item.label.toLowerCase()}`}
                           onClick={() => scrollToSection(item.id!)}
-                          className="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200"
+                          className="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-slate-200 hover:text-orange-300 hover:bg-white/[0.04] transition-all duration-200"
                         >
                           {item.label}
                         </button>
@@ -166,7 +166,7 @@ export default function Navigation() {
                     <Link href="/contact">
                       <Button
                         data-testid="button-mobile-contact"
-                        className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white rounded-lg py-3"
+                        className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white rounded-lg py-3 hover:shadow-lg hover:shadow-blue-500/25"
                       >
                         Talk to DSX
                       </Button>
