@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, TrendingDown } from "lucide-react";
+import { ArrowRight, TrendingDown, BookOpen, HelpCircle, Calendar, Clock, Tag } from "lucide-react";
+import { getAllPosts } from "@/content/blog";
 import Seo from "@/components/seo";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
@@ -23,6 +24,7 @@ const caseStudies = CASE_STUDIES.map((c, i) => ({
 }));
 
 export default function Home() {
+  const latestPosts = getAllPosts().slice(0, 3);
   return (
     <div className="min-h-screen page-canvas relative overflow-hidden">
       {/* Brand watermark layer — fixed dot pattern + animated orbital arcs + twinkling signal dots */}
@@ -197,6 +199,120 @@ export default function Home() {
               </p>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      <section id="resources" className="py-24 bg-slate-950 border-t border-white/5 relative overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="flex items-end justify-between mb-10 flex-wrap gap-4"
+          >
+            <div>
+              <span className="inline-block px-3 py-1 rounded-full text-[11px] tracking-[0.28em] uppercase bg-white/5 border border-white/10 text-blue-300 mb-3">
+                Resources
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white">
+                Learn how DSX Edge <span className="accent-serif text-orange-300">works in practice.</span>
+              </h2>
+              <p className="mt-3 text-slate-400 max-w-2xl">
+                Articles, plain-language answers, and real customer case studies — everything you need to evaluate AI on top of your phone system.
+              </p>
+            </div>
+            <Link href="/resources">
+              <span
+                data-testid="link-home-resources-hub"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-300 hover:text-orange-300 transition cursor-pointer"
+              >
+                Browse all resources <ArrowRight size={14} />
+              </span>
+            </Link>
+          </motion.div>
+
+          {latestPosts.length > 0 && (
+            <div className="grid md:grid-cols-3 gap-6">
+              {latestPosts.map((p, index) => (
+                <motion.div
+                  key={p.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Link href={`/blog/${p.slug}`}>
+                    <article
+                      data-testid={`card-home-resource-${p.slug}`}
+                      className="group h-full rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] p-6 flex flex-col cursor-pointer transition"
+                    >
+                      <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest text-blue-300/80 mb-3">
+                        <Tag size={12} />
+                        {p.category}
+                      </div>
+                      <h3 className="text-lg font-semibold text-white group-hover:text-orange-300 transition line-clamp-3">
+                        {p.title}
+                      </h3>
+                      <p className="mt-3 text-sm text-slate-400 line-clamp-3 flex-grow">
+                        {p.description}
+                      </p>
+                      <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-500">
+                        <span className="flex items-center gap-1.5">
+                          <Calendar size={12} />
+                          {new Date(p.date).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          })}
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <Clock size={12} />
+                          {p.readTime}
+                        </span>
+                      </div>
+                    </article>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          )}
+
+          <div className="mt-8 grid sm:grid-cols-3 gap-3">
+            <Link href="/blog">
+              <span
+                data-testid="link-home-resources-blog"
+                className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] p-4 cursor-pointer transition"
+              >
+                <span className="flex items-center gap-2 text-sm text-white">
+                  <BookOpen size={16} className="text-blue-300" /> Articles & field notes
+                </span>
+                <ArrowRight size={14} className="text-blue-300" />
+              </span>
+            </Link>
+            <Link href="/faq">
+              <span
+                data-testid="link-home-resources-faq"
+                className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] p-4 cursor-pointer transition"
+              >
+                <span className="flex items-center gap-2 text-sm text-white">
+                  <HelpCircle size={16} className="text-blue-300" /> Plain-language FAQ
+                </span>
+                <ArrowRight size={14} className="text-blue-300" />
+              </span>
+            </Link>
+            <Link href="/case-studies">
+              <span
+                data-testid="link-home-resources-case-studies"
+                className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] p-4 cursor-pointer transition"
+              >
+                <span className="flex items-center gap-2 text-sm text-white">
+                  <TrendingDown size={16} className="text-blue-300" /> Customer case studies
+                </span>
+                <ArrowRight size={14} className="text-blue-300" />
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 
