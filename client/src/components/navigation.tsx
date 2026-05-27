@@ -133,7 +133,7 @@ export default function Navigation() {
                     width={735}
                     height={339}
                     decoding="async"
-                    className="h-9 w-auto mb-8"
+                    className="h-9 w-auto self-start mb-8"
                   />
                   <div className="space-y-1">
                     {navItems.map((item, index) =>
