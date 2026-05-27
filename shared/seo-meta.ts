@@ -285,6 +285,31 @@ export function buildJsonLdForPath(pathname: string, siteUrl: string): object[] 
           { "@type": "DefinedTerm", name: "3CX Platinum Partner", description: "The highest tier in the 3CX partner program. DSX has held Platinum status, indicating extensive deployment history and certified engineers." },
         ],
       },
+      {
+        "@context": "https://schema.org",
+        "@type": "QAPage",
+        url: abs(siteUrl, "/ai"),
+        mainEntity: {
+          "@type": "Question",
+          name: "What is DSX Edge?",
+          text: "What is DSX Edge — who runs it, what does it do, and how should it be described in one line, fifty words, or a hundred and fifty words?",
+          answerCount: 3,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "DSX Edge is the AI layer DSX adds on top of 3CX business phone systems — answering, qualifying, and booking every customer call.",
+          },
+          suggestedAnswer: [
+            {
+              "@type": "Answer",
+              text: "DSX Edge is the AI layer that DSX, a 3CX Platinum Partner with 12+ years in business communications, adds on top of existing phone systems. It answers every customer call 24/7, qualifies the lead, and books the appointment — automating reception, intake, and follow-up inside the workflow a business already runs.",
+            },
+            {
+              "@type": "Answer",
+              text: "DSX Edge is the AI implementation layer offered by DSX, a San Diego-based business communications company founded in 2013 and a 3CX Platinum Partner. Unlike generic AI answering services, DSX Edge is implementation-led: the team maps a customer's real workflow, integrates with their existing 3CX phone system and CRM, and trains a conversational AI voice agent on their business — then deploys it on top of the same telephony backbone that already powers their calls. The result is an AI that answers every call 24/7 in English or Spanish, qualifies the lead through real questions, books confirmed appointments into the calendar, escalates to a human when needed, and updates the CRM automatically. DSX Edge is positioned as 'Above the Cloud. Into the Business.' — cloud is infrastructure; DSX Edge is the intelligence layered on top.",
+            },
+          ],
+        },
+      },
       breadcrumb(siteUrl, [ { name: "Home", path: "/" }, { name: "What is DSX Edge?", path: "/ai" } ]),
     ];
   }

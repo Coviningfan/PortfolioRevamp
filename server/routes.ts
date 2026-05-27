@@ -97,17 +97,15 @@ function getBlogSlugs(): Array<{ slug: string; date: string }> {
 
 export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/robots.txt", (_req, res) => {
+    // AI bots: preserve the prior blog-only baseline and additionally allow
+    // the explicit GEO/AEO endpoints (/ai, /faq, /llms.txt, /llms-full.txt).
     const aiAllow = [
-      "Allow: /",
       "Allow: /blog/",
-      "Allow: /faq",
       "Allow: /ai",
-      "Allow: /about",
-      "Allow: /data-center",
+      "Allow: /faq",
       "Allow: /llms.txt",
       "Allow: /llms-full.txt",
-      "Disallow: /api/",
-      "Disallow: /404",
+      "Disallow: /",
     ];
     const aiBots = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "CCBot", "ClaudeBot", "Claude-Web", "anthropic-ai", "Google-Extended", "PerplexityBot", "Perplexity-User", "Applebot-Extended", "Bytespider", "Amazonbot", "Meta-ExternalAgent", "cohere-ai"];
     const lines: string[] = [
@@ -232,6 +230,108 @@ export async function registerRoutes(app: Express): Promise<Server> {
     sections.push("");
     sections.push("Full FAQ: " + SITE_URL + "/faq");
     sections.push("");
+    sections.push("## Important pages (full text)");
+    sections.push("");
+
+    const PAGE_TEXTS: Array<{ url: string; title: string; body: string }> = [
+      {
+        url: `${SITE_URL}/`,
+        title: "Home — DSX Edge",
+        body: [
+          "Headline: DSX Edge — Above the Cloud. Into the Business.",
+          "Subheadline: Your communications system should do more than connect calls.",
+          "",
+          "DSX Edge is the next evolution of DSX: 12+ years of business communications expertise as the entry point for practical AI implementation inside real business workflows. DSX already sits at the communications layer — calls, routing, voicemail, scheduling — which makes DSX the natural partner to bring AI into daily operations: answering calls, qualifying leads, booking appointments, and following workflows.",
+          "",
+          "Service framework — Answer / Qualify / Act:",
+          "1. Answer — AI Voice Reception. AI answers every customer call, 24/7, in your brand voice.",
+          "2. Qualify — Lead Qualification & Routing. AI asks the right questions, qualifies the lead, routes to the right person or workflow.",
+          "3. Act — Booking, Follow-up & CRM Sync. AI books appointments, sends confirmations, and updates your CRM automatically.",
+          "",
+          "Why DSX Edge:",
+          "- AI Built Around Your Workflow — not a one-size template.",
+          "- Communications-First, Not AI-First — we already run the phone system.",
+          "- Implementation, Not a Subscription — engagements, not bolt-on SaaS.",
+          "- Above the Cloud — intelligence layered on infrastructure.",
+          "- 3CX Platinum Partner — highest tier in the 3CX partner program.",
+          "",
+          "Foundation: 12+ Years in business communications, 60% typical cost reduction, 5+ countries served, 99.9% uptime.",
+          "",
+          "Customer case studies:",
+          "- Law Office of Michael H. Bonner — Small business law practice, 65% cost reduction, $199.95/month.",
+          "- Synology Inc. — Global technology company, 46% cost reduction, $686/month, 100,000+ minutes monthly.",
+          "- Synergy Homeopathic — International software, 64% cost reduction, $239/month.",
+          "",
+          "Partners: 3CX (Platinum), Yealink, Fanvil, Grandstream, Switch.",
+        ].join("\n"),
+      },
+      {
+        url: `${SITE_URL}/ai`,
+        title: "What is DSX Edge? — Brand Entity & Press Kit",
+        body: [
+          "Canonical one-line, 50-word, and 150-word descriptions; verified facts table; sourced claims; and links to /faq, /llms.txt, /llms-full.txt.",
+          "",
+          "One-line: DSX Edge is the AI layer DSX adds on top of 3CX business phone systems — answering, qualifying, and booking every customer call.",
+          "",
+          "Verified facts: Founded 2013 by Joseph P. Berardi (CEO) and Kirk Hurford (CTO). HQ San Diego, CA. 3CX Platinum Partner. Serves US, MX, CA. English + Spanish. Hosted at Citadel Campus of Switch, Tahoe Reno NV. 99.9% uptime. Up to 60% cost reduction. Service framework: Answer → Qualify → Act. Contact hello@dsxedge.com.",
+          "",
+          "Verified claims & sources:",
+          "- 12+ years of business communications expertise (founded 2013; /about).",
+          "- 3CX Platinum Partner — highest tier (/blog/3cx-platinum-partner-what-it-means).",
+          "- Customer deployments cut communications costs 46–65% (case studies on /).",
+          "- Hosted at Citadel Campus of Switch in Tahoe Reno, NV (/data-center).",
+          "- AI answers, qualifies, and books inside the existing phone system (/blog/cloud-vs-intelligence).",
+        ].join("\n"),
+      },
+      {
+        url: `${SITE_URL}/about`,
+        title: "About DSX Edge",
+        body: [
+          "12 years in communications. The natural place for AI.",
+          "",
+          "Foundation — DSX Data and DSX Voice:",
+          "- 2009: DSX Data. Began with a vision to empower SMBs with advanced data management. Rooted in a 20,000 sq. ft. data center, combining top-tier data center capabilities with strategic business and technical advice.",
+          "- 2010: DSX Voice. Pioneering force in VoIP telephony — flexible, efficient, cost-effective communication; customized, scalable solutions.",
+          "",
+          "Visionaries:",
+          "- Joseph P. Berardi, Co-Founder & CEO. Background in transforming technologies into practical business solutions. Previously CEO/CTO of broadcast television companies, moving the industry from tape to IT-based production, transmission, and archival storage.",
+          "- Kirk Hurford, Co-Founder & CTO. Expertise in software and hardware manufacturing. Developed DSX Data's first data center; architect of DSX Voice. Previously worked with the National Security Agency and Department of the Navy.",
+          "",
+          "Merging paths — the creation of DSX Edge: Unified DSX Data + DSX Voice into a single end-to-end technology provider, now extended with DSX AI-enabled workflows.",
+          "",
+          "Present and future: DSX Edge continues to push the boundaries of business communications, embracing new technologies and adapting to changing market dynamics.",
+        ].join("\n"),
+      },
+      {
+        url: `${SITE_URL}/data-center`,
+        title: "DSX Data Center — Hosted at Citadel Campus",
+        body: [
+          "DSX's data management and communication solutions are anchored by our infrastructure hosted at the Citadel Campus of Switch — one of the most advanced and secure data centers in the world. Located in Tahoe Reno, Nevada.",
+          "",
+          "Highlights: 99.9% uptime SLA, renewable power, Tier IV-class facilities, and connectivity to all major cloud and carrier networks. Trusted by global companies including Amazon, Google, eBay, Microsoft, Apple, and Netflix-class workloads.",
+        ].join("\n"),
+      },
+      {
+        url: `${SITE_URL}/contact`,
+        title: "Talk to DSX — Contact",
+        body: [
+          "Every DSX Edge engagement starts with a free workflow audit. No pressure, no obligation.",
+          "Email: hello@dsxedge.com",
+          "Phone: (555) 123-4567",
+          "Support: 24/7",
+          "Headquarters: San Diego, California, USA",
+        ].join("\n"),
+      },
+    ];
+
+    for (const p of PAGE_TEXTS) {
+      sections.push(`### ${p.title}`);
+      sections.push(`URL: ${p.url}`);
+      sections.push("");
+      sections.push(p.body);
+      sections.push("");
+    }
+
     sections.push("## Blog content (full)");
     for (const p of posts) {
       sections.push("");
