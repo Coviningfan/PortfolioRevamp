@@ -18,42 +18,7 @@ import Breadcrumbs from "@/components/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { getAllPosts, getAllTags } from "@/content/blog";
 import { absoluteUrl } from "@/lib/site";
-
-type CaseStudy = {
-  name: string;
-  size: string;
-  monthlyCost: string;
-  savings: string;
-  description: string;
-  note: string;
-};
-
-const CASE_STUDIES: CaseStudy[] = [
-  {
-    name: "Law Office of Michael H. Bonner",
-    size: "Small Business",
-    monthlyCost: "$199.95",
-    savings: "65%",
-    description: "California-based business law practice with emphasis on international matters.",
-    note: "Includes conference room and off-site capabilities",
-  },
-  {
-    name: "Synology Inc.",
-    size: "Enterprise",
-    monthlyCost: "$686.00",
-    savings: "46%",
-    description: "Global technology leader handling 100,000+ minutes of communications monthly.",
-    note: "Added 50% capacity at 16% lower cost",
-  },
-  {
-    name: "Synergy Homeopathic",
-    size: "International",
-    monthlyCost: "$239.00",
-    savings: "64%",
-    description: "Global software solutions with distributed teams across multiple regions.",
-    note: "Seamless international connectivity",
-  },
-];
+import { CASE_STUDIES } from "@shared/case-studies";
 
 const FAQ_PREVIEW: string[] = [
   "What is DSX Edge?",
@@ -98,7 +63,7 @@ export default function ResourcesPage() {
             "@type": "ListItem",
             position: 3,
             name: "Case Studies",
-            url: absoluteUrl("/resources#case-studies"),
+            url: absoluteUrl("/case-studies"),
           },
         ],
       },
@@ -150,13 +115,14 @@ export default function ResourcesPage() {
               >
                 <HelpCircle size={14} /> FAQ
               </a>
-              <a
-                href="#case-studies"
-                data-testid="link-jump-case-studies"
-                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-full bg-white/[0.04] border border-white/10 text-slate-200 hover:text-white hover:border-blue-400/40 transition"
-              >
-                <TrendingDown size={14} /> Case Studies
-              </a>
+              <Link href="/case-studies">
+                <span
+                  data-testid="link-jump-case-studies"
+                  className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-full bg-white/[0.04] border border-white/10 text-slate-200 hover:text-white hover:border-blue-400/40 transition cursor-pointer"
+                >
+                  <TrendingDown size={14} /> Case Studies
+                </span>
+              </Link>
               <Link href="/ai">
                 <span
                   data-testid="link-jump-press-kit"
@@ -350,30 +316,45 @@ export default function ResourcesPage() {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {CASE_STUDIES.map((c) => (
-              <article
-                key={c.name}
-                data-testid={`card-case-study-${c.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-                className="rounded-2xl border border-white/10 bg-gradient-to-br from-blue-600/10 to-orange-500/5 p-6 flex flex-col"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[11px] uppercase tracking-widest text-blue-300/80">
-                    {c.size}
+              <Link key={c.slug} href={`/case-studies/${c.slug}`}>
+                <article
+                  data-testid={`card-case-study-${c.slug}`}
+                  className="group h-full rounded-2xl border border-white/10 bg-gradient-to-br from-blue-600/10 to-orange-500/5 hover:from-blue-600/15 hover:to-orange-500/10 p-6 flex flex-col cursor-pointer transition"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[11px] uppercase tracking-widest text-blue-300/80">
+                      {c.size}
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-orange-300">
+                      <TrendingDown size={12} /> {c.savings} cost reduction
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-semibold text-white group-hover:text-orange-300 transition">
+                    {c.name}
+                  </h3>
+                  <p className="mt-2 text-sm text-slate-400 flex-grow">{c.description}</p>
+                  <div className="mt-5 pt-4 border-t border-white/5">
+                    <div className="text-xs text-slate-500">Monthly cost after DSX</div>
+                    <div className="text-2xl font-bold text-white mt-1">{c.monthlyCost}</div>
+                    <div className="mt-2 text-xs text-slate-500 italic">{c.note}</div>
+                  </div>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-blue-300 group-hover:text-orange-300 transition">
+                    Read case study <ArrowRight size={14} />
                   </span>
-                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-orange-300">
-                    <TrendingDown size={12} /> {c.savings} cost reduction
-                  </span>
-                </div>
-                <h3 className="text-lg font-semibold text-white">{c.name}</h3>
-                <p className="mt-2 text-sm text-slate-400 flex-grow">{c.description}</p>
-                <div className="mt-5 pt-4 border-t border-white/5">
-                  <div className="text-xs text-slate-500">Monthly cost after DSX</div>
-                  <div className="text-2xl font-bold text-white mt-1">{c.monthlyCost}</div>
-                  <div className="mt-2 text-xs text-slate-500 italic">{c.note}</div>
-                </div>
-              </article>
+                </article>
+              </Link>
             ))}
           </div>
-          <div className="mt-8 text-center">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Link href="/case-studies">
+              <Button
+                variant="outline"
+                data-testid="button-resources-all-case-studies"
+                className="border-white/15 bg-white/[0.03] text-white hover:bg-white/[0.06] rounded-lg px-5"
+              >
+                See all case studies
+              </Button>
+            </Link>
             <Link href="/contact">
               <Button
                 data-testid="button-resources-contact"

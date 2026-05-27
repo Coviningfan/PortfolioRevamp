@@ -7,6 +7,7 @@ import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
 import { loadAllPosts, getAllTagsServer } from "./seo-html";
+import { CASE_STUDIES } from "@shared/case-studies";
 
 function escapeXml(s: string): string {
   return String(s)
@@ -25,10 +26,10 @@ const STATIC_ROUTES: Array<{ loc: string; changefreq: string; priority: string }
   { loc: "/data-center", changefreq: "monthly", priority: "0.7" },
   { loc: "/contact", changefreq: "monthly", priority: "0.8" },
   { loc: "/blog", changefreq: "weekly", priority: "0.9" },
-  { loc: "/resources", changefreq: "weekly", priority: "0.8" },
+  { loc: "/resources", changefreq: "weekly", priority: "0.9" },
+  { loc: "/case-studies", changefreq: "monthly", priority: "0.8" },
   { loc: "/faq", changefreq: "monthly", priority: "0.8" },
   { loc: "/ai", changefreq: "monthly", priority: "0.8" },
-  { loc: "/resources", changefreq: "weekly", priority: "0.9" },
 ];
 
 function getBlogPosts(): Array<{ slug: string; date: string; title: string; description: string }> {
@@ -131,6 +132,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       "Allow: /ai",
       "Allow: /faq",
       "Allow: /resources",
+      "Allow: /case-studies",
+      "Allow: /case-studies/",
       "Allow: /llms.txt",
       "Allow: /llms-full.txt",
       "Disallow: /",
@@ -170,6 +173,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       `- [Home](${SITE_URL}/): What DSX Edge does and who it's for.`,
       `- [What is DSX Edge?](${SITE_URL}/ai): Brand entity, verified facts, press kit, citation-ready descriptions.`,
       `- [Resources](${SITE_URL}/resources): Knowledge base hub — blog, FAQ, and customer case studies in one place.`,
+      `- [Case Studies](${SITE_URL}/case-studies): Real DSX deployments — small business, enterprise, and international — with verified 46–65% cost reductions.`,
+      ...CASE_STUDIES.map(
+        (c) =>
+          `  - [${c.name}](${SITE_URL}/case-studies/${c.slug}): ${c.size} — ${c.savings} cost reduction. ${c.description}`,
+      ),
       `- [FAQ](${SITE_URL}/faq): Direct answers to common questions about AI voice agents, pricing, and 3CX integration.`,
       `- [About](${SITE_URL}/about): Company history, founders, and the bridge from communications to AI.`,
       `- [Data Center](${SITE_URL}/data-center): Citadel Campus hosting and infrastructure.`,
@@ -457,6 +465,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         `${SITE_URL}/og-image.png`,
       ),
     );
+
+    for (const c of CASE_STUDIES) {
+      entries.push(
+        xmlUrlEntry(
+          `${SITE_URL}/case-studies/${c.slug}`,
+          today,
+          "monthly",
+          "0.7",
+          `${SITE_URL}/og-image.png`,
+        ),
+      );
+    }
 
     const xml =
       `<?xml version="1.0" encoding="UTF-8"?>\n` +

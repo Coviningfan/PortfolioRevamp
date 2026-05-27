@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { TrendingDown } from "lucide-react";
+import { Link } from "wouter";
+import { ArrowRight, TrendingDown } from "lucide-react";
 import Seo from "@/components/seo";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
@@ -13,45 +14,13 @@ import TestimonialsSection from "@/components/testimonials-section";
 import PartnersSection from "@/components/partners-section";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
+import { CASE_STUDIES } from "@shared/case-studies";
 
-const caseStudies = [
-  {
-    name: "Law Office of Michael H. Bonner",
-    description: "California-based business law practice with emphasis on international matters.",
-    size: "Small Business",
-    monthlyCost: "$199.95",
-    savings: "65%",
-    note: "Includes conference room and off-site capabilities",
-    color: "blue",
-    bg: "bg-blue-50",
-    accent: "text-blue-600",
-    border: "border-blue-200",
-  },
-  {
-    name: "Synology Inc.",
-    description: "Global technology leader handling 100,000+ minutes of communications monthly.",
-    size: "Enterprise",
-    monthlyCost: "$686.00",
-    savings: "46%",
-    note: "Added 50% capacity at 16% lower cost",
-    color: "orange",
-    bg: "bg-orange-50",
-    accent: "text-orange-600",
-    border: "border-orange-200",
-  },
-  {
-    name: "Synergy Homeopathic",
-    description: "Global software solutions with distributed teams across multiple regions.",
-    size: "International",
-    monthlyCost: "$239.00",
-    savings: "64%",
-    note: "Seamless international connectivity",
-    color: "blue",
-    bg: "bg-blue-50",
-    accent: "text-blue-600",
-    border: "border-blue-200",
-  },
-];
+const CASE_ACCENTS = ["text-blue-600", "text-orange-600", "text-blue-600"] as const;
+const caseStudies = CASE_STUDIES.map((c, i) => ({
+  ...c,
+  accent: CASE_ACCENTS[i] ?? "text-blue-600",
+}));
 
 export default function Home() {
   return (
@@ -164,31 +133,51 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="card-glass card-sheen hover-lift rounded-2xl p-8 hover:border-blue-400/50 hover:bg-white/[0.07]"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center`}>
-                    <TrendingDown className={`h-5 w-5 ${study.accent.replace('600', '300')}`} />
-                  </div>
-                  <div className={`text-3xl font-bold ${study.accent.replace('600', '300')}`}>{study.savings}</div>
-                  <span className="text-sm text-slate-400 font-medium">saved</span>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-1" data-testid={`text-case-study-${index}`}>
-                  {study.name}
-                </h3>
-                <span className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full bg-white/10 border border-white/10 ${study.accent.replace('600', '300')} mb-3`}>
-                  {study.size}
-                </span>
-                <p className="text-sm text-slate-400 mb-5">{study.description}</p>
-                <div className="bg-white/5 border border-white/5 rounded-xl p-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-slate-300">Monthly Cost</span>
-                    <span className={`font-bold ${study.accent.replace('600', '300')}`}>{study.monthlyCost}</span>
-                  </div>
-                </div>
-                <p className="text-xs text-slate-400 mt-3">{study.note}</p>
+                <Link href={`/case-studies/${study.slug}`}>
+                  <span
+                    data-testid={`link-case-study-${study.slug}`}
+                    className="group block h-full card-glass card-sheen hover-lift rounded-2xl p-8 hover:border-blue-400/50 hover:bg-white/[0.07] cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className={`w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center`}>
+                        <TrendingDown className={`h-5 w-5 ${study.accent.replace('600', '300')}`} />
+                      </div>
+                      <div className={`text-3xl font-bold ${study.accent.replace('600', '300')}`}>{study.savings}</div>
+                      <span className="text-sm text-slate-400 font-medium">saved</span>
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-1" data-testid={`text-case-study-${index}`}>
+                      {study.name}
+                    </h3>
+                    <span className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full bg-white/10 border border-white/10 ${study.accent.replace('600', '300')} mb-3`}>
+                      {study.size}
+                    </span>
+                    <p className="text-sm text-slate-400 mb-5">{study.description}</p>
+                    <div className="bg-white/5 border border-white/5 rounded-xl p-4">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-slate-300">Monthly Cost</span>
+                        <span className={`font-bold ${study.accent.replace('600', '300')}`}>{study.monthlyCost}</span>
+                      </div>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-3">{study.note}</p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-blue-300 group-hover:text-orange-300">
+                      Read case study <ArrowRight size={14} />
+                    </span>
+                  </span>
+                </Link>
               </motion.div>
             ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link href="/case-studies">
+              <span
+                data-testid="link-all-case-studies"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-300 hover:text-orange-300 transition cursor-pointer"
+              >
+                See all case studies <ArrowRight size={14} />
+              </span>
+            </Link>
           </div>
 
           <motion.div

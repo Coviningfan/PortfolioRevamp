@@ -88,6 +88,18 @@ export const STATIC_ROUTE_META: Record<string, RouteMeta> = {
       "3CX Platinum Partner",
     ],
   },
+  "/case-studies": {
+    title: "Customer Case Studies — 46% to 65% Cost Reduction",
+    description:
+      "Real DSX deployments across small business, enterprise, and international teams. Verified communications cost reductions from 46% up to 65%.",
+    keywords: [
+      "DSX case studies",
+      "3CX case studies",
+      "business phone cost reduction",
+      "VoIP savings case study",
+      "DSX Edge customers",
+    ],
+  },
   "/resources": {
     title: "Resources — Blog, FAQ & Customer Case Studies",
     description:

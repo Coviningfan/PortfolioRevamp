@@ -8,6 +8,7 @@ import {
   buildJsonLdForPath,
   type RouteMeta,
 } from "../shared/seo-meta";
+import { getCaseStudyBySlug } from "../shared/case-studies";
 
 function safeJsonLd(obj: object): string {
   return JSON.stringify(obj).replace(/</g, "\\u003c");
@@ -241,6 +242,63 @@ export function resolveMetaForUrl(rawUrl: string): ResolvedMeta {
       canonicalPath: pathname,
       type: "website",
       jsonLd: [collection, breadcrumb, itemList],
+      status: 200,
+    };
+  }
+
+  const caseStudyMatch = pathname.match(/^\/case-studies\/([a-zA-Z0-9-]+)$/);
+  if (caseStudyMatch) {
+    const rawSlug = caseStudyMatch[1];
+    const slug = rawSlug.toLowerCase();
+    const canonicalPath = `/case-studies/${slug}`;
+    const study = getCaseStudyBySlug(slug);
+    if (!study) {
+      return {
+        title: "Case Study Not Found",
+        description: "This case study could not be found.",
+        canonicalPath,
+        noIndex: true,
+        status: 404,
+      };
+    }
+    const title = `${study.name} — ${study.savings} cost reduction with DSX`;
+    const description = `How DSX delivered a ${study.savings} cost reduction for ${study.name}. ${study.description}`;
+    const article = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: title,
+      description,
+      mainEntityOfPage: absUrl(canonicalPath),
+      url: absUrl(canonicalPath),
+      author: { "@type": "Organization", name: SITE_DEFAULTS.name },
+      publisher: {
+        "@type": "Organization",
+        name: SITE_DEFAULTS.name,
+        logo: { "@type": "ImageObject", url: absUrl(SITE_DEFAULTS.defaultImage) },
+      },
+      about: { "@type": "Organization", name: study.name, address: study.region },
+    };
+    const breadcrumb = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: absUrl("/") },
+        { "@type": "ListItem", position: 2, name: "Case Studies", item: absUrl("/case-studies") },
+        { "@type": "ListItem", position: 3, name: study.name, item: absUrl(canonicalPath) },
+      ],
+    };
+    return {
+      title,
+      description,
+      canonicalPath,
+      type: "article",
+      keywords: [
+        "DSX case study",
+        study.name,
+        study.industry,
+        `${study.savings} cost reduction`,
+      ],
+      jsonLd: [article, breadcrumb],
       status: 200,
     };
   }
