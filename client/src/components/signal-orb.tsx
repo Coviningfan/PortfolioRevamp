@@ -16,13 +16,11 @@ interface Pillar {
   key: PillarKey;
   icon: React.ElementType;
   label: string;
-  shortLabel: string;
   tone: Tone;
   position: string;
   angle: number;
   delay: number;
   chip: { x: number; y: number };
-  chipMobile: { x: number; y: number };
 }
 
 interface OrbitalRing {
@@ -57,37 +55,31 @@ const PILLARS: Pillar[] = [
     key: "comms",
     icon: PhoneCall,
     label: "Business Communications",
-    shortLabel: "Comms",
     tone: "blue",
-    position: "",
+    position: "top-0 left-1/2 -translate-y-3",
     angle: 270,
     delay: 0.2,
-    chip: { x: 0.5, y: 0.06 },
-    chipMobile: { x: 0.5, y: 0.04 },
+    chip: { x: 0.5, y: 0.03 },
   },
   {
     key: "infra",
     icon: Server,
     label: "Hosted Infrastructure",
-    shortLabel: "Hosting",
     tone: "slate",
-    position: "",
-    angle: 150,
+    position: "bottom-6 left-0",
+    angle: 30,
     delay: 0.38,
-    chip: { x: 0.22, y: 0.92 },
-    chipMobile: { x: 0.18, y: 0.93 },
+    chip: { x: 0.08, y: 0.85 },
   },
   {
     key: "ai",
     icon: Sparkles,
     label: "DSX AI Enabled",
-    shortLabel: "AI Layer",
     tone: "orange",
-    position: "",
-    angle: 30,
+    position: "bottom-6 right-0",
+    angle: 150,
     delay: 0.56,
-    chip: { x: 0.78, y: 0.92 },
-    chipMobile: { x: 0.82, y: 0.93 },
+    chip: { x: 0.92, y: 0.85 },
   },
 ];
 
@@ -144,28 +136,32 @@ function createStars(count = 42): Star[] {
   }));
 }
 
-function usePointerParallax(containerRef: React.RefObject<HTMLDivElement>, reduced: boolean) {
+function usePointerParallax(
+  containerRef: React.RefObject<HTMLDivElement>,
+  reduced: boolean,
+) {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
 
-  const sx = useSpring(mx, { stiffness: 45, damping: 20, mass: 0.85 });
-  const sy = useSpring(my, { stiffness: 45, damping: 20, mass: 0.85 });
+  const sx = useSpring(mx, { stiffness: 60, damping: 22, mass: 0.75 });
+  const sy = useSpring(my, { stiffness: 60, damping: 22, mass: 0.75 });
 
   useEffect(() => {
-    if (reduced) {
+    const el = containerRef.current;
+    if (!el || reduced) {
       mx.set(0);
       my.set(0);
       return;
     }
 
     const onMove = (e: PointerEvent) => {
-      const el = containerRef.current;
-      if (!el) return;
       const rect = el.getBoundingClientRect();
-      const dx = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
-      const dy = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
-      mx.set(clamp(dx, -1.8, 1.8));
-      my.set(clamp(dy, -1.8, 1.8));
+      const dx =
+        (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+      const dy =
+        (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+      mx.set(clamp(dx, -1, 1));
+      my.set(clamp(dy, -1, 1));
     };
 
     const onLeave = () => {
@@ -173,12 +169,12 @@ function usePointerParallax(containerRef: React.RefObject<HTMLDivElement>, reduc
       my.set(0);
     };
 
-    window.addEventListener("pointermove", onMove, { passive: true });
-    window.addEventListener("pointerleave", onLeave);
+    el.addEventListener("pointermove", onMove, { passive: true });
+    el.addEventListener("pointerleave", onLeave);
 
     return () => {
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerleave", onLeave);
+      el.removeEventListener("pointermove", onMove);
+      el.removeEventListener("pointerleave", onLeave);
     };
   }, [containerRef, mx, my, reduced]);
 
@@ -255,7 +251,13 @@ function OrbSVG({
           <stop offset="100%" stopColor="rgba(219,234,254,1)" />
         </linearGradient>
 
-        <linearGradient id="sg-equator-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <linearGradient
+          id="sg-equator-grad"
+          x1="0%"
+          y1="0%"
+          x2="0%"
+          y2="100%"
+        >
           <stop offset="0%" stopColor="rgba(96,165,250,0)" />
           <stop offset="50%" stopColor="rgba(96,165,250,0.3)" />
           <stop offset="100%" stopColor="rgba(96,165,250,0)" />
@@ -273,7 +275,13 @@ function OrbSVG({
           </feMerge>
         </filter>
 
-        <filter id="sg-glow-strong" x="-120%" y="-120%" width="340%" height="340%">
+        <filter
+          id="sg-glow-strong"
+          x="-120%"
+          y="-120%"
+          width="340%"
+          height="340%"
+        >
           <feGaussianBlur stdDeviation="3.2" result="blur" />
           <feMerge>
             <feMergeNode in="blur" />
@@ -288,8 +296,22 @@ function OrbSVG({
         </linearGradient>
       </defs>
 
-      <circle cx="0" cy="0" r="78" fill="none" stroke="rgba(96,165,250,0.12)" strokeWidth="12" />
-      <circle cx="0" cy="0" r="84" fill="none" stroke="rgba(96,165,250,0.05)" strokeWidth="6" />
+      <circle
+        cx="0"
+        cy="0"
+        r="78"
+        fill="none"
+        stroke="rgba(96,165,250,0.12)"
+        strokeWidth="12"
+      />
+      <circle
+        cx="0"
+        cy="0"
+        r="84"
+        fill="none"
+        stroke="rgba(96,165,250,0.05)"
+        strokeWidth="6"
+      />
 
       <circle cx="0" cy="0" r="68" fill="url(#sg-orb-core)" />
       <circle cx="0" cy="0" r="68" fill="url(#sg-amber-sub)" />
@@ -297,7 +319,14 @@ function OrbSVG({
       <circle cx="0" cy="0" r="68" fill="url(#sg-rim)" />
       <circle cx="0" cy="0" r="68" fill="url(#sg-specular)" />
 
-      <ellipse cx="0" cy="0" rx="68" ry="8" fill="url(#sg-equator-grad)" opacity="0.6" />
+      <ellipse
+        cx="0"
+        cy="0"
+        rx="68"
+        ry="8"
+        fill="url(#sg-equator-grad)"
+        opacity="0.6"
+      />
 
       <g clipPath="url(#sg-clip)">
         <rect
@@ -364,7 +393,12 @@ function OrbSVG({
               fill="url(#sg-shimmer)"
               transform="rotate(-22)"
               animate={{ x: [-100, 100] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+                repeatDelay: 2,
+              }}
               opacity="0.7"
             />
           </g>
@@ -377,14 +411,22 @@ function OrbSVG({
                 key={`inner-${i}`}
                 initial={{ rotate: a }}
                 animate={{ rotate: a + 360 }}
-                transition={{ duration: 9 + i * 1.4, repeat: Infinity, ease: "linear" }}
+                transition={{
+                  duration: 9 + i * 1.4,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
                 style={{ transformOrigin: "0px 0px" }}
               >
                 <motion.circle
                   cx={r}
                   cy={0}
                   r={i % 2 === 0 ? 1.6 : 1.1}
-                  fill={i % 3 === 0 ? "rgba(251,186,116,0.95)" : "rgba(191,219,254,0.95)"}
+                  fill={
+                    i % 3 === 0
+                      ? "rgba(251,186,116,0.95)"
+                      : "rgba(191,219,254,0.95)"
+                  }
                   filter="url(#sg-glow)"
                   animate={{ opacity: [0.35, 0.95, 0.35] }}
                   transition={{
@@ -417,7 +459,13 @@ function OrbSVG({
         />
       )}
 
-      <circle cx="0" cy="0" r="10" fill="rgba(219,234,254,0.95)" filter="url(#sg-glow)" />
+      <circle
+        cx="0"
+        cy="0"
+        r="10"
+        fill="rgba(219,234,254,0.95)"
+        filter="url(#sg-glow)"
+      />
       <circle cx="0" cy="0" r="5" fill="white" />
       <circle cx="-2" cy="-2" r="2" fill="rgba(255,255,255,0.9)" />
 
@@ -444,13 +492,25 @@ function OrbSVG({
             strokeWidth="0.4"
             initial={{ scale: 1, opacity: 0.7 }}
             animate={{ scale: 4.5, opacity: 0 }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay: 1.5 }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeOut",
+              delay: 1.5,
+            }}
             style={{ transformOrigin: "0px 0px" }}
           />
         </>
       )}
 
-      <circle cx="0" cy="0" r="68" fill="none" stroke="rgba(147,197,253,0.25)" strokeWidth="0.5" />
+      <circle
+        cx="0"
+        cy="0"
+        r="68"
+        fill="none"
+        stroke="rgba(147,197,253,0.25)"
+        strokeWidth="0.5"
+      />
     </motion.svg>
   );
 }
@@ -548,7 +608,13 @@ function AnimatedPacket({
   return (
     <>
       <motion.circle r={5.5} cx={cx} cy={cy} fill={glowColor} opacity={0.22} />
-      <motion.circle r={2.8} cx={cx} cy={cy} fill={color} filter="url(#sg-glow-strong)" />
+      <motion.circle
+        r={2.8}
+        cx={cx}
+        cy={cy}
+        fill={color}
+        filter="url(#sg-glow-strong)"
+      />
     </>
   );
 }
@@ -556,33 +622,27 @@ function AnimatedPacket({
 function PillarChip({
   pillar,
   active,
-  isMobile,
   onClick,
 }: {
   pillar: Pillar;
   active: boolean;
-  isMobile: boolean;
   onClick: () => void;
 }) {
   const toneStyle = TONES[pillar.tone];
   const Icon = pillar.icon;
-  const coord = isMobile ? pillar.chipMobile : pillar.chip;
+  const isTopCenter = pillar.key === "comms";
 
   return (
     <div
-      className="absolute"
-      style={{
-        left: `${coord.x * 100}%`,
-        top: `${coord.y * 100}%`,
-        transform: "translate(-50%, -50%)",
-      }}
+      className={`absolute ${pillar.position}`}
+      style={isTopCenter ? { transform: "translate(-50%, -12px)" } : undefined}
     >
       <motion.button
         type="button"
         aria-pressed={active}
         aria-label={pillar.label}
         className={[
-          "flex items-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl border px-2 py-1.5 sm:px-3 sm:py-2 backdrop-blur-md shadow-lg",
+          "flex items-center gap-2 rounded-xl border px-3 py-2 backdrop-blur-md shadow-lg",
           "cursor-pointer select-none transition-colors",
           toneStyle.chip,
           active ? toneStyle.chipActive : "",
@@ -601,33 +661,12 @@ function PillarChip({
         onClick={onClick}
         data-testid={`button-pillar-${pillar.key}`}
       >
-        <span className="relative flex h-2 w-2 flex-shrink-0 items-center justify-center">
-          <motion.span
-            className={`absolute inset-0 rounded-full ${toneStyle.dot}`}
-            animate={{ scale: [1, 2.6, 2.6], opacity: [0.55, 0, 0] }}
-            transition={{
-              duration: 1.8,
-              repeat: Infinity,
-              ease: "easeOut",
-              delay: pillar.delay + 0.4,
-            }}
-          />
-          <motion.span
-            className={`absolute inset-0 rounded-full ${toneStyle.dot}`}
-            animate={{ scale: [1, 3.4, 3.4], opacity: [0.35, 0, 0] }}
-            transition={{
-              duration: 2.4,
-              repeat: Infinity,
-              ease: "easeOut",
-              delay: pillar.delay + 0.9,
-            }}
-          />
-          <span className={`relative h-2 w-2 rounded-full ${toneStyle.dot} shadow-[0_0_8px_currentColor]`} />
-        </span>
-        <Icon size={13} className={`flex-shrink-0 ${toneStyle.icon}`} />
-        <span className="whitespace-nowrap text-[10px] sm:text-xs font-medium tracking-wide">
-          <span className="hidden sm:inline">{pillar.label}</span>
-          <span className="sm:hidden">{pillar.shortLabel}</span>
+        <span
+          className={`h-2 w-2 rounded-full flex-shrink-0 ${toneStyle.dot}`}
+        />
+        <Icon size={14} className={`flex-shrink-0 ${toneStyle.icon}`} />
+        <span className="whitespace-nowrap text-xs font-medium tracking-wide">
+          {pillar.label}
         </span>
       </motion.button>
     </div>
@@ -638,38 +677,29 @@ function ArcConnector({
   pillar,
   orbCenter,
   containerSize,
-  chipCoord,
   active,
   reduced,
 }: {
   pillar: Pillar;
   orbCenter: { x: number; y: number };
   containerSize: number;
-  chipCoord: { x: number; y: number };
   active: boolean;
   reduced: boolean;
 }) {
   const tone = TONES[pillar.tone];
-  const orbRadius = containerSize * 0.155;
-  const chipInset = containerSize * 0.018;
+  const rad = (pillar.angle * Math.PI) / 180;
+  const orbRadius = containerSize * 0.145;
 
+  const startX = orbCenter.x + Math.cos(rad) * orbRadius;
+  const startY = orbCenter.y + Math.sin(rad) * orbRadius;
   const end = {
-    x: containerSize * chipCoord.x,
-    y: containerSize * chipCoord.y,
+    x: containerSize * pillar.chip.x,
+    y: containerSize * pillar.chip.y,
   };
 
-  const dxTotal = end.x - orbCenter.x;
-  const dyTotal = end.y - orbCenter.y;
-  const totalLen = Math.hypot(dxTotal, dyTotal) || 1;
-  const ux = dxTotal / totalLen;
-  const uy = dyTotal / totalLen;
-
-  const startX = orbCenter.x + ux * orbRadius;
-  const startY = orbCenter.y + uy * orbRadius;
-  const endX = end.x - ux * chipInset;
-  const endY = end.y - uy * chipInset;
-
-  const pathD = `M${startX},${startY} L${endX},${endY}`;
+  const mx = (startX + end.x) / 2 + (end.y - startY) * 0.3;
+  const my = (startY + end.y) / 2 - (end.x - startX) * 0.3;
+  const pathD = `M${startX},${startY} Q${mx},${my} ${end.x},${end.y}`;
 
   return (
     <svg
@@ -678,7 +708,13 @@ function ArcConnector({
       aria-hidden="true"
     >
       <defs>
-        <filter id={`arc-glow-${pillar.key}`} x="-60%" y="-60%" width="220%" height="220%">
+        <filter
+          id={`arc-glow-${pillar.key}`}
+          x="-60%"
+          y="-60%"
+          width="220%"
+          height="220%"
+        >
           <feGaussianBlur stdDeviation="2.5" result="blur" />
           <feMerge>
             <feMergeNode in="blur" />
@@ -687,19 +723,37 @@ function ArcConnector({
         </filter>
       </defs>
 
-      {active && (
-        <motion.path
-          d={pathD}
-          fill="none"
-          stroke={tone.arcGlow}
-          strokeWidth={1}
-          strokeLinecap="round"
-          strokeDasharray="2 5"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 0.45 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        />
-      )}
+      <motion.path
+        d={pathD}
+        fill="none"
+        stroke={tone.arcGlow}
+        strokeWidth={active ? 4 : 2.5}
+        strokeLinecap="round"
+        filter={`url(#arc-glow-${pillar.key})`}
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: active ? 1 : 0.5 }}
+        transition={{
+          delay: pillar.delay + 0.15,
+          duration: 0.9,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      />
+
+      <motion.path
+        d={pathD}
+        fill="none"
+        stroke={tone.arc}
+        strokeWidth={active ? 1.5 : 1}
+        strokeLinecap="round"
+        strokeDasharray="3 4"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: active ? 1 : 0.65 }}
+        transition={{
+          delay: pillar.delay + 0.15,
+          duration: 0.9,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      />
 
       {!reduced && (
         <>
@@ -708,7 +762,10 @@ function ArcConnector({
             fill={tone.arc}
             filter={`url(#arc-glow-${pillar.key})`}
             initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 1, 1, 0], offsetDistance: ["0%", "100%"] as never }}
+            animate={{
+              opacity: [0, 1, 1, 0],
+              offsetDistance: ["0%", "100%"] as never,
+            }}
             transition={{
               duration: 2.4,
               repeat: Infinity,
@@ -716,14 +773,22 @@ function ArcConnector({
               delay: pillar.delay + 1,
               times: [0, 0.1, 0.9, 1],
             }}
-            style={{ offsetPath: `path('${pathD}')`, offsetRotate: "auto" } as never}
+            style={
+              {
+                offsetPath: `path('${pathD}')`,
+                offsetRotate: "auto",
+              } as never
+            }
           />
           <motion.circle
             r={active ? 4 : 3}
             fill={tone.arc}
             filter={`url(#arc-glow-${pillar.key})`}
             initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 1, 1, 0], offsetDistance: ["100%", "0%"] as never }}
+            animate={{
+              opacity: [0, 1, 1, 0],
+              offsetDistance: ["100%", "0%"] as never,
+            }}
             transition={{
               duration: 2.4,
               repeat: Infinity,
@@ -731,7 +796,12 @@ function ArcConnector({
               delay: pillar.delay + 2.2,
               times: [0, 0.1, 0.9, 1],
             }}
-            style={{ offsetPath: `path('${pathD}')`, offsetRotate: "auto" } as never}
+            style={
+              {
+                offsetPath: `path('${pathD}')`,
+                offsetRotate: "auto",
+              } as never
+            }
           />
         </>
       )}
@@ -742,37 +812,30 @@ function ArcConnector({
 export default function SignalOrb() {
   const containerRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
-  void shouldReduceMotion;
-  const reduced = false;
+  const reduced = !!shouldReduceMotion;
 
-  const [containerSize, setContainerSize] = useState(() => {
-    if (typeof window === "undefined") return 420;
-    return window.innerWidth < 640 ? 320 : 480;
-  });
+  const [containerSize, setContainerSize] = useState(480);
   const [activePillar, setActivePillar] = useState<PillarKey | null>(null);
-  const isMobile = containerSize < 420;
 
   useEffect(() => {
     const node = containerRef.current;
     if (!node) return;
-
     const obs = new ResizeObserver(([entry]) => {
-      const next = Math.round(entry.contentRect.width);
+      const next = entry.contentRect.width;
       if (next) setContainerSize(next);
     });
-
     obs.observe(node);
     return () => obs.disconnect();
   }, []);
 
   const { sx, sy } = usePointerParallax(containerRef, reduced);
 
-  const tiltX = useTransform(sy, [-1, 1], reduced ? [0, 0] : [16, -16]);
-  const tiltY = useTransform(sx, [-1, 1], reduced ? [0, 0] : [-20, 20]);
-  const shiftX = useTransform(sx, [-1, 1], reduced ? [0, 0] : [-22, 22]);
-  const shiftY = useTransform(sy, [-1, 1], reduced ? [0, 0] : [-22, 22]);
-  const haloX = useTransform(sx, [-1, 1], reduced ? [0, 0] : [-12, 12]);
-  const haloY = useTransform(sy, [-1, 1], reduced ? [0, 0] : [-12, 12]);
+  const tiltX = useTransform(sy, [-1, 1], reduced ? [0, 0] : [10, -10]);
+  const tiltY = useTransform(sx, [-1, 1], reduced ? [0, 0] : [-12, 12]);
+  const shiftX = useTransform(sx, [-1, 1], reduced ? [0, 0] : [-14, 14]);
+  const shiftY = useTransform(sy, [-1, 1], reduced ? [0, 0] : [-14, 14]);
+  const haloX = useTransform(sx, [-1, 1], reduced ? [0, 0] : [-6, 6]);
+  const haloY = useTransform(sy, [-1, 1], reduced ? [0, 0] : [-6, 6]);
 
   const stars = useMemo(() => createStars(reduced ? 18 : 42), [reduced]);
 
@@ -836,27 +899,46 @@ export default function SignalOrb() {
 
   const orbCenter = { x: containerSize / 2, y: containerSize / 2 };
 
-  const handlePillarClick = useCallback((key: PillarKey) => {
-    setActivePillar((prev) => (prev === key ? null : key));
-  }, []);
+  const handlePillarClick = useCallback(
+    (key: PillarKey) => setActivePillar((prev) => (prev === key ? null : key)),
+    [],
+  );
+
+  const activePillarData = useMemo(
+    () => (activePillar ? PILLARS.find((x) => x.key === activePillar) : null),
+    [activePillar],
+  );
 
   return (
     <section
       ref={containerRef}
-      className="relative mx-auto aspect-square w-full max-w-[320px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[560px] select-none touch-pan-y"
+      className="relative mx-auto aspect-square w-full max-w-[580px] select-none"
       data-testid="signal-orb"
       style={{ perspective: 1400 }}
       aria-label="Interactive signal orb"
     >
       {!reduced && (
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+        >
           {stars.map((s) => (
             <motion.div
               key={s.id}
               className="absolute rounded-full bg-white"
-              style={{ left: `${s.x}%`, top: `${s.y}%`, width: s.size, height: s.size }}
+              style={{
+                left: `${s.x}%`,
+                top: `${s.y}%`,
+                width: s.size,
+                height: s.size,
+              }}
               animate={{ opacity: [0, s.opacity, 0], scale: [0.5, 1, 0.5] }}
-              transition={{ duration: s.duration, delay: s.delay, repeat: Infinity, ease: "easeInOut" }}
+              transition={{
+                duration: s.duration,
+                delay: s.delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             />
           ))}
         </div>
@@ -871,27 +953,17 @@ export default function SignalOrb() {
           className="absolute inset-0 rounded-full"
           style={{
             background:
-              "radial-gradient(circle at 38% 32%, rgba(96,165,250,0.32) 0%, rgba(30,64,175,0.18) 45%, transparent 72%)",
-            filter: "blur(50px)",
+              "radial-gradient(circle at 38% 32%, rgba(96,165,250,0.22) 0%, rgba(30,64,175,0.12) 45%, transparent 72%)",
+            filter: "blur(40px)",
           }}
         />
         <div
           className="absolute inset-[15%] rounded-full"
           style={{
             background:
-              "radial-gradient(circle at 68% 72%, rgba(251,146,60,0.24) 0%, transparent 65%)",
-            filter: "blur(36px)",
+              "radial-gradient(circle at 68% 72%, rgba(251,146,60,0.16) 0%, transparent 65%)",
+            filter: "blur(30px)",
           }}
-        />
-        <motion.div
-          className="absolute inset-[-4%] rounded-full opacity-60"
-          style={{
-            background:
-              "conic-gradient(from 140deg at 50% 50%, rgba(96,165,250,0.0) 0deg, rgba(96,165,250,0.18) 80deg, rgba(251,146,60,0.18) 200deg, rgba(96,165,250,0.0) 360deg)",
-            filter: "blur(28px)",
-          }}
-          animate={reduced ? undefined : { rotate: 360 }}
-          transition={reduced ? undefined : { duration: 36, repeat: Infinity, ease: "linear" }}
         />
         {!reduced &&
           PILLARS.map((p) => (
@@ -916,7 +988,6 @@ export default function SignalOrb() {
           pillar={p}
           orbCenter={orbCenter}
           containerSize={containerSize}
-          chipCoord={isMobile ? p.chipMobile : p.chip}
           active={activePillar === p.key}
           reduced={reduced}
         />
@@ -924,11 +995,24 @@ export default function SignalOrb() {
 
       <motion.div
         className="absolute inset-[8%]"
-        style={reduced ? { transformStyle: "preserve-3d" } : { x: shiftX, y: shiftY, transformStyle: "preserve-3d" }}
+        style={
+          reduced
+            ? { transformStyle: "preserve-3d" }
+            : { x: shiftX, y: shiftY, transformStyle: "preserve-3d" }
+        }
         animate={reduced ? undefined : { scale: [1, 1.02, 1, 1.015, 1] }}
-        transition={reduced ? undefined : { duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        transition={
+          reduced
+            ? undefined
+            : { duration: 7, repeat: Infinity, ease: "easeInOut" }
+        }
       >
-        <OrbSVG rings={rings} reduced={reduced} tiltX={tiltX} tiltY={tiltY} />
+        <OrbSVG
+          rings={rings}
+          reduced={reduced}
+          tiltX={tiltX}
+          tiltY={tiltY}
+        />
       </motion.div>
 
       {PILLARS.map((p) => (
@@ -936,12 +1020,11 @@ export default function SignalOrb() {
           key={p.key}
           pillar={p}
           active={activePillar === p.key}
-          isMobile={isMobile}
           onClick={() => handlePillarClick(p.key)}
         />
       ))}
 
-      {activePillar && (
+      {activePillarData && (
         <motion.div
           key={activePillar}
           className="absolute inset-x-[18%] bottom-[14%] text-center pointer-events-none"
@@ -949,8 +1032,12 @@ export default function SignalOrb() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}
         >
-          <p className={`text-[11px] font-semibold uppercase tracking-widest ${TONES[PILLARS.find((x) => x.key === activePillar)!.tone].icon}`}>
-            {PILLARS.find((x) => x.key === activePillar)!.label}
+          <p
+            className={`text-[11px] font-semibold uppercase tracking-widest ${
+              TONES[activePillarData.tone].icon
+            }`}
+          >
+            {activePillarData.label}
           </p>
         </motion.div>
       )}
