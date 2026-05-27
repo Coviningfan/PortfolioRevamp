@@ -16,6 +16,7 @@ import DataCenterPage from "@/pages/data-center";
 import ContactPage from "@/pages/contact";
 import BlogIndexPage from "@/pages/blog";
 import BlogPostPage from "@/pages/blog-post";
+import BlogTagPage from "@/pages/blog-tag";
 import FaqPage from "@/pages/faq";
 import AiPage from "@/pages/ai";
 import NotFound from "@/pages/not-found";
@@ -34,6 +35,7 @@ function Router() {
         <Route path="/data-center" component={DataCenterPage} />
         <Route path="/contact" component={ContactPage} />
         <Route path="/blog" component={BlogIndexPage} />
+        <Route path="/blog/tag/:tag" component={BlogTagPage} />
         <Route path="/blog/:slug" component={BlogPostPage} />
         <Route path="/faq" component={FaqPage} />
         <Route path="/ai" component={AiPage} />

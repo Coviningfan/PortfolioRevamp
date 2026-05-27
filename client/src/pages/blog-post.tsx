@@ -1,14 +1,16 @@
 import { useEffect } from "react";
 import { Link, useRoute, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Clock, Tag, ArrowRight } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Seo from "@/components/seo";
 import KeyTakeaways from "@/components/key-takeaways";
 import Breadcrumbs from "@/components/breadcrumbs";
+import AuthorBio from "@/components/author-bio";
+import RelatedReads from "@/components/related-reads";
 import { Button } from "@/components/ui/button";
-import { getPostBySlug, getAllPosts } from "@/content/blog";
+import { getPostBySlug, getRelatedPosts, tagToSlug } from "@/content/blog";
 import { SITE, absoluteUrl } from "@/lib/site";
 
 function stripHtml(html: string): string {
@@ -31,16 +33,13 @@ export default function BlogPostPage() {
 
   if (!post) return null;
 
-  const related = getAllPosts()
-    .filter((p) => p.slug !== post.slug)
-    .slice(0, 3);
-
+  const related = getRelatedPosts(post.slug, 3);
   const wordCount = countWords(stripHtml(post.html));
 
   const jsonLd = [
     {
       "@context": "https://schema.org",
-      "@type": "Article",
+      "@type": "BlogPosting",
       headline: post.title,
       description: post.description,
       author: { "@type": "Organization", name: post.author, url: SITE.domain },
@@ -57,7 +56,7 @@ export default function BlogPostPage() {
       dateModified: post.date,
       mainEntityOfPage: { "@type": "WebPage", "@id": absoluteUrl(`/blog/${post.slug}`) },
       image: absoluteUrl(post.cover || "/og-image.png"),
-      keywords: post.keywords?.join(", "),
+      keywords: (post.keywords || post.tags).join(", "),
       articleSection: post.category,
       wordCount,
       inLanguage: "en-US",
@@ -82,7 +81,7 @@ export default function BlogPostPage() {
         type="article"
         publishedTime={new Date(post.date).toISOString()}
         author={post.author}
-        keywords={post.keywords}
+        keywords={post.keywords || post.tags}
         jsonLd={jsonLd}
       />
       <Navigation />
@@ -146,7 +145,27 @@ export default function BlogPostPage() {
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
 
-          <div className="mt-14 pt-10 border-t border-white/10">
+          {post.tags.length > 0 && (
+            <div className="mt-10 flex flex-wrap gap-2" data-testid="post-tags">
+              {post.tags.map((t) => (
+                <Link key={t} href={`/blog/tag/${tagToSlug(t)}`}>
+                  <span
+                    className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-slate-300 hover:text-white hover:border-orange-400/40 hover:bg-orange-500/10 transition-colors cursor-pointer"
+                    data-testid={`tag-pill-${tagToSlug(t)}`}
+                  >
+                    <Tag size={11} />
+                    {t}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          )}
+
+          <div className="mt-10">
+            <AuthorBio name={post.author} />
+          </div>
+
+          <div className="mt-12 pt-10 border-t border-white/10">
             <div className="rounded-2xl bg-gradient-to-br from-blue-600/15 to-orange-500/10 border border-white/10 p-8 text-center">
               <h3 className="text-2xl font-semibold">Ready to put intelligence on top of your phone system?</h3>
               <p className="mt-2 text-slate-300">Talk to DSX about an Edge implementation tailored to your workflow.</p>
@@ -158,27 +177,7 @@ export default function BlogPostPage() {
             </div>
           </div>
 
-          {related.length > 0 && (
-            <section className="mt-16">
-              <h2 className="text-sm uppercase tracking-widest text-slate-400 mb-5">Keep reading</h2>
-              <div className="grid sm:grid-cols-3 gap-4">
-                {related.map((r) => (
-                  <Link key={r.slug} href={`/blog/${r.slug}`}>
-                    <div
-                      className="group p-5 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition cursor-pointer h-full"
-                      data-testid={`link-related-${r.slug}`}
-                    >
-                      <div className="text-[10px] uppercase tracking-widest text-blue-300/80 mb-2">{r.category}</div>
-                      <div className="text-sm font-semibold text-white group-hover:text-orange-300 transition-colors line-clamp-3">{r.title}</div>
-                      <div className="mt-3 inline-flex items-center gap-1 text-xs text-blue-300 group-hover:text-orange-300">
-                        Read <ArrowRight size={12} />
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          )}
+          {related.length > 0 && <RelatedReads posts={related} className="mt-16" />}
         </div>
       </article>
 

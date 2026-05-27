@@ -10,7 +10,6 @@ import {
 } from "../shared/seo-meta";
 
 function safeJsonLd(obj: object): string {
-  // Escape `</` to prevent breakout of <script> in case any string contains it
   return JSON.stringify(obj).replace(/</g, "\\u003c");
 }
 
@@ -48,8 +47,46 @@ function blogContentDir(): string | null {
 }
 
 interface FrontmatterResult {
-  data: Record<string, string>;
+  data: Record<string, string | string[]>;
   body: string;
+}
+
+function parseFrontmatterBlock(block: string): Record<string, string | string[]> {
+  const data: Record<string, string | string[]> = {};
+  let currentKey: string | null = null;
+  for (const line of block.split(/\r?\n/)) {
+    if (!line.trim()) continue;
+    const listItem = line.match(/^\s+-\s+(.*)$/);
+    if (listItem && currentKey) {
+      const arr = (data[currentKey] as string[] | undefined) || [];
+      if (!Array.isArray(data[currentKey])) data[currentKey] = arr;
+      (data[currentKey] as string[]).push(listItem[1].replace(/^["']|["']$/g, "").trim());
+      continue;
+    }
+    const kv = line.match(/^([a-zA-Z0-9_-]+):\s*(.*)$/);
+    if (kv) {
+      const [, key, valRaw] = kv;
+      currentKey = key;
+      const val = valRaw.trim();
+      if (val === "") {
+        data[key] = [];
+      } else {
+        data[key] = val.replace(/^["']|["']$/g, "");
+      }
+    }
+  }
+  return data;
+}
+
+function readFrontmatterFile(fp: string): FrontmatterResult | null {
+  try {
+    const raw = fs.readFileSync(fp, "utf8");
+    const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+    if (!m) return null;
+    return { data: parseFrontmatterBlock(m[1]), body: m[2] || "" };
+  } catch {
+    return null;
+  }
 }
 
 function readFrontmatter(slug: string): FrontmatterResult | null {
@@ -57,19 +94,79 @@ function readFrontmatter(slug: string): FrontmatterResult | null {
   if (!dir) return null;
   const fp = path.join(dir, `${slug}.md`);
   if (!fs.existsSync(fp)) return null;
+  return readFrontmatterFile(fp);
+}
+
+export interface BlogPostMeta {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  author: string;
+  category: string;
+  tags: string[];
+  body: string;
+}
+
+export function loadAllPosts(): BlogPostMeta[] {
+  const dir = blogContentDir();
+  if (!dir) return [];
+  let files: string[] = [];
   try {
-    const raw = fs.readFileSync(fp, "utf8");
-    const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
-    if (!m) return null;
-    const data: Record<string, string> = {};
-    for (const line of m[1].split(/\r?\n/)) {
-      const kv = line.match(/^([a-zA-Z0-9_]+):\s*"?([^"\n]*?)"?\s*$/);
-      if (kv) data[kv[1]] = kv[2];
-    }
-    return { data, body: m[2] || "" };
+    files = fs.readdirSync(dir).filter((f) => f.endsWith(".md"));
   } catch {
-    return null;
+    return [];
   }
+  const posts: BlogPostMeta[] = [];
+  for (const f of files) {
+    const slug = f.replace(/\.md$/, "").toLowerCase();
+    const fm = readFrontmatterFile(path.join(dir, f));
+    if (!fm) continue;
+    const d = fm.data;
+    const category = (d.category as string) || "Insights";
+    const tags = Array.isArray(d.tags) && d.tags.length > 0
+      ? (d.tags as string[])
+      : [category];
+    posts.push({
+      slug,
+      title: (d.title as string) || slug,
+      description: (d.description as string) || "",
+      date: (d.date as string) || new Date().toISOString().slice(0, 10),
+      author: (d.author as string) || SITE_DEFAULTS.name + " Team",
+      category,
+      tags,
+      body: fm.body,
+    });
+  }
+  posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return posts;
+}
+
+export function tagToSlugServer(tag: string): string {
+  return tag
+    .toLowerCase()
+    .trim()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function getAllTagsServer(): Array<{ tag: string; slug: string; count: number; posts: BlogPostMeta[] }> {
+  const posts = loadAllPosts();
+  const map = new Map<string, { tag: string; count: number; posts: BlogPostMeta[] }>();
+  for (const p of posts) {
+    for (const t of p.tags) {
+      const slug = tagToSlugServer(t);
+      const entry = map.get(slug);
+      if (entry) {
+        entry.count += 1;
+        entry.posts.push(p);
+      } else {
+        map.set(slug, { tag: t, count: 1, posts: [p] });
+      }
+    }
+  }
+  return Array.from(map.entries()).map(([slug, v]) => ({ slug, ...v }));
 }
 
 function countWords(s: string): number {
@@ -97,21 +194,74 @@ export function resolveMetaForUrl(rawUrl: string): ResolvedMeta {
     };
   }
 
+  const tagMatch = pathname.match(/^\/blog\/tag\/([a-zA-Z0-9-]+)$/);
+  if (tagMatch) {
+    const slug = tagMatch[1].toLowerCase();
+    const entry = getAllTagsServer().find((t) => t.slug === slug);
+    if (!entry) {
+      return {
+        title: "Topic Not Found",
+        description: "This blog topic could not be found.",
+        canonicalPath: pathname,
+        noIndex: true,
+        status: 404,
+      };
+    }
+    const title = `${entry.tag} — DSX Edge Blog`;
+    const description = `${entry.count} ${entry.count === 1 ? "article" : "articles"} on ${entry.tag} from the DSX Edge team — AI voice agents, 3CX, and what actually happens when intelligence sits on top of a business phone system.`;
+    const collection = {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      url: absUrl(pathname),
+      name: title,
+      description,
+    };
+    const breadcrumb = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: absUrl("/") },
+        { "@type": "ListItem", position: 2, name: "Blog", item: absUrl("/blog") },
+        { "@type": "ListItem", position: 3, name: entry.tag, item: absUrl(pathname) },
+      ],
+    };
+    const itemList = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: entry.posts.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: absUrl(`/blog/${p.slug}`),
+        name: p.title,
+      })),
+    };
+    return {
+      title,
+      description,
+      canonicalPath: pathname,
+      type: "website",
+      jsonLd: [collection, breadcrumb, itemList],
+      status: 200,
+    };
+  }
+
   const blogMatch = pathname.match(/^\/blog\/([a-zA-Z0-9-]+)$/);
   if (blogMatch) {
     const slug = blogMatch[1].toLowerCase();
     const result = readFrontmatter(slug);
     if (result && result.data.title) {
       const fm = result.data;
+      const tags = Array.isArray(fm.tags) ? (fm.tags as string[]) : [];
+      const keywords = Array.isArray(fm.keywords) ? (fm.keywords as string[]) : tags;
       const wordCount = countWords(result.body);
       const ld = {
         "@context": "https://schema.org",
-        "@type": "Article",
+        "@type": "BlogPosting",
         headline: fm.title,
-        description: fm.description || "",
+        description: (fm.description as string) || "",
         datePublished: fm.date,
         dateModified: fm.date,
-        author: { "@type": "Organization", name: fm.author || SITE_DEFAULTS.name },
+        author: { "@type": "Organization", name: (fm.author as string) || SITE_DEFAULTS.name },
         publisher: {
           "@type": "Organization",
           name: SITE_DEFAULTS.name,
@@ -119,7 +269,8 @@ export function resolveMetaForUrl(rawUrl: string): ResolvedMeta {
         },
         mainEntityOfPage: { "@type": "WebPage", "@id": absUrl(pathname) },
         image: absUrl(SITE_DEFAULTS.defaultImage),
-        articleSection: fm.category || "Insights",
+        articleSection: (fm.category as string) || "Insights",
+        keywords: keywords.join(", "),
         wordCount,
         inLanguage: "en-US",
       };
@@ -129,16 +280,17 @@ export function resolveMetaForUrl(rawUrl: string): ResolvedMeta {
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: absUrl("/") },
           { "@type": "ListItem", position: 2, name: "Blog", item: absUrl("/blog") },
-          { "@type": "ListItem", position: 3, name: fm.title, item: absUrl(pathname) },
+          { "@type": "ListItem", position: 3, name: fm.title as string, item: absUrl(pathname) },
         ],
       };
       return {
-        title: fm.title,
-        description: fm.description || SITE_DEFAULTS.defaultDescription,
+        title: fm.title as string,
+        description: (fm.description as string) || SITE_DEFAULTS.defaultDescription,
         canonicalPath: pathname,
         type: "article",
-        publishedTime: fm.date,
-        modifiedTime: fm.date,
+        publishedTime: fm.date as string,
+        modifiedTime: fm.date as string,
+        keywords,
         jsonLd: [ld, breadcrumb],
         status: 200,
       };

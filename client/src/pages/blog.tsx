@@ -6,13 +6,14 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Seo from "@/components/seo";
 import Breadcrumbs from "@/components/breadcrumbs";
-import { getAllPosts } from "@/content/blog";
+import { getAllPosts, getAllTags, tagToSlug } from "@/content/blog";
 import { absoluteUrl } from "@/lib/site";
 
 const ALL = "All";
 
 export default function BlogIndexPage() {
   const posts = getAllPosts();
+  const tagSummaries = getAllTags();
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<string>(ALL);
 
@@ -39,6 +40,7 @@ export default function BlogIndexPage() {
         p.title,
         p.description,
         p.category,
+        ...(p.tags || []),
         ...(p.keywords || []),
       ]
         .join(" ")
@@ -46,6 +48,18 @@ export default function BlogIndexPage() {
       return hay.includes(q);
     });
   }, [posts, query, activeCategory]);
+
+  const featured = posts[0];
+  const byTag = useMemo(() => {
+    const groups: Array<{ tag: string; slug: string; posts: typeof posts }> = [];
+    for (const t of tagSummaries.slice(0, 6)) {
+      const list = posts.filter((p) =>
+        p.tags.some((tg) => tagToSlug(tg) === t.slug),
+      );
+      if (list.length > 0) groups.push({ tag: t.tag, slug: t.slug, posts: list.slice(0, 3) });
+    }
+    return groups;
+  }, [posts, tagSummaries]);
 
   const extraJsonLd = [
     {
@@ -59,6 +73,8 @@ export default function BlogIndexPage() {
       })),
     },
   ];
+
+  const showFilters = activeCategory !== ALL || query.trim() !== "";
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -91,7 +107,43 @@ export default function BlogIndexPage() {
         </div>
       </section>
 
-      <section className="relative py-10 bg-slate-950 border-y border-white/5">
+      {featured && !showFilters && (
+        <section className="relative py-10 bg-slate-950 border-y border-white/5">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-[11px] uppercase tracking-widest text-orange-300/80 mb-4">
+              Latest
+            </div>
+            <Link href={`/blog/${featured.slug}`}>
+              <article
+                className="group grid md:grid-cols-5 gap-6 p-6 rounded-2xl border border-white/10 bg-gradient-to-br from-blue-600/10 to-orange-500/5 hover:from-blue-600/15 hover:to-orange-500/10 transition cursor-pointer"
+                data-testid={`card-featured-${featured.slug}`}
+              >
+                <div className="md:col-span-3">
+                  <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest text-blue-300/80 mb-3">
+                    <Tag size={12} />
+                    {featured.category}
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-orange-300 transition-colors">
+                    {featured.title}
+                  </h2>
+                  <p className="mt-3 text-slate-300">{featured.description}</p>
+                  <div className="mt-5 flex items-center gap-4 text-xs text-slate-400">
+                    <span className="flex items-center gap-1.5"><Calendar size={12} />{new Date(featured.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
+                    <span className="flex items-center gap-1.5"><Clock size={12} />{featured.readTime}</span>
+                  </div>
+                </div>
+                <div className="md:col-span-2 flex md:justify-end items-end">
+                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-300 group-hover:text-orange-300 transition-colors">
+                    Read the latest <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </div>
+              </article>
+            </Link>
+          </div>
+        </section>
+      )}
+
+      <section className="relative py-10 bg-slate-950 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
             <div className="relative w-full md:w-80">
@@ -149,11 +201,87 @@ export default function BlogIndexPage() {
               })}
             </div>
           </div>
+
+          {tagSummaries.length > 0 && (
+            <div className="mt-6 flex flex-wrap items-center gap-2" data-testid="tag-cloud">
+              <span className="text-[11px] uppercase tracking-widest text-slate-500 mr-1">
+                Topics:
+              </span>
+              {tagSummaries.map((t) => (
+                <Link key={t.slug} href={`/blog/tag/${t.slug}`}>
+                  <span
+                    className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/10 text-slate-300 hover:text-white hover:border-orange-400/40 hover:bg-orange-500/10 transition cursor-pointer"
+                    data-testid={`link-tag-${t.slug}`}
+                  >
+                    <Tag size={11} />
+                    {t.tag}
+                    <span className="opacity-60">({t.count})</span>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
+      {!showFilters && byTag.length > 0 && (
+        <section className="relative py-14 bg-slate-950 border-b border-white/5">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-end justify-between mb-8">
+              <div>
+                <div className="text-[11px] uppercase tracking-widest text-blue-300/80 mb-2">By topic</div>
+                <h2 className="text-2xl sm:text-3xl font-bold">Browse the blog by topic</h2>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {byTag.map((g) => (
+                <div
+                  key={g.slug}
+                  className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 flex flex-col"
+                  data-testid={`group-tag-${g.slug}`}
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <Link href={`/blog/tag/${g.slug}`}>
+                      <h3 className="text-lg font-semibold text-white hover:text-orange-300 transition-colors cursor-pointer">
+                        {g.tag}
+                      </h3>
+                    </Link>
+                    <span className="text-xs text-slate-500">{g.posts.length} post{g.posts.length === 1 ? "" : "s"}</span>
+                  </div>
+                  <ul className="space-y-3 flex-1">
+                    {g.posts.map((p) => (
+                      <li key={p.slug}>
+                        <Link href={`/blog/${p.slug}`}>
+                          <span
+                            className="block text-sm text-slate-300 hover:text-orange-300 transition-colors cursor-pointer line-clamp-2"
+                            data-testid={`link-tag-post-${p.slug}`}
+                          >
+                            {p.title}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href={`/blog/tag/${g.slug}`}>
+                    <span className="mt-5 inline-flex items-center gap-1 text-xs font-medium text-blue-300 hover:text-orange-300 transition-colors cursor-pointer">
+                      See all {g.tag} posts <ArrowRight size={12} />
+                    </span>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="relative py-14 sm:py-20 bg-slate-950">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <div className="text-[11px] uppercase tracking-widest text-blue-300/80 mb-2">All posts</div>
+            <h2 className="text-2xl sm:text-3xl font-bold">
+              {showFilters ? `${filtered.length} matching post${filtered.length === 1 ? "" : "s"}` : "Every article, newest first"}
+            </h2>
+          </div>
           {filtered.length === 0 ? (
             <p className="text-center text-slate-400" data-testid="text-no-results">
               No articles match your filters. Try clearing the search or switching categories.

@@ -6,6 +6,16 @@ import { fileURLToPath } from "url";
 import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
+import { loadAllPosts, getAllTagsServer } from "./seo-html";
+
+function escapeXml(s: string): string {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
 
 const SITE_URL = process.env.VITE_SITE_URL || process.env.SITE_URL || "https://dsxedge.com";
 
@@ -455,7 +465,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/sitemap-blog.xml", (_req, res) => {
     const posts = getBlogSlugs();
-    const entries = posts.map((p) =>
+    const today = new Date().toISOString().slice(0, 10);
+    const postEntries = posts.map((p) =>
       xmlUrlEntry(
         `${SITE_URL}/blog/${p.slug}`,
         p.date,
@@ -465,13 +476,61 @@ export async function registerRoutes(app: Express): Promise<Server> {
       ),
     );
 
+    const tagEntries = getAllTagsServer().map((t) =>
+      xmlUrlEntry(
+        `${SITE_URL}/blog/tag/${t.slug}`,
+        today,
+        "weekly",
+        "0.5",
+        `${SITE_URL}/og-image.png`,
+      ),
+    );
+
     const xml =
       `<?xml version="1.0" encoding="UTF-8"?>\n` +
       `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
-      entries.join("\n") +
+      [...postEntries, ...tagEntries].join("\n") +
       `\n</urlset>\n`;
 
     res.type("application/xml").send(xml);
+  });
+
+  app.get("/rss.xml", (_req, res) => {
+    const posts = loadAllPosts();
+    const lastBuild = posts.length > 0 ? new Date(posts[0].date).toUTCString() : new Date().toUTCString();
+    const items = posts.map((p) => {
+      const url = `${SITE_URL}/blog/${p.slug}`;
+      const pubDate = new Date(p.date).toUTCString();
+      const categories = p.tags
+        .map((t) => `      <category>${escapeXml(t)}</category>`)
+        .join("\n");
+      return (
+        `    <item>\n` +
+        `      <title>${escapeXml(p.title)}</title>\n` +
+        `      <link>${escapeXml(url)}</link>\n` +
+        `      <guid isPermaLink="true">${escapeXml(url)}</guid>\n` +
+        `      <pubDate>${pubDate}</pubDate>\n` +
+        `      <author>noreply@dsxedge.com (${escapeXml(p.author)})</author>\n` +
+        (categories ? `${categories}\n` : "") +
+        `      <description>${escapeXml(p.description)}</description>\n` +
+        `    </item>`
+      );
+    });
+    const xml =
+      `<?xml version="1.0" encoding="UTF-8"?>\n` +
+      `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n` +
+      `  <channel>\n` +
+      `    <title>DSX Edge Blog</title>\n` +
+      `    <link>${SITE_URL}/blog</link>\n` +
+      `    <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />\n` +
+      `    <description>Field notes from the DSX Edge team — AI voice agents, 3CX, and bringing intelligence to business phone systems.</description>\n` +
+      `    <language>en-us</language>\n` +
+      `    <lastBuildDate>${lastBuild}</lastBuildDate>\n` +
+      `    <generator>DSX Edge</generator>\n` +
+      items.join("\n") +
+      `\n  </channel>\n` +
+      `</rss>\n`;
+    res.type("application/rss+xml; charset=utf-8").send(xml);
   });
 
   // Contact form submission
