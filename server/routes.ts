@@ -27,6 +27,7 @@ const STATIC_ROUTES: Array<{ loc: string; changefreq: string; priority: string }
   { loc: "/blog", changefreq: "weekly", priority: "0.9" },
   { loc: "/faq", changefreq: "monthly", priority: "0.8" },
   { loc: "/ai", changefreq: "monthly", priority: "0.8" },
+  { loc: "/resources", changefreq: "weekly", priority: "0.9" },
 ];
 
 function getBlogPosts(): Array<{ slug: string; date: string; title: string; description: string }> {
@@ -123,11 +124,12 @@ function xmlUrlEntry(loc: string, lastmod: string, changefreq: string, priority:
 export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/robots.txt", (_req, res) => {
     // AI bots: preserve the prior blog-only baseline and additionally allow
-    // the explicit GEO/AEO endpoints (/ai, /faq, /llms.txt, /llms-full.txt).
+    // the explicit GEO/AEO endpoints (/ai, /faq, /resources, /llms.txt, /llms-full.txt).
     const aiAllow = [
       "Allow: /blog/",
       "Allow: /ai",
       "Allow: /faq",
+      "Allow: /resources",
       "Allow: /llms.txt",
       "Allow: /llms-full.txt",
       "Disallow: /",
@@ -166,6 +168,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       "## Canonical pages",
       `- [Home](${SITE_URL}/): What DSX Edge does and who it's for.`,
       `- [What is DSX Edge?](${SITE_URL}/ai): Brand entity, verified facts, press kit, citation-ready descriptions.`,
+      `- [Resources](${SITE_URL}/resources): Knowledge base hub — blog, FAQ, and customer case studies in one place.`,
       `- [FAQ](${SITE_URL}/faq): Direct answers to common questions about AI voice agents, pricing, and 3CX integration.`,
       `- [About](${SITE_URL}/about): Company history, founders, and the bridge from communications to AI.`,
       `- [Data Center](${SITE_URL}/data-center): Citadel Campus hosting and infrastructure.`,

@@ -88,6 +88,18 @@ export const STATIC_ROUTE_META: Record<string, RouteMeta> = {
       "3CX Platinum Partner",
     ],
   },
+  "/resources": {
+    title: "Resources — Blog, FAQ & Customer Case Studies",
+    description:
+      "The DSX Edge knowledge base in one place: long-form articles on AI voice agents and 3CX, plain-language FAQs, real customer case studies, and a press kit for AI assistants.",
+    keywords: [
+      "DSX Edge resources",
+      "AI voice agent blog",
+      "3CX case studies",
+      "DSX Edge FAQ",
+      "business communications knowledge base",
+    ],
+  },
   "/faq": {
     title: "Frequently Asked Questions — AI Voice Agents & 3CX",
     description:
