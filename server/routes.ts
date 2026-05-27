@@ -25,6 +25,7 @@ const STATIC_ROUTES: Array<{ loc: string; changefreq: string; priority: string }
   { loc: "/data-center", changefreq: "monthly", priority: "0.7" },
   { loc: "/contact", changefreq: "monthly", priority: "0.8" },
   { loc: "/blog", changefreq: "weekly", priority: "0.9" },
+  { loc: "/resources", changefreq: "weekly", priority: "0.8" },
   { loc: "/faq", changefreq: "monthly", priority: "0.8" },
   { loc: "/ai", changefreq: "monthly", priority: "0.8" },
   { loc: "/resources", changefreq: "weekly", priority: "0.9" },

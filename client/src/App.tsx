@@ -18,6 +18,7 @@ import BlogIndexPage from "@/pages/blog";
 import BlogPostPage from "@/pages/blog-post";
 import BlogTagPage from "@/pages/blog-tag";
 import FaqPage from "@/pages/faq";
+import ResourcesPage from "@/pages/resources";
 import AiPage from "@/pages/ai";
 import ResourcesPage from "@/pages/resources";
 import NotFound from "@/pages/not-found";
@@ -39,6 +40,7 @@ function Router() {
         <Route path="/blog/tag/:tag" component={BlogTagPage} />
         <Route path="/blog/:slug" component={BlogPostPage} />
         <Route path="/faq" component={FaqPage} />
+        <Route path="/resources" component={ResourcesPage} />
         <Route path="/ai" component={AiPage} />
         <Route path="/resources" component={ResourcesPage} />
         <Route component={NotFound} />
