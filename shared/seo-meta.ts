@@ -124,6 +124,86 @@ function breadcrumb(siteUrl: string, items: Array<{ name: string; path: string }
   };
 }
 
+interface ServiceDef {
+  id: string;
+  name: string;
+  description: string;
+}
+
+const ANSWER_QUALIFY_ACT: ServiceDef[] = [
+  {
+    id: "answer",
+    name: "Answer — AI Voice Reception",
+    description:
+      "AI answers every customer call, 24/7, in your brand voice. No more missed calls, dead-end voicemail, or slow callbacks.",
+  },
+  {
+    id: "qualify",
+    name: "Qualify — Lead Qualification & Routing",
+    description:
+      "AI asks the right questions for your business, qualifies the lead, and routes the caller to the right person, queue, or workflow.",
+  },
+  {
+    id: "act",
+    name: "Act — Booking, Follow-up & CRM Sync",
+    description:
+      "AI books appointments directly into your calendar, sends SMS/email confirmations, updates your CRM, and triggers the next step automatically.",
+  },
+];
+
+function softwareApplication(siteUrl: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": `${siteUrl}/#software`,
+    name: "DSX Edge",
+    applicationCategory: "BusinessApplication",
+    applicationSubCategory: "AI Voice Agent / Business Communications",
+    operatingSystem: "Web, iOS, Android",
+    description:
+      "DSX Edge is an AI layer for business phone systems. Built on 3CX, it answers calls, qualifies leads, books appointments, and syncs to your CRM — implemented for your specific workflow.",
+    url: siteUrl,
+    image: abs(siteUrl, SITE_DEFAULTS.defaultImage),
+    provider: { "@id": `${siteUrl}/#organization` },
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      description:
+        "Free workflow audit. Implementation pricing is custom-scoped per deployment.",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "37",
+      bestRating: "5",
+    },
+    featureList: [
+      "24/7 AI answering on existing 3CX systems",
+      "Lead qualification and intelligent routing",
+      "Calendar booking and SMS/email confirmations",
+      "CRM sync (HubSpot, Salesforce, Pipedrive, custom)",
+      "Call summarization and follow-up automation",
+      "Built on 12+ years of business communications deployments",
+    ],
+  };
+}
+
+function serviceLdEntries(siteUrl: string) {
+  return ANSWER_QUALIFY_ACT.map((svc) => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${siteUrl}/#service-${svc.id}`,
+    name: svc.name,
+    serviceType: svc.name,
+    description: svc.description,
+    provider: { "@id": `${siteUrl}/#organization` },
+    areaServed: SITE_DEFAULTS.areaServed.map((c) => ({ "@type": "Country", name: c })),
+    audience: { "@type": "BusinessAudience", audienceType: "Small and Medium Businesses" },
+    url: `${siteUrl}/#services`,
+  }));
+}
+
 export function buildJsonLdForPath(pathname: string, siteUrl: string): object[] {
   const clean = pathname.replace(/\/+$/, "") || "/";
 
@@ -173,13 +253,14 @@ export function buildJsonLdForPath(pathname: string, siteUrl: string): object[] 
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "DSX Edge Services",
-          itemListElement: [
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Answer — AI Voice Reception", description: "AI answers every customer call, 24/7, in your brand voice." } },
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Qualify — Lead Qualification & Routing", description: "AI asks the right questions, qualifies the lead, routes to the right person or workflow." } },
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Act — Booking, Follow-up & CRM Sync", description: "AI books appointments, sends confirmations, and updates your CRM automatically." } },
-          ],
+          itemListElement: ANSWER_QUALIFY_ACT.map((svc) => ({
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: svc.name, description: svc.description },
+          })),
         },
       },
+      ...serviceLdEntries(siteUrl),
+      softwareApplication(siteUrl),
       {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",

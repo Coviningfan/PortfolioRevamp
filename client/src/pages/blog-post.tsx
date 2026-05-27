@@ -6,9 +6,18 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Seo from "@/components/seo";
 import KeyTakeaways from "@/components/key-takeaways";
+import Breadcrumbs from "@/components/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { getPostBySlug, getAllPosts } from "@/content/blog";
 import { SITE, absoluteUrl } from "@/lib/site";
+
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function countWords(s: string): number {
+  return (s.match(/\S+/g) || []).length;
+}
 
 export default function BlogPostPage() {
   const [, params] = useRoute("/blog/:slug");
@@ -26,10 +35,12 @@ export default function BlogPostPage() {
     .filter((p) => p.slug !== post.slug)
     .slice(0, 3);
 
+  const wordCount = countWords(stripHtml(post.html));
+
   const jsonLd = [
     {
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
+      "@type": "Article",
       headline: post.title,
       description: post.description,
       author: { "@type": "Organization", name: post.author, url: SITE.domain },
@@ -48,6 +59,8 @@ export default function BlogPostPage() {
       image: absoluteUrl(post.cover || "/og-image.png"),
       keywords: post.keywords?.join(", "),
       articleSection: post.category,
+      wordCount,
+      inLanguage: "en-US",
     },
     {
       "@context": "https://schema.org",
@@ -77,6 +90,13 @@ export default function BlogPostPage() {
       <article className="relative pt-32 pb-16">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-950/40 via-slate-950 to-slate-950 pointer-events-none" />
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { name: "Blog", href: "/blog" },
+              { name: post.title },
+            ]}
+            className="mb-6"
+          />
           <Link href="/blog">
             <button
               className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors mb-8"

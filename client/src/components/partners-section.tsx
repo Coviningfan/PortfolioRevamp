@@ -7,11 +7,11 @@ import logoSwitch from "@assets/141-1413900_switch-logo-switch-data-center-logo-
 
 export default function PartnersSection() {
   const partners = [
-    { name: "3CX", logo: logo3cx },
-    { name: "Yealink", logo: logoYealink },
-    { name: "Fanvil", logo: logoFanvil },
-    { name: "Grandstream", logo: logoGrandstream },
-    { name: "Switch", logo: logoSwitch },
+    { name: "3CX", logo: logo3cx, w: 3000, h: 2000 },
+    { name: "Yealink", logo: logoYealink, w: 600, h: 600 },
+    { name: "Fanvil", logo: logoFanvil, w: 510, h: 199 },
+    { name: "Grandstream", logo: logoGrandstream, w: 674, h: 370 },
+    { name: "Switch", logo: logoSwitch, w: 320, h: 320 },
   ];
 
   return (
@@ -41,7 +41,11 @@ export default function PartnersSection() {
               <div className="h-12 w-full flex items-center justify-center">
                 <img
                   src={partner.logo}
-                  alt={partner.name}
+                  alt={`${partner.name} — DSX Edge partner`}
+                  width={partner.w}
+                  height={partner.h}
+                  loading="lazy"
+                  decoding="async"
                   data-testid={`img-partner-${partner.name.toLowerCase()}`}
                   className="max-h-12 max-w-full object-contain brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300 mx-auto"
                 />

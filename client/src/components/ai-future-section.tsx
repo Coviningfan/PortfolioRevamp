@@ -135,7 +135,8 @@ export default function AIFutureSection() {
                 </p>
                 <p className="text-slate-400 leading-relaxed text-sm">
                   Same pattern works for law intake, medical scheduling, insurance qualification,
-                  property showings, and any business where missed calls equal missed money.
+                  property showings, and any business where missed calls equal missed money. Read the full breakdown in{" "}
+                  <Link href="/blog/ai-voice-agents-for-contractors" className="text-orange-300 hover:text-orange-200 underline underline-offset-2">AI voice agents for contractors</Link>.
                 </p>
               </div>
 
@@ -227,7 +228,11 @@ export default function AIFutureSection() {
               <p className="text-slate-300 leading-relaxed mb-4">
                 Every vendor sells you cloud. We deliver the whole communications stack —
                 phones, hosting, integrations, and the AI layer when you want it — from one partner.
-                Your tools stop sitting next to each other and start working together.
+                Your tools stop sitting next to each other and start working together. We unpack the
+                difference in{" "}
+                <Link href="/blog/cloud-vs-intelligence" className="text-orange-300 hover:text-orange-200 underline underline-offset-2">Cloud vs. Intelligence</Link>{" "}
+                — and the infrastructure powering it lives in our{" "}
+                <Link href="/data-center" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">Citadel Campus data center</Link>.
               </p>
               <div className="space-y-2 mb-6">
                 {[

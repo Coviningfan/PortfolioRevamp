@@ -5,6 +5,7 @@ import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Seo from "@/components/seo";
+import Breadcrumbs from "@/components/breadcrumbs";
 
 function BrandCanvas() {
   return (
@@ -110,6 +111,7 @@ export default function DataCenterPage() {
         {/* Hero */}
         <section className="pt-32 pb-16 section-dark">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Breadcrumbs items={[{ name: "Data Center", href: "/data-center" }]} className="mb-8" />
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -120,13 +122,11 @@ export default function DataCenterPage() {
                 Hosted Infrastructure
               </span>
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.05]">
-                State-of-the-art <span className="accent-serif text-orange-300">data center.</span>
+                DSX Edge data center — <span className="accent-serif text-orange-300">hosted at Citadel Campus.</span>
               </h1>
-              <p className="text-xl md:text-2xl text-slate-300 mb-4 max-w-3xl mx-auto">
-                Hosted at Citadel Campus.
-              </p>
               <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                Unparalleled infrastructure and security at one of the most advanced data centers in the world.
+                The infrastructure behind <Link href="/about" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">DSX Edge</Link>: unparalleled security, 99.9% uptime, and 100% renewable power at one of the world's most advanced data centers. See how it powers our{" "}
+                <Link href="/#services" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">Answer → Qualify → Act</Link> AI workflows.
               </p>
             </motion.div>
           </div>

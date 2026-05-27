@@ -169,6 +169,14 @@ export default function ServicesSection() {
             </Button>
           </Link>
           <p className="text-xs text-slate-400 mt-3">No commitment. You keep the blueprint either way.</p>
+          <p className="text-sm text-slate-400 mt-6 max-w-2xl mx-auto">
+            Dig deeper:{" "}
+            <Link href="/blog/3cx-platinum-partner-what-it-means" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">why our 3CX Platinum Partner status matters</Link>
+            {", "}
+            <Link href="/blog/ai-voice-agents-for-contractors" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">AI voice agents for contractors</Link>
+            {", or read about "}
+            <Link href="/about" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">our 12-year communications story</Link>.
+          </p>
         </motion.div>
       </div>
       </div>

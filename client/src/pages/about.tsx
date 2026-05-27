@@ -5,6 +5,7 @@ import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Seo from "@/components/seo";
+import Breadcrumbs from "@/components/breadcrumbs";
 
 function BrandCanvas() {
   return (
@@ -85,6 +86,7 @@ export default function AboutPage() {
         {/* Hero */}
         <section className="pt-32 pb-16 section-dark">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Breadcrumbs items={[{ name: "About", href: "/about" }]} className="mb-8" />
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -95,10 +97,13 @@ export default function AboutPage() {
                 Our Story
               </span>
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.05]">
-                The <span className="accent-serif text-orange-300">Legacy</span>
+                12 years in <span className="accent-serif text-orange-300">communications</span>. The natural place for AI.
               </h1>
               <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto">
-                The genesis — pioneering a new era of business communications and infrastructure.
+                DSX Edge brings AI into the phone systems we already run — built on a decade of business communications, on infrastructure we own at the{" "}
+                <Link href="/data-center" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">Citadel Campus data center</Link>.
+                Read more on{" "}
+                <Link href="/blog" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">the DSX Edge blog</Link>.
               </p>
             </motion.div>
           </div>

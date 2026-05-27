@@ -47,24 +47,33 @@ function blogContentDir(): string | null {
   }) || null;
 }
 
-function readFrontmatter(slug: string): Record<string, string> | null {
+interface FrontmatterResult {
+  data: Record<string, string>;
+  body: string;
+}
+
+function readFrontmatter(slug: string): FrontmatterResult | null {
   const dir = blogContentDir();
   if (!dir) return null;
   const fp = path.join(dir, `${slug}.md`);
   if (!fs.existsSync(fp)) return null;
   try {
     const raw = fs.readFileSync(fp, "utf8");
-    const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
     if (!m) return null;
     const data: Record<string, string> = {};
     for (const line of m[1].split(/\r?\n/)) {
       const kv = line.match(/^([a-zA-Z0-9_]+):\s*"?([^"\n]*?)"?\s*$/);
       if (kv) data[kv[1]] = kv[2];
     }
-    return data;
+    return { data, body: m[2] || "" };
   } catch {
     return null;
   }
+}
+
+function countWords(s: string): number {
+  return (s.trim().match(/\S+/g) || []).length;
 }
 
 interface ResolvedMeta extends RouteMeta {
@@ -91,11 +100,13 @@ export function resolveMetaForUrl(rawUrl: string): ResolvedMeta {
   const blogMatch = pathname.match(/^\/blog\/([a-zA-Z0-9-]+)$/);
   if (blogMatch) {
     const slug = blogMatch[1].toLowerCase();
-    const fm = readFrontmatter(slug);
-    if (fm && fm.title) {
+    const result = readFrontmatter(slug);
+    if (result && result.data.title) {
+      const fm = result.data;
+      const wordCount = countWords(result.body);
       const ld = {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
+        "@type": "Article",
         headline: fm.title,
         description: fm.description || "",
         datePublished: fm.date,
@@ -108,6 +119,9 @@ export function resolveMetaForUrl(rawUrl: string): ResolvedMeta {
         },
         mainEntityOfPage: { "@type": "WebPage", "@id": absUrl(pathname) },
         image: absUrl(SITE_DEFAULTS.defaultImage),
+        articleSection: fm.category || "Insights",
+        wordCount,
+        inLanguage: "en-US",
       };
       const breadcrumb = {
         "@context": "https://schema.org",
@@ -179,8 +193,16 @@ export function applyMetaToHtml(html: string, rawUrl: string): { html: string; s
   tags.push(`<meta property="og:description" content="${esc(description)}">`);
   tags.push(`<meta property="og:url" content="${esc(canonical)}">`);
   tags.push(`<meta property="og:image" content="${esc(image)}">`);
+  tags.push(`<meta property="og:image:type" content="image/png">`);
   tags.push(`<meta property="og:image:width" content="1200">`);
   tags.push(`<meta property="og:image:height" content="630">`);
+  const webpImage = image.replace(/\.png(\?.*)?$/i, ".webp$1");
+  if (webpImage !== image) {
+    tags.push(`<meta property="og:image" content="${esc(webpImage)}">`);
+    tags.push(`<meta property="og:image:type" content="image/webp">`);
+    tags.push(`<meta property="og:image:width" content="1200">`);
+    tags.push(`<meta property="og:image:height" content="630">`);
+  }
   tags.push(`<meta property="og:image:alt" content="${esc(SITE_DEFAULTS.name)} — Above the Cloud. Into the Business.">`);
   tags.push(`<meta property="og:locale" content="${SITE_DEFAULTS.locale}">`);
   if (meta.publishedTime) tags.push(`<meta property="article:published_time" content="${esc(meta.publishedTime)}">`);

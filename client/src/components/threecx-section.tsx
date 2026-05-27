@@ -50,7 +50,15 @@ export default function ThreeCXSection() {
           className="text-center mb-16 max-w-4xl mx-auto"
         >
           <div className="brand-halo inline-flex items-center gap-3 mb-6 px-5 py-2.5 rounded-full border border-blue-400/40 bg-blue-500/10 backdrop-blur-sm">
-            <img src={logo3cx} alt="3CX" className="h-5 w-auto brightness-0 invert opacity-90" />
+            <img
+              src={logo3cx}
+              alt="3CX Platinum Partner — DSX Edge"
+              width={3000}
+              height={2000}
+              loading="lazy"
+              decoding="async"
+              className="h-5 w-auto brightness-0 invert opacity-90"
+            />
             <span className="text-blue-100 text-sm font-semibold tracking-wide uppercase">
               3CX Platinum Partner · Highest Tier
             </span>

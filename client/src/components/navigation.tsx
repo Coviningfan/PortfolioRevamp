@@ -60,7 +60,10 @@ export default function Navigation() {
               <img
                 data-testid="img-logo"
                 src={dsxLogo}
-                alt="DSX Edge Logo"
+                alt="DSX Edge — Above the Cloud. Into the Business."
+                width={735}
+                height={339}
+                decoding="async"
                 className="h-12 w-auto cursor-pointer transition-all duration-500 drop-shadow-[0_2px_10px_rgba(96,165,250,0.22)] hover:drop-shadow-[0_2px_14px_rgba(251,146,60,0.35)] hover:scale-[1.03]"
               />
             </Link>
@@ -124,7 +127,14 @@ export default function Navigation() {
               </SheetTrigger>
               <SheetContent className="w-80">
                 <div className="flex flex-col mt-8">
-                  <img src={dsxLogo} alt="DSX Edge Logo" className="h-8 w-auto mb-8" />
+                  <img
+                    src={dsxLogo}
+                    alt="DSX Edge — Above the Cloud. Into the Business."
+                    width={735}
+                    height={339}
+                    decoding="async"
+                    className="h-8 w-auto mb-8"
+                  />
                   <div className="space-y-1">
                     {navItems.map((item, index) =>
                       item.href ? (

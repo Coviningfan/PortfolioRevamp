@@ -27,7 +27,11 @@ export default function Footer() {
             <div className="md:col-span-1">
               <img
                 src={dsxLogo}
-                alt="DSX Edge Logo"
+                alt="DSX Edge — Above the Cloud. Into the Business."
+                width={735}
+                height={339}
+                loading="lazy"
+                decoding="async"
                 className="h-12 w-auto mb-4 brightness-0 invert"
               />
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
@@ -87,7 +91,15 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-2 text-slate-600 text-xs">
               <span>Powered by</span>
-              <img src={jabvLogo} alt="JABV Labs" className="h-4 w-auto" />
+              <img
+                src={jabvLogo}
+                alt="JABV Labs"
+                width={613}
+                height={135}
+                loading="lazy"
+                decoding="async"
+                className="h-4 w-auto"
+              />
             </div>
           </div>
         </div>

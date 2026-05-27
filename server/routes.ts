@@ -95,6 +95,21 @@ function getBlogSlugs(): Array<{ slug: string; date: string }> {
   }
 }
 
+function xmlUrlEntry(loc: string, lastmod: string, changefreq: string, priority: string, image?: string) {
+  const img = image
+    ? `\n    <image:image><image:loc>${image}</image:loc></image:image>`
+    : "";
+  return (
+    `  <url>\n` +
+    `    <loc>${loc}</loc>\n` +
+    `    <lastmod>${lastmod}</lastmod>\n` +
+    `    <changefreq>${changefreq}</changefreq>\n` +
+    `    <priority>${priority}</priority>` +
+    img +
+    `\n  </url>`
+  );
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/robots.txt", (_req, res) => {
     // AI bots: preserve the prior blog-only baseline and additionally allow
@@ -388,7 +403,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   app.get("/security.txt", (_req, res) => res.redirect(301, "/.well-known/security.txt"));
 
+  // Sitemap index — points to per-section child sitemaps so the blog can
+  // grow past 50k URLs without restructuring.
   app.get("/sitemap.xml", (_req, res) => {
+    const today = new Date().toISOString().slice(0, 10);
+    const posts = getBlogSlugs();
+    const latestPostDate = posts.reduce(
+      (max, p) => (p.date > max ? p.date : max),
+      "1970-01-01",
+    );
+    const blogLastmod = latestPostDate > "1970-01-01" ? latestPostDate : today;
+
+    const xml =
+      `<?xml version="1.0" encoding="UTF-8"?>\n` +
+      `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+      `  <sitemap>\n    <loc>${SITE_URL}/sitemap-pages.xml</loc>\n    <lastmod>${today}</lastmod>\n  </sitemap>\n` +
+      `  <sitemap>\n    <loc>${SITE_URL}/sitemap-blog.xml</loc>\n    <lastmod>${blogLastmod}</lastmod>\n  </sitemap>\n` +
+      `</sitemapindex>\n`;
+
+    res.type("application/xml").send(xml);
+  });
+
+  app.get("/sitemap-pages.xml", (_req, res) => {
     const today = new Date().toISOString().slice(0, 10);
     const posts = getBlogSlugs();
     const latestPostDate = posts.reduce(
@@ -398,37 +434,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const homeLastmod = latestPostDate > "1970-01-01" ? latestPostDate : today;
     const blogLastmod = latestPostDate > "1970-01-01" ? latestPostDate : today;
 
-    const urls = STATIC_ROUTES.map((r) => ({
-      loc: `${SITE_URL}${r.loc}`,
-      lastmod: r.loc === "/" ? homeLastmod : r.loc === "/blog" ? blogLastmod : today,
-      changefreq: r.changefreq,
-      priority: r.priority,
-      image: `${SITE_URL}/og-image.png`,
-    })).concat(
-      posts.map((p) => ({
-        loc: `${SITE_URL}/blog/${p.slug}`,
-        lastmod: p.date,
-        changefreq: "monthly",
-        priority: "0.7",
-        image: `${SITE_URL}/og-image.png`,
-      })),
+    const entries = STATIC_ROUTES.map((r) =>
+      xmlUrlEntry(
+        `${SITE_URL}${r.loc}`,
+        r.loc === "/" ? homeLastmod : r.loc === "/blog" ? blogLastmod : today,
+        r.changefreq,
+        r.priority,
+        `${SITE_URL}/og-image.png`,
+      ),
     );
 
     const xml =
       `<?xml version="1.0" encoding="UTF-8"?>\n` +
       `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
-      urls
-        .map(
-          (u) =>
-            `  <url>\n` +
-            `    <loc>${u.loc}</loc>\n` +
-            `    <lastmod>${u.lastmod}</lastmod>\n` +
-            `    <changefreq>${u.changefreq}</changefreq>\n` +
-            `    <priority>${u.priority}</priority>\n` +
-            `    <image:image><image:loc>${u.image}</image:loc></image:image>\n` +
-            `  </url>`,
-        )
-        .join("\n") +
+      entries.join("\n") +
+      `\n</urlset>\n`;
+
+    res.type("application/xml").send(xml);
+  });
+
+  app.get("/sitemap-blog.xml", (_req, res) => {
+    const posts = getBlogSlugs();
+    const entries = posts.map((p) =>
+      xmlUrlEntry(
+        `${SITE_URL}/blog/${p.slug}`,
+        p.date,
+        "monthly",
+        "0.7",
+        `${SITE_URL}/og-image.png`,
+      ),
+    );
+
+    const xml =
+      `<?xml version="1.0" encoding="UTF-8"?>\n` +
+      `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
+      entries.join("\n") +
       `\n</urlset>\n`;
 
     res.type("application/xml").send(xml);
