@@ -5,6 +5,7 @@ import { ArrowLeft, Calendar, Clock, Tag, ArrowRight } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Seo from "@/components/seo";
+import KeyTakeaways from "@/components/key-takeaways";
 import { Button } from "@/components/ui/button";
 import { getPostBySlug, getAllPosts } from "@/content/blog";
 import { SITE, absoluteUrl } from "@/lib/site";
@@ -103,6 +104,10 @@ export default function BlogPostPage() {
             </h1>
             <p className="mt-4 text-lg text-slate-300">{post.description}</p>
           </motion.header>
+
+          {post.takeaways && post.takeaways.length > 0 && (
+            <KeyTakeaways items={post.takeaways} />
+          )}
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}

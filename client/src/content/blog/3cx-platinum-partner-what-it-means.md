@@ -10,6 +10,11 @@ keywords:
   - 3CX hosting
   - business VoIP provider
   - PBX migration
+takeaways:
+  - Platinum is the highest 3CX partner tier — earned through deployment volume, certified engineers, and recurring license sales.
+  - The tier directly affects pricing, support escalation, and access to early-release features.
+  - DSX has held 3CX Platinum status for over a decade, with deployments across the US, Mexico, and Canada.
+  - If your provider can't show their 3CX tier on the public partner directory, that's a red flag.
 ---
 
 Picking a phone-system vendor is mostly about trust. 3CX uses a public partner tier system — Bronze, Silver, Gold, Titanium, Platinum — so you can actually verify how deep a provider's experience is before you sign anything.

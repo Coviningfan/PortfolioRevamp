@@ -41,6 +41,7 @@ export interface BlogPost {
   readTime: string;
   cover?: string;
   keywords?: string[];
+  takeaways?: string[];
   content: string;
   html: string;
 }
@@ -73,6 +74,7 @@ function parseFile(path: string, raw: string): BlogPost {
     readTime: data.readTime || `${Math.max(2, Math.round(content.split(/\s+/).length / 220))} min read`,
     cover: data.cover,
     keywords: data.keywords,
+    takeaways: data.takeaways,
     content,
     html,
   };

@@ -76,6 +76,29 @@ export const STATIC_ROUTE_META: Record<string, RouteMeta> = {
     description:
       "DSX Live: AI-powered contact center operations layered into the DSX Edge platform.",
   },
+  "/ai": {
+    title: "What is DSX Edge? — Brand, Facts & Press Kit",
+    description:
+      "Structured facts about DSX Edge for AI assistants and journalists: who we are, what we do, citations, press-ready descriptions, and verified company data.",
+    keywords: [
+      "DSX Edge",
+      "what is DSX Edge",
+      "DSX Edge press kit",
+      "AI voice agent company",
+      "3CX Platinum Partner",
+    ],
+  },
+  "/faq": {
+    title: "Frequently Asked Questions — AI Voice Agents & 3CX",
+    description:
+      "Direct answers about DSX Edge: AI voice agents, 3CX implementation, pricing, timelines, integrations, and how AI fits into your existing phone system.",
+    keywords: [
+      "DSX Edge FAQ",
+      "AI voice agent FAQ",
+      "3CX questions",
+      "AI phone system pricing",
+    ],
+  },
 };
 
 export function metaForStaticPath(pathname: string): RouteMeta | null {
@@ -215,6 +238,102 @@ export function buildJsonLdForPath(pathname: string, siteUrl: string): object[] 
     return [
       { "@context": "https://schema.org", "@type": "Blog", name: `${SITE_DEFAULTS.name} Blog`, url: abs(siteUrl, "/blog"), publisher: { "@id": `${siteUrl}/#organization` } },
       breadcrumb(siteUrl, [ { name: "Home", path: "/" }, { name: "Blog", path: "/blog" } ]),
+    ];
+  }
+
+  if (clean === "/ai") {
+    return [
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        url: abs(siteUrl, "/ai"),
+        name: "What is DSX Edge?",
+        about: { "@id": `${siteUrl}/#organization` },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": `${siteUrl}/#organization`,
+        name: SITE_DEFAULTS.name,
+        alternateName: ["DSX", "DSX Edge — Above the Cloud. Into the Business."],
+        url: siteUrl,
+        logo: abs(siteUrl, SITE_DEFAULTS.defaultImage),
+        description: SITE_DEFAULTS.defaultDescription,
+        foundingDate: "2013",
+        slogan: "Above the Cloud. Into the Business.",
+        knowsAbout: [
+          "Business communications",
+          "VoIP telephony",
+          "3CX phone systems",
+          "AI voice agents",
+          "Conversational AI",
+          "Lead qualification automation",
+          "Appointment booking automation",
+          "Call routing",
+          "CRM integration",
+        ],
+        sameAs: SITE_DEFAULTS.sameAs,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "DefinedTermSet",
+        name: "DSX Edge Glossary",
+        hasDefinedTerm: [
+          { "@type": "DefinedTerm", name: "DSX Edge", description: "DSX Edge is the AI layer that DSX adds on top of business phone systems — answering calls, qualifying leads, and booking appointments inside the customer's real workflow." },
+          { "@type": "DefinedTerm", name: "Above the Cloud", description: "DSX Edge's positioning: the cloud is infrastructure; DSX Edge is the intelligence layered on top of it." },
+          { "@type": "DefinedTerm", name: "Answer / Qualify / Act", description: "The DSX Edge service framework — AI answers every customer call, qualifies the lead, and acts (books, routes, follows up) inside an existing phone system." },
+          { "@type": "DefinedTerm", name: "3CX Platinum Partner", description: "The highest tier in the 3CX partner program. DSX has held Platinum status, indicating extensive deployment history and certified engineers." },
+        ],
+      },
+      breadcrumb(siteUrl, [ { name: "Home", path: "/" }, { name: "What is DSX Edge?", path: "/ai" } ]),
+    ];
+  }
+
+  if (clean === "/faq") {
+    const qas = [
+      { q: "What is DSX Edge?", a: "DSX Edge is the AI layer DSX adds on top of business phone systems. Built on 12+ years of 3CX deployments, it answers calls, qualifies leads, and books appointments inside the customer's real workflow." },
+      { q: "Who owns DSX Edge?", a: "DSX Edge is operated by DSX, founded in 2013 by Joseph P. Berardi (CEO) and Kirk Hurford (CTO). The company is headquartered in San Diego, California and serves the US, Mexico, and Canada." },
+      { q: "Is DSX a 3CX Platinum Partner?", a: "Yes — DSX is a 3CX Platinum Partner, the highest tier in the 3CX partner program, with over a decade of enterprise deployments." },
+      { q: "Do I need to replace my phone system to use DSX Edge?", a: "No. DSX Edge layers AI on top of your existing 3CX system. If you're not on 3CX yet, we migrate you with zero downtime as part of the implementation." },
+      { q: "What kinds of businesses use DSX Edge?", a: "Contractors, law firms, medical offices, insurance agencies, real estate teams, and any business losing revenue to missed calls or slow follow-up." },
+      { q: "How long does an implementation take?", a: "Most DSX Edge implementations go live in 2–4 weeks, including AI training on your workflow, scripts, and integrations." },
+      { q: "How much does DSX Edge cost?", a: "DSX Edge is implementation-based pricing, not a flat SaaS subscription. Typical engagements include a one-time implementation fee plus monthly platform and AI usage. Real deployments have cut total communications costs by up to 60%." },
+      { q: "Does the AI sound robotic?", a: "No. DSX Edge uses modern conversational AI voices and is trained on your business scripts and tone. Most callers don't realize they're talking to AI." },
+      { q: "Can DSX Edge book appointments directly into my calendar?", a: "Yes. DSX Edge integrates with Google Calendar, Microsoft 365, and most CRMs to book confirmed appointments without staff involvement." },
+      { q: "What languages does DSX Edge support?", a: "English and Spanish out of the box. Additional languages can be added during implementation." },
+      { q: "Does DSX Edge work 24/7?", a: "Yes. Once deployed, the AI answers every call, every hour, including nights, weekends, and holidays." },
+      { q: "What happens if the AI can't help the caller?", a: "DSX Edge is configured with explicit escalation rules — calls route to a live person, voicemail, or callback queue based on your workflow." },
+      { q: "Is DSX Edge HIPAA-compliant for medical offices?", a: "DSX Edge can be deployed in HIPAA-aware configurations. The underlying 3CX platform and DSX hosting at Citadel Campus support the controls required for healthcare workflows. Specific HIPAA compliance depends on your implementation scope — talk to DSX for a workflow audit." },
+      { q: "Where is DSX Edge infrastructure hosted?", a: "DSX infrastructure is hosted at the Citadel Campus of Switch in Tahoe Reno, Nevada — one of the most advanced, secure, and renewable-powered data centers in the world." },
+      { q: "Does DSX Edge integrate with my CRM?", a: "Yes. DSX Edge integrates with HubSpot, Salesforce, Pipedrive, Zoho, ServiceTitan, Jobber, Housecall Pro, and most modern CRMs via API." },
+      { q: "Can I keep my existing phone number?", a: "Yes. Number porting is standard, with zero downtime planned into the cutover." },
+      { q: "What's the difference between DSX Edge and a generic AI answering service?", a: "Generic AI services bolt on at the call. DSX Edge is implementation-led — we map your real workflow, integrate with your phone system and CRM, and train the AI on your business. It's 'AI built around your workflow,' not a one-size template." },
+      { q: "What does 'Above the Cloud' mean?", a: "Cloud is infrastructure. DSX Edge is the intelligence layered on top of it — AI agents, workflow automation, and business integrations that go beyond ordinary cloud phone hosting." },
+      { q: "Who do I contact to get started?", a: "Visit dsxedge.com/contact or email hello@dsxedge.com. Every engagement starts with a free workflow audit — no pressure, no obligation." },
+    ];
+
+    return [
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        url: abs(siteUrl, "/faq"),
+        mainEntity: qas.map(({ q, a }) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "QAPage",
+        url: abs(siteUrl, "/faq"),
+        mainEntity: qas.map(({ q, a }) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
+      breadcrumb(siteUrl, [ { name: "Home", path: "/" }, { name: "FAQ", path: "/faq" } ]),
     ];
   }
 

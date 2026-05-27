@@ -13,6 +13,8 @@ export default function Footer() {
   const companyLinks = [
     { label: "About", href: "/about" },
     { label: "Blog", href: "/blog" },
+    { label: "FAQ", href: "/faq" },
+    { label: "What is DSX Edge?", href: "/ai" },
     { label: "Data Center", href: "/data-center" },
     { label: "Contact", href: "/contact" },
   ];

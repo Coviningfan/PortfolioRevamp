@@ -10,6 +10,11 @@ keywords:
   - missed call automation
   - construction lead capture
   - 3CX AI integration
+takeaways:
+  - Contractors typically miss 20–35% of inbound estimate calls; each missed call is worth $300–$4,000 in pipeline.
+  - An AI voice agent answers 24/7, qualifies the job (scope, address, timeline), and books the estimate directly into the calendar.
+  - DSX Edge layers on top of an existing 3CX phone system — no number change, no new app for the crew.
+  - Most implementations go live in 2–4 weeks and pay back the missed-call gap in the first month.
 ---
 
 If you run a painting, roofing, HVAC, or remodeling crew, you already know the math: every missed estimate call is a customer who calls the next contractor on the list. Voicemail does not save the job — it loses it.

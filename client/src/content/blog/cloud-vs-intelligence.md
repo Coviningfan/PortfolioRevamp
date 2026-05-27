@@ -10,6 +10,11 @@ keywords:
   - AI business workflows
   - VoIP vs AI
   - DSX Edge
+takeaways:
+  - "Cloud" today is just a hosting location — every modern phone system is cloud-based.
+  - The real differentiator is intelligence layered on top: AI that answers, qualifies, and acts inside the workflow.
+  - DSX Edge's positioning — "Above the Cloud. Into the Business." — names exactly that gap.
+  - If your phone system only rings, you're still operating on last-decade infrastructure.
 ---
 
 Every business phone vendor now claims to be "cloud-based." That used to mean something — it meant you stopped buying $40,000 boxes for the closet. Today it just means the dial tone lives somewhere else.
