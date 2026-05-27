@@ -112,18 +112,6 @@ export const STATIC_ROUTE_META: Record<string, RouteMeta> = {
       "business communications knowledge base",
     ],
   },
-  "/case-studies": {
-    title: "Customer Case Studies — Real Businesses, Real Savings",
-    description:
-      "Real DSX deployments: how Law Office of Michael H. Bonner, Synology, and Synergy Homeopathic cut communications cost 46–65% with 3CX-based phone systems from DSX.",
-    keywords: [
-      "DSX case studies",
-      "3CX case study",
-      "VoIP cost reduction",
-      "business phone system case study",
-      "Synology phone system",
-    ],
-  },
   "/faq": {
     title: "Frequently Asked Questions — AI Voice Agents & 3CX",
     description:
