@@ -14,15 +14,15 @@ export const SITE = {
   founded: "2013",
   address: {
     streetAddress: "",
-    addressLocality: "San Diego",
-    addressRegion: "CA",
+    addressLocality: "Reno",
+    addressRegion: "NV",
     postalCode: "",
     addressCountry: "US",
   },
   sameAs: [
     "https://www.linkedin.com/company/dsx-edge",
   ],
-  areaServed: ["US", "MX", "CA"],
+  areaServed: ["US"],
 };
 
 export const absoluteUrl = (path: string = "/") => {

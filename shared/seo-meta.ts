@@ -19,11 +19,11 @@ export const SITE_DEFAULTS = {
   phone: "+1-000-000-0000",
   email: "hello@dsxedge.com",
   address: {
-    addressLocality: "San Diego",
-    addressRegion: "CA",
+    addressLocality: "Reno",
+    addressRegion: "NV",
     addressCountry: "US",
   },
-  areaServed: ["US", "MX", "CA"],
+  areaServed: ["US"],
   sameAs: ["https://www.linkedin.com/company/dsx-edge"],
 };
 
@@ -285,7 +285,7 @@ export function buildJsonLdForPath(pathname: string, siteUrl: string): object[] 
         provider: { "@id": `${siteUrl}/#organization` },
         areaServed: "Worldwide",
         description:
-          "AI voice agents layered on top of 3CX phone systems — answering, qualifying, and booking customer calls.",
+          "DSX Agents — agentic workflows layered on top of your phone system to answer, qualify, and book every customer call.",
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "DSX Edge Services",
@@ -413,7 +413,7 @@ export function buildJsonLdForPath(pathname: string, siteUrl: string): object[] 
           answerCount: 3,
           acceptedAnswer: {
             "@type": "Answer",
-            text: "DSX Edge is the AI layer DSX adds on top of 3CX business phone systems — answering, qualifying, and booking every customer call.",
+            text: "DSX Edge brings the DSX Agents — agentic workflows that answer, qualify, and book every customer call inside your existing phone system.",
           },
           suggestedAnswer: [
             {
@@ -422,7 +422,7 @@ export function buildJsonLdForPath(pathname: string, siteUrl: string): object[] 
             },
             {
               "@type": "Answer",
-              text: "DSX Edge is the AI implementation layer offered by DSX, a San Diego-based business communications company founded in 2013 and a 3CX Platinum Partner. Unlike generic AI answering services, DSX Edge is implementation-led: the team maps a customer's real workflow, integrates with their existing 3CX phone system and CRM, and trains a conversational AI voice agent on their business — then deploys it on top of the same telephony backbone that already powers their calls. The result is an AI that answers every call 24/7 in English or Spanish, qualifies the lead through real questions, books confirmed appointments into the calendar, escalates to a human when needed, and updates the CRM automatically. DSX Edge is positioned as 'Above the Cloud. Into the Business.' — cloud is infrastructure; DSX Edge is the intelligence layered on top.",
+              text: "DSX Edge is the AI implementation layer offered by DSX, a Reno, Nevada-based business communications company founded in 2013. Unlike generic AI answering services, DSX Edge is implementation-led: the team maps a customer's real workflow, integrates with their existing phone system and CRM, and trains the DSX Agents on their business — then deploys those agents on top of the same telephony backbone that already powers their calls. The result is an agentic workflow that answers every call 24/7 in English or Spanish, qualifies the lead through real questions, books confirmed appointments into the calendar, escalates to a human when needed, and updates the CRM automatically. DSX Edge is positioned as 'Above the Cloud. Into the Business.' — cloud is infrastructure; DSX Edge is the intelligence layered on top.",
             },
           ],
         },
@@ -444,7 +444,7 @@ export function buildJsonLdForPath(pathname: string, siteUrl: string): object[] 
   if (clean === "/faq") {
     const qas = [
       { q: "What is DSX Edge?", a: "DSX Edge is the AI layer DSX adds on top of business phone systems. Built on 12+ years of 3CX deployments, it answers calls, qualifies leads, and books appointments inside the customer's real workflow." },
-      { q: "Who owns DSX Edge?", a: "DSX Edge is operated by DSX, founded in 2013 by Joseph P. Berardi (CEO) and Kirk Hurford (CTO). The company is headquartered in San Diego, California and serves the US, Mexico, and Canada." },
+      { q: "Who owns DSX Edge?", a: "DSX Edge is operated by DSX, founded in 2013 by Joseph P. Berardi (CEO) and Kirk Hurford (CTO). The company is headquartered in Reno, Nevada and operates exclusively in the United States." },
       { q: "Is DSX a 3CX Platinum Partner?", a: "Yes — DSX is a 3CX Platinum Partner, the highest tier in the 3CX partner program, with over a decade of enterprise deployments." },
       { q: "Do I need to replace my phone system to use DSX Edge?", a: "No. DSX Edge layers AI on top of your existing 3CX system. If you're not on 3CX yet, we migrate you with zero downtime as part of the implementation." },
       { q: "What kinds of businesses use DSX Edge?", a: "Contractors, law firms, medical offices, insurance agencies, real estate teams, and any business losing revenue to missed calls or slow follow-up." },
@@ -460,7 +460,7 @@ export function buildJsonLdForPath(pathname: string, siteUrl: string): object[] 
       { q: "Does DSX Edge integrate with my CRM?", a: "Yes. DSX Edge integrates with HubSpot, Salesforce, Pipedrive, Zoho, ServiceTitan, Jobber, Housecall Pro, and most modern CRMs via API." },
       { q: "Can I keep my existing phone number?", a: "Yes. Number porting is standard, with zero downtime planned into the cutover." },
       { q: "What's the difference between DSX Edge and a generic AI answering service?", a: "Generic AI services bolt on at the call. DSX Edge is implementation-led — we map your real workflow, integrate with your phone system and CRM, and train the AI on your business. It's 'AI built around your workflow,' not a one-size template." },
-      { q: "What does 'Above the Cloud' mean?", a: "Cloud is infrastructure. DSX Edge is the intelligence layered on top of it — AI agents, workflow automation, and business integrations that go beyond ordinary cloud phone hosting." },
+      { q: "What does 'Above the Cloud' mean?", a: "Cloud is infrastructure. DSX Edge is the intelligence layered on top of it — DSX Agents, agentic workflows, and business integrations that go beyond ordinary cloud phone hosting." },
       { q: "Who do I contact to get started?", a: "Visit dsxedge.com/contact or email hello@dsxedge.com. Every engagement starts with a free workflow audit — no pressure, no obligation." },
     ];
 

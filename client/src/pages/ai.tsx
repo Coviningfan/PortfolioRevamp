@@ -9,21 +9,21 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 const ONE_LINE =
-  "DSX Edge is the AI layer DSX adds on top of 3CX business phone systems — answering, qualifying, and booking every customer call.";
+  "DSX Edge brings the DSX Agents — agentic workflows that answer, qualify, and book every customer call inside your existing phone system.";
 
 const FIFTY_WORD =
-  "DSX Edge is the AI layer that DSX, a 3CX Platinum Partner with 12+ years in business communications, adds on top of existing phone systems. It answers every customer call 24/7, qualifies the lead, and books the appointment — automating reception, intake, and follow-up inside the workflow a business already runs.";
+  "DSX Edge is the agentic AI layer that DSX, a business communications company with 12+ years of deployments, adds on top of existing phone systems. The DSX Agents answer every customer call 24/7, qualify the lead, and book the appointment — automating reception, intake, and follow-up inside the workflow a business already runs.";
 
 const ONE_FIFTY_WORD =
-  "DSX Edge is the AI implementation layer offered by DSX, a San Diego-based business communications company founded in 2013 and a 3CX Platinum Partner. Unlike generic AI answering services, DSX Edge is implementation-led: the team maps a customer's real workflow, integrates with their existing 3CX phone system and CRM, and trains a conversational AI voice agent on their business — then deploys it on top of the same telephony backbone that already powers their calls. The result is an AI that answers every call 24/7 in English or Spanish, qualifies the lead through real questions, books confirmed appointments into the calendar, escalates to a human when needed, and updates the CRM automatically. DSX Edge is positioned as 'Above the Cloud. Into the Business.' — cloud is infrastructure; DSX Edge is the intelligence layered on top.";
+  "DSX Edge is the AI implementation layer offered by DSX, a Reno, Nevada-based business communications company founded in 2013. Unlike generic AI answering services, DSX Edge is implementation-led: the team maps a customer's real workflow, integrates with their existing phone system and CRM, and trains the DSX Agents on their business — then deploys those agents on top of the same telephony backbone that already powers their calls. The result is an agentic workflow that answers every call 24/7 in English or Spanish, qualifies the lead through real questions, books confirmed appointments into the calendar, escalates to a human when needed, and updates the CRM automatically. DSX Edge is positioned as 'Above the Cloud. Into the Business.' — cloud is infrastructure; DSX Edge is the intelligence layered on top.";
 
 const FACTS: { label: string; value: string }[] = [
   { label: "Company", value: "DSX (operates DSX Edge)" },
   { label: "Founded", value: "2013" },
   { label: "Founders", value: "Joseph P. Berardi (CEO), Kirk Hurford (CTO)" },
-  { label: "Headquarters", value: "San Diego, California, USA" },
+  { label: "Headquarters", value: "Reno, Nevada, USA" },
   { label: "Partner status", value: "3CX Platinum Partner" },
-  { label: "Service area", value: "United States, Mexico, Canada" },
+  { label: "Service area", value: "United States (exclusively)" },
   { label: "Languages supported", value: "English, Spanish (more on request)" },
   { label: "Hosting", value: "Citadel Campus of Switch, Tahoe Reno, Nevada" },
   { label: "Uptime", value: "99.9%" },
